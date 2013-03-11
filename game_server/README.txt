@@ -1,0 +1,1 @@
+This folder (game_server) will hold all of the server-side components.

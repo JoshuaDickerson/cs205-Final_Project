@@ -1,0 +1,28 @@
+\documentclass[11pt]{article}
+\oddsidemargin 0.0in 
+\evensidemargin 0.5in 
+\textwidth 6.0in 
+\headheight 1.0in 
+\topmargin -1.0in 
+
+\title{\textbf{Rat-A-Tat-Cat Specifications}}
+\author{Joshua Dickerson, Katie Smith\\
+		Anders Melen, Dana Desautels}
+\date{}
+\begin{document}
+
+\maketitle
+
+\section*{Purpose}
+
+The purpose of this document is to provide a general framework by which our team will create a full-featured, web-based clone of the popular card game Rat-A-Tat-Cat. Using a combination of static HTML/CSS and embedded Java applets, out user interface will provide a rich experience for users of all ages. Gameplay data will be stored in a publicly available database from which a multitude of charts will be populated, and statistical conclusions can be drawn. 
+
+\section*{Introduction}
+Rat-A-Tat-Cat is an award winning card game, produced by Gamewright Inc.,  for children and adults of all ages. The objective is simple; get the lowest scoring hand and “knock” to end the round before your opponents beat you to it. This implementation of Rat-A-Tat-Cat will strive to maintain all of the game rules as prescribed, using GUIs and a detailed tutorial. The GUIs will be intuitive, and draw from a colour palette based closely off the colours used in the card game. A tutorial will be available for new players, and also serve as a refresher for more experienced players. The project will post game-time statistics to a public web-server where it will be stored in a relational database. 
+A PHP script running on the server will periodically refresh dynamically generated figures and charts with up-to-date data culled from the database, that highlight statistical points of interest related to AI and Human user performance.  by walking the user through the basics of the game. The AI will have multiple settings for adjusting difficulty, in particular memory capability and a risk threshold for switching cards. Users will be prompted with a login screen, in which they may enter their names, and have their scores saved. Statistics will be drawn from the comparison of these scores, as more players are entered. The scores, after each game, will be displayed on a leaderboard which will show the top player’s scores, and individual score.
+
+\section*{Specific Game Flow}
+See Fig 1\\
+The game is first set up by determining the number of human and computer players, given by the input at the login screen, after which the names of the human players are saved, as well as the AI difficulty level. The user will be presented with a choice; whether the game should proceed in normal mode or a tutorial demo mode. If the demo mode is selected, the user is taken through a tutorial round of the game. The round will consist of tooltips for what to click, hints for suggestions on strategy, and the entire round is played with all cards up in order to remove any ambiguity and allow the player to see and understand the process. If the normal mode is selected, then there are no hints or tooltips, and cards are faced down as normal. Regardless of demo mode or normal mode chosen, both then begin to play. Once the game begins, each player will subsequently be shown the two outside cards of their hand. They may not, after the initial phase, look at those two cards again, unless of course while exchanging cards. At the beginning of each set of new turns, the system will check for a knock. In which case, if a player decides to knock on their turn, it will initiate a flag that will then indicate a knocked turn. If the flag is not set for a knocked turn, then the game proceeds normally, and the current player is then prompted with an indicator of their turn. At this point, they then must make a decision whether to draw a card from the deck, or the discard pile. If the player chooses then to select a card from the discard pile, they must replace that same card with one in their hand. They may not pick up if it is a power card in the discard pile. Otherwise, the player must then draw a card from the deck. The program will display this card to the player, who then must decide whether to replace a card in their hand, or to discard it. For either choice of drawing from the deck or discard pile, the player is then given a choice whether to knock. If the player chooses not to knock, then the turn completes and the next player’s turn begins. If the player does however knock, it flags the turn as knocked. When the knocked flag is set, then the game proceeds to finish one last set of turns for every player until reaching the player who knocked, upon which the game will end. At the end of the game, all the cards for each player will be shown. Then, the score will be tallied for each player, and a winner will be determined for the round. Two things will then subsequently occur. A leaderboard displaying the scores of the top players as well as rank, name, and difficulty will be shown to the user. After, the game will return back to the beginning setup, to start a new game if desired. Simultaneously, data will be sent to the server, and statistics such as name, rank, and score will be stored in the database. A PHP script will then analyze the data and create charts and statistics on the player and the game.
+
+\end{document}
