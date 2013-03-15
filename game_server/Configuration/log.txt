@@ -5,3 +5,63 @@
 /home/josh/Dropbox/syllabus/cs-205-software-eng/cs205-Final_Project/game_server/Views/Home.php:7
 2013/03/15-08:20:45: hello
 /home/josh/Dropbox/syllabus/cs-205-software-eng/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:26:19: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:27:29: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:27:34: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:29:04: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:29:13: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:29:13: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:29:13: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:29:14: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:29:14: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:29:14: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:29:20: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:29:33: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:29:33: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:29:33: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:29:33: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:29:33: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:29:33: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:30:04: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:31:45: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:32:00: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:32:00: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:32:00: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:32:00: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:32:00: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:32:00: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:32:17: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:32:25: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:33:01: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:34:39: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32
+2013/03/15-08:35:10: hello
+/home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php:32

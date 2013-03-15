@@ -7,5 +7,5 @@
 
 	// defines our base directory, so that all our relative paths work
 	// change this when changing servers or base folders. 
-	define("BASEDIR", "/205_final_server/");
+	define("BASEDIR", "/cs205-Final_Project/game_server/");
 ?>
