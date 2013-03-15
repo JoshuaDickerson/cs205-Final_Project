@@ -6,12 +6,16 @@ if(isset($_SESSION['notifications'])){
 require_once "Header.php";
 ?>
 
-<form action="<? echo BASEDIR; ?>User/?doLogin=yes" method="post">
-	<ul>
-		<li>Username</li>
-		<li><input type="text" name="fldUsername"></li>
-		<li>Password</li>
-		<li><input type="password" name="fldPassword"></li>
-		<li><input type="submit" value="submit"></li>
-	</ul>
-</form>
+<div class="loginContainer">
+	<div class="loginNest">
+		<form action="<? echo BASEDIR; ?>User/?doLogin=yes" method="post">
+			<ul>
+				<li>Username</li>
+				<li><input type="text" name="fldUsername"></li>
+				<li>Password</li>
+				<li><input type="password" name="fldPassword"></li>
+				<li><input type="submit" value="submit" class="loginButton"></li>
+			</ul>
+		</form>
+	</div>
+</div>

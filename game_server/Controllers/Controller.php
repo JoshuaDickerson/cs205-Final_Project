@@ -29,7 +29,6 @@ class Controller{
  	// first thing the controller needs to do is fire up the router, which parses 
  	// the requested URL into its component parts 
  	function __construct(){
- 		logThis("hello");
  		require_once "Controllers/View.php";
 		require_once "Controllers/Router.php";
  		$this->POST = $_POST;	// grab all the $POST data for local use
