@@ -1,0 +1,1 @@
+This folder will contain the browser-based statistics displays gathered from the game_server
