@@ -47,13 +47,13 @@ public class finalProject extends JApplet
 		
 		//TESTING CURRENTSCORE
 		System.out.println("--------TESTING CURRENT SCORES OBJECT------------");
-		currentScore totalScore = new currentScore(2);
+		currentScore totalScore = new currentScore(2, newGameState);
 		totalScore.addPlayerScore(player1);
 		totalScore.addPlayerScore(player2);
 		System.out.println("TOTAL PLAYERS IN SCORE OBJECT SIZE: " + totalScore.getPlayerCount());
 		System.out.println(totalScore.getPlayerScoreAtIndex(0).getName() + " has score " + totalScore.getPlayerScoreAtIndex(0).getScore());
 		System.out.println(totalScore.getPlayerScoreAtIndex(1).getName() + " has score " + totalScore.getPlayerScoreAtIndex(1).getScore());
-
+		gameState tempGameState = totalScore.getGameState();
 	}
 	/* Invoked immediately after the start() method, and also any time
 	the applet needs to repaint itself in the browser. The paint()
