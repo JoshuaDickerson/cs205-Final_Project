@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.util.*;
 import java.awt.*;
+import java.applet.*;
 
 public class finalProject extends JApplet
 {
@@ -27,6 +28,39 @@ public class finalProject extends JApplet
 	//Game Mode
 	public static final int NORMAL_PLAY = 0;
 	public static final int DEMO_PLAY = 1;
+	//GUI MODE
+	public static final int MAIN_MENU = 0;
+	public static final int GAME_SCREEN = 0;
+	public static final int CREDITS_SCREEN = 0; //not sure if we need this...
+	
+
+	public void setUpGUI(int guiMode)
+	{
+		clearGUI();
+		setLayout(null);
+		switch(guiMode)
+		{
+			case(0): //MAIN_MENU GUI
+				JLabel label = new JLabel("MAIN MENU!",JLabel.LEFT);
+				getContentPane().add(label);
+				break;
+			
+			case(1): //GAME_SCREEN
+				break;
+			
+			case(2): //CREDITS!
+				break;
+		}
+	}
+	
+	public void clearGUI()
+	{
+		//this method should be called to remove everything from the frame
+		//every time we switch from main menu to game screen or what ever
+		//we need to clear and remove everything from the last view
+		
+		//FILL ME OUT!
+	}
 
 	public void gameLoop()
 	{
@@ -60,14 +94,16 @@ public class finalProject extends JApplet
 	method is actually inherited from the java.awt.*/
 	public void paint(Graphics g)
 	{
-		super.paint(g);
-		g.drawString("WOW THIS WORKED!",25,25);
+		//HERE we can paint graphics to the screen which can be helpful
+		//super.paint(g);
+		//g.drawString("WOW THIS WORKED!",25,25);
 	}
 	
 	/*This method is intended for whatever initialization is needed for your applet.
 	It is called after the param tags inside the applet tag have been processed.*/
 	public void init()
 	{
+		setUpGUI(MAIN_MENU);
 		gameLoop();
 	}
 	
