@@ -3,7 +3,19 @@ import java.util.*;
 import java.awt.*;
 import java.applet.*;
 
-public class finalProject extends JApplet
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.net.URL;
+import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+
+public class finalProject extends JApplet implements ActionListener 
 {
 	//GAME STATE DEFINITIONS
 	//UNIVERSAL NULL CASE
@@ -30,25 +42,105 @@ public class finalProject extends JApplet
 	public static final int DEMO_PLAY = 1;
 	//GUI MODE
 	public static final int MAIN_MENU = 0;
-	public static final int GAME_SCREEN = 0;
-	public static final int CREDITS_SCREEN = 0; //not sure if we need this...
+	public static final int GAME_SCREEN = 1;
+	public static final int CREDITS_SCREEN = 2; //not sure if we need this...
 	
-
+	//GUI
+	JButton jbnLeft;
+	JButton jbnRight;
+	JButton jbnMiddle;
+	JLabel title;
+	
 	public void setUpGUI(int guiMode)
 	{
 		clearGUI();
-		setLayout(null);
+		System.out.println("AFTER CLEAR");
+		//setLayout(new BorderLayout());
+			System.out.println("CREATED NEW BORDERLAYOUT");
+				System.out.println(guiMode);
 		switch(guiMode)
 		{
 			case(0): //MAIN_MENU GUI
-				JLabel label = new JLabel("MAIN MENU!",JLabel.LEFT);
-				getContentPane().add(label);
+				//TITLE
+				title = new JLabel("Menu");
+				getContentPane().add(title, BorderLayout.NORTH);
+				
+				//LEFT
+				jbnLeft = new JButton("Menu");
+				jbnLeft.setEnabled(false);
+				jbnLeft.addActionListener(this);
+				
+				//MIDDLE
+				jbnMiddle = new JButton("Game Board");
+				jbnMiddle.setEnabled(true);
+				jbnMiddle.setActionCommand("enableMiddle");
+				jbnMiddle.addActionListener(this);
+				
+				//RIGHT
+				jbnRight = new JButton("Credits");
+				jbnRight.setEnabled(true);
+				jbnRight.setActionCommand("enableRight");
+				jbnRight.addActionListener(this);
+				
+				//ADD THEM
+				getContentPane().add(jbnLeft, BorderLayout.WEST);
+				getContentPane().add(jbnRight, BorderLayout.EAST);
+				getContentPane().add(jbnMiddle, BorderLayout.CENTER);
 				break;
 			
 			case(1): //GAME_SCREEN
+				 //TITLE
+				title = new JLabel("Game Board");
+				getContentPane().add(title, BorderLayout.NORTH);
+				//LEFT
+				jbnLeft = new JButton("Disable centre button");
+				jbnLeft.setEnabled(true);
+				jbnLeft.setActionCommand("enableLeft");
+				jbnLeft.addActionListener(this);
+				
+				//MIDDLE
+				jbnMiddle = new JButton("Game Board");
+				jbnMiddle.setEnabled(false);
+				jbnMiddle.addActionListener(this);
+				
+				//RIGHT
+				jbnRight = new JButton("Credits");
+				jbnRight.setEnabled(true);
+				jbnRight.setActionCommand("enableRight");
+				jbnRight.addActionListener(this);
+				
+				//ADD THEM
+				//getContentPane().add(jbnLeft, BorderLayout.WEST);
+				//getContentPane().add(jbnRight, BorderLayout.EAST);
+				//getContentPane().add(jbnMiddle, BorderLayout.CENTER);
 				break;
 			
 			case(2): //CREDITS!
+				 //TITLE
+				title = new JLabel("Credits");
+				getContentPane().add(title, BorderLayout.NORTH);
+				
+				//LEFT
+				jbnLeft = new JButton("Disable centre button");
+				jbnLeft.setEnabled(true);
+				jbnLeft.setActionCommand("enableLeft");
+				jbnLeft.addActionListener(this);
+				
+				//MIDDLE
+				jbnMiddle = new JButton("Game Board");
+				jbnMiddle.setEnabled(true);
+				jbnMiddle.setActionCommand("enableMiddle");
+				jbnMiddle.addActionListener(this);
+				
+				//RIGHT
+				jbnRight = new JButton("Credits");
+				jbnRight.setEnabled(false);
+				jbnRight.addActionListener(this);
+				
+				//ADD THEM
+				//getContentPane().add(jbnLeft, BorderLayout.WEST);
+				//getContentPane().add(jbnRight, BorderLayout.EAST);
+				//getContentPane().add(jbnMiddle, BorderLayout.CENTER);
 				break;
 		}
 	}
@@ -59,7 +151,7 @@ public class finalProject extends JApplet
 		//every time we switch from main menu to game screen or what ever
 		//we need to clear and remove everything from the last view
 		
-		//FILL ME OUT!
+		getContentPane().removeAll();
 	}
 
 	public void gameLoop()
@@ -95,7 +187,7 @@ public class finalProject extends JApplet
 	public void paint(Graphics g)
 	{
 		//HERE we can paint graphics to the screen which can be helpful
-		//super.paint(g);
+		super.paint(g);
 		//g.drawString("WOW THIS WORKED!",25,25);
 	}
 	
@@ -128,4 +220,23 @@ public class finalProject extends JApplet
 	{
 	
 	}
+	
+	public void actionPerformed(ActionEvent e) {
+		
+		if("enableLeft".equals(e.getActionCommand()))
+		{
+			System.out.println("left");
+			setUpGUI(MAIN_MENU);
+		}
+		else if("enableMiddle".equals(e.getActionCommand()))
+		{
+			System.out.println("middle");
+			setUpGUI(GAME_SCREEN);
+		}
+		else if("enableRight".equals(e.getActionCommand()))
+		{
+			System.out.println("right");
+			setUpGUI(CREDITS_SCREEN);
+		}
+	}	
 }
