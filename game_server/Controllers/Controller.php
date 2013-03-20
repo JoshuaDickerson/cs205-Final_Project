@@ -53,7 +53,7 @@ class Controller{
 		
 		if(isset($controller) && $controller != ""){
 			$controller = $controller."Controller";
-			logThis($controller);
+			// logThis($controller);
 			// if there is an associated controller, make an instance of that object
 			// perform the requested action, and return the data, otherwise drop into 
 			// the default model. 
