@@ -14,6 +14,7 @@ class InteractDB{
 	private $user = DATABASE_USER;
 	public $dsn = null;	// for PDO
 	public $error = false; // if we catch an error set to true 
+	public $errorCondition;
 	
 	public $connection = null;
 
@@ -99,6 +100,7 @@ class InteractDB{
 			$this->returnedRows = $stmt->fetchAll();
 		}catch(Exception $e){
 			$this->error = true;
+			logThis($e);
 		}
 	} // end selectStatement
 
@@ -132,6 +134,8 @@ class InteractDB{
 			$stmt->execute($data);
 		}catch(Exception $e){
 			$this->error = true;
+			logThis($e);
+			$this->errorCondition = $e;
 		}
 
 	} // end insertStatement
