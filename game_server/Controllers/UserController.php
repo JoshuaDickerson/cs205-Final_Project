@@ -44,7 +44,6 @@ class UserController{
 					    	exit;
 					    }
 				    break;
-
 				    case "logOut":
 				    	$_SESSION['user']->logout();
 				    break;
