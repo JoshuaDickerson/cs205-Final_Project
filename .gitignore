@@ -1,2 +1,2 @@
 Configuration/config.php
-*.class
+game_client/*.class
