@@ -197,7 +197,7 @@
         </script>
     
     <body>
-        <div id="chartdiv" style="width:50%; height:400px;"></div>
+        <div id="chartdiv" style="width:100%; height:400px;"></div>
     </body>
 
 </html>
