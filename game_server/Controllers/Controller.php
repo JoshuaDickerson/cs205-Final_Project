@@ -1,23 +1,21 @@
-
 <?php
-
 // Author: Joshua Dickerson
 // Developed 2012 at The University of Vermont
-
+//
 // head controller class
 // this class creates an instance of a router
 // which parses the URL and delivers to the controller
 // a path to a model file and an array of actions to operate
 // on that model
-
+//
 // URLs look like /basedir/model/?action=doAction
-
+//
 require_once "Configuration/config.php";
 require_once "Models/InteractDB.php";
-
+//
 // recieves the url, instanciates the appropriate controller -->
 $controllerObj = new Controller($_SERVER, $_POST);
-
+//
 class Controller{
 	private $routerObj;
 	private $modelObj;
