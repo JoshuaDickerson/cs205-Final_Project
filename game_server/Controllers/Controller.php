@@ -53,13 +53,16 @@ class Controller{
 		
 		if(isset($controller) && $controller != ""){
 			$controller = $controller."Controller";
+			logThis($controller);
 			// if there is an associated controller, make an instance of that object
 			// perform the requested action, and return the data, otherwise drop into 
 			// the default model. 
 			if(file_exists("Controllers/".$controller.".php")){ // check if a file exists in the controller dir
 				include "Controllers/".$controller.".php";
 				$controllerObj = new $controller($this->routerObj->getActions(), $this->POST);
-				$this->view = $controllerObj->getView();
+				if($controllerObj->getView()){
+					$this->view = $controllerObj->getView();
+				}
 			}else{	// a controller was called, but does not exist, send user to the default
 			} // end nested if-else
 		}

@@ -34,15 +34,49 @@
 			}
 		}
 
-		// the following trims the leading and following "/" off of the path
-		$dirTrim = substr_replace(BASEDIR ,"",-1);
-		$dirTrim = substr_replace($dirTrim ,"",0,1);
+		logThis($requestArr['path']);
+
+
+		// // the following trims the leading and following "/" off of the path
+		$dirTrim = str_replace(BASEDIR ,"",$requestArr['path']);
+		$dirTrim = substr_replace($dirTrim ,"",-1);
+		// $dirTrim = substr_replace($dirTrim ,"",0,1);
+		// $basedirArr = explode("/", BASEDIR);
+		// logThis($basedirArr);
+		// logThis($urlPath);
+
+		// for($ii=0; $ii<count($basedirArr); $ii++){
+		// 	// $index = array_search($basedirArr[$ii], $urlPath);
+		// 	// if($index){
+		// 	// 	unset($urlPath[$index]);
+		// 	// }
+		// 	if($basedirArr[$ii] == "" || $basedirArr[$ii] == " "){
+		// 		unset($basedirArr[$ii]);
+		// 	}
+		// }
+
+		// // for($ii=0; $ii<count($urlPath); $ii++){
+		// // 	if($urlPath[$ii] == "" || $urlPath[$ii] == " "){
+		// // 		unset($urlPath[$ii]);
+		// // 	}
+		// // }
+
+		
+		// $dirTrim = implode("/", $basedirArr);
+		// $dirTrim = substr_replace($dirTrim ,"",-1);
+		logThis($dirTrim);
+		// logThis($urlPath);
 
 		// all our model file names are like User.php. 
 		// this takes the model query, lowecases the whole thing, then uppercases the first letter.
 		// always resulting in the appropriate model name format.
+		// if(isset($urlPath[1+array_search($dirTrim, $urlPath)])){
+		// 	$ControllerQuery = $urlPath[1+array_search($dirTrim, $urlPath)];
+		// 	$this->controller = ucfirst(strtolower($ControllerQuery));
+		// }
+
 		if(isset($urlPath[1+array_search($dirTrim, $urlPath)])){
-			$ControllerQuery = $urlPath[1+array_search($dirTrim, $urlPath)];
+			$ControllerQuery = $dirTrim;
 			$this->controller = ucfirst(strtolower($ControllerQuery));
 		}
 				
