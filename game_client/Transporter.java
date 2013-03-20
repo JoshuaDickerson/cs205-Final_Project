@@ -9,18 +9,22 @@ public class Transporter{
 	// private String urlString = "http://slimdowndesign.com/cs205-Final_Project/game_server/?gamedata=newdata"; 
 	private String urlString = "http://localhost/205_final_server/?gamedata=newdata"; 
 
-	public Transporter(gameState currentState){
-
+	public Transporter(currentScore currentState){
+		Gson gson = new Gson();
+		String json = gson.toJson(currentState);
+		this.postToServer(json);
 	}
 
 	public Transporter(String testContent){
-		this.postToServer();
+		Gson gson = new Gson();
+		String json = gson.toJson(this);
+		this.postToServer(json);
 	}
 
 
-	public void postToServer(){
+	public void postToServer(String postvar){
 		try{
-			String urlParameters = "param1=a&param2=b&param3=c";
+			String urlParameters = "gameState="+postvar;
 			URL url = new URL(this.urlString); 
 			URLConnection connection = url.openConnection();
 			connection.setDoOutput(true);

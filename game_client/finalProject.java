@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.*;
 import java.applet.*;
+import java.util.Scanner;
 
 
 import java.awt.event.ActionEvent;
@@ -29,7 +30,7 @@ public class finalProject extends JApplet implements ActionListener
 	//Win Condiction
 	public static final int NUM_ROUNDS = 0;
 	public static final int TIMED_PLAY = 1;
-	public static final int HIGH_SCIRE = 2;
+	public static final int HIGH_SCORE = 2;
 	//Current Player
 	public static final int PLAYER_ONE = 0;
 	public static final int PLAYER_TWO = 1;
@@ -54,6 +55,7 @@ public class finalProject extends JApplet implements ActionListener
 	public void setUpGUI(int guiMode)
 	{
 		clearGUI();
+		
 		System.out.println("AFTER CLEAR");
 		//setLayout(new BorderLayout());
 			System.out.println("CREATED NEW BORDERLAYOUT");
@@ -61,6 +63,8 @@ public class finalProject extends JApplet implements ActionListener
 		switch(guiMode)
 		{
 			case(0): //MAIN_MENU GUI
+			System.out.println("0");
+				
 				//TITLE
 				title = new JLabel("Menu");
 				getContentPane().add(title, BorderLayout.NORTH);
@@ -83,12 +87,14 @@ public class finalProject extends JApplet implements ActionListener
 				jbnRight.addActionListener(this);
 				
 				//ADD THEM
-				getContentPane().add(jbnLeft, BorderLayout.WEST);
-				getContentPane().add(jbnRight, BorderLayout.EAST);
-				getContentPane().add(jbnMiddle, BorderLayout.CENTER);
+				add(jbnLeft, BorderLayout.WEST);
+				add(jbnRight, BorderLayout.EAST);
+				add(jbnMiddle, BorderLayout.CENTER);
 				break;
 			
 			case(1): //GAME_SCREEN
+			System.out.println("1");
+			
 				 //TITLE
 				title = new JLabel("Game Board");
 				getContentPane().add(title, BorderLayout.NORTH);
@@ -110,12 +116,14 @@ public class finalProject extends JApplet implements ActionListener
 				jbnRight.addActionListener(this);
 				
 				//ADD THEM
-				//getContentPane().add(jbnLeft, BorderLayout.WEST);
-				//getContentPane().add(jbnRight, BorderLayout.EAST);
-				//getContentPane().add(jbnMiddle, BorderLayout.CENTER);
+				add(jbnLeft, BorderLayout.WEST);
+				add(jbnRight, BorderLayout.EAST);
+				add(jbnMiddle, BorderLayout.CENTER);
 				break;
 			
 			case(2): //CREDITS!
+			System.out.println("2");
+			
 				 //TITLE
 				title = new JLabel("Credits");
 				getContentPane().add(title, BorderLayout.NORTH);
@@ -138,11 +146,12 @@ public class finalProject extends JApplet implements ActionListener
 				jbnRight.addActionListener(this);
 				
 				//ADD THEM
-				//getContentPane().add(jbnLeft, BorderLayout.WEST);
-				//getContentPane().add(jbnRight, BorderLayout.EAST);
-				//getContentPane().add(jbnMiddle, BorderLayout.CENTER);
+				add(jbnLeft, BorderLayout.WEST);
+				add(jbnRight, BorderLayout.EAST);
+				add(jbnMiddle, BorderLayout.CENTER);
 				break;
 		}
+		
 	}
 	
 	public void clearGUI()
@@ -151,11 +160,164 @@ public class finalProject extends JApplet implements ActionListener
 		//every time we switch from main menu to game screen or what ever
 		//we need to clear and remove everything from the last view
 		
-		getContentPane().removeAll();
+		//getContentPane().removeAll();
 	}
 
 	public void gameLoop()
 	{
+		//DEBUG
+		boolean debug = true;
+		boolean extraHelp = true;
+		
+		//NEW INPUT SCANNER
+		Scanner input = new Scanner(System.in);
+		
+		//CREATE GAME STATE
+		gameState GAME_STATE = new gameState(2);	
+		if(debug)
+		{
+			System.out.println("********************************");
+			System.out.println("SHOWING INITIAL GAME STATE: ");
+			GAME_STATE.print();	
+			System.out.println("********************************");
+		}
+		
+		//CREATE DECK
+		Deck mainDeck = new Deck();
+		mainDeck.shuffle();
+			
+		//HUMAN PLAYER
+	   System.out.println("WHAT IS YOUR NAME?");
+	   String name = input.next();
+		Hand humanHand = new Hand(0);
+		Player human = new Player(true, 0, name, humanHand);
+		
+		//COMPUTER PLAYER
+		Hand computerHand = new Hand(1);
+		Player computer = new Player(false, 1, "JESUS", computerHand);
+		
+		for(int i = 0; i < 4; i++)
+		{
+			Card temp = mainDeck.getTopCard();
+			human.myHand.addCard(temp);
+			
+			Card temp2 = mainDeck.getTopCard();
+			computer.myHand.addCard(temp2);
+		}
+		
+		if(debug || extraHelp)
+		{
+			System.out.println("********************************");
+			System.out.println(human.getName() + "'s hand: ");
+			human.myHand.showHand();
+			System.out.println("********************************");
+		}
+		if(debug)
+		{
+			System.out.println("********************************");
+			System.out.println(computer.getName() + "'s hand: ");
+			computer.myHand.showHand();
+			System.out.println("SHOWING THE REMAINING DECK");
+			mainDeck.showDeck();
+			System.out.println("********************************");
+		}
+		
+		//PEEKING HUMAN TWO INITIAL CARDS
+		System.out.println("Your Left Most Card: " + human.myHand.getCard(0).getRank());
+		System.out.println("Your Right Most Card: " + human.myHand.getCard(3).getRank());
+		
+		//UPDATE GAME STATE
+		GAME_STATE.updateGameState(NORMAL_ROUND, NUM_ROUNDS, 0, NORMAL_PLAY);
+		if(debug)
+		{
+			System.out.println("********************************");
+			System.out.println("SHOWING UPDATED GAME STATE: ");
+			GAME_STATE.print();
+			System.out.println("********************************");
+		}
+		
+		//GAME STARTING
+		//SHOWING TOP CARD
+		//DRAW TOP CARD
+		Card firstCard = mainDeck.getTopCard();
+		while(firstCard.getSpecial() == "peek" || firstCard.getSpecial() == "peek" ||  firstCard.getSpecial() == "peek")
+		{
+			//IF WE GET A POWER CARD GET ANOTHER CARD!!
+			mainDeck.addCard(firstCard);
+			firstCard = mainDeck.getTopCard();
+		}
+		System.out.println("First Card: " + firstCard.getRank());
+
+		//--------GAME LOOP-----------
+		boolean gameOver = false;
+		int handIndex = 0;
+		String userInput = "";
+		Card cardFromDeck;
+		while(!gameOver)
+		{
+			//------TURN
+			System.out.println("It is " + GAME_STATE.getPlayer() + ". Drawing card!");
+			cardFromDeck = mainDeck.getTopCard();
+			System.out.println("You've picked up a " + cardFromDeck.getRank() + ". To discard press (-1), if you want to swap it type the index");
+			userInput = input.next();
+			handIndex = Integer.parseInt(userInput);
+			if(handIndex == -1)
+			{
+				//User discards back to deck
+				mainDeck.addCard(cardFromDeck);
+				if(debug)
+				{
+					System.out.println("********************************");
+					System.out.println(human.getName() + " decided to discard " + cardFromDeck.getRank());
+					System.out.println("********************************");
+				}
+			}
+			else
+			{
+				if(debug)
+				{
+					System.out.println("********************************");
+					System.out.println(human.getName() + " decided to swap his old " + human.myHand.getCard(handIndex).getRank() + ", with " + cardFromDeck.getRank());
+					System.out.println("********************************");
+				}
+				Card removedFromHand = human.myHand.getCard(handIndex);
+				human.myHand.remove(handIndex);
+				mainDeck.addCard(removedFromHand);
+				human.myHand.addCard(cardFromDeck);
+			}
+			if(debug || extraHelp)
+			{
+				System.out.println("********************************");
+				System.out.println("Showing " + human.getName() + "'s New Hand: ");
+				human.myHand.showHand();
+				System.out.println("********************************");
+			}
+			//-------END TURN
+			
+			//UPDATE GAME STATE
+			if(GAME_STATE.getPlayer() == GAME_STATE.numPlayers() - 1)
+			{
+				//RESET BACK TO FIRST PLAYER
+				GAME_STATE.setPlayer(0);
+				System.out.println("********************************");
+				System.out.println("RESETTING BACK TO PLAYER 1");
+				System.out.println("********************************");
+			}
+			else
+			{
+				//NEXT PLAYERS TURN
+				GAME_STATE.setPlayer(GAME_STATE.getPlayer() + 1);
+			}
+			if(debug)
+			{
+				System.out.println("********************************");
+				System.out.println("SHOWING GAME STATE AFTER TURN: ");
+				GAME_STATE.print();
+				System.out.println("********************************");
+			}
+		}		
+		
+		/*
 		//TESTING GAME STATE
 		System.out.println("--------TESTING GAME STATE OBJECT------------");
 		gameState newGameState = new gameState();
@@ -180,6 +342,7 @@ public class finalProject extends JApplet implements ActionListener
 		System.out.println(totalScore.getPlayerScoreAtIndex(0).getName() + " has score " + totalScore.getPlayerScoreAtIndex(0).getScore());
 		System.out.println(totalScore.getPlayerScoreAtIndex(1).getName() + " has score " + totalScore.getPlayerScoreAtIndex(1).getScore());
 		gameState tempGameState = totalScore.getGameState();
+		*/
 	}
 	/* Invoked immediately after the start() method, and also any time
 	the applet needs to repaint itself in the browser. The paint()
@@ -195,7 +358,7 @@ public class finalProject extends JApplet implements ActionListener
 	It is called after the param tags inside the applet tag have been processed.*/
 	public void init()
 	{
-		setUpGUI(MAIN_MENU);
+		//setUpGUI(MAIN_MENU);
 		gameLoop();
 	}
 	
