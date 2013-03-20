@@ -125,7 +125,7 @@ class InteractDB{
 		try{
 			// Construct the query
 			$query = 'INSERT INTO '.$tableName.' ('.$fieldNames.') VALUES ('.$fieldValues.');';
-			logThis($query);
+			// logThis($query);
 			// // Prepare the query
 			$stmt = $connection->prepare($query);
 			// // Execute the query
