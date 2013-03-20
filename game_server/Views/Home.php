@@ -19,6 +19,3 @@ require_once "Header.php";
 		</form>
 	</div>
 </div>
-
-<applet code="Smiley.class" width="300" height="200">
-</applet>
