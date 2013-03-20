@@ -34,7 +34,7 @@
 			}
 		}
 
-		logThis($requestArr['path']);
+		// logThis($requestArr['path']);
 
 
 		// // the following trims the leading and following "/" off of the path
@@ -64,7 +64,7 @@
 		
 		// $dirTrim = implode("/", $basedirArr);
 		// $dirTrim = substr_replace($dirTrim ,"",-1);
-		logThis($dirTrim);
+		// logThis($dirTrim);
 		// logThis($urlPath);
 
 		// all our model file names are like User.php. 
