@@ -6,7 +6,11 @@ class GamedataController{
 	function __construct($POST){
 		$result = json_decode($POST['gameState']);
 		if($result && $result != null){
-			echo "json decoded";
+			$array = array(
+				'tableName' = 'tblStates', 
+				'fldStateSnapshot' = $result
+			);
+			$dbWrapper = new InteractDB('insert', $array);
 		}
 	}
 } // end class def
