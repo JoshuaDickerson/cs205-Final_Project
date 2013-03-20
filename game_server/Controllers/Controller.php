@@ -31,7 +31,10 @@ class Controller{
  	function __construct(){
  		require_once "Controllers/View.php";
 		require_once "Controllers/Router.php";
+		require_once "Controllers/AnalyticsController.php";
+		$ac = new AnalyticsController($_SERVER);
  		$this->POST = $_POST;	// grab all the $POST data for local use
+
  		$this->routerObj = new Router($_SERVER);
  		$_SESSION['user']->setCurrentDevice($this->routerObj->getDeviceType());
  		$this->getModelData();

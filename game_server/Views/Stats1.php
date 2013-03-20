@@ -5,7 +5,7 @@
             var chart;
 
             var chartData = [{
-                year: 2000,
+                year: 1994,
                 cars: 1587,
                 motorcycles: 650,
                 bicycles: 121
