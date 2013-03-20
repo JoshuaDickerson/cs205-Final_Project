@@ -1,4 +1,4 @@
- <?php
+<?php
 //$routerObj = new Router($_SERVER);
 // var_dump($routerObj);
  class Router{
