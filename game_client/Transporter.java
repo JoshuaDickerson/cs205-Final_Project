@@ -27,10 +27,13 @@ public class Transporter{
 	}
 
 	public Transporter(String testContent){
-		Gson gson = new Gson();
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.disableHtmlEscaping();
+		Gson gson = gsonBuilder.create();
 		String json = gson.toJson(this);
 		this.postToServer(json);
 	}
+	
 
 
 	public void postToServer(String postvar){

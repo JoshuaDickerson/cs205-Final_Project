@@ -3,3 +3,4 @@
 [20-Mar-2013 12:54:42 US/Eastern] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Router.php on line 39
 [20-Mar-2013 13:13:10 US/Eastern] PHP Fatal error:  Call to undefined method LogController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 63
 [20-Mar-2013 13:24:57 US/Eastern] PHP Parse error:  syntax error, unexpected ',', expecting ']' in /home/slimdown/public_html/cs205-Final_Project/game_server/index.php on line 6
+[20-Mar-2013 13:57:00 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 63
