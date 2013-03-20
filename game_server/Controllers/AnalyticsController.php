@@ -1,6 +1,6 @@
 <?php
 
-public class AnalyticsController{
+class AnalyticsController{
 	function __construct(){
 		echo "working";
 	}
@@ -9,3 +9,5 @@ public class AnalyticsController{
 		return "Stats1.php";
 	}
 } // end AnalyticsController class def 
+
+?>

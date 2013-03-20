@@ -63,7 +63,7 @@ class Controller{
 				if($controllerObj->getView()){
 					$this->view = $controllerObj->getView();
 				}
-				echo $this->view;
+				// echo $this->view;
 			}else{	// a controller was called, but does not exist, send user to the default
 			} // end nested if-else
 		}
