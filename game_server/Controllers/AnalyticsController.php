@@ -9,7 +9,7 @@ class AnalyticsController{
 		);
 
 		$dbWrapper = new InteractDB('insert', $array);
-		logthis($dbWrapper->error);
+		// logthis($dbWrapper->error);
 	}
 } // end AnalyticsController class def 
 
