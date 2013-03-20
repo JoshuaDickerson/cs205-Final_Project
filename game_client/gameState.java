@@ -7,15 +7,17 @@ public class gameState
 	private int status;
 	private int winCon;
 	private int player;
-	private int mode;	
+	private int mode;
+	private int numPlayers;	
 			
 	//CONSTRUCTOR
-	public gameState()
+	public gameState(int _numPlayers)
 	{
 		this.status = 0;
 		this.winCon = -1;
 		this.player = -1;
 		this.mode = -1;
+		this.numPlayers = _numPlayers;
 	}
 
 	//SETTER
@@ -45,6 +47,16 @@ public class gameState
 		return this.mode;
 	}
 	
+	public void setPlayer(int _curPlayer)
+	{
+		this.player = _curPlayer;
+	}
+	
+	public int numPlayers()
+	{
+		return this.numPlayers;
+	}
+	
 	//PRINTING
 	public void print()
 	{
@@ -53,6 +65,7 @@ public class gameState
 		System.out.println("Win Con: " + this.winCon);
 		System.out.println("Cur Player: " + this.player);
 		System.out.println("Game Mode: " + this.mode);
+		System.out.println("Number of Players: " + this.numPlayers);
 	}	
 	
 	/*

@@ -4,14 +4,26 @@ class Player
 	private boolean isHuman;
 	private int id;
 	private int score;
+	public Hand myHand;
 	
 	//constructor
-	public Player(boolean isHuman, int id, String name)
+	public Player(boolean isHuman, int id, String name, Hand myHand)
 	{
 		this.isHuman = isHuman;
 		this.id = id;
-		playername = name;
+		this.playername = name;
+		this.myHand = myHand;
 	}
+	
+	public void setHand(Hand myHand)
+	{
+		this.myHand = myHand;
+	}
+	
+	public Hand getHand()
+	{
+		return this.myHand;
+	}	
 	
 	public void setHuman(boolean isHuman)
 	{
