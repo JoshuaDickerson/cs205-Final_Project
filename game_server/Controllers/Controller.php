@@ -60,9 +60,9 @@ class Controller{
 			if(file_exists("Controllers/".$controller.".php")){ // check if a file exists in the controller dir
 				include "Controllers/".$controller.".php";
 				$controllerObj = new $controller($this->routerObj->getActions(), $this->POST);
-				if($controllerObj->getView()){
+				// if($controllerObj->getView()){
 					$this->view = $controllerObj->getView();
-				}
+				// }
 				// echo $this->view;
 			}else{	// a controller was called, but does not exist, send user to the default
 			} // end nested if-else
