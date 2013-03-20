@@ -5,13 +5,24 @@ import org.apache.http.client.*;
 import org.apache.http.impl.client.*;
 import com.google.gson.*;
 
+/**
+* @author JoshuaDickerson joshuajdickerson@gmail.com
+*
+* The Transporter object takes a currentScore object on instanciation
+* and generates JOSN which is then posted to the server 
+*/
+
+
+
 public class Transporter{
-	private String urlString = "http://slimdowndesign.com/cs205-Final_Project/game_server/?gamedata=newdata"; 
-	// private String urlString = "http://localhost/205_final_server/?gamedata=newdata"; 
+	private String urlString = "http://slimdowndesign.com/cs205-Final_Project/game_server/Gamedata/?gamedata=newdata"; 
+	// private String urlString = "http://localhost/205_final_server/Gamedata/?gamedata=newdata"; 
 
 	public Transporter(currentScore currentState){
 		Gson gson = new Gson();
+		// convert our object to json
 		String json = gson.toJson(currentState);
+		// send it off
 		this.postToServer(json);
 	}
 
@@ -46,4 +57,4 @@ public class Transporter{
 			System.out.println("Could not connect to server:  "+ex);
 		}
 	}
-}
+} // end Transporter class
