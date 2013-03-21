@@ -10,6 +10,7 @@ class View{
         }
 
         $this->view = $view;
+        // $this->view = "Stats1";
         $this->display();
 	}
 
@@ -17,6 +18,7 @@ class View{
 
 	public function display(){
         if(file_exists('Views' . '/' . $this->view . '.php')){
+            include_once 'Views/Header.php';
             include_once 'Views' . '/' . $this->view . '.php';
         }
         else{

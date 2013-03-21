@@ -36,15 +36,16 @@ class UserController{
 					    $loginResult = $_SESSION['user']->login($this->POST['fldUsername'], $this->POST['fldPassword']);
 					    if($loginResult){
 					    	// if login worked redirect the user to his home page
-					    	header('location: '.BASEDIR.'User/?home='.$_SESSION['user']->getUserID()); 
+					    	header('location: '.BASEDIR.'User/?home='.$_SESSION['user']->getUserID());
+					    	// logThis("login succeeded");
 					    	exit;
 					    }else{
 					    	// $_SESSION['notifications'] = "login Failed";
-					    	header("location: ".BASEDIR); 
+					    	header("location: ".BASEDIR);
+					    	// logThis("login failed");
 					    	exit;
 					    }
 				    break;
-
 				    case "logOut":
 				    	$_SESSION['user']->logout();
 				    break;

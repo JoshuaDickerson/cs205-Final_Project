@@ -2,7 +2,9 @@
 // session_start();
 require_once 'Models/User.php';
 require_once "Configuration/log.php";
-logThis($_POST);
+if(isset($_POST['gameState'])){
+	logThis($_POST['gameState'], false);
+}
 session_start();
 if(!isset($_SESSION['user'])){
 	$user = new UserModel;
