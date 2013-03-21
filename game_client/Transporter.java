@@ -5,6 +5,7 @@ import org.apache.http.client.*;
 import org.apache.http.impl.client.*;
 import com.google.gson.*;
 
+
 public class Transporter{
 	private String urlString = "http://slimdowndesign.com/cs205-Final_Project/game_server/?gamedata=newdata"; 
 	// private String urlString = "http://localhost/205_final_server/?gamedata=newdata"; 

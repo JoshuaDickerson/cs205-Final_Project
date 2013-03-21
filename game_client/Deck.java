@@ -8,8 +8,10 @@ class Deck
 	//constructor
 	public Deck()
 	{
+
+		//FOR USE OF THE NORMAL DECK!
 		mainDeck = new ArrayList<Card>();
-			
+		
 		for(int i = 0; i < 9; i++)
 		{
 			tempCard = new Card(i);
@@ -33,6 +35,28 @@ class Deck
 			mainDeck.add(tempCard);
 		}
 	}
+	
+	//FOR USE WITH THE DISCARD PILE.. ADDS CARDS TO THE TOP OF THE STACK NOT TO BOTTOM!
+	public void addTopCard(Card tempCard)
+	{
+		if(this.mainDeck.size() == 0)
+		{
+			this.addCard(tempCard);
+		}
+		else
+		{
+			ArrayList<Card> oldDeck = this.mainDeck;
+			ArrayList<Card> tempDeck = new ArrayList<Card>();
+			tempDeck.add(tempCard);
+			for(Card temp : oldDeck)
+			{
+				tempDeck.add(temp);
+			}
+			mainDeck.clear();
+			this.mainDeck = tempDeck;
+		}
+	}
+	
 	//adds cards to the deck
 	public void addCard(Card tempCard)
 	{
@@ -52,6 +76,11 @@ class Deck
 	public void shuffle()
 	{
 		Collections.shuffle(mainDeck);
+	}
+	
+	public void clear()
+	{
+		this.mainDeck.clear();
 	}
 	//return the top card of the deck
 	public Card getTopCard()

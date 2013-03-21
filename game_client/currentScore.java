@@ -5,21 +5,21 @@ import java.awt.*;
 public class currentScore
 {
 	private int numPlayers;
-	private playerScore[] allScores;
+	private Player[] allPlayers;
 	private int currentIndex = 0;
 	private gameState state;
 	//REPLACE OBJECT WITH 
 	public currentScore(int _numPlayers, gameState _state)
 	{
 		this.numPlayers = _numPlayers;
-		this.allScores = new playerScore[_numPlayers];
+		this.allPlayers = new Player[_numPlayers];
 		this.state = _state;
 		//MUST MANUALLY ADD PLAYER SCORES TO CURRENT SCORE ARRAY WITH ADD PLAYER SCORE
 	}
 	
-	public void addPlayerScore(playerScore score)
+	public void addPlayer(Player _player)
 	{
-		this.allScores[this.currentIndex] = score;
+		this.allPlayers[this.currentIndex] = _player;
 		this.currentIndex++;
 	}
 	
@@ -28,9 +28,9 @@ public class currentScore
 		return this.currentIndex;
 	}
 	
-	public playerScore getPlayerScoreAtIndex(int index)
+	public Player getPlayerAtIndex(int index)
 	{
-		return this.allScores[index];
+		return this.allPlayers[index];
 	}
 	
 	public gameState getGameState()
