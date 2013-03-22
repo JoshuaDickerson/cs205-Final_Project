@@ -274,7 +274,7 @@ public class finalProject extends JApplet implements ActionListener
 			System.out.println("Top card in discard pile: " + discard.getCard(0).getRank());
 			System.out.println("Type 1 for new card from deck OR 2 for the top card in discard pile");
 			int choice = Integer.parseInt(input.next());
-			if(choice == 1)
+			if(2 == 1)
 			{
 				//GET NEW CARD FROM DECK
 				cardFromDeck = mainDeck.getTopCard();
