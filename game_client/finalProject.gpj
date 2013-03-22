@@ -1,4 +1,4 @@
-!656;s
+!1228;s
 J
 SAU0PATH+=%<JGRASP_PATHS>%;
 SCU0PATH+=%<JGRASP_PATHS>%;\012CYGWIN=nodosfilewarning
@@ -7,14 +7,24 @@ SJU0CLASSPATH=+%;%<EXTENSION_CLASSPATHS>\012CLASSPATH+=%<JGRASP_CLASSPATHS>%;\01
 SOU0PATH+=%<JGRASP_PATHS>%;\012CYGWIN=nodosfilewarning
 SPU0
 s#i0
-s#k0
-s#j0
+s#k0C:\\Users\\Anders\\SCHOOOOOOL\\CS205\\FinalProject\\cs205-Final_Project\\game_client\\lib\\httpcore-4.2.3.jar\000\012C:\\Users\\Anders\\SCHOOOOOOL\\CS205\\FinalProject\\cs205-Final_Project\\game_client\\lib\\httpclient-4.2.3.jar\000\012C:\\Users\\Anders\\SCHOOOOOOL\\CS205\\FinalProject\\cs205-Final_Project\\game_client\\lib\\gson-2.2.2.jar\000\012C:\\Users\\Anders\\SCHOOOOOOL\\CS205\\FinalProject\\cs205-Final_Project\\game_client\\lib\\commons-net-3.2.jar\000
+s#j0C:\\Users\\Anders\\SCHOOOOOOL\\CS205\\FinalProject\\cs205-Final_Project\\game_client\\lib\\httpcore-4.2.3.jar
 s#l0
-!65;g
+!150;g
+%\011Card.java
 %\011finalProject.java
-%\011definitions.java
+%\011Hand.java
+%\011Player.java
+%\011Deck.java
+%\011currentScore.java
 %\011gameState.java
-!56;f
+%\011Transporter.java
+!126;f
+%	Card.java
 %	finalProject.java
-%	definitions.java
+%	Hand.java
+%	Player.java
+%	Deck.java
+%	currentScore.java
 %	gameState.java
+%	Transporter.java

@@ -18,6 +18,11 @@ class Hand
 	{
 		return hand.size();
 	}
+	
+	public void set(int index, Card _card)
+	{
+		this.hand.set(index, _card);
+	}
 	public void addCard(Card tempCard)
 	{
 		hand.add(tempCard);
