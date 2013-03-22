@@ -121,4 +121,116 @@ a{
 	}
 }
 
+/* ----- userHome.php ------- */
+#userHomeContainer{
+	width:100%;
+	margin:0px;
+	padding:0px;
+	/*overflow-x:hidden;*/
+
+	.row1{
+		border:solid 1px red;
+		height:120px;
+	}
+
+	.row2{
+		height:800px;
+
+		.leftBar{
+			height:100%;
+
+			li{
+				margin-top:15px;
+				cursor:pointer;
+
+			}
+
+			.css3button{
+				display:block;
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 14px;
+				color: #ffffff;
+				padding: 10px 20px;
+				min-width:110px;
+				text-align:center;
+				background: -moz-linear-gradient(
+					top,
+					#00b806 0%,
+					#25c725 25%,
+					#20a30c);
+				background: -webkit-gradient(
+					linear, left top, left bottom, 
+					from(#00b806),
+					color-stop(0.25, #25c725),
+					to(#20a30c));
+				-moz-border-radius: 30px;
+				-webkit-border-radius: 30px;
+				border-radius: 30px;
+				border: 3px solid #ffffff;
+				-moz-box-shadow:
+					0px 3px 11px rgba(000,000,000,0.5),
+					inset 0px 0px 1px rgba(46,138,37,1);
+				-webkit-box-shadow:
+					0px 3px 11px rgba(000,000,000,0.5),
+					inset 0px 0px 1px rgba(46,138,37,1);
+				box-shadow:
+					0px 3px 11px rgba(000,000,000,0.5),
+					inset 0px 0px 1px rgba(46,138,37,1);
+				text-shadow:
+					0px -1px 0px rgba(000,000,000,0.2),
+					0px 1px 0px rgba(255,255,255,0.3);
+			}
+
+			.css3button:hover{
+				text-decoration:none;
+				text-align:center;
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 14px;
+				color: #ba7272;
+				padding: 10px 20px;
+				background: -moz-linear-gradient(
+					top,
+					#127d15 0%,
+					#054a05 25%,
+					#155c0a);
+				background: -webkit-gradient(
+					linear, left top, left bottom, 
+					from(#127d15),
+					color-stop(0.25, #054a05),
+					to(#155c0a));
+				-moz-border-radius: 30px;
+				-webkit-border-radius: 30px;
+				border-radius: 30px;
+				border: 3px solid #bfbfbf;
+				-moz-box-shadow:
+					0px 3px 11px rgba(194,194,194,0.5),
+					inset 0px 0px 1px rgba(46,138,37,1);
+				-webkit-box-shadow:
+					0px 3px 11px rgba(194,194,194,0.5),
+					inset 0px 0px 1px rgba(46,138,37,1);
+				box-shadow:
+					0px 3px 11px rgba(194,194,194,0.5),
+					inset 0px 0px 1px rgba(46,138,37,1);
+				text-shadow:
+					0px -1px 0px rgba(173,173,173,0.2),
+					0px 1px 0px rgba(128,128,128,0.3);
+			}
+
+
+
+		}
+
+		.rightNest{
+
+			#chartdiv{
+				display:none;
+				width:600px;
+				height:400px;
+			}
+
+			
+		}
+	}
+}
+
 
