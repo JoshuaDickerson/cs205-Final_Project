@@ -4,42 +4,43 @@ import java.util.StringTokenizer;
 
 class Hand
 {
-	private ArrayList<Card> hand;
+	private Card[] hand;
 	private int id;
 	
 	//default constructor	
 	public Hand(int id)
 	{		
-		hand = new ArrayList<Card>();
 		this.id = id;
+		this.hand = new Card[4];
 	}
 	//size function for hand using arraylist size
 	public int size()
 	{
-		return hand.size();
+		return hand.length;
 	}
 	
-	public void set(int index, Card _card)
-	{
-		this.hand.set(index, _card);
-	}
 	public void addCard(Card tempCard)
 	{
-		hand.add(tempCard);
+		for(int i = 0; i < this.hand.length; i++)
+		{
+			if(this.hand[i] == null)
+			{
+				this.hand[i]=(tempCard);
+				break;
+			}
+		}
 	}
 	//removes a card from the hand at a given index
-	public void remove(int i)
+	public Card replaceCard(int index, Card newCard)
 	{
-		hand.remove(i);
+		Card removed = this.hand[index];
+		this.hand[index] = newCard;
+		return removed;
 	}
 	//gets a card from the hand at a given index
 	public Card getCard(int i)
 	{
-		return hand.get(i);
-	}
-	public void setCard(int i, Card tempCard)
-	{
-		hand.set(i, tempCard);
+		return hand[i];
 	}
 	//returns true or false is hand is empty
 	public boolean isEmpty()
@@ -52,31 +53,17 @@ class Hand
 	//clear function for hand using arraylist clear
 	public void clear()
 	{
-		hand.clear();
-	}
-	//removes all cards from the hand and puts them at the end of the deck
-	public void clearHand(Deck myDeck)
-	{
-		for(int i = 0; i < this.size(); i++)
+		for(int i = 0; i < this.hand.length; i++)
 		{
-			Card tempCard = this.getCard(i);
-			myDeck.addCard(tempCard);
+			this.hand[i] = null;
 		}
-		this.clear();
 	}
-	/*public String toString()
-	{
-		for(int i = 0; i < this.size(); i++)
-		{
-			return this.getCard(i).toString();
-		}
-	}*/
-	//system.out.print THE ENTIRE HAND
+
 	public void showHand()
 	{
 		for(int i = 0; i < this.size(); i++)
 		{
-			System.out.println(this.getCard(i));
+			System.out.println(this.hand[i]);
 		}
 	}
 	
@@ -84,9 +71,9 @@ class Hand
 	{
 		int score = 0;
 		
-		for(int i = 0; i < this.size(); i++)
+		for(int i = 0; i < this.hand.length; i++)
 		{
-			Card tempcard = this.getCard(i);
+			Card tempcard = this.hand[i];
 			score = score + tempcard.getRank();
 		}
 	

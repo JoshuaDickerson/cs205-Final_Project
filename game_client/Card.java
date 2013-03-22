@@ -5,16 +5,19 @@ class Card
 	private int rank;
 	private String pictureName;
 	private boolean faceup;
+	private boolean isSpecial;
 	
 	//constructor for power cards
 	public Card(String special)
 	{
+		this.isSpecial = true;
 		this.special = special;
 		rank = -1;
 	}
 	//constructor for number cards
 	public Card(int rank)
 	{
+		this.isSpecial = false;
 		this.rank = rank;
 		special = "";
 	}
@@ -73,6 +76,18 @@ class Card
 			pictureName += "peek.png";
 		}
 		return pictureName;
+	}
+	
+	public boolean isSpecial()
+	{
+		if(this.isSpecial == true)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	public String toString()
 	{

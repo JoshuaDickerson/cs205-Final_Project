@@ -5,8 +5,7 @@ import org.apache.http.client.*;
 import org.apache.http.impl.client.*;
 import com.google.gson.*;
 
-<<<<<<< HEAD
-=======
+
 /**
 * @author JoshuaDickerson joshuajdickerson@gmail.com
 *
@@ -15,7 +14,7 @@ import com.google.gson.*;
 */
 
 
->>>>>>> 4cee65bc8a740f7048264dddda165d43c4d911aa
+
 
 public class Transporter{
 	private String urlString = "http://slimdowndesign.com/cs205-Final_Project/game_server/Gamedata/?gamedata=newdata"; 

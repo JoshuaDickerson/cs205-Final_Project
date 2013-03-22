@@ -166,7 +166,7 @@ public class finalProject extends JApplet implements ActionListener
 	public void gameLoop()
 	{
 		//DEBUG
-		boolean debug = false;
+		boolean debug = true;
 		boolean extraHelp = true;
 		
 		//NEW INPUT SCANNER
@@ -192,47 +192,47 @@ public class finalProject extends JApplet implements ActionListener
 		
 		
 		
-			
+		//PLAYERS ARRAY
+		Player [] playersArray = new Player[2];
+		
 		//HUMAN PLAYER
 	   System.out.println("WHAT IS YOUR NAME?");
 	   String name = input.next();
 		Hand humanHand = new Hand(0);
 		Player human = new Player(true, 0, name, humanHand);
+		playersArray[0] = human;
 		
 		//COMPUTER PLAYER
 		Hand computerHand = new Hand(1);
 		Player computer = new Player(false, 1, "JESUS", computerHand);
+		playersArray[1] = computer;
 		
 		for(int i = 0; i < 4; i++)
 		{
 			Card temp = mainDeck.getTopCard();
-			human.myHand.addCard(temp);
+			playersArray[0].myHand.addCard(temp);
 			
 			Card temp2 = mainDeck.getTopCard();
-			computer.myHand.addCard(temp2);
+			playersArray[1].myHand.addCard(temp2);
 		}
 	
 		
 		if(debug || extraHelp)
 		{
 			System.out.println("********************************");
-			System.out.println(human.getName() + "'s hand: ");
-			human.myHand.showHand();
+			System.out.println(playersArray[0].getName() + "'s hand: ");
+			playersArray[0].myHand.showHand();
 			System.out.println("********************************");
 		}
 		if(debug)
 		{
 			System.out.println("********************************");
-			System.out.println(computer.getName() + "'s hand: ");
-			computer.myHand.showHand();
+			System.out.println(playersArray[1].getName() + "'s hand: ");
+			playersArray[1].myHand.showHand();
 			System.out.println("SHOWING THE REMAINING DECK");
 			mainDeck.showDeck();
 			System.out.println("********************************");
 		}
-		
-		//PEEKING HUMAN TWO INITIAL CARDS
-		System.out.println("Your Left Most Card: " + human.myHand.getCard(0).getRank());
-		System.out.println("Your Right Most Card: " + human.myHand.getCard(3).getRank());
 		
 		//UPDATE GAME STATE
 		GAME_STATE.updateGameState(NORMAL_ROUND, NUM_ROUNDS, 0, NORMAL_PLAY);
@@ -244,18 +244,23 @@ public class finalProject extends JApplet implements ActionListener
 			System.out.println("********************************");
 		}
 		
+		//PEEKING FIRST PLAYERS TWO INITIAL CARDS
+		System.out.println("Your Left Most Card: " + playersArray[0].myHand.getCard(0).toString());
+		System.out.println("Your Right Most Card: " + playersArray[0].myHand.getCard(3).toString());
+		
+		
 		//-------------GAME STARTING----------------
 		//SHOWING TOP CARD
 		//DRAW TOP CARD
 		Card firstCard = mainDeck.getTopCard();
-		while(firstCard.getSpecial() == "peek" || firstCard.getSpecial() == "peek" ||  firstCard.getSpecial() == "peek")
+		while(firstCard.isSpecial())
 		{
 			//IF WE GET A POWER CARD GET ANOTHER CARD!!
 			mainDeck.addCard(firstCard);
 			firstCard = mainDeck.getTopCard();
 		}
 		discard.addTopCard(firstCard);
-		System.out.println("Discard Pile Top Card: " + discard.getCard(0).getRank());
+		System.out.println("Discard Pile Top Card: " + discard.getCard(0).toString());
 
 		//--------GAME LOOP-----------
 		boolean gameOver = false;
@@ -283,7 +288,7 @@ public class finalProject extends JApplet implements ActionListener
 					if(debug)
 					{
 						System.out.println("********************************");
-						System.out.println(human.getName() + " decided to discard " + cardFromDeck.getRank());
+						System.out.println(playersArray[0].getName() + " decided to discard " + cardFromDeck.toString());
 						System.out.println("********************************");
 					}
 				}
@@ -292,20 +297,18 @@ public class finalProject extends JApplet implements ActionListener
 					if(debug)
 					{
 						System.out.println("********************************");
-						System.out.println(human.getName() + " decided to swap his old " + human.myHand.getCard(handIndex).getRank() + ", with " + cardFromDeck.getRank());
+						System.out.println(playersArray[0].getName() + " decided to swap his old " + playersArray[0].myHand.getCard(handIndex).toString() + ", with " + cardFromDeck.toString());
 						System.out.println("********************************");
-					}
-					Card removedFromHand = human.myHand.getCard(handIndex);
-					human.myHand.remove(handIndex);
-					System.out.println("Choice: " + handIndex + "| removing: " + removedFromHand.getRank());
+					}					
+					Card removedFromHand = playersArray[0].myHand.replaceCard(handIndex, cardFromDeck);
+					System.out.println("Choice: " + handIndex + "| removing: " + removedFromHand.toString());
 					discard.addTopCard(removedFromHand);
-					human.myHand.addCard(handIndex, cardFromDeck);
 				}
 				if(debug || extraHelp)
 				{
 					System.out.println("********************************");
-					System.out.println("Showing " + human.getName() + "'s New Hand: ");
-					human.myHand.showHand();
+					System.out.println("Showing " + playersArray[0].getName() + "'s New Hand: ");
+					playersArray[0].myHand.showHand();
 					System.out.println("********************************");
 				}
 			}
@@ -315,26 +318,24 @@ public class finalProject extends JApplet implements ActionListener
 				cardFromDeck = discard.getTopCard();
 				System.out.println("You must now replace this card with one from your hand, type the index of that card");
 				handIndex = Integer.parseInt(input.next());
-				Card removedFromHand = human.myHand.getCard(choice);
-				System.out.println("Choice: " + handIndex + "| removing: " + removedFromHand.getRank());
-				human.myHand.remove(handIndex);
+				Card removedFromHand = playersArray[0].myHand.replaceCard(handIndex, cardFromDeck);
+				System.out.println("Choice: " + handIndex + "| removing: " + removedFromHand.toString());
 				discard.addTopCard(removedFromHand);
-				human.myHand.addCard(handIndex, cardFromDeck);
 			}
 			//-------END TURN
 			if(extraHelp || debug)
 			{
 				System.out.println("SHOWING UPDATED HAND!!!!!");
-				human.myHand.showHand();
+				playersArray[0].myHand.showHand();
 			}
 			
-			/*
+			
 			//--------PREPARE THE JSON---------
 			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE);
-			tempScore.addPlayer(human);
-			tempScore.addPlayer(computer);
+			tempScore.addPlayer(playersArray[0]);
+			tempScore.addPlayer(playersArray[1]);
 			Transporter tempTransport = new Transporter(tempScore);		
-			*/
+			
 			
 			//UPDATE GAME STATE
 			if(GAME_STATE.getPlayer() == GAME_STATE.numPlayers() - 1)
@@ -357,6 +358,7 @@ public class finalProject extends JApplet implements ActionListener
 				GAME_STATE.print();
 				System.out.println("********************************");
 			}
+			gameOver = true;
 		}		
 		/*
 		//TESTING GAME STATE
