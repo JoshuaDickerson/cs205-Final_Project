@@ -357,6 +357,228 @@ public class finalProject extends JApplet implements ActionListener
 					else if(cardFromDeck.getSpecial() == "draw2")
 					{
 						System.out.println("--------------------------------------------WE GOT A DRAW2");
+						cardFromDeck = mainDeck.getTopCard();
+						if(cardFromDeck.getSpecial() == "draw2")
+						{
+							System.out.println("we got a draw 2 again");
+							discard.addTopCard(cardFromDeck);
+							cardFromDeck = mainDeck.getTopCard();
+							if(cardFromDeck.getSpecial() == "draw2")
+							{
+								System.out.println("omg 3 draw 2's in a row!");
+								discard.addTopCard(cardFromDeck);
+								cardFromDeck = mainDeck.getTopCard();
+								if(cardFromDeck.getSpecial() == "draw2")
+								{
+									discard.addTopCard(cardFromDeck);
+									cardFromDeck = mainDeck.getTopCard();
+								}
+								else
+								{
+									if(cardFromDeck.isSpecial())
+									{
+										discard.addTopCard(cardFromDeck);
+										if(cardFromDeck.getSpecial() == "swap")
+										{
+											System.out.println("--------------------------------------------WE GOT A SWAP");
+											System.out.println("Type index, of YOUR card you want to swap");
+											int myIndex = Integer.parseInt(input.next());
+											System.out.println("Type index, of OPPONENTS card you want to swap");
+											int othersIndex = Integer.parseInt(input.next());
+											if(GAME_STATE.getPlayer() == 0)
+											{
+												Card fromOpponent = playersArray[1].myHand.getCard(othersIndex);
+												Card newCard = playersArray[0].myHand.replaceCard(myIndex, fromOpponent);
+												Card whocares = playersArray[1].myHand.replaceCard(othersIndex, newCard);
+											}
+											else
+											{
+												Card fromOpponent = playersArray[0].myHand.getCard(othersIndex);
+												Card newCard = playersArray[1].myHand.replaceCard(myIndex, fromOpponent);
+												Card whocares = playersArray[0].myHand.replaceCard(othersIndex, newCard);
+											}
+										}
+										else if(cardFromDeck.getSpecial() == "peek")
+										{
+											System.out.println("--------------------------------------------WE GOT A PEEK");
+											System.out.println("Type index, of the card you want to peek");
+											userInput = input.next();
+											handIndex = Integer.parseInt(userInput);
+											System.out.println("Card " + handIndex + " is a " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex));
+										}
+									}
+									else
+									{
+										System.out.println("You got a " + cardFromDeck.toString());
+										System.out.println("Type 1, if you want to keep card");
+										System.out.println("Type 2, if you want to get a different card");
+										if(Integer.parseInt(input.next()) == 1)
+										{
+											//We want to keep card
+											System.out.println("Type index, of card you want to replace");
+											handIndex = Integer.parseInt(input.next());
+											playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
+										}
+										else
+										{
+											discard.addTopCard(cardFromDeck);
+											cardFromDeck = mainDeck.getTopCard();
+											System.out.println("You got a " + cardFromDeck.toString());
+											System.out.println("Type 1, if you want to keep card");
+											System.out.println("Type 2, if want to discard it");
+											handIndex = Integer.parseInt(input.next());
+											if(handIndex == 1)
+											{
+												//We want to keep card
+												System.out.println("Type index, of card you want to replace");
+												handIndex = Integer.parseInt(input.next());
+												playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
+											}
+											else
+											{
+												discard.addTopCard(cardFromDeck);
+											}
+										}
+									}
+								}
+							}
+							else
+							{
+								if(cardFromDeck.isSpecial())
+								{
+									discard.addTopCard(cardFromDeck);
+									if(cardFromDeck.getSpecial() == "swap")
+									{
+										System.out.println("--------------------------------------------WE GOT A SWAP");
+										System.out.println("Type index, of YOUR card you want to swap");
+										int myIndex = Integer.parseInt(input.next());
+										System.out.println("Type index, of OPPONENTS card you want to swap");
+										int othersIndex = Integer.parseInt(input.next());
+										if(GAME_STATE.getPlayer() == 0)
+										{
+											Card fromOpponent = playersArray[1].myHand.getCard(othersIndex);
+											Card newCard = playersArray[0].myHand.replaceCard(myIndex, fromOpponent);
+											Card whocares = playersArray[1].myHand.replaceCard(othersIndex, newCard);
+										}
+										else
+										{
+											Card fromOpponent = playersArray[0].myHand.getCard(othersIndex);
+											Card newCard = playersArray[1].myHand.replaceCard(myIndex, fromOpponent);
+											Card whocares = playersArray[0].myHand.replaceCard(othersIndex, newCard);
+										}
+									}
+									else if(cardFromDeck.getSpecial() == "peek")
+									{
+										System.out.println("--------------------------------------------WE GOT A PEEK");
+										System.out.println("Type index, of the card you want to peek");
+										userInput = input.next();
+										handIndex = Integer.parseInt(userInput);
+										System.out.println("Card " + handIndex + " is a " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex));
+									}
+								}
+								else
+								{
+									System.out.println("You got a " + cardFromDeck.toString());
+									System.out.println("Type 1, if you want to keep card");
+									System.out.println("Type 2, if you want to get a different card");
+									if(Integer.parseInt(input.next()) == 1)
+									{
+										//We want to keep card
+										System.out.println("Type index, of card you want to replace");
+										handIndex = Integer.parseInt(input.next());
+										playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
+									}
+									else
+									{
+										discard.addTopCard(cardFromDeck);
+										cardFromDeck = mainDeck.getTopCard();
+										System.out.println("You got a " + cardFromDeck.toString());
+										System.out.println("Type 1, if you want to keep card");
+										System.out.println("Type 2, if want to discard it");
+										handIndex = Integer.parseInt(input.next());
+										if(handIndex == 1)
+										{
+											//We want to keep card
+											System.out.println("Type index, of card you want to replace");
+											handIndex = Integer.parseInt(input.next());
+											playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
+										}
+										else
+										{
+											discard.addTopCard(cardFromDeck);
+										}
+									}
+								}
+							}
+						}
+						else
+						{
+							if(cardFromDeck.isSpecial())
+							{
+								discard.addTopCard(cardFromDeck);
+								if(cardFromDeck.getSpecial() == "swap")
+								{
+									System.out.println("--------------------------------------------WE GOT A SWAP");
+									System.out.println("Type index, of YOUR card you want to swap");
+									int myIndex = Integer.parseInt(input.next());
+									System.out.println("Type index, of OPPONENTS card you want to swap");
+									int othersIndex = Integer.parseInt(input.next());
+									if(GAME_STATE.getPlayer() == 0)
+									{
+										Card fromOpponent = playersArray[1].myHand.getCard(othersIndex);
+										Card newCard = playersArray[0].myHand.replaceCard(myIndex, fromOpponent);
+										Card whocares = playersArray[1].myHand.replaceCard(othersIndex, newCard);
+									}
+									else
+									{
+										Card fromOpponent = playersArray[0].myHand.getCard(othersIndex);
+										Card newCard = playersArray[1].myHand.replaceCard(myIndex, fromOpponent);
+										Card whocares = playersArray[0].myHand.replaceCard(othersIndex, newCard);
+									}
+								}
+								else if(cardFromDeck.getSpecial() == "peek")
+								{
+									System.out.println("--------------------------------------------WE GOT A PEEK");
+									System.out.println("Type index, of the card you want to peek");
+									userInput = input.next();
+									handIndex = Integer.parseInt(userInput);
+									System.out.println("Card " + handIndex + " is a " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex));
+								}
+							}
+							else
+							{
+								System.out.println("You got a " + cardFromDeck.toString());
+								System.out.println("Type 1, if you want to keep card");
+								System.out.println("Type 2, if you want to get a different card");
+								if(Integer.parseInt(input.next()) == 1)
+								{
+									//We want to keep card
+									System.out.println("Type index, of card you want to replace");
+									handIndex = Integer.parseInt(input.next());
+									playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
+								}
+								else
+								{
+									discard.addTopCard(cardFromDeck);
+									cardFromDeck = mainDeck.getTopCard();
+									System.out.println("You got a " + cardFromDeck.toString());
+									System.out.println("Type 1, if you want to keep card");
+									System.out.println("Type 2, if want to discard it");
+									handIndex = Integer.parseInt(input.next());
+									if(handIndex == 1)
+									{
+										//We want to keep card
+										System.out.println("Type index, of card you want to replace");
+										handIndex = Integer.parseInt(input.next());
+										playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
+									}
+									else
+									{
+										discard.addTopCard(cardFromDeck);
+									}
+								}
+							}
+						}
 					}
 				}
 				else
