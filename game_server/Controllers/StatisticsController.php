@@ -1,6 +1,8 @@
 <?php
 
 class StatisticsController{
+	private $POST;
+	
 	function __construct(){
 	}
 

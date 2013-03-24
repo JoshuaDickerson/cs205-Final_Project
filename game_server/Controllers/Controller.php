@@ -41,7 +41,7 @@ class Controller{
  	} // end construct
 
 	private function buildDisplay(){
-		$view = new View($this->view);
+		$view = new View($this->view, $this->vars);
 	}
 
  	// second thing is to create a new model object defined by the url/router
@@ -58,12 +58,20 @@ class Controller{
 			// if there is an associated controller, make an instance of that object
 			// perform the requested action, and return the data, otherwise drop into 
 			// the default model. 
+
 			if(file_exists("Controllers/".$controller.".php")){ // check if a file exists in the controller dir
-				include "Controllers/".$controller.".php";
+				// echo $controller;
+				require_once "Controllers/".$controller.".php";
+				// echo "working";
 				$controllerObj = new $controller($this->routerObj->getActions(), $this->POST);
-				// if($controllerObj->getView()){
+				if($controllerObj->getView()){
 					$this->view = $controllerObj->getView();
-				// }
+				}
+
+				$vars = $controllerObj->getVars();
+				if($vars){
+					$this->vars = $vars;
+				}
 				// echo $this->view;
 			}else{	// a controller was called, but does not exist, send user to the default
 			} // end nested if-else

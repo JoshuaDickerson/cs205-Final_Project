@@ -5,8 +5,9 @@ class UserController{
  	private $actions = array();
  	private $view;
  	public $modelObj;
+ 	private $testArray = array();
 
- 	function __construct($actions, $POST){
+ 	function __construct($actions, $POST, $debug = false){
 		$this->POST = $POST;
 	 	$this->actions = $actions;
 	 	$this->modelObj = $_SESSION['user'];
@@ -59,6 +60,11 @@ class UserController{
 
 	public function getView(){
 		return $this->view;
+	}
+
+	public function testControllerObject(){
+		$array = array($this->testArray, $this);
+		return $array;
 	}
 
 } // end User class
