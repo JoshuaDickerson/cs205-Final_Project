@@ -48,6 +48,10 @@ class InteractDB{
 			case "update":
 			$this->updateStatement();
 			break;
+
+			case "custom":
+			$this->customStatement();
+			break;
 		}
 
 	} // end parseActions
@@ -61,7 +65,10 @@ class InteractDB{
 			$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 			return $connection;
-		}catch(PDOException $err){$this->error = true;}	// if we cant connect, return null	
+		}catch(PDOException $err){
+			$this->error = true;
+			$this->errorCondition = $err;
+		}	// if we cant connect, return null	
 	} // end dbConnect
 
 
@@ -100,6 +107,7 @@ class InteractDB{
 			$this->returnedRows = $stmt->fetchAll();
 		}catch(Exception $e){
 			$this->error = true;
+			$this->errorCondition = $e;
 			logThis($e);
 		}
 	} // end selectStatement
@@ -182,10 +190,43 @@ class InteractDB{
 			}catch (Exception $e){
 				echo $e;
 				$this->error = true;
+				$this->errorCondition = $e;
 			}	
 
 		} // end error checking else clause
 	} // end insertStatement
+
+
+	public function customStatement($query){
+		// logThis($query);
+		$connection = $this->connection;
+			try{
+				// var_dump($query);
+				$stmt = $connection->prepare($query);
+				// logThis($stmt);
+				// Execute the query
+				$stmt->execute();
+				$this->returnedRows = $stmt->fetchAll();
+			}catch (Exception $e){
+				// logThis($e);
+				$this->error = true;
+				$this->errorCondition = $e;
+			}	
+	} // customStatement
+
+	public function getError(){
+		if($this->error){
+			return $this->errorCondition;
+		}else{
+			return false;
+		}
+	}
+
+	public function getTables(){
+		$qry = "SELECT table_name, engine FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema='slimdown_205Final' ORDER BY table_name ASC;";
+		$this->customStatement($qry);
+		return $this->returnedRows;
+	}
 
 } // end InteractDB class
 
