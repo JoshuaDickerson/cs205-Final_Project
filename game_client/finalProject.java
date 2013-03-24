@@ -166,8 +166,8 @@ public class finalProject extends JApplet implements ActionListener
 	public void gameLoop()
 	{
 		//DEBUG
-		boolean debug = true;
-		boolean extraHelp = true;
+		boolean debug = false;
+		boolean extraHelp = false;
 		
 		//NEW INPUT SCANNER
 		Scanner input = new Scanner(System.in);
@@ -185,7 +185,7 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//CREATE DECK
 		Deck mainDeck = new Deck();
-		mainDeck.shuffle();
+		//mainDeck.shuffle();
 		
 		//CREATE DISCARD PILE
 		Deck discard = new Deck();
@@ -208,11 +208,19 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//Difficulty
 		System.out.println("Choose Opponenets Difficulty:");
-		System.out.println("Type 1, for EASY");
-		System.out.println("Type 2, for MEDIUM");
-		System.out.println("Type 3, for HARD");
-		int difficulty = Integer.parseInt(input.next());
-				
+		int difficulty = 0;
+		do{
+        	System.out.println("Type 1, for EASY");
+			System.out.println("Type 2, for MEDIUM");
+			System.out.println("Type 3, for HARD");
+			while(!input.hasNextInt())
+  			{
+				System.out.println("Thats not a number!");
+				input.next();
+  			}
+		   difficulty = input.nextInt();
+		}while(difficulty < 1 || difficulty > 3);
+      				
 		//COMPUTER PLAYER
 		Hand computerHand = new Hand(1);
 		Player computer = new Player(false, 1, opponents[difficulty -1], computerHand);
@@ -221,10 +229,18 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//Choose GAME MODE
 		System.out.println("What Type of Game Do You Want To Play?");
-		System.out.println("Type 1, for 5 Minute Max Round");
-		System.out.println("Type 2, for 10 Turns Max Round");
-		System.out.println("Type 3, for High Score Round");
-		int gameMode = Integer.parseInt(input.next());
+		int gameMode = 0;
+		do{
+     		System.out.println("Type 1, for 5 Minute Max Round");
+			System.out.println("Type 2, for 10 Turns Max Round");
+			System.out.println("Type 3, for High Score Round");
+			while(!input.hasNextInt())
+  			{
+				System.out.println("Thats not a number!");
+				input.next();
+  			}
+		   gameMode = input.nextInt();
+		}while(gameMode < 1 || gameMode > 3);
 		
 		//Give Players cards
 		for(int i = 0; i < 4; i++)
@@ -287,7 +303,6 @@ public class finalProject extends JApplet implements ActionListener
 		boolean draw2SecondCard = false;
 		boolean gotDraw2 = false;
 		int handIndex = 0;
-		String userInput = "";
 		Card cardFromDeck;
 		while(!gameOver)
 		{
@@ -337,9 +352,18 @@ public class finalProject extends JApplet implements ActionListener
 			}
 			else
 			{
-				System.out.println("----->Type 1, for deck pile");
-				System.out.println("----->Type 2, for discard pile");
-				choice = Integer.parseInt(input.next());
+				do{
+		     		System.out.println("----->Type 1, for deck pile");
+					System.out.println("----->Type 2, for discard pile");
+					while(!input.hasNextInt())
+		  			{
+						System.out.println("Thats not a number!");
+						input.next();
+		  			}
+				   choice = input.nextInt();
+				}while(choice < 1 || choice > 2);
+						
+				
 			}
 			if(choice == 1)
 			{
@@ -354,10 +378,31 @@ public class finalProject extends JApplet implements ActionListener
 					{
 						gotDraw2 = false;
 						System.out.println("--------------------------------------------WE GOT A SWAP");
-						System.out.println("Type index, of YOUR card you want to swap");
-						int myIndex = Integer.parseInt(input.next());
-						System.out.println("Type index, of OPPONENTS card you want to swap");
-						int othersIndex = Integer.parseInt(input.next());
+						//MY INDEX
+						int myIndex;
+						do{
+				     		System.out.println("Type index, of YOUR card you want to swap");
+							while(!input.hasNextInt())
+				  			{
+								System.out.println("Thats not a number!");
+								input.next();
+				  			}
+						   myIndex = input.nextInt();
+						}while(myIndex < 0 || myIndex > 3);
+						
+						//OPPOENETS INDEX
+						int othersIndex;
+						do{
+				     		System.out.println("Type index, of OPPONENTS card you want to swap");
+							while(!input.hasNextInt())
+				  			{
+								System.out.println("Thats not a number!");
+								input.next();
+				  			}
+						   othersIndex = input.nextInt();
+						}while(othersIndex < 0 || othersIndex > 3);
+						
+						
 						if(GAME_STATE.getPlayer() == 0)
 						{
 							Card fromOpponent = playersArray[1].myHand.getCard(othersIndex);
@@ -375,9 +420,15 @@ public class finalProject extends JApplet implements ActionListener
 					{
 						gotDraw2 = false;
 						System.out.println("--------------------------------------------WE GOT A PEEK");
-						System.out.println("Type index, of the card you want to peek");
-						userInput = input.next();
-						handIndex = Integer.parseInt(userInput);
+						do{
+				     		System.out.println("Type index, of the card you want to peek");
+							while(!input.hasNextInt())
+				  			{
+								System.out.println("Thats not a number!");
+								input.next();
+				  			}
+						   handIndex = input.nextInt();
+						}while(handIndex < 0 || handIndex > 3);
 						System.out.println("Card " + handIndex + " is a " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex));
 					}
 					else if(cardFromDeck.getSpecial() == "draw2")
@@ -389,10 +440,18 @@ public class finalProject extends JApplet implements ActionListener
 				else
 				{
 					System.out.println("You got an " + cardFromDeck.toString());
-					System.out.println("----->Type -1, for discard");
-					System.out.println("----->Type index, for swapping");
-					userInput = input.next();
-					handIndex = Integer.parseInt(userInput);
+					do{
+			     		System.out.println("----->Type -1, for discard");
+						System.out.println("----->Type index, for swapping");
+						while(!input.hasNextInt())
+			  			{
+							System.out.println("Thats not a number!");
+							input.next();
+			  			}
+					   handIndex = input.nextInt();
+					}while(handIndex < -1 || handIndex > 3);
+
+					
 					if(handIndex == -1)
 					{
 						if(!draw2SecondCard && gotDraw2)
@@ -435,8 +494,16 @@ public class finalProject extends JApplet implements ActionListener
 				draw2SecondCard = false;
 				
 				cardFromDeck = discard.getTopCard();
-				System.out.println("----->Type index, of the card you want to swap");
-				handIndex = Integer.parseInt(input.next());
+				do{
+		     		System.out.println("----->Type index, of the card you want to swap");
+					while(!input.hasNextInt())
+		  			{
+						System.out.println("Thats not a number!");
+						input.next();
+		  			}
+				   handIndex = input.nextInt();
+				}while(handIndex < 0 || handIndex > 3);
+			
 				Card removedFromHand = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
 				discard.addTopCard(removedFromHand);
 				if(debug)
