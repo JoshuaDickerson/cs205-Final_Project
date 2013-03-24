@@ -10,6 +10,10 @@ class LogController{
 	public function getView(){
 		return false;
 	}
+
+	public function getVars(){
+		return false;
+	}
 }// end LogController class def
 
 ?>
