@@ -11,7 +11,7 @@ class Deck
 
 		//FOR USE OF THE NORMAL DECK!
 		mainDeck = new ArrayList<Card>();
-		
+	
 		for(int i = 0; i < 9; i++)
 		{
 			tempCard = new Card(i);
@@ -25,6 +25,7 @@ class Deck
 			tempCard = new Card(9);
 			mainDeck.add(tempCard);
 		}
+		
 		for(int i = 0; i < 3; i++)
 		{
 			tempCard = new Card("peek");

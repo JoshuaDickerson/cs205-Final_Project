@@ -166,8 +166,8 @@ public class finalProject extends JApplet implements ActionListener
 	public void gameLoop()
 	{
 		//DEBUG
-		boolean debug = true;
-		boolean extraHelp = true;
+		boolean debug = false;
+		boolean extraHelp = false;
 		
 		//NEW INPUT SCANNER
 		Scanner input = new Scanner(System.in);
@@ -176,37 +176,73 @@ public class finalProject extends JApplet implements ActionListener
 		gameState GAME_STATE = new gameState(2);	
 		if(debug)
 		{
-			System.out.println("********************************");
 			System.out.println("SHOWING INITIAL GAME STATE: ");
 			GAME_STATE.print();	
-			System.out.println("********************************");
 		}
+		
+		//CREATE UNIQUE GAME ID
+		UUID uniqueID = UUID.randomUUID();
 		
 		//CREATE DECK
 		Deck mainDeck = new Deck();
-		mainDeck.shuffle();
+		//mainDeck.shuffle();
 		
 		//CREATE DISCARD PILE
 		Deck discard = new Deck();
 		discard.clear();
 		
-		
-		
 		//PLAYERS ARRAY
 		Player [] playersArray = new Player[2];
 		
 		//HUMAN PLAYER
-	   System.out.println("WHAT IS YOUR NAME?");
+	   System.out.println("---->WHAT IS YOUR NAME?");
 	   String name = input.next();
 		Hand humanHand = new Hand(0);
 		Player human = new Player(true, 0, name, humanHand);
 		playersArray[0] = human;
 		
+		String[] opponents = new String[5];
+		opponents[0] = "Jimmy";
+		opponents[1] = "Einstein";
+		opponents[2] = "God";
+		
+		//Difficulty
+		System.out.println("Choose Opponenets Difficulty:");
+		int difficulty = 0;
+		do{
+        	System.out.println("Type 1, for EASY");
+			System.out.println("Type 2, for MEDIUM");
+			System.out.println("Type 3, for HARD");
+			while(!input.hasNextInt())
+  			{
+				System.out.println("Thats not a number!");
+				input.next();
+  			}
+		   difficulty = input.nextInt();
+		}while(difficulty < 1 || difficulty > 3);
+      				
 		//COMPUTER PLAYER
 		Hand computerHand = new Hand(1);
-		Player computer = new Player(false, 1, "JESUS", computerHand);
+		Player computer = new Player(false, 1, opponents[difficulty -1], computerHand);
 		playersArray[1] = computer;
+		System.out.println("You are playing " + opponents[difficulty-1]);
 		
+		//Choose GAME MODE
+		System.out.println("What Type of Game Do You Want To Play?");
+		int gameMode = 0;
+		do{
+     		System.out.println("Type 1, for 5 Minute Max Round");
+			System.out.println("Type 2, for 10 Turns Max Round");
+			System.out.println("Type 3, for High Score Round");
+			while(!input.hasNextInt())
+  			{
+				System.out.println("Thats not a number!");
+				input.next();
+  			}
+		   gameMode = input.nextInt();
+		}while(gameMode < 1 || gameMode > 3);
+		
+		//Give Players cards
 		for(int i = 0; i < 4; i++)
 		{
 			Card temp = mainDeck.getTopCard();
@@ -215,6 +251,16 @@ public class finalProject extends JApplet implements ActionListener
 			Card temp2 = mainDeck.getTopCard();
 			playersArray[1].myHand.addCard(temp2);
 		}
+		
+		//Start discard Pile
+		Card firstCard = mainDeck.getTopCard();
+		while(firstCard.isSpecial())
+		{
+			mainDeck.addCard(firstCard);
+			firstCard = mainDeck.getTopCard();
+		}
+		discard.addTopCard(firstCard);
+
 	
 		
 		if(debug || extraHelp)
@@ -223,19 +269,20 @@ public class finalProject extends JApplet implements ActionListener
 			System.out.println(playersArray[0].getName() + "'s hand: ");
 			playersArray[0].myHand.showHand();
 			System.out.println("********************************");
+			System.out.println(playersArray[1].getName() + "'s hand: ");
+			playersArray[1].myHand.showHand();
+			System.out.println("********************************");
 		}
 		if(debug)
 		{
-			System.out.println("********************************");
-			System.out.println(playersArray[1].getName() + "'s hand: ");
-			playersArray[1].myHand.showHand();
 			System.out.println("SHOWING THE REMAINING DECK");
+			System.out.println("********************************");
 			mainDeck.showDeck();
 			System.out.println("********************************");
 		}
 		
 		//UPDATE GAME STATE
-		GAME_STATE.updateGameState(NORMAL_ROUND, NUM_ROUNDS, 0, NORMAL_PLAY);
+		GAME_STATE.updateGameState(NORMAL_ROUND, gameMode, 0, NORMAL_PLAY);
 		if(debug)
 		{
 			System.out.println("********************************");
@@ -245,111 +292,276 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		
 		//PEEKING FIRST PLAYERS TWO INITIAL CARDS
+		System.out.println("Before the game begins remember these cards!");
 		System.out.println("Your Left Most Card: " + playersArray[0].myHand.getCard(0).toString());
 		System.out.println("Your Right Most Card: " + playersArray[0].myHand.getCard(3).toString());
 		
 		
-		//-------------GAME STARTING----------------
-		//SHOWING TOP CARD
-		//DRAW TOP CARD
-		Card firstCard = mainDeck.getTopCard();
-		while(firstCard.isSpecial())
-		{
-			//IF WE GET A POWER CARD GET ANOTHER CARD!!
-			mainDeck.addCard(firstCard);
-			firstCard = mainDeck.getTopCard();
-		}
-		discard.addTopCard(firstCard);
-		System.out.println("Discard Pile Top Card: " + discard.getCard(0).toString());
-
+		//-------------GAME STARTING----------------		
 		//--------GAME LOOP-----------
 		boolean gameOver = false;
+		boolean draw2SecondCard = false;
+		boolean gotDraw2 = false;
 		int handIndex = 0;
-		String userInput = "";
 		Card cardFromDeck;
 		while(!gameOver)
 		{
+			//CHECK IF DECK IS EMPTY
+			if(mainDeck.size() == 0)
+			{
+				System.out.println("----------------------------RESHUFFLING DECK!");
+				//Deck is empty, shuffle discard and create new deck
+				Card topCard = discard.getTopCard();
+				discard.shuffle();
+				if(debug)
+				{
+					System.out.println("BEFORE| deck: " + mainDeck.size() + " discard: " + discard.size());
+				}	
+				int tempSize = discard.size();
+				for(int i = 0; i < tempSize; i++)
+				{
+					System.out.println("adding");
+					mainDeck.addCard(discard.getTopCard());
+				}
+				discard.addTopCard(topCard);
+				if(debug)
+				{
+					System.out.println("After| deck: " + mainDeck.size() + " discard: " + discard.size());
+				}
+			}
+			System.out.println("-------------------------------------");
+			System.out.println("-------------------------------------");
+			System.out.println("------------" + playersArray[GAME_STATE.getPlayer()].getName() + "-------------");
+			System.out.println("-------------------------------------");
+			System.out.println("-------------------------------------");
 			//------TURN
-			System.out.println("It is player " + GAME_STATE.getPlayer() + "'s turn");
-			System.out.println("Top card in discard pile: " + discard.getCard(0).getRank());
-			System.out.println("Type 1 for new card from deck OR 2 for the top card in discard pile");
-			int choice = Integer.parseInt(input.next());
-			if(2 == 1)
+			System.out.println("Discard Card: " + discard.getCard(0).toString());
+			if(extraHelp)
+			{
+				System.out.println("Top Card In Deck: " + mainDeck.getCard(0).toString());			
+			}
+			
+			int choice = 1;
+			if(discard.getCard(0).isSpecial())
+			{
+				if(debug)
+				{
+					System.out.println("Cannot draw from discard pile because its a power card");
+				}
+				choice = 1;
+			}
+			else
+			{
+				do{
+		     		System.out.println("----->Type 1, for deck pile");
+					System.out.println("----->Type 2, for discard pile");
+					while(!input.hasNextInt())
+		  			{
+						System.out.println("Thats not a number!");
+						input.next();
+		  			}
+				   choice = input.nextInt();
+				}while(choice < 1 || choice > 2);
+						
+				
+			}
+			if(choice == 1)
 			{
 				//GET NEW CARD FROM DECK
+				System.out.println("Picking From Deck");
 				cardFromDeck = mainDeck.getTopCard();
-				System.out.println("You've picked up a " + cardFromDeck.getRank() + ". To discard press (-1), if you want to swap it type the index");
-				userInput = input.next();
-				handIndex = Integer.parseInt(userInput);
-				if(handIndex == -1)
+		
+				if(cardFromDeck.isSpecial())
 				{
-					//User discards back to deck
 					discard.addTopCard(cardFromDeck);
-					if(debug)
+					if(cardFromDeck.getSpecial() == "swap")
 					{
-						System.out.println("********************************");
-						System.out.println(playersArray[0].getName() + " decided to discard " + cardFromDeck.toString());
-						System.out.println("********************************");
+						gotDraw2 = false;
+						System.out.println("--------------------------------------------WE GOT A SWAP");
+						//MY INDEX
+						int myIndex;
+						do{
+				     		System.out.println("Type index, of YOUR card you want to swap");
+							while(!input.hasNextInt())
+				  			{
+								System.out.println("Thats not a number!");
+								input.next();
+				  			}
+						   myIndex = input.nextInt();
+						}while(myIndex < 0 || myIndex > 3);
+						
+						//OPPOENETS INDEX
+						int othersIndex;
+						do{
+				     		System.out.println("Type index, of OPPONENTS card you want to swap");
+							while(!input.hasNextInt())
+				  			{
+								System.out.println("Thats not a number!");
+								input.next();
+				  			}
+						   othersIndex = input.nextInt();
+						}while(othersIndex < 0 || othersIndex > 3);
+						
+						
+						if(GAME_STATE.getPlayer() == 0)
+						{
+							Card fromOpponent = playersArray[1].myHand.getCard(othersIndex);
+							Card newCard = playersArray[0].myHand.replaceCard(myIndex, fromOpponent);
+							Card whocares = playersArray[1].myHand.replaceCard(othersIndex, newCard);
+						}
+						else
+						{
+							Card fromOpponent = playersArray[0].myHand.getCard(othersIndex);
+							Card newCard = playersArray[1].myHand.replaceCard(myIndex, fromOpponent);
+							Card whocares = playersArray[0].myHand.replaceCard(othersIndex, newCard);
+						}
+					}
+					else if(cardFromDeck.getSpecial() == "peek")
+					{
+						gotDraw2 = false;
+						System.out.println("--------------------------------------------WE GOT A PEEK");
+						do{
+				     		System.out.println("Type index, of the card you want to peek");
+							while(!input.hasNextInt())
+				  			{
+								System.out.println("Thats not a number!");
+								input.next();
+				  			}
+						   handIndex = input.nextInt();
+						}while(handIndex < 0 || handIndex > 3);
+						System.out.println("Card " + handIndex + " is a " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex));
+					}
+					else if(cardFromDeck.getSpecial() == "draw2")
+					{
+						System.out.println("--------------------------------------------WE GOT A DRAW2");
+						gotDraw2 = true;
 					}
 				}
 				else
 				{
-					if(debug)
+					System.out.println("You got an " + cardFromDeck.toString());
+					do{
+			     		System.out.println("----->Type -1, for discard");
+						System.out.println("----->Type index, for swapping");
+						while(!input.hasNextInt())
+			  			{
+							System.out.println("Thats not a number!");
+							input.next();
+			  			}
+					   handIndex = input.nextInt();
+					}while(handIndex < -1 || handIndex > 3);
+
+					
+					if(handIndex == -1)
 					{
-						System.out.println("********************************");
-						System.out.println(playersArray[0].getName() + " decided to swap his old " + playersArray[0].myHand.getCard(handIndex).toString() + ", with " + cardFromDeck.toString());
-						System.out.println("********************************");
-					}					
-					Card removedFromHand = playersArray[0].myHand.replaceCard(handIndex, cardFromDeck);
-					System.out.println("Choice: " + handIndex + "| removing: " + removedFromHand.toString());
-					discard.addTopCard(removedFromHand);
-				}
-				if(debug || extraHelp)
-				{
-					System.out.println("********************************");
-					System.out.println("Showing " + playersArray[0].getName() + "'s New Hand: ");
-					playersArray[0].myHand.showHand();
-					System.out.println("********************************");
+						if(!draw2SecondCard && gotDraw2)
+						{
+							//we get to try again drawing
+							draw2SecondCard = true;
+						}
+						else
+						{
+							//this was already our second attempt
+							draw2SecondCard = false;
+						}
+						gotDraw2 = false;
+						//User discards back to deck
+						discard.addTopCard(cardFromDeck);
+						if(debug)
+						{
+							System.out.println("Decided to discard " + cardFromDeck.toString());
+						}
+					}
+					else
+					{
+						//user wants to swap card with hand
+						gotDraw2 = false;
+						draw2SecondCard = false;
+						if(debug)
+						{
+							System.out.println("Swapped " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex).toString() + ", with " + cardFromDeck.toString());
+						}					
+						Card removedFromHand = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
+						discard.addTopCard(removedFromHand);
+					}
+
 				}
 			}
 			else
 			{
 				//GET CARD FROM TOP OF DISCARD PILE
+				gotDraw2 = false;
+				draw2SecondCard = false;
+				
 				cardFromDeck = discard.getTopCard();
-				System.out.println("You must now replace this card with one from your hand, type the index of that card");
-				handIndex = Integer.parseInt(input.next());
-				Card removedFromHand = playersArray[0].myHand.replaceCard(handIndex, cardFromDeck);
-				System.out.println("Choice: " + handIndex + "| removing: " + removedFromHand.toString());
+				do{
+		     		System.out.println("----->Type index, of the card you want to swap");
+					while(!input.hasNextInt())
+		  			{
+						System.out.println("Thats not a number!");
+						input.next();
+		  			}
+				   handIndex = input.nextInt();
+				}while(handIndex < 0 || handIndex > 3);
+			
+				Card removedFromHand = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
 				discard.addTopCard(removedFromHand);
+				if(debug)
+				{
+					System.out.println("Swapped " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex).toString() + ", with " + cardFromDeck.toString());
+				}	
 			}
 			//-------END TURN
-			if(extraHelp || debug)
-			{
-				System.out.println("SHOWING UPDATED HAND!!!!!");
-				playersArray[0].myHand.showHand();
-			}
 			
-			
+			/*
 			//--------PREPARE THE JSON---------
-			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE);
+			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID);
 			tempScore.addPlayer(playersArray[0]);
 			tempScore.addPlayer(playersArray[1]);
 			Transporter tempTransport = new Transporter(tempScore);		
+			*/
 			
+			if(debug || extraHelp)
+			{
+				System.out.println("********************************");
+				System.out.println(playersArray[0].getName() + "'s hand: ");
+				playersArray[0].myHand.showHand();
+				System.out.println("********************************");
+				System.out.println(playersArray[1].getName() + "'s hand: ");
+				playersArray[1].myHand.showHand();
+				System.out.println("********************************");
+			}
+			if(debug)
+			{
+				System.out.println("SHOWING THE REMAINING DECK");
+				System.out.println("********************************");
+				mainDeck.showDeck();
+				System.out.println("********************************");
+			}
 			
 			//UPDATE GAME STATE
-			if(GAME_STATE.getPlayer() == GAME_STATE.numPlayers() - 1)
+			if(!gotDraw2 && !draw2SecondCard)
 			{
-				//RESET BACK TO FIRST PLAYER
-				GAME_STATE.setPlayer(0);
-				System.out.println("********************************");
-				System.out.println("RESETTING BACK TO PLAYER 1");
-				System.out.println("********************************");
+				if(GAME_STATE.getPlayer() == GAME_STATE.numPlayers() - 1)
+				{
+					//RESET BACK TO FIRST PLAYER
+					GAME_STATE.setPlayer(0);
+					System.out.println("********************************");
+					System.out.println("RESETTING BACK TO PLAYER 1");
+					System.out.println("********************************");
+				}
+				else
+				{
+					//NEXT PLAYERS TURN
+					GAME_STATE.setPlayer(GAME_STATE.getPlayer() + 1);
+				}
 			}
 			else
 			{
-				//NEXT PLAYERS TURN
-				GAME_STATE.setPlayer(GAME_STATE.getPlayer() + 1);
+				if(debug)
+				{
+					System.out.println(playersArray[GAME_STATE.getPlayer()].getName() + "'s got a draw 2, they go again.......");
+				}
 			}
 			if(debug)
 			{
@@ -358,7 +570,6 @@ public class finalProject extends JApplet implements ActionListener
 				GAME_STATE.print();
 				System.out.println("********************************");
 			}
-			gameOver = true;
 		}		
 		/*
 		//TESTING GAME STATE
