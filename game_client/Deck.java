@@ -11,7 +11,7 @@ class Deck
 
 		//FOR USE OF THE NORMAL DECK!
 		mainDeck = new ArrayList<Card>();
-
+	
 		for(int i = 0; i < 9; i++)
 		{
 			tempCard = new Card(i);
