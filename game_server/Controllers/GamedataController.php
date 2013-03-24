@@ -25,6 +25,10 @@ class GamedataController{
 	public function addState(){
 		$gs = new GameState($this->jsonObj); 
 	} // end addState
+
+	public function getVars(){
+		return false;
+	}
 } // end class def
 
 
