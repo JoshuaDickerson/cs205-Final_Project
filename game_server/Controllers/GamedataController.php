@@ -4,14 +4,19 @@
 */
 class GamedataController{
 	function __construct($POST){
-		$result = json_decode($POST['gameState']);
-		if($result && $result != null){
-			$array = array(
-				'tableName' = 'tblStates', 
-				'fldStateSnapshot' = $result
-			);
-			$dbWrapper = new InteractDB('insert', $array);
-		}
+		$jsonObj = json_decode($POST['gameState']);
+
+		// we need to update our db tables
+			// which one is the human? get human name. 
+			if($jsonObj->allPlayers[0]->isHuman){
+				$humanPlayer = $jsonObj->allPlayers[0]->playername;
+			}else{
+				$humanPlayer = $jsonObj->allPlayers[1]->playername;
+			}
+
+			// get the userID from database, using human name
+			$array = array('tableName'=>'tblUserAccount', 'fldUsername'=>$humanPlayer);
+			$dbWrapper = new InteractDB('select', $array);
 	}
 } // end class def
 

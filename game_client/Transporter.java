@@ -17,13 +17,16 @@ import com.google.gson.*;
 
 
 public class Transporter{
-	private String urlString = "http://slimdowndesign.com/cs205-Final_Project/game_server/Gamedata/?gamedata=newdata"; 
-	// private String urlString = "http://localhost/205_final_server/Gamedata/?gamedata=newdata"; 
+	//private String urlString = "http://slimdowndesign.com/cs205-Final_Project/game_server/Gamedata/?gamedata=newdata"; 
+	private String urlString = "http://localhost/205_final_server/Gamedata/?gamedata=newdata"; 
 
 	public Transporter(currentScore currentState){
-		Gson gson = new Gson();
+		//Gson gson = new Gson();
 		// convert our object to json
-		String json = gson.toJson(currentState);
+		//String json = gson.toJson(currentState);
+		//JSONObject jso = new JSONObject();
+		String json = "tetst12";
+		//String json = JSONObject
 		// send it off
 		this.postToServer(json);
 	}
