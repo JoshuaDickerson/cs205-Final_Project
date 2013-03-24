@@ -48,3 +48,36 @@
 [24-Mar-2013 16:12:09 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
 [24-Mar-2013 16:12:40 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
 [24-Mar-2013 16:13:46 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 16:20:30 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 16:21:38 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 16:28:39 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 16:28:54 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 16:30:17 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 16:31:42 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 16:34:00 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 16:42:52 US/Eastern] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 35
+[24-Mar-2013 16:43:10 US/Eastern] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 35
+[24-Mar-2013 16:44:45 US/Eastern] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 35
+[24-Mar-2013 16:46:59 US/Eastern] PHP Parse error:  syntax error, unexpected ',' in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 41
+[24-Mar-2013 16:48:26 US/Eastern] PHP Parse error:  syntax error, unexpected ',' in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 41
+[24-Mar-2013 16:49:20 US/Eastern] PHP Parse error:  syntax error, unexpected ',' in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 42
+[24-Mar-2013 16:50:14 US/Eastern] PHP Parse error:  syntax error, unexpected ',' in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 42
+[24-Mar-2013 16:51:06 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 16:51:09 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 16:52:15 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 16:53:17 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 16:54:23 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 16:56:41 US/Eastern] PHP Parse error:  syntax error, unexpected ',' in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 43
+[24-Mar-2013 16:57:25 US/Eastern] PHP Parse error:  syntax error, unexpected ',' in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 43
+[24-Mar-2013 16:58:19 US/Eastern] PHP Parse error:  syntax error, unexpected ',' in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 43
+[24-Mar-2013 16:58:48 US/Eastern] PHP Parse error:  syntax error, unexpected ',' in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 43
+[24-Mar-2013 16:59:35 US/Eastern] PHP Parse error:  syntax error, unexpected ',' in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 43
+[24-Mar-2013 17:00:26 US/Eastern] PHP Parse error:  syntax error, unexpected ',' in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 43
+[24-Mar-2013 17:01:26 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 17:02:02 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 17:02:58 US/Eastern] PHP Parse error:  syntax error, unexpected ',' in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 43
+[24-Mar-2013 17:03:12 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 17:03:57 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 17:04:35 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 17:05:44 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[24-Mar-2013 17:06:20 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
