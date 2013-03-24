@@ -4,6 +4,7 @@ class Player
 	private boolean isHuman;
 	private int id;
 	private int score;
+	private int roundsWon;
 	public Hand myHand;
 	
 	//constructor
@@ -13,6 +14,7 @@ class Player
 		this.id = id;
 		this.playername = name;
 		this.myHand = myHand;
+		this.roundsWon = 0;
 	}
 	
 	public void setHand(Hand myHand)
@@ -40,6 +42,14 @@ class Player
 	public void setName(String name)
 	{
 		playername = name;
+	}
+	public void setRoundsWon(int _roundsWon)
+	{
+		this.roundsWon = _roundsWon;
+	}
+	public int getRoundsWon()
+	{
+		return this.roundsWon;
 	}
 	public int getScore()
 	{

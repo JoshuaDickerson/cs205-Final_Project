@@ -163,85 +163,20 @@ public class finalProject extends JApplet implements ActionListener
 		//getContentPane().removeAll();
 	}
 
-	public void gameLoop()
-	{
-		//DEBUG
-		boolean debug = true;
-		boolean extraHelp = true;
+	public Player[] round(Scanner input, Deck mainDeck, Deck discard, Player[] playersArray, gameState GAME_STATE, boolean debug, boolean extraHelp, UUID uniqueID)
+	{		
+		System.out.println("DEBUG IS: " + debug);
+		System.out.println("EXTRAHELP IS: " + extraHelp);
 		
-		//NEW INPUT SCANNER
-		Scanner input = new Scanner(System.in);
-		
-		//CREATE GAME STATE
-		gameState GAME_STATE = new gameState(2);	
+		//UPDATE GAME STATE
 		if(debug)
 		{
-			System.out.println("SHOWING INITIAL GAME STATE: ");
-			GAME_STATE.print();	
+			System.out.println("********************************");
+			System.out.println("ROUND STARTED - GAME STATE: ");
+			GAME_STATE.print();
+			System.out.println("********************************");
 		}
-		
-		//CREATE UNIQUE GAME ID
-		UUID uniqueID = UUID.randomUUID();
-		
-		//CREATE DECK
-		Deck mainDeck = new Deck();
-		mainDeck.shuffle();
-		
-		//CREATE DISCARD PILE
-		Deck discard = new Deck();
-		discard.clear();
-		
-		//PLAYERS ARRAY
-		Player [] playersArray = new Player[2];
-		
-		//HUMAN PLAYER
-	   System.out.println("---->WHAT IS YOUR NAME?");
-	   String name = input.next();
-		Hand humanHand = new Hand(0);
-		Player human = new Player(true, 0, name, humanHand);
-		playersArray[0] = human;
-		
-		String[] opponents = new String[5];
-		opponents[0] = "Jimmy";
-		opponents[1] = "Einstein";
-		opponents[2] = "God";
-		
-		//Difficulty
-		System.out.println("Choose Opponenets Difficulty:");
-		int difficulty = 0;
-		do{
-        	System.out.println("Type 1, for EASY");
-			System.out.println("Type 2, for MEDIUM");
-			System.out.println("Type 3, for HARD");
-			while(!input.hasNextInt())
-  			{
-				System.out.println("Thats not a number!");
-				input.next();
-  			}
-		   difficulty = input.nextInt();
-		}while(difficulty < 1 || difficulty > 3);
-      				
-		//COMPUTER PLAYER
-		Hand computerHand = new Hand(1);
-		Player computer = new Player(false, 1, opponents[difficulty -1], computerHand);
-		playersArray[1] = computer;
-		System.out.println("You are playing " + opponents[difficulty-1]);
-		
-		//Choose GAME MODE
-		System.out.println("What Type of Game Do You Want To Play?");
-		int gameMode = 0;
-		do{
-     		System.out.println("Type 1, for 5 Minute Max Round");
-			System.out.println("Type 2, for 10 Turns Max Round");
-			System.out.println("Type 3, for High Score Round");
-			while(!input.hasNextInt())
-  			{
-				System.out.println("Thats not a number!");
-				input.next();
-  			}
-		   gameMode = input.nextInt();
-		}while(gameMode < 1 || gameMode > 3);
-		
+
 		//Give Players cards
 		for(int i = 0; i < 4; i++)
 		{
@@ -281,16 +216,7 @@ public class finalProject extends JApplet implements ActionListener
 			System.out.println("********************************");
 		}
 		
-		//UPDATE GAME STATE
-		GAME_STATE.updateGameState(NORMAL_ROUND, gameMode, 0, NORMAL_PLAY);
-		if(debug)
-		{
-			System.out.println("********************************");
-			System.out.println("SHOWING UPDATED GAME STATE: ");
-			GAME_STATE.print();
-			System.out.println("********************************");
-		}
-		
+				
 		//PEEKING FIRST PLAYERS TWO INITIAL CARDS
 		System.out.println("Before the game begins remember these cards!");
 		System.out.println("Your Left Most Card: " + playersArray[0].myHand.getCard(0).toString());
@@ -343,6 +269,12 @@ public class finalProject extends JApplet implements ActionListener
 			}
 			
 			int choice = 1;
+			if(GAME_STATE.getStatus() == KNOCKED_ROUND)
+			{
+				System.out.println("<----------------WARNING-------------------->");
+				System.out.println("A PLAYER HAS KNOCKED, THIS IS YOUR LAST TURN!");
+				System.out.println("<----------------WARNING-------------------->");
+			}
 			if(discard.getCard(0).isSpecial())
 			{
 				if(debug)
@@ -408,13 +340,13 @@ public class finalProject extends JApplet implements ActionListener
 						{
 							Card fromOpponent = playersArray[1].myHand.getCard(othersIndex);
 							Card newCard = playersArray[0].myHand.replaceCard(myIndex, fromOpponent);
-							Card whocares = playersArray[1].myHand.replaceCard(othersIndex, newCard);
+							Card worthlessCard = playersArray[1].myHand.replaceCard(othersIndex, newCard);
 						}
 						else
 						{
 							Card fromOpponent = playersArray[0].myHand.getCard(othersIndex);
 							Card newCard = playersArray[1].myHand.replaceCard(myIndex, fromOpponent);
-							Card whocares = playersArray[0].myHand.replaceCard(othersIndex, newCard);
+							Card worthlessCard = playersArray[0].myHand.replaceCard(othersIndex, newCard);
 						}
 					}
 					else if(cardFromDeck.getSpecial() == "peek")
@@ -539,13 +471,13 @@ public class finalProject extends JApplet implements ActionListener
 			//--------------------------------------------------------------------------------------END TURN
 		
 			
-			
+			/*
 			//--------PREPARE THE JSON---------
 			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID);
 			tempScore.addPlayer(playersArray[0]);
 			tempScore.addPlayer(playersArray[1]);
 			Transporter tempTransport = new Transporter(tempScore);		
-
+			*/
 			
 			if(debug || extraHelp)
 			{
@@ -572,9 +504,12 @@ public class finalProject extends JApplet implements ActionListener
 				{
 					//RESET BACK TO FIRST PLAYER
 					GAME_STATE.setPlayer(0);
-					System.out.println("********************************");
-					System.out.println("RESETTING BACK TO PLAYER 1");
-					System.out.println("********************************");
+					if(debug)
+					{
+						System.out.println("********************************");
+						System.out.println("RESETTING BACK TO PLAYER 1");
+						System.out.println("********************************");
+					}
 				}
 				else
 				{
@@ -609,7 +544,7 @@ public class finalProject extends JApplet implements ActionListener
 			}
 		}		
 		
-		//SHOWING FINAL SCORES
+		//SHOWING ROUND SCORES
 		int winner = -1;
 		int winningScore = 50;
 		for(int i = 0; i < 2; i++)
@@ -633,7 +568,6 @@ public class finalProject extends JApplet implements ActionListener
 						int tempSize = discard.size();
 						for(int k = 0; k < tempSize; k++)
 						{
-							System.out.println("adding");
 							mainDeck.addCard(discard.getTopCard());
 						}
 						discard.addTopCard(topCard);
@@ -652,7 +586,6 @@ public class finalProject extends JApplet implements ActionListener
 						cardFromDeck = mainDeck.getTopCard();
 					}
 					
-					System.out.println("FOUND SPECIAL");
 					Card oldPowerCard = playersArray[i].myHand.replaceCard(j, cardFromDeck);
 					discard.addTopCard(oldPowerCard);
 					if(debug)
@@ -660,53 +593,32 @@ public class finalProject extends JApplet implements ActionListener
 						System.out.println("Swapped '" + oldPowerCard.toString() + "' with '" + cardFromDeck + "'");
 					}
 				}
-				else
-				{
-					System.out.println("NO SPECIAL");
-				}
 			}
+			
 			System.out.println(playersArray[i].getName() + "'s final Score: " + playersArray[i].myHand.getScore());
 			playersArray[i].myHand.showHand();
+			//Update their game Score
+			playersArray[i].setScore(playersArray[i].getScore() + playersArray[i].myHand.getScore());
 			if(playersArray[i].myHand.getScore() < winningScore)
 			{
 				winner = i;
 				winningScore = playersArray[i].myHand.getScore();
 			}
 		}
+		//Increase round win counter
+		playersArray[winner].setRoundsWon(playersArray[winner].getRoundsWon() + 1);
 		
+		//show winner!
 		System.out.println("THE WINNER WAS: " + playersArray[winner].getName() + " with " + playersArray[winner].myHand.getScore());
+		/*
 		//--------PREPARE THE JSON---------
 		currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID);
 		tempScore.addPlayer(playersArray[0]);
 		tempScore.addPlayer(playersArray[1]);
 		Transporter tempTransport = new Transporter(tempScore);		
-
-		/*
-		//TESTING GAME STATE
-		System.out.println("--------TESTING GAME STATE OBJECT------------");
-		gameState newGameState = new gameState();
-		System.out.println("Initital Game State");
-		newGameState.print();
-		System.out.println();
-		newGameState.updateGameState(NULL, NULL, PLAYER_THREE, NULL);
-		System.out.println("Changed Game State");
-		newGameState.print();
-		
-		//TESTING PLAYER SCORE
-		System.out.println("--------TESTING PLAYER SCORE OBJECT------------");
-		playerScore player1 = new playerScore(19, "Anders");
-		playerScore player2 = new playerScore(183, "Bob");
-		
-		//TESTING CURRENTSCORE
-		System.out.println("--------TESTING CURRENT SCORES OBJECT------------");
-		currentScore totalScore = new currentScore(2, newGameState);
-		totalScore.addPlayerScore(player1);
-		totalScore.addPlayerScore(player2);
-		System.out.println("TOTAL PLAYERS IN SCORE OBJECT SIZE: " + totalScore.getPlayerCount());
-		System.out.println(totalScore.getPlayerScoreAtIndex(0).getName() + " has score " + totalScore.getPlayerScoreAtIndex(0).getScore());
-		System.out.println(totalScore.getPlayerScoreAtIndex(1).getName() + " has score " + totalScore.getPlayerScoreAtIndex(1).getScore());
-		gameState tempGameState = totalScore.getGameState();
 		*/
+		
+		return playersArray;
 	}
 	/* Invoked immediately after the start() method, and also any time
 	the applet needs to repaint itself in the browser. The paint()
@@ -722,8 +634,145 @@ public class finalProject extends JApplet implements ActionListener
 	It is called after the param tags inside the applet tag have been processed.*/
 	public void init()
 	{
-		//setUpGUI(MAIN_MENU);
 		gameLoop();
+	}
+	
+	public void gameLoop()
+	{
+		//DEBUG/EXTRA HELP PARAMETERS
+		boolean debug = false;
+		boolean extraHelp = false;
+		
+		//Setup Game
+		Object[] gameParameters = initialGameSetup();
+		
+		//GAME MODES
+		switch(((gameState)gameParameters[4]).getMode())
+		{
+			case(NUM_ROUNDS):
+				System.out.println("------------------------------------------------NUM ROUNDS");
+				//rounds loop
+				for(int i = 0; i < 5; i++)
+				{
+					int roundNum = i+1;
+					System.out.println("---------------------------------------------");
+					System.out.println("---------------Starting Round " + roundNum + "-----------");
+					System.out.println("---------------------------------------------");
+					gameParameters[3] = round((Scanner)gameParameters[0], (Deck)gameParameters[1], (Deck)gameParameters[2], (Player[])gameParameters[3], (gameState)gameParameters[4], debug, extraHelp, (UUID)gameParameters[5]);
+				}
+				break;
+			case(TIMED_PLAY):
+				System.out.println("------------------------------------------------TIMED");
+				break;
+			case(HIGH_SCORE):
+				System.out.println("------------------------------------------------HIGH SCORE");
+				break;
+		}
+		
+		int winner = -1;
+		int numWins = -1;
+		//SHOW FINAL WINNER
+		for(int i = 0; i < 2; i++)
+		{
+			if(((Player[])gameParameters[3])[i].getRoundsWon() > numWins)
+			{
+				numWins = ((Player[])gameParameters[3])[i].getRoundsWon();
+				winner = i;
+			}
+		}
+		
+		System.out.println("------------------------------------------------");
+		System.out.println("------------------------------------------------");
+		System.out.println("FINAL WINNER: " + ((Player[])gameParameters[3])[winner].getName() + ", with " + ((Player[])gameParameters[3])[winner].getRoundsWon() + " wins!");
+		System.out.println("-------------------------------------------------");
+		System.out.println("------------------------------------------------");
+		
+	}
+	
+	public Object[] initialGameSetup()
+	{
+		//NEW INPUT SCANNER
+		Scanner input = new Scanner(System.in);
+		
+		//CREATE GAME STATE
+		gameState GAME_STATE = new gameState(2);	
+		
+		//CREATE UNIQUE GAME ID
+		UUID uniqueID = UUID.randomUUID();
+		
+		//CREATE DECK
+		Deck mainDeck = new Deck();
+		mainDeck.shuffle();
+		
+		//CREATE DISCARD PILE
+		Deck discard = new Deck();
+		discard.clear();
+		
+		//PLAYERS ARRAY
+		Player [] playersArray = new Player[2];
+		
+		//HUMAN PLAYER
+	    System.out.println("---->WHAT IS YOUR NAME?");
+	    String name = input.next();
+		Hand humanHand = new Hand(0);
+		Player human = new Player(true, 0, name, humanHand);
+		playersArray[0] = human;
+		
+		String[] opponents = new String[5];
+		opponents[0] = "Jimmy";
+		opponents[1] = "Einstein";
+		opponents[2] = "God";
+		
+		//Difficulty
+		System.out.println("Choose Opponenets Difficulty:");
+		int difficulty = 0;
+		do{
+	    	System.out.println("Type 1, for EASY");
+			System.out.println("Type 2, for MEDIUM");
+			System.out.println("Type 3, for HARD");
+			while(!input.hasNextInt())
+			{
+				System.out.println("Thats not a number!");
+				input.next();
+			}
+		   difficulty = input.nextInt();
+		}while(difficulty < 1 || difficulty > 3);
+	  				
+		//COMPUTER PLAYER
+		Hand computerHand = new Hand(1);
+		Player computer = new Player(false, 1, opponents[difficulty -1], computerHand);
+		playersArray[1] = computer;
+		System.out.println("You are playing " + opponents[difficulty-1]);
+		
+		//Choose GAME MODE
+		System.out.println("What Type of Game Do You Want To Play?");
+		int gameMode = 0;
+		do{
+	 		System.out.println("Type 1, for 2 Minute Max Round");
+			System.out.println("Type 2, for 5 Rounds");
+			System.out.println("Type 3, for last one to be under 100 points");
+			while(!input.hasNextInt())
+			{
+				System.out.println("Thats not a number!");
+				input.next();
+			}
+		   gameMode = input.nextInt();
+		}while(gameMode < 1 || gameMode > 3);
+		
+		//UPDATE GAME STATE
+		GAME_STATE.updateGameState(NORMAL_ROUND, gameMode, 0, NORMAL_PLAY);
+		
+		//Build return array
+		Object[] gameParameters = new Object[6];
+		gameParameters[0] = input;
+		gameParameters[1] = mainDeck;
+		gameParameters[2] = discard;
+		gameParameters[3] = playersArray;
+		gameParameters[4] = GAME_STATE;
+		gameParameters[5] = uniqueID;
+		
+		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+		return gameParameters;
 	}
 	
 	/* This method is automatically called after the browser calls the init method.
