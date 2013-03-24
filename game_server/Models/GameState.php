@@ -4,6 +4,7 @@
 * the GameState is constructed from json and mirrors the 
 * java gameState  
 **/
+logThis("included");
 require_once "Models/Player.php";
 require_once "Models/InteractDB.php";
 

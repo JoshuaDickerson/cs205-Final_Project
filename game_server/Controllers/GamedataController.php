@@ -3,8 +3,7 @@
 * @author JoshuaDickerson joshuajdickerson@gmail.com
 * the GamedataController object is the controller fired when the game posts a gameState object
 */
-require_once "Models/GameState.php";
-
+include_once "Models/Gamestate.php";
 class GamedataController{
 	private $POST;
  	private $actions = array();
@@ -15,6 +14,7 @@ class GamedataController{
 	
 	function __construct($actions, $POST, $debug = false){
 		$this->jsonObj = json_decode($POST['gameState']);
+		$this->addState();
 	}
 
 
@@ -23,6 +23,7 @@ class GamedataController{
 	}
 
 	public function addState(){
+		// logThis("inside add state");
 		$gs = new GameState($this->jsonObj); 
 	} // end addState
 
