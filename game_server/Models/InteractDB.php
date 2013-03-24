@@ -223,7 +223,14 @@ class InteractDB{
 	}
 
 	public function getTables(){
-		$qry = "SELECT table_name, engine FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema='slimdown_205Final' ORDER BY table_name ASC;";
+		$qry = "SELECT table_name, engine FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema='".DATABASE_NAME."' ORDER BY table_name ASC;";
+		$this->customStatement($qry);
+		return $this->returnedRows;
+	}
+
+	public function getNumRows($tableName){
+		// $qry = "SELECT table_name, engine FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema='".DATABASE_NAME."' ORDER BY table_name ASC;";
+		$qry = "SELECT COUNT(*) FROM $tableName;";
 		$this->customStatement($qry);
 		return $this->returnedRows;
 	}

@@ -63,7 +63,11 @@ class Controller{
 				// echo $controller;
 				require_once "Controllers/".$controller.".php";
 				// echo "working";
-				$controllerObj = new $controller($this->routerObj->getActions(), $this->POST);
+				if($controller == "TestController"){
+					$controllerObj = new $controller($this->routerObj->getActions(), $this->POST, $this->routerObj);
+				}else{
+					$controllerObj = new $controller($this->routerObj->getActions(), $this->POST);
+				}
 				if($controllerObj->getView()){
 					$this->view = $controllerObj->getView();
 				}
