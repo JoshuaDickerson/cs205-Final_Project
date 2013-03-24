@@ -12,7 +12,7 @@ class LogController{
 	}
 
 	public function getVars(){
-		return false;
+		return 12;
 	}
 }// end LogController class def
 
