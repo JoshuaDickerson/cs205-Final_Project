@@ -13,6 +13,7 @@
  	function __construct($serverRequest){
  		$this->clientIP	= $serverRequest['REMOTE_ADDR'];
  		$this->userAgent = $serverRequest['HTTP_USER_AGENT'];
+ 		$this->requestURL = $serverRequest['REQUEST_URI'];
  		$this->parseURL($serverRequest['REQUEST_URI']);
  		// var_dump($serverRequest['REQUEST_URI']);
  	}
@@ -109,6 +110,18 @@
  			return $this->action;
  		}else{return false;} 
  	} // end getActions
+
+ 	public function getUserAgent(){
+ 		return $this->userAgent;
+ 	}
+
+ 	public function getUserIP(){
+ 		return $this->clientIP;
+ 	}
+
+ 	public function getRequestURL(){
+ 		return $this->requestURL;
+ 	}
 
 
 }

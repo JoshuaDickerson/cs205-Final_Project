@@ -75,12 +75,12 @@ class TestController{
 			echo "Connected to datastore: true";
 		}
 
-		echo "<br />-------------------<br /><b>Active database tables</b><br />";
+		echo "<br />&nbsp;&nbsp;-------------------<br /><b>Active database tables</b><br />";
 		$tblArr = $dbWrapper->getTables();
 		foreach($tblArr as $tbl){
-			echo "----</br />";
-			echo "Table name: ".$tbl['table_name']."<br />";
-			echo "Table engine: " .$tbl['engine']."<br />";
+			echo "&nbsp;&nbsp;&nbsp;&nbsp;----</br />";
+			echo "&nbsp;&nbsp;&nbsp;&nbsp;Table name: ".$tbl['table_name']."<br />";
+			echo "&nbsp;&nbsp;&nbsp;&nbsp;Table engine: " .$tbl['engine']."<br />";
 			$numRow = $dbWrapper->getNumRows($tbl['table_name']);
 		}
 	}
@@ -89,8 +89,12 @@ class TestController{
 		echo "<br /><b>------------------------------<br />";
 		echo "Testing MVC routing object";
 		echo "<br />----------</b><br />";
-		print_r($this->routerObj);
-		// echo $this->routerObj;
+		// print_r($this->routerObj);
+		if($this->routerObj->getDeviceType()==1){$type = "desktop";}else{$type = "mobile";}
+		echo "Client IP Address: ".$this->routerObj->getUserIP()."<br />";
+		echo "Client User Agent: ".$this->routerObj->getUserAgent()."<br />";
+		echo "Client Device Type: ".$type."<br />";
+		echo "HTTP RequestURL: ".$this->routerObj->getRequestURL()."<br />";
 	}
 
 	public function buildUser(){
