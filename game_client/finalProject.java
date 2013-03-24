@@ -539,13 +539,13 @@ public class finalProject extends JApplet implements ActionListener
 			//--------------------------------------------------------------------------------------END TURN
 		
 			
-			/*
+			
 			//--------PREPARE THE JSON---------
 			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID);
 			tempScore.addPlayer(playersArray[0]);
 			tempScore.addPlayer(playersArray[1]);
 			Transporter tempTransport = new Transporter(tempScore);		
-			*/
+
 			
 			if(debug || extraHelp)
 			{
@@ -675,7 +675,12 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		
 		System.out.println("THE WINNER WAS: " + playersArray[winner].getName() + " with " + playersArray[winner].myHand.getScore());
-		
+		//--------PREPARE THE JSON---------
+		currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID);
+		tempScore.addPlayer(playersArray[0]);
+		tempScore.addPlayer(playersArray[1]);
+		Transporter tempTransport = new Transporter(tempScore);		
+
 		/*
 		//TESTING GAME STATE
 		System.out.println("--------TESTING GAME STATE OBJECT------------");
