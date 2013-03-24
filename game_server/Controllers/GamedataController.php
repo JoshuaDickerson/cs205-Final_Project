@@ -1,7 +1,10 @@
 <?php
-/* @author JoshuaDickerson joshuajdickerson@gmail.com
+/**
+* @author JoshuaDickerson joshuajdickerson@gmail.com
 * the GamedataController object is the controller fired when the game posts a gameState object
 */
+require_once "Models/GameState.php";
+
 class GamedataController{
 	private $POST;
  	private $actions = array();
@@ -20,17 +23,8 @@ class GamedataController{
 	}
 
 	public function addState(){
-		// we need to update our db tables
-		// which one is the human? get human name. ***** This restricts us to 2 players, with only 1 human
-		if($jsonObj->allPlayers[0]->isHuman){
-			$humanPlayer = $jsonObj->allPlayers[0]->playername;
-		}else{
-			$humanPlayer = $jsonObj->allPlayers[1]->playername;
-		}
-		// get the userID from database, using human name
-		$array = array('tableName'=>'tblUserAccount', 'fldUsername'=>$humanPlayer);
-		$dbWrapper = new InteractDB('select', $array);
-	}
+		$gs = new GameState($this->jsonObj); 
+	} // end addState
 } // end class def
 
 
