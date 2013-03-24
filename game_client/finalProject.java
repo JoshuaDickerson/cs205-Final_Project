@@ -166,8 +166,8 @@ public class finalProject extends JApplet implements ActionListener
 	public void gameLoop()
 	{
 		//DEBUG
-		boolean debug = false;
-		boolean extraHelp = false;
+		boolean debug = true;
+		boolean extraHelp = true;
 		
 		//NEW INPUT SCANNER
 		Scanner input = new Scanner(System.in);
@@ -185,7 +185,7 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//CREATE DECK
 		Deck mainDeck = new Deck();
-		//mainDeck.shuffle();
+		mainDeck.shuffle();
 		
 		//CREATE DISCARD PILE
 		Deck discard = new Deck();
@@ -298,12 +298,13 @@ public class finalProject extends JApplet implements ActionListener
 		
 		
 		//-------------GAME STARTING----------------		
-		//--------GAME LOOP-----------
+		//----------------------------------------------------------------------GAME LOOP-----------
 		boolean gameOver = false;
 		boolean draw2SecondCard = false;
 		boolean gotDraw2 = false;
 		int handIndex = 0;
 		Card cardFromDeck;
+		int playerWhoKnocked = -1;
 		while(!gameOver)
 		{
 			//CHECK IF DECK IS EMPTY
@@ -511,7 +512,32 @@ public class finalProject extends JApplet implements ActionListener
 					System.out.println("Swapped " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex).toString() + ", with " + cardFromDeck.toString());
 				}	
 			}
-			//-------END TURN
+			
+			//DO YOU WANT TO KNOCK?
+			if(GAME_STATE.getStatus() != KNOCKED_ROUND)
+			{
+				System.out.println("Do you want to knock?");
+				do{
+		     		System.out.println("----->Type 1, to keep playing");
+					System.out.println("----->Type 2, to knock (AKA this was your last turn)");
+					while(!input.hasNextInt())
+		  			{
+						System.out.println("Thats not a number!");
+						input.next();
+		  			}
+				   choice = input.nextInt();
+				}while(choice < 1 || choice > 2);
+				if(choice != 1)
+				{
+					//update game state to knocked round!
+					GAME_STATE.updateGameState(KNOCKED_ROUND, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode());
+					
+					//Set player who knocked
+					playerWhoKnocked = GAME_STATE.getPlayer();
+				}
+			}		
+			//--------------------------------------------------------------------------------------END TURN
+		
 			
 			/*
 			//--------PREPARE THE JSON---------
@@ -570,7 +596,86 @@ public class finalProject extends JApplet implements ActionListener
 				GAME_STATE.print();
 				System.out.println("********************************");
 			}
+			
+			//CHECKING IF GAME IS OVER!
+			if(GAME_STATE.getStatus() == KNOCKED_ROUND && GAME_STATE.getPlayer() == playerWhoKnocked)
+			{
+				//THE GAME IS OVER ALL PLAYERS HAVE HAD THEIR FINAL TURN!
+				//update game state
+				GAME_STATE.updateGameState(ROUND_OVER, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode());
+				System.out.println("THE ROUND IS OVER");
+				
+				gameOver = true;
+			}
 		}		
+		
+		//SHOWING FINAL SCORES
+		int winner = -1;
+		int winningScore = 50;
+		for(int i = 0; i < 2; i++)
+		{
+			//CHECK FOR REMAINING POWER CARDS
+			for(int j = 0; j < 4; j++)
+			{
+				if(playersArray[i].myHand.getCard(j).isSpecial())
+				{
+					//CHECK IF DECK IS EMPTY
+					if(mainDeck.size() == 0)
+					{
+						System.out.println("----------------------------RESHUFFLING DECK!");
+						//Deck is empty, shuffle discard and create new deck
+						Card topCard = discard.getTopCard();
+						discard.shuffle();
+						if(debug)
+						{
+							System.out.println("BEFORE| deck: " + mainDeck.size() + " discard: " + discard.size());
+						}	
+						int tempSize = discard.size();
+						for(int k = 0; k < tempSize; k++)
+						{
+							System.out.println("adding");
+							mainDeck.addCard(discard.getTopCard());
+						}
+						discard.addTopCard(topCard);
+						if(debug)
+						{
+							System.out.println("After| deck: " + mainDeck.size() + " discard: " + discard.size());
+						}
+					}
+
+					//swap out card
+					//check if its another power card!
+					cardFromDeck = mainDeck.getTopCard();
+					while(cardFromDeck.isSpecial())
+					{
+						discard.addTopCard(cardFromDeck);
+						cardFromDeck = mainDeck.getTopCard();
+					}
+					
+					System.out.println("FOUND SPECIAL");
+					Card oldPowerCard = playersArray[i].myHand.replaceCard(j, cardFromDeck);
+					discard.addTopCard(oldPowerCard);
+					if(debug)
+					{
+						System.out.println("Swapped '" + oldPowerCard.toString() + "' with '" + cardFromDeck + "'");
+					}
+				}
+				else
+				{
+					System.out.println("NO SPECIAL");
+				}
+			}
+			System.out.println(playersArray[i].getName() + "'s final Score: " + playersArray[i].myHand.getScore());
+			playersArray[i].myHand.showHand();
+			if(playersArray[i].myHand.getScore() < winningScore)
+			{
+				winner = i;
+				winningScore = playersArray[i].myHand.getScore();
+			}
+		}
+		
+		System.out.println("THE WINNER WAS: " + playersArray[winner].getName() + " with " + playersArray[winner].myHand.getScore());
+		
 		/*
 		//TESTING GAME STATE
 		System.out.println("--------TESTING GAME STATE OBJECT------------");
@@ -605,7 +710,7 @@ public class finalProject extends JApplet implements ActionListener
 	{
 		//HERE we can paint graphics to the screen which can be helpful
 		super.paint(g);
-		//g.drawString("WOW THIS WORKED!",25,25);
+		g.drawString("WOW THIS WORKED!",25,25);
 	}
 	
 	/*This method is intended for whatever initialization is needed for your applet.
