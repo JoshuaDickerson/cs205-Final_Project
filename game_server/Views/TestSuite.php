@@ -7,4 +7,5 @@ body{
 </style>
 <?
 echo $this->vars[0]."<br />";
+
 ?>

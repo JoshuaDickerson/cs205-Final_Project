@@ -8,11 +8,13 @@ class TestController{
 	private $view = "TestSuite";
 	public $modelObj;
 	public $vars; 
+	public $routerObj;
 	private $testArray = array();
 
- 	function __construct($actions = null, $POST = null){
+ 	function __construct($actions = null, $POST = null, $routerObj = null){
 		$this->POST = $POST;
 	 	$this->actions = $actions;
+	 	$this->routerObj = $routerObj;
 	 	$this->parseAction($this->actions);
 	 	
 	 }
@@ -37,10 +39,14 @@ class TestController{
 						switch($actions['test']){
 							case "dbConnect":
 								$this->vars[0] = $this->testDB();
+								$this->testRouter();
 							break;
 							case "gamedata_controller":
 							break;
 							case "user_controller":
+							break;
+							case "routerObj":
+								$this->testRouter();
 							break;
 						}
 					break;
@@ -65,6 +71,7 @@ class TestController{
 		if($connErr){
 			echo "Connected to datastore failed: ".$connErr;
 		}else{
+			echo "DB username/password: OK<br />";
 			echo "Connected to datastore: true";
 		}
 
@@ -74,7 +81,16 @@ class TestController{
 			echo "----</br />";
 			echo "Table name: ".$tbl['table_name']."<br />";
 			echo "Table engine: " .$tbl['engine']."<br />";
+			$numRow = $dbWrapper->getNumRows($tbl['table_name']);
 		}
+	}
+
+	public function testRouter(){
+		echo "<br /><b>------------------------------<br />";
+		echo "Testing MVC routing object";
+		echo "<br />----------</b><br />";
+		print_r($this->routerObj);
+		// echo $this->routerObj;
 	}
 
 	public function buildUser(){
