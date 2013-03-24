@@ -185,28 +185,46 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//CREATE DECK
 		Deck mainDeck = new Deck();
-		//mainDeck.shuffle();
+		mainDeck.shuffle();
 		
 		//CREATE DISCARD PILE
 		Deck discard = new Deck();
 		discard.clear();
 		
-		
-		
 		//PLAYERS ARRAY
 		Player [] playersArray = new Player[2];
 		
 		//HUMAN PLAYER
-	   System.out.println("WHAT IS YOUR NAME?");
+	   System.out.println("---->WHAT IS YOUR NAME?");
 	   String name = input.next();
 		Hand humanHand = new Hand(0);
 		Player human = new Player(true, 0, name, humanHand);
 		playersArray[0] = human;
 		
+		String[] opponents = new String[5];
+		opponents[0] = "Jimmy";
+		opponents[1] = "Einstein";
+		opponents[2] = "God";
+		
+		//Difficulty
+		System.out.println("Choose Opponenets Difficulty:");
+		System.out.println("Type 1, for EASY");
+		System.out.println("Type 2, for MEDIUM");
+		System.out.println("Type 3, for HARD");
+		int difficulty = Integer.parseInt(input.next());
+				
 		//COMPUTER PLAYER
 		Hand computerHand = new Hand(1);
-		Player computer = new Player(false, 1, "JESUS", computerHand);
+		Player computer = new Player(false, 1, opponents[difficulty -1], computerHand);
 		playersArray[1] = computer;
+		System.out.println("You are playing " + opponents[difficulty-1]);
+		
+		//Choose GAME MODE
+		System.out.println("What Type of Game Do You Want To Play?");
+		System.out.println("Type 1, for 5 Minute Max Round");
+		System.out.println("Type 2, for 10 Turns Max Round");
+		System.out.println("Type 3, for High Score Round");
+		int gameMode = Integer.parseInt(input.next());
 		
 		//Give Players cards
 		for(int i = 0; i < 4; i++)
@@ -248,7 +266,7 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		
 		//UPDATE GAME STATE
-		GAME_STATE.updateGameState(NORMAL_ROUND, NUM_ROUNDS, 0, NORMAL_PLAY);
+		GAME_STATE.updateGameState(NORMAL_ROUND, gameMode, 0, NORMAL_PLAY);
 		if(debug)
 		{
 			System.out.println("********************************");
@@ -258,6 +276,7 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		
 		//PEEKING FIRST PLAYERS TWO INITIAL CARDS
+		System.out.println("Before the game begins remember these cards!");
 		System.out.println("Your Left Most Card: " + playersArray[0].myHand.getCard(0).toString());
 		System.out.println("Your Right Most Card: " + playersArray[0].myHand.getCard(3).toString());
 		
@@ -275,14 +294,14 @@ public class finalProject extends JApplet implements ActionListener
 			//CHECK IF DECK IS EMPTY
 			if(mainDeck.size() == 0)
 			{
-				if(debug)
-				{
-					System.out.println("----------------------------DECK RESHUFFLING!");
-				}
+				System.out.println("----------------------------RESHUFFLING DECK!");
 				//Deck is empty, shuffle discard and create new deck
 				Card topCard = discard.getTopCard();
 				discard.shuffle();
-				System.out.println("BEFORE| deck: " + mainDeck.size() + " discard: " + discard.size());
+				if(debug)
+				{
+					System.out.println("BEFORE| deck: " + mainDeck.size() + " discard: " + discard.size());
+				}	
 				int tempSize = discard.size();
 				for(int i = 0; i < tempSize; i++)
 				{
@@ -290,7 +309,10 @@ public class finalProject extends JApplet implements ActionListener
 					mainDeck.addCard(discard.getTopCard());
 				}
 				discard.addTopCard(topCard);
-				System.out.println("After| deck: " + mainDeck.size() + " discard: " + discard.size());
+				if(debug)
+				{
+					System.out.println("After| deck: " + mainDeck.size() + " discard: " + discard.size());
+				}
 			}
 			System.out.println("-------------------------------------");
 			System.out.println("-------------------------------------");
@@ -373,7 +395,7 @@ public class finalProject extends JApplet implements ActionListener
 					handIndex = Integer.parseInt(userInput);
 					if(handIndex == -1)
 					{
-						if(!draw2SecondCard)
+						if(!draw2SecondCard && gotDraw2)
 						{
 							//we get to try again drawing
 							draw2SecondCard = true;
