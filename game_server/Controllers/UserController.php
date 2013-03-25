@@ -67,6 +67,10 @@ class UserController{
 		return $array;
 	}
 
+	public function getVars(){
+		return false;
+	}
+
 } // end User class
 
 
