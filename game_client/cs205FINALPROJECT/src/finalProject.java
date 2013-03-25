@@ -166,7 +166,7 @@ public class finalProject extends JApplet implements ActionListener
 		//getContentPane().removeAll();
 	}
 
-	public Player[] round(Scanner input, Player[] playersArray, gameState GAME_STATE, boolean debug, boolean extraHelp, UUID uniqueID, String endTime)
+	public Player[] round(Scanner input, Player[] playersArray, gameState GAME_STATE, boolean debug, boolean extraHelp, UUID uniqueID, String endTime, int currentRound)
 	{		
 		/*
 		 * WE NEED TO REINITIALIZE THE MAINDECK AND DISCARD PILE EVERYROUND!!!!!!!!!!!!
@@ -511,13 +511,13 @@ public class finalProject extends JApplet implements ActionListener
 			//--------------------------------------------------------------------------------------END TURN
 		
 			
-			/*
+			
 			//--------PREPARE THE JSON---------
-			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID);
+			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, false, currentRound);
 			tempScore.addPlayer(playersArray[0]);
 			tempScore.addPlayer(playersArray[1]);
 			Transporter tempTransport = new Transporter(tempScore);		
-			*/
+			
 			
 			if(debug || extraHelp)
 			{
@@ -656,13 +656,12 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//show winner!
 		System.out.println("THE WINNER WAS: " + playersArray[winner].getName() + " with " + playersArray[winner].myHand.getScore());
-		/*
+		
 		//--------PREPARE THE JSON---------
-		currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID);
+		currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, true, currentRound);
 		tempScore.addPlayer(playersArray[0]);
 		tempScore.addPlayer(playersArray[1]);
 		Transporter tempTransport = new Transporter(tempScore);		
-		*/
 		
 		return playersArray;
 	}
@@ -693,7 +692,7 @@ public class finalProject extends JApplet implements ActionListener
 		Object[] gameParameters = initialGameSetup();
 		
 		//rounds counter for while loops
-		int counter;
+		int counter = 0;
 		//GAME MODES
 		switch(((gameState)gameParameters[2]).getWinCon())
 		{
@@ -709,7 +708,8 @@ public class finalProject extends JApplet implements ActionListener
 					System.out.println("-------------------------------------------------------------------------");
 					System.out.println("-----------------------------Starting Round " + roundNum + "----------------------------");
 					System.out.println("-------------------------------------------------------------------------");
-					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], null);
+					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], null, roundNum);
+					counter = i+1;
 				}
 				break;
 			case(TIMED_PLAY):
@@ -737,7 +737,7 @@ public class finalProject extends JApplet implements ActionListener
 					System.out.println("-----------------------------Starting Round " + counter + "----------------------------");
 					System.out.println(((Player[])gameParameters[1])[0].getName() + "'s Score: " + ((Player[])gameParameters[1])[0].getTotalScore() + " | " + ((Player[])gameParameters[1])[1].getName() + "'s Score: " + ((Player[])gameParameters[1])[1].getTotalScore());
 					System.out.println("-------------------------------------------------------------------------");
-					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], endTime);
+					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], endTime, counter);
 					counter++;
 				}
 				break;
@@ -754,7 +754,7 @@ public class finalProject extends JApplet implements ActionListener
 					System.out.println("-----------------------------Starting Round " + counter + "----------------------------");
 					System.out.println(((Player[])gameParameters[1])[0].getName() + "'s Score: " + ((Player[])gameParameters[1])[0].getTotalScore() + " | " + ((Player[])gameParameters[1])[1].getName() + "'s Score: " + ((Player[])gameParameters[1])[1].getTotalScore());
 					System.out.println("-------------------------------------------------------------------------");
-					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], null);
+					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], null, counter);
 					counter++;
 				}
 				break;
@@ -786,6 +786,11 @@ public class finalProject extends JApplet implements ActionListener
 		System.out.println("-------------------------------------------------");
 		System.out.println("------------------------------------------------");
 		
+		//--------PREPARE THE JSON---------
+		currentScore tempScore = new currentScore(((gameState)gameParameters[2]).numPlayers(), (gameState)gameParameters[2], (UUID)gameParameters[3], true, true, counter);
+		tempScore.addPlayer(((Player[])gameParameters[1])[0]);
+		tempScore.addPlayer(((Player[])gameParameters[1])[1]);
+		Transporter tempTransport = new Transporter(tempScore);
 	}
 	
 	public Object[] initialGameSetup()
@@ -851,7 +856,6 @@ public class finalProject extends JApplet implements ActionListener
 		}while(winCon < 1 || winCon > 3);
 
 		//UPDATE GAME STATE
-		//-----------------------------(int _status, int _winCon, int _player, int _mode)
 		GAME_STATE.updateGameState(NORMAL_ROUND, winCon-1, 0, NORMAL_PLAY);
 		//Build return array
 		Object[] gameParameters = new Object[4];
