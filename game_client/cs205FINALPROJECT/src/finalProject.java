@@ -262,7 +262,7 @@ public class finalProject extends JApplet implements ActionListener
 		if(sendJSON)
 		{
 			//--------PREPARE THE JSON---------
-			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, false, currentRound);
+			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, false, currentRound, mainDeck, discard);
 			tempScore.addPlayer(playersArray[0]);
 			tempScore.addPlayer(playersArray[1]);
 			Transporter tempTransport = new Transporter(tempScore);			
@@ -527,7 +527,7 @@ public class finalProject extends JApplet implements ActionListener
 			if(sendJSON)
 			{
 				//--------PREPARE THE JSON---------
-				currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, false, currentRound);
+				currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, false, currentRound, mainDeck, discard);
 				tempScore.addPlayer(playersArray[0]);
 				tempScore.addPlayer(playersArray[1]);
 				Transporter tempTransport = new Transporter(tempScore);			
@@ -676,7 +676,7 @@ public class finalProject extends JApplet implements ActionListener
 		if(sendJSON)
 		{
 			//--------PREPARE THE JSON---------
-			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, true, currentRound);
+			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, true, currentRound, mainDeck, discard);
 			tempScore.addPlayer(playersArray[0]);
 			tempScore.addPlayer(playersArray[1]);
 			Transporter tempTransport = new Transporter(tempScore);		
