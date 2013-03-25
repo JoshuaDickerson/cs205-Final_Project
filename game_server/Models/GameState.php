@@ -17,14 +17,16 @@ class GameState{
 	private $mode;
 	private $numPlayers;
 
-	function __construct($jsonObj){
+	function __construct($jsonObj, $addToDB = false){
 		$this->jsonToState($jsonObj);
 		$this->uniqueID = $jsonObj->uniqueID;
 		$this->winCon = $jsonObj->state->winCon;
 		$this->mode = $jsonObj->state->mode;
 		$this->numPlayers = $jsonObj->numPlayers;
-		// add to db
-		$this->addToDB();
+		// if GamedataController sets $addToDB as true, add to db
+		if($addToDB){
+			$this->addToDB();
+		}
 	}
 
 	public function jsonToState($jsonObj){

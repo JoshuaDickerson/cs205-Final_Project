@@ -53,7 +53,7 @@ class GamedataController{
 
 	public function addState(){
 		// logThis("inside add state");
-		$gs = new GameState($this->jsonObj); 
+		$gs = new GameState($this->jsonObj, true);
 	} // end addState
 
 	public function emailToUserID($userEmailString){
