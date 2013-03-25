@@ -53,6 +53,11 @@ class GamedataController{
 							$this->view = "SingleGameDisplay";
 						}
 					break;
+					case "output":
+						if($actions['output'] == "json"){
+							$this->view = "json";
+						}
+					break;
 				    default:
 				       // echo "i is not equal to 0, 1 or 2";
 				} // end switch
