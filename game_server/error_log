@@ -154,3 +154,14 @@
 [25-Mar-2013 13:00:16 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
 [25-Mar-2013 13:00:16 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
 [25-Mar-2013 13:05:23 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[25-Mar-2013 13:08:16 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[25-Mar-2013 13:35:59 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[25-Mar-2013 13:50:23 US/Eastern] PHP Fatal error:  Call to undefined method Game::buildFromJson() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/GamedataController.php on line 41
+[25-Mar-2013 13:51:21 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[25-Mar-2013 13:51:50 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[25-Mar-2013 13:52:58 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[25-Mar-2013 13:54:59 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[25-Mar-2013 13:57:37 US/Eastern] PHP Warning:  json_decode() expects parameter 1 to be string, object given in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Game.php on line 41
+[25-Mar-2013 13:57:37 US/Eastern] PHP Warning:  json_decode() expects parameter 1 to be string, object given in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Game.php on line 42
+[25-Mar-2013 13:57:37 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[25-Mar-2013 13:58:55 US/Eastern] PHP Fatal error:  Call to undefined method GamedataController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71

@@ -3,7 +3,7 @@
 * @author JoshuaDickerson joshuajdickerson@gmail.com
 * the GamedataController object is the controller fired when the game posts a gameState object
 */
-include_once "Models/Gamestate.php";
+// include_once "Models/Gamestate.php";
 class GamedataController{
 	private $POST;
  	private $actions = array();
@@ -13,12 +13,42 @@ class GamedataController{
  	public $jsonObj;
 	
 	function __construct($actions, $POST, $debug = false){
-		// logThis("-----working-------");
 		$this->jsonObj = json_decode($POST['gameState']);
-		$this->addGame();
-		$this->addState();
+		$this->parseAction($actions);
+		// $this->addGame();
+		// $this->addState();
 	}
 
+	function parseAction($actions){
+		// takes the actions to be performed on the 
+		// controller and perfomrs them if they exist
+		$children = array_keys($actions);
+		$methods = array_values($actions);
+
+		if(count($children) != count($methods)){
+			// if there are a different number of actions than variables
+			// throw an error
+			// please add my functionality
+		}
+		else{
+			foreach($children as $value){
+				// as long as there are an equal number of methods and variables
+				// do --> for every action perform the switch statement
+				switch ($value) {
+					case "gamedata":
+						require_once "Models/Game.php";
+						$gameObj = new Game();
+						$gameObj->buildGameFromJson($this->jsonObj);
+						// $this->addGame();
+						// $this->addState();
+				    break;
+				    default:
+				       // echo "i is not equal to 0, 1 or 2";
+				} // end switch
+			} // end foreach
+		} // end else
+
+	}
 
 	public function addGame(){
 		// check if we already have this game in the DB
@@ -50,7 +80,7 @@ class GamedataController{
 			$dbWrapper = new InteractDB('insert', $array2);
 			// logThis($dbWrapper);
 		}
-	}
+	} // end addGame()
 
 	public function addState(){
 		// logThis("inside add state");
@@ -71,7 +101,8 @@ class GamedataController{
 		}
 
 		return $userID;
-	}
+	} // end emailToUserID()
+
 
 	public function getVars(){
 		return false;
