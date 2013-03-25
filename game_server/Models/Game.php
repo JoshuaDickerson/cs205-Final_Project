@@ -9,13 +9,16 @@ class Game{
 	private $uid_p2;
 	private $mode;
 	private $winCon;
-	
+	private $beginTime;
+	private $isComplete = false;
+
 	function __construct($gameIDstring){
 		$this->gameID = $gameIDstring;
 	} // end construct
 
 	public function buildGameFromID(){
 		// get game data from db
-		// load each state 
+		// load each state
 	}
 } // end class def
+?>
