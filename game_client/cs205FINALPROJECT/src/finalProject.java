@@ -241,6 +241,7 @@ public class finalProject extends JApplet implements ActionListener
 			System.out.println("********************************");
 		}
 		
+
 				
 		//PEEKING FIRST PLAYERS TWO INITIAL CARDS
 		System.out.println("Before the game begins remember these cards!");
@@ -252,10 +253,21 @@ public class finalProject extends JApplet implements ActionListener
 		//----------------------------------------------------------------------GAME LOOP-----------
 		boolean gameOver = false;
 		boolean draw2SecondCard = false;
+		boolean sendJSON = true;
 		boolean gotDraw2 = false;
 		int handIndex = 0;
 		Card cardFromDeck;
 		int playerWhoKnocked = -1;
+		
+		if(sendJSON)
+		{
+			//--------PREPARE THE JSON---------
+			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, false, currentRound);
+			tempScore.addPlayer(playersArray[0]);
+			tempScore.addPlayer(playersArray[1]);
+			Transporter tempTransport = new Transporter(tempScore);			
+		}
+		
 		while(!gameOver)
 		{
 			//CHECK IF DECK IS EMPTY
@@ -512,11 +524,15 @@ public class finalProject extends JApplet implements ActionListener
 		
 			
 			
-			//--------PREPARE THE JSON---------
-			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, false, currentRound);
-			tempScore.addPlayer(playersArray[0]);
-			tempScore.addPlayer(playersArray[1]);
-			Transporter tempTransport = new Transporter(tempScore);		
+			if(sendJSON)
+			{
+				//--------PREPARE THE JSON---------
+				currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, false, currentRound);
+				tempScore.addPlayer(playersArray[0]);
+				tempScore.addPlayer(playersArray[1]);
+				Transporter tempTransport = new Transporter(tempScore);			
+			}
+			
 			
 			
 			if(debug || extraHelp)
@@ -657,11 +673,14 @@ public class finalProject extends JApplet implements ActionListener
 		//show winner!
 		System.out.println("THE WINNER WAS: " + playersArray[winner].getName() + " with " + playersArray[winner].myHand.getScore());
 		
-		//--------PREPARE THE JSON---------
-		currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, true, currentRound);
-		tempScore.addPlayer(playersArray[0]);
-		tempScore.addPlayer(playersArray[1]);
-		Transporter tempTransport = new Transporter(tempScore);		
+		if(sendJSON)
+		{
+			//--------PREPARE THE JSON---------
+			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, true, currentRound);
+			tempScore.addPlayer(playersArray[0]);
+			tempScore.addPlayer(playersArray[1]);
+			Transporter tempTransport = new Transporter(tempScore);		
+		}
 		
 		return playersArray;
 	}
