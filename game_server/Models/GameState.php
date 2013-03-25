@@ -22,6 +22,7 @@ class GameState{
 
 	function __construct($jsonObj, $addToDB = false){
 		$this->jsonToState($jsonObj);
+		logThis($jsonObj->roundCount);
 		$this->uniqueID = $jsonObj->uniqueID;
 		$this->gameOver = $jsonObj->gameOver;
 		$this->roundOver = $jsonObj->roundOver;
