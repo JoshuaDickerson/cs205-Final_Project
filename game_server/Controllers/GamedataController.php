@@ -13,6 +13,7 @@ class GamedataController{
  	public $jsonObj;
 	
 	function __construct($actions, $POST, $debug = false){
+		// logThis("-----working-------");
 		$this->jsonObj = json_decode($POST['gameState']);
 		$this->addGame();
 		$this->addState();
@@ -53,7 +54,7 @@ class GamedataController{
 
 	public function addState(){
 		// logThis("inside add state");
-		$gs = new GameState($this->jsonObj, true);
+		$gs = new Gamestate($this->jsonObj, true);
 	} // end addState
 
 	public function emailToUserID($userEmailString){
