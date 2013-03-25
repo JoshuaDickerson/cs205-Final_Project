@@ -9,13 +9,19 @@ public class currentScore
 	private int currentIndex = 0;
 	private gameState state;
 	private UUID uniqueID;
+	private boolean gameOver;
+	private boolean roundOver;
+	private int roundCount;
 	//REPLACE OBJECT WITH 
-	public currentScore(int _numPlayers, gameState _state, UUID _uniqueID)
+	public currentScore(int _numPlayers, gameState _state, UUID _uniqueID, boolean _gameOver, boolean _roundOver, int _roundCount)
 	{
 		this.numPlayers = _numPlayers;
 		this.allPlayers = new Player[_numPlayers];
 		this.state = _state;
 		this.uniqueID = _uniqueID;
+		this.gameOver = _gameOver;
+		this.roundOver = _roundOver;
+		this.roundCount = _roundCount;		
 		//MUST MANUALLY ADD PLAYER SCORES TO CURRENT SCORE ARRAY WITH ADD PLAYER SCORE
 	}
 	

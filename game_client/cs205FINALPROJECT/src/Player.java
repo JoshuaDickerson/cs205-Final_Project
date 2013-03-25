@@ -5,6 +5,7 @@ class Player
 	private int id;
 	private int score;
 	private int roundsWon;
+	private int totalScore;
 	public Hand myHand;
 	
 	//constructor
@@ -15,6 +16,7 @@ class Player
 		this.playername = name;
 		this.myHand = myHand;
 		this.roundsWon = 0;
+		this.totalScore = 0;
 	}
 	
 	public void setHand(Hand myHand)
@@ -50,6 +52,14 @@ class Player
 	public int getRoundsWon()
 	{
 		return this.roundsWon;
+	}
+	public void setTotalScore(int _score)
+	{
+		this.totalScore = _score;
+	}
+	public int getTotalScore()
+	{
+		return this.totalScore;
 	}
 	public int getScore()
 	{
