@@ -806,7 +806,7 @@ public class finalProject extends JApplet implements ActionListener
 		System.out.println("------------------------------------------------");
 		
 		//--------PREPARE THE JSON---------
-		currentScore tempScore = new currentScore(((gameState)gameParameters[2]).numPlayers(), (gameState)gameParameters[2], (UUID)gameParameters[3], true, true, counter);
+		currentScore tempScore = new currentScore(((gameState)gameParameters[2]).numPlayers(), (gameState)gameParameters[2], (UUID)gameParameters[3], true, true, counter, null, null);
 		tempScore.addPlayer(((Player[])gameParameters[1])[0]);
 		tempScore.addPlayer(((Player[])gameParameters[1])[1]);
 		Transporter tempTransport = new Transporter(tempScore);

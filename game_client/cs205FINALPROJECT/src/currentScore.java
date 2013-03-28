@@ -13,7 +13,7 @@ public class currentScore
 	private boolean roundOver;
 	private int roundCount;
 	//REPLACE OBJECT WITH 
-	public currentScore(int _numPlayers, gameState _state, UUID _uniqueID, boolean _gameOver, boolean _roundOver, int _roundCount)
+	public currentScore(int _numPlayers, gameState _state, UUID _uniqueID, boolean _gameOver, boolean _roundOver, int _roundCount, Deck mainDeck, Deck discard)
 	{
 		this.numPlayers = _numPlayers;
 		this.allPlayers = new Player[_numPlayers];
