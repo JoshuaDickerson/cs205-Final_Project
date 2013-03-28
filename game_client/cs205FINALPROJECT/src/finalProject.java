@@ -54,16 +54,11 @@ public class finalProject extends JApplet implements ActionListener
 	JButton jbnRight;
 	JButton jbnMiddle;
 	JLabel title;
-	JTextField nameText;
-	ArrayList<JComponent> guiObjects = new ArrayList<JComponent>(50);
-	
-	public boolean clickDiscard = false;
-	public boolean clickDeck = false;
+	TextField nameText;
 	
 	public void setUpGUI(int guiMode)
 	{
 		clearGUI();
-		setSize(500, 300);
 		switch(guiMode)
 		{
 			case(0): //INITIAL SCREEN
@@ -71,41 +66,39 @@ public class finalProject extends JApplet implements ActionListener
 				title = new JLabel("WHATS YOUR NAME?");
 				title.setHorizontalAlignment(JLabel.CENTER);
 				getContentPane().add(title, BorderLayout.NORTH);
-				guiObjects.add(title);
 				
 				//MIDDLE
-				nameText = new JTextField(10);
-				getContentPane().add(nameText, BorderLayout.CENTER);
-				guiObjects.add(nameText);
+				nameText = new TextField(10);
+				getContentPane().add(nameText, BorderLayout.SOUTH);
 				
 				//Num Rounds
 				jbnLeft = new JButton("5 Rounds");
 				jbnLeft.setEnabled(true);
 				jbnLeft.addActionListener(this);
 				jbnLeft.setActionCommand("numRounds");
-				guiObjects.add(jbnLeft);
 				
 				//Timed Match
 				jbnMiddle = new JButton("Timed Match");
 				jbnMiddle.setEnabled(true);
 				jbnMiddle.setActionCommand("timedMatch");
 				jbnMiddle.addActionListener(this);
-				guiObjects.add(jbnMiddle);
 				
 				//High Score
 				jbnRight = new JButton("High Score");
 				jbnRight.setEnabled(true);
 				jbnRight.setActionCommand("highScore");
 				jbnRight.addActionListener(this);
-				guiObjects.add(jbnRight);
+				
 				
 				
 				getContentPane().add(jbnLeft, BorderLayout.EAST);
 				getContentPane().add(jbnMiddle, BorderLayout.CENTER);
 				getContentPane().add(jbnRight, BorderLayout.WEST);
+				
+				getContentPane().validate();
+				getContentPane().repaint();
 				break;
 			case(1): //DECK OR DISCARD
-				System.out.println("COUNT: " + getContentPane().getComponentCount());
 				//TITLE
 				title = new JLabel("WHERE DO YOU WANT TO DRAW FROM?");
 				title.setHorizontalAlignment(JLabel.CENTER);
@@ -127,12 +120,34 @@ public class finalProject extends JApplet implements ActionListener
 				getContentPane().add(jbnLeft, BorderLayout.EAST);
 				getContentPane().add(jbnMiddle, BorderLayout.WEST);
 				
-				System.out.println("AFER COUNT: " + getContentPane().getComponentCount());
 				getContentPane().validate();
 				getContentPane().repaint();
 				
-				
+				break;
 			case(2): //KNOCK OR KEEP GOING?
+				//TITLE
+				title = new JLabel("Knock or Keep Playing?");
+				title.setHorizontalAlignment(JLabel.CENTER);
+				getContentPane().add(title, BorderLayout.NORTH);
+				
+				//LEFT
+				jbnLeft = new JButton("knock");
+				jbnLeft.setEnabled(true);
+				jbnLeft.addActionListener(this);
+				jbnLeft.setActionCommand("knock");
+				
+				//MIDDLE
+				jbnMiddle = new JButton("Keep Playing");
+				jbnMiddle.setEnabled(true);
+				jbnMiddle.setActionCommand("keepPlaying");
+				jbnMiddle.addActionListener(this);
+				
+				
+				getContentPane().add(jbnLeft, BorderLayout.EAST);
+				getContentPane().add(jbnMiddle, BorderLayout.WEST);
+				
+				getContentPane().validate();
+				getContentPane().repaint();
 				break;
 		}
 		
@@ -317,20 +332,6 @@ public class finalProject extends JApplet implements ActionListener
 				{
 					System.out.println("WAITNING FOR DECK OR DISCARD CHOICE");
 				}*/
-				if(clickDeck == true)
-				{
-					choice = 1;
-				}
-				else if(clickDiscard == true)
-				{
-					choice = 2;
-				}
-				else
-				{
-					System.out.println("--------------------------------------------------------------------------------------NO CHOICE");
-				}
-				clickDeck = false;
-				clickDiscard = false;
 			}
 			if(choice == 1)
 			{
@@ -720,6 +721,7 @@ public class finalProject extends JApplet implements ActionListener
 	It is called after the param tags inside the applet tag have been processed.*/
 	public void init()
 	{		
+		setSize(500, 300);
 		setUpGUI(0);
 	}
 	
@@ -835,7 +837,7 @@ public class finalProject extends JApplet implements ActionListener
 		Transporter tempTransport = new Transporter(tempScore);
 	}
 	
-	public Object[] initialGameSetup(int difficulty, int mode, String name)
+	public Object[] initialGameSetup(int winCon, int mode, String name)
 	{
 		//NEW INPUT SCANNER1
 		Scanner input = new Scanner(System.in);
@@ -866,7 +868,7 @@ public class finalProject extends JApplet implements ActionListener
 		opponents[2] = "God";
 		
 		//Difficulty
-		System.out.println("Choose Opponenets Difficulty:");
+		//System.out.println("Choose Opponenets Difficulty: 1");
 		/*
 		int difficulty = 0;
 		//CONSOL METHOD
@@ -882,7 +884,7 @@ public class finalProject extends JApplet implements ActionListener
 		   difficulty = input.nextInt();
 		}while(difficulty < 1 || difficulty > 3);
 	  	*/
-		
+		int difficulty = 1;
 		
 		//COMPUTER PLAYER
 		Hand computerHand = new Hand(1);
@@ -891,8 +893,7 @@ public class finalProject extends JApplet implements ActionListener
 		System.out.println("You are playing " + opponents[difficulty-1]);
 		
 		//Choose GAME MODE
-		System.out.println("What Type of Game Do You Want To Play?");
-		int winCon = 0;
+		//System.out.println("What Type of Game Do You Want To Play: ");
 		/*
 		//CONSOL METHOD
 		do{
@@ -907,10 +908,14 @@ public class finalProject extends JApplet implements ActionListener
 		   winCon = input.nextInt();
 		}while(winCon < 1 || winCon > 3);
 		*/
-		winCon = 1;
 		
 		//UPDATE GAME STATE
-		GAME_STATE.updateGameState(NORMAL_ROUND, winCon-1, 0, NORMAL_PLAY);
+		//public void updateGameState(int _status, int _winCon, int _player, int _mode)
+		GAME_STATE.updateGameState(NORMAL_ROUND, winCon, 0, NORMAL_PLAY);
+		
+		GAME_STATE.print();
+		
+		
 		//Build return array
 		Object[] gameParameters = new Object[4];
 		gameParameters[0] = input;
@@ -951,18 +956,18 @@ public class finalProject extends JApplet implements ActionListener
 		if("numRounds".equals(e.getActionCommand()))
 		{
 			setUpGUI(1);
-			//Object[] gameParameters = initialGameSetup(NUM_ROUNDS, 0, (String)nameText.getText());
+			Object[] gameParameters = initialGameSetup(NUM_ROUNDS, 0, (String)nameText.getText());
 			//gameLoop(gameParameters);
 		}
 		if("timedMatch".equals(e.getActionCommand()))
 		{
-			//Object[] gameParameters = initialGameSetup(TIMED_PLAY, 0, (String)nameText.getText());
+			Object[] gameParameters = initialGameSetup(TIMED_PLAY, 0, (String)nameText.getText());
 			setUpGUI(1);
 			//gameLoop(gameParameters);
 		}
 		if("highScore".equals(e.getActionCommand()))
 		{
-			//Object[] gameParameters = initialGameSetup(HIGH_SCORE, 0, (String)nameText.getText());
+			Object[] gameParameters = initialGameSetup(HIGH_SCORE, 0, (String)nameText.getText());
 			setUpGUI(1);
 			//gameLoop(gameParameters);
 		}
@@ -972,10 +977,24 @@ public class finalProject extends JApplet implements ActionListener
 		if("drawDeck".equals(e.getActionCommand()))
 		{
 			System.out.println("DECK");
+			setUpGUI(2);
 		}
 		if("drawDiscard".equals(e.getActionCommand()))
 		{
 			System.out.println("DISCARD");
+			setUpGUI(2);
+		}
+		
+		//KNOCK OR STAY
+		if("knock".equals(e.getActionCommand()))
+		{
+			System.out.println("knock");
+			setUpGUI(0);
+		}
+		if("keepPlaying".equals(e.getActionCommand()))
+		{
+			System.out.println("keep playing");
+			setUpGUI(0);
 		}
 	}	
 }
