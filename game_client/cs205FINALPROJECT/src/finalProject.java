@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
-public class finalProject extends JApplet implements ActionListener 
+public class finalProject extends JApplet implements ActionListener
 {
 	//GAME STATE DEFINITIONS
 	//UNIVERSAL NULL CASE
@@ -54,104 +54,85 @@ public class finalProject extends JApplet implements ActionListener
 	JButton jbnRight;
 	JButton jbnMiddle;
 	JLabel title;
+	JTextField nameText;
+	ArrayList<JComponent> guiObjects = new ArrayList<JComponent>(50);
+	
+	public boolean clickDiscard = false;
+	public boolean clickDeck = false;
 	
 	public void setUpGUI(int guiMode)
 	{
 		clearGUI();
-		
-		System.out.println("AFTER CLEAR");
-		//setLayout(new BorderLayout());
-			System.out.println("CREATED NEW BORDERLAYOUT");
-				System.out.println(guiMode);
+		setSize(500, 300);
 		switch(guiMode)
 		{
-			case(0): //MAIN_MENU GUI
-			System.out.println("0");
-				
+			case(0): //INITIAL SCREEN
 				//TITLE
-				title = new JLabel("Menu");
+				title = new JLabel("WHATS YOUR NAME?");
+				title.setHorizontalAlignment(JLabel.CENTER);
 				getContentPane().add(title, BorderLayout.NORTH);
-				
-				//LEFT
-				jbnLeft = new JButton("Menu");
-				jbnLeft.setEnabled(false);
-				jbnLeft.addActionListener(this);
+				guiObjects.add(title);
 				
 				//MIDDLE
-				jbnMiddle = new JButton("Game Board");
-				jbnMiddle.setEnabled(true);
-				jbnMiddle.setActionCommand("enableMiddle");
-				jbnMiddle.addActionListener(this);
+				nameText = new JTextField(10);
+				getContentPane().add(nameText, BorderLayout.CENTER);
+				guiObjects.add(nameText);
 				
-				//RIGHT
-				jbnRight = new JButton("Credits");
-				jbnRight.setEnabled(true);
-				jbnRight.setActionCommand("enableRight");
-				jbnRight.addActionListener(this);
-				
-				//ADD THEM
-				add(jbnLeft, BorderLayout.WEST);
-				add(jbnRight, BorderLayout.EAST);
-				add(jbnMiddle, BorderLayout.CENTER);
-				break;
-			
-			case(1): //GAME_SCREEN
-			System.out.println("1");
-			
-				 //TITLE
-				title = new JLabel("Game Board");
-				getContentPane().add(title, BorderLayout.NORTH);
-				//LEFT
-				jbnLeft = new JButton("Disable centre button");
+				//Num Rounds
+				jbnLeft = new JButton("5 Rounds");
 				jbnLeft.setEnabled(true);
-				jbnLeft.setActionCommand("enableLeft");
 				jbnLeft.addActionListener(this);
+				jbnLeft.setActionCommand("numRounds");
+				guiObjects.add(jbnLeft);
 				
-				//MIDDLE
-				jbnMiddle = new JButton("Game Board");
-				jbnMiddle.setEnabled(false);
+				//Timed Match
+				jbnMiddle = new JButton("Timed Match");
+				jbnMiddle.setEnabled(true);
+				jbnMiddle.setActionCommand("timedMatch");
 				jbnMiddle.addActionListener(this);
+				guiObjects.add(jbnMiddle);
 				
-				//RIGHT
-				jbnRight = new JButton("Credits");
+				//High Score
+				jbnRight = new JButton("High Score");
 				jbnRight.setEnabled(true);
-				jbnRight.setActionCommand("enableRight");
+				jbnRight.setActionCommand("highScore");
 				jbnRight.addActionListener(this);
+				guiObjects.add(jbnRight);
 				
-				//ADD THEM
-				add(jbnLeft, BorderLayout.WEST);
-				add(jbnRight, BorderLayout.EAST);
-				add(jbnMiddle, BorderLayout.CENTER);
+				
+				getContentPane().add(jbnLeft, BorderLayout.EAST);
+				getContentPane().add(jbnMiddle, BorderLayout.CENTER);
+				getContentPane().add(jbnRight, BorderLayout.WEST);
 				break;
-			
-			case(2): //CREDITS!
-			System.out.println("2");
-			
-				 //TITLE
-				title = new JLabel("Credits");
+			case(1): //DECK OR DISCARD
+				System.out.println("COUNT: " + getContentPane().getComponentCount());
+				//TITLE
+				title = new JLabel("WHERE DO YOU WANT TO DRAW FROM?");
+				title.setHorizontalAlignment(JLabel.CENTER);
 				getContentPane().add(title, BorderLayout.NORTH);
 				
 				//LEFT
-				jbnLeft = new JButton("Disable centre button");
+				jbnLeft = new JButton("Deck");
 				jbnLeft.setEnabled(true);
-				jbnLeft.setActionCommand("enableLeft");
 				jbnLeft.addActionListener(this);
+				jbnLeft.setActionCommand("drawDeck");
 				
 				//MIDDLE
-				jbnMiddle = new JButton("Game Board");
+				jbnMiddle = new JButton("Discard");
 				jbnMiddle.setEnabled(true);
-				jbnMiddle.setActionCommand("enableMiddle");
+				jbnMiddle.setActionCommand("drawDiscard");
 				jbnMiddle.addActionListener(this);
 				
-				//RIGHT
-				jbnRight = new JButton("Credits");
-				jbnRight.setEnabled(false);
-				jbnRight.addActionListener(this);
 				
-				//ADD THEM
-				add(jbnLeft, BorderLayout.WEST);
-				add(jbnRight, BorderLayout.EAST);
-				add(jbnMiddle, BorderLayout.CENTER);
+				getContentPane().add(jbnLeft, BorderLayout.EAST);
+				getContentPane().add(jbnMiddle, BorderLayout.WEST);
+				
+				System.out.println("AFER COUNT: " + getContentPane().getComponentCount());
+				getContentPane().validate();
+				getContentPane().repaint();
+				
+				
+			case(2): //KNOCK OR KEEP GOING?
 				break;
 		}
 		
@@ -162,8 +143,7 @@ public class finalProject extends JApplet implements ActionListener
 		//this method should be called to remove everything from the frame
 		//every time we switch from main menu to game screen or what ever
 		//we need to clear and remove everything from the last view
-		
-		//getContentPane().removeAll();
+		getContentPane().removeAll();
 	}
 
 	public Player[] round(Scanner input, Player[] playersArray, gameState GAME_STATE, boolean debug, boolean extraHelp, UUID uniqueID, String endTime, int currentRound)
@@ -253,7 +233,7 @@ public class finalProject extends JApplet implements ActionListener
 		//----------------------------------------------------------------------GAME LOOP-----------
 		boolean gameOver = false;
 		boolean draw2SecondCard = false;
-		boolean sendJSON = true;
+		boolean sendJSON = false;
 		boolean gotDraw2 = false;
 		int handIndex = 0;
 		Card cardFromDeck;
@@ -320,6 +300,8 @@ public class finalProject extends JApplet implements ActionListener
 			}
 			else
 			{
+				/*
+				//CONSOL VERSION
 				do{
 		     		System.out.println("----->Type 1, for deck pile");
 					System.out.println("----->Type 2, for discard pile");
@@ -330,8 +312,25 @@ public class finalProject extends JApplet implements ActionListener
 		  			}
 				   choice = input.nextInt();
 				}while(choice < 1 || choice > 2);
-						
-				
+				*/		
+				/*while(clickDeck == false || clickDiscard == false)
+				{
+					System.out.println("WAITNING FOR DECK OR DISCARD CHOICE");
+				}*/
+				if(clickDeck == true)
+				{
+					choice = 1;
+				}
+				else if(clickDiscard == true)
+				{
+					choice = 2;
+				}
+				else
+				{
+					System.out.println("--------------------------------------------------------------------------------------NO CHOICE");
+				}
+				clickDeck = false;
+				clickDiscard = false;
 			}
 			if(choice == 1)
 			{
@@ -348,6 +347,8 @@ public class finalProject extends JApplet implements ActionListener
 						System.out.println("--------------------------------------------WE GOT A SWAP");
 						//MY INDEX
 						int myIndex;
+						/*
+						//CONSOL MOTHOD
 						do{
 				     		System.out.println("Type index, of YOUR card you want to swap");
 							while(!input.hasNextInt())
@@ -357,9 +358,13 @@ public class finalProject extends JApplet implements ActionListener
 				  			}
 						   myIndex = input.nextInt();
 						}while(myIndex < 0 || myIndex > 3);
+						*/
+						myIndex = 0;
 						
 						//OPPOENETS INDEX
 						int othersIndex;
+						/*
+						//CONSOL METHOD
 						do{
 				     		System.out.println("Type index, of OPPONENTS card you want to swap");
 							while(!input.hasNextInt())
@@ -369,7 +374,8 @@ public class finalProject extends JApplet implements ActionListener
 				  			}
 						   othersIndex = input.nextInt();
 						}while(othersIndex < 0 || othersIndex > 3);
-						
+						*/
+						othersIndex = 0;
 						
 						if(GAME_STATE.getPlayer() == 0)
 						{
@@ -388,6 +394,8 @@ public class finalProject extends JApplet implements ActionListener
 					{
 						gotDraw2 = false;
 						System.out.println("--------------------------------------------WE GOT A PEEK");
+						/*
+						//CONSOL METHOD
 						do{
 				     		System.out.println("Type index, of the card you want to peek");
 							while(!input.hasNextInt())
@@ -397,6 +405,8 @@ public class finalProject extends JApplet implements ActionListener
 				  			}
 						   handIndex = input.nextInt();
 						}while(handIndex < 0 || handIndex > 3);
+						*/
+						handIndex = 0;
 						System.out.println("Card " + handIndex + " is a " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex));
 					}
 					else if(cardFromDeck.getSpecial() == "draw2")
@@ -408,6 +418,8 @@ public class finalProject extends JApplet implements ActionListener
 				else
 				{
 					System.out.println("You got an " + cardFromDeck.toString());
+					/*
+					//CONSOL METHOD
 					do{
 			     		System.out.println("----->Type -1, for discard");
 						System.out.println("----->Type index, for swapping");
@@ -418,7 +430,8 @@ public class finalProject extends JApplet implements ActionListener
 			  			}
 					   handIndex = input.nextInt();
 					}while(handIndex < -1 || handIndex > 3);
-
+					*/
+					handIndex = 0;
 					
 					if(handIndex == -1)
 					{
@@ -462,6 +475,8 @@ public class finalProject extends JApplet implements ActionListener
 				draw2SecondCard = false;
 				
 				cardFromDeck = discard.getTopCard();
+				/*
+				//CONSOL METHOD
 				do{
 		     		System.out.println("----->Type index, of the card you want to swap");
 					while(!input.hasNextInt())
@@ -471,7 +486,9 @@ public class finalProject extends JApplet implements ActionListener
 		  			}
 				   handIndex = input.nextInt();
 				}while(handIndex < 0 || handIndex > 3);
-			
+				*/
+				handIndex = 0;
+				
 				Card removedFromHand = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
 				discard.addTopCard(removedFromHand);
 				if(debug)
@@ -487,6 +504,7 @@ public class finalProject extends JApplet implements ActionListener
 				Calendar cal = Calendar.getInstance();
 		    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 		    	currentTime = sdf.format(cal.getTime());
+		    	
 				if(endTime != null && currentTime == endTime)
 				{
 					//AUTOMATICALLY KNOCK BECAUSE THE TIME IS OVER
@@ -500,6 +518,8 @@ public class finalProject extends JApplet implements ActionListener
 				{
 					//normal turn knocking
 					System.out.println("Do you want to knock?");
+					/*
+					//CONSOL METHOD
 					do{
 			     		System.out.println("----->Type 1, to keep playing");
 						System.out.println("----->Type 2, to knock (AKA this was your last turn)");
@@ -510,6 +530,8 @@ public class finalProject extends JApplet implements ActionListener
 			  			}
 					   choice = input.nextInt();
 					}while(choice < 1 || choice > 2);
+					*/
+					choice = 2;
 					if(choice != 1)
 					{
 						//update game state to knocked round!
@@ -691,25 +713,25 @@ public class finalProject extends JApplet implements ActionListener
 	{
 		//HERE we can paint graphics to the screen which can be helpful
 		super.paint(g);
-		g.drawString("WOW THIS WORKED!",25,25);
+		//g.drawString("WOW THIS WORKED!",25,25);
 	}
 	
 	/*This method is intended for whatever initialization is needed for your applet.
 	It is called after the param tags inside the applet tag have been processed.*/
 	public void init()
-	{
-		gameLoop();
+	{		
+		setUpGUI(0);
 	}
 	
-	public void gameLoop()
+	public void gameLoop(Object[] gameParameters)
 	{
 		//DEBUG/EXTRA HELP PARAMETERS
 		boolean debug = false;
 		boolean extraHelp = true;
 		
+		System.out.println("GAME LOOP!");
 		//Setup Game
-		Object[] gameParameters = initialGameSetup();
-		
+		//Object[] gameParameters = initialGameSetup();
 		//rounds counter for while loops
 		int counter = 0;
 		//GAME MODES
@@ -779,6 +801,7 @@ public class finalProject extends JApplet implements ActionListener
 				break;
 		}
 		
+		
 		int winner = -1;
 		int numWins = -1;
 		//SHOW FINAL WINNER
@@ -806,13 +829,13 @@ public class finalProject extends JApplet implements ActionListener
 		System.out.println("------------------------------------------------");
 		
 		//--------PREPARE THE JSON---------
-		currentScore tempScore = new currentScore(((gameState)gameParameters[2]).numPlayers(), (gameState)gameParameters[2], (UUID)gameParameters[3], true, true, counter);
+		currentScore tempScore = new currentScore(((gameState)gameParameters[2]).numPlayers(), (gameState)gameParameters[2], (UUID)gameParameters[3], true, true, counter, null, null);
 		tempScore.addPlayer(((Player[])gameParameters[1])[0]);
 		tempScore.addPlayer(((Player[])gameParameters[1])[1]);
 		Transporter tempTransport = new Transporter(tempScore);
 	}
 	
-	public Object[] initialGameSetup()
+	public Object[] initialGameSetup(int difficulty, int mode, String name)
 	{
 		//NEW INPUT SCANNER1
 		Scanner input = new Scanner(System.in);
@@ -827,11 +850,15 @@ public class finalProject extends JApplet implements ActionListener
 		Player [] playersArray = new Player[2];
 		
 		//HUMAN PLAYER
+		/*
+		//CONSOL METHOD
 	    System.out.println("---->WHAT IS YOUR NAME?");
 	    String name = input.next();
+	    */
 		Hand humanHand = new Hand(0);
 		Player human = new Player(true, 0, name, humanHand);
 		playersArray[0] = human;
+		
 		
 		String[] opponents = new String[5];
 		opponents[0] = "Jimmy";
@@ -840,7 +867,9 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//Difficulty
 		System.out.println("Choose Opponenets Difficulty:");
+		/*
 		int difficulty = 0;
+		//CONSOL METHOD
 		do{
 	    	System.out.println("Type 1, for EASY");
 			System.out.println("Type 2, for MEDIUM");
@@ -852,7 +881,9 @@ public class finalProject extends JApplet implements ActionListener
 			}
 		   difficulty = input.nextInt();
 		}while(difficulty < 1 || difficulty > 3);
-	  				
+	  	*/
+		
+		
 		//COMPUTER PLAYER
 		Hand computerHand = new Hand(1);
 		Player computer = new Player(false, 1, opponents[difficulty -1], computerHand);
@@ -862,6 +893,8 @@ public class finalProject extends JApplet implements ActionListener
 		//Choose GAME MODE
 		System.out.println("What Type of Game Do You Want To Play?");
 		int winCon = 0;
+		/*
+		//CONSOL METHOD
 		do{
 	 		System.out.println("Type 1, for 5 Rounds");
 			System.out.println("Type 2, for 2 Minute Max Round");
@@ -873,7 +906,9 @@ public class finalProject extends JApplet implements ActionListener
 			}
 		   winCon = input.nextInt();
 		}while(winCon < 1 || winCon > 3);
-
+		*/
+		winCon = 1;
+		
 		//UPDATE GAME STATE
 		GAME_STATE.updateGameState(NORMAL_ROUND, winCon-1, 0, NORMAL_PLAY);
 		//Build return array
@@ -891,7 +926,7 @@ public class finalProject extends JApplet implements ActionListener
 	after having gone off to other pages.*/
 	public void start()
 	{
-	
+		//gameLoop();
 	}
 	/*This method is automatically called when the user moves off the page on which the applet sits.
 	It can, therefore, be called repeatedly in the same applet.*/
@@ -899,6 +934,8 @@ public class finalProject extends JApplet implements ActionListener
 	{
 	
 	}
+	
+
 	/*This method is only called when the browser shuts down normally.
 	Because applets are meant to live on an HTML page, you should
 	not normally leave resources behind after a user leaves the page
@@ -908,22 +945,37 @@ public class finalProject extends JApplet implements ActionListener
 	
 	}
 	
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e)
+	{	
+		//FOR THE GAME SETUP
+		if("numRounds".equals(e.getActionCommand()))
+		{
+			setUpGUI(1);
+			//Object[] gameParameters = initialGameSetup(NUM_ROUNDS, 0, (String)nameText.getText());
+			//gameLoop(gameParameters);
+		}
+		if("timedMatch".equals(e.getActionCommand()))
+		{
+			//Object[] gameParameters = initialGameSetup(TIMED_PLAY, 0, (String)nameText.getText());
+			setUpGUI(1);
+			//gameLoop(gameParameters);
+		}
+		if("highScore".equals(e.getActionCommand()))
+		{
+			//Object[] gameParameters = initialGameSetup(HIGH_SCORE, 0, (String)nameText.getText());
+			setUpGUI(1);
+			//gameLoop(gameParameters);
+		}
 		
-		if("enableLeft".equals(e.getActionCommand()))
+		
+		//FOR THE GAME
+		if("drawDeck".equals(e.getActionCommand()))
 		{
-			System.out.println("left");
-			setUpGUI(MAIN_MENU);
+			System.out.println("DECK");
 		}
-		else if("enableMiddle".equals(e.getActionCommand()))
+		if("drawDiscard".equals(e.getActionCommand()))
 		{
-			System.out.println("middle");
-			setUpGUI(GAME_SCREEN);
-		}
-		else if("enableRight".equals(e.getActionCommand()))
-		{
-			System.out.println("right");
-			setUpGUI(CREDITS_SCREEN);
+			System.out.println("DISCARD");
 		}
 	}	
 }

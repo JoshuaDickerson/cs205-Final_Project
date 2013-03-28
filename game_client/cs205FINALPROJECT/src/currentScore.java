@@ -12,8 +12,10 @@ public class currentScore
 	private boolean gameOver;
 	private boolean roundOver;
 	private int roundCount;
+	private Deck mainDeck;
+	private Deck discard;
 	//REPLACE OBJECT WITH 
-	public currentScore(int _numPlayers, gameState _state, UUID _uniqueID, boolean _gameOver, boolean _roundOver, int _roundCount)
+	public currentScore(int _numPlayers, gameState _state, UUID _uniqueID, boolean _gameOver, boolean _roundOver, int _roundCount, Deck _mainDeck, Deck _discard)
 	{
 		this.numPlayers = _numPlayers;
 		this.allPlayers = new Player[_numPlayers];
@@ -22,6 +24,8 @@ public class currentScore
 		this.gameOver = _gameOver;
 		this.roundOver = _roundOver;
 		this.roundCount = _roundCount;		
+		this.mainDeck = _mainDeck;
+		this.discard = _discard;
 		//MUST MANUALLY ADD PLAYER SCORES TO CURRENT SCORE ARRAY WITH ADD PLAYER SCORE
 	}
 	
