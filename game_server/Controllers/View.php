@@ -17,12 +17,16 @@ class View{
 
 
 	public function display(){
-        if(file_exists('Views' . '/' . $this->view . '.php')){
-            include_once 'Views/Header.php';
+        if($this->view == "json"){
             include_once 'Views' . '/' . $this->view . '.php';
-        }
-        else{
-            include_once('Views/Home.php');
+        }else{
+            if(file_exists('Views' . '/' . $this->view . '.php')){
+                include_once 'Views/Header.php';
+                include_once 'Views' . '/' . $this->view . '.php';
+            }
+            else{
+                include_once('Views/Home.php');
+            }
         }
 	} // end display
 }
