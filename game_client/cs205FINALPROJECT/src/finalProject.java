@@ -49,6 +49,9 @@ public class finalProject extends JApplet implements ActionListener
 	public static final int GAME_SCREEN = 1;
 	public static final int CREDITS_SCREEN = 2; //not sure if we need this...
 	
+	//GLOBAL GAME STATE
+	gameState GAME_STATE;
+	
 	//GUI
 	JButton jbnLeft;
 	JButton jbnRight;
@@ -510,7 +513,7 @@ public class finalProject extends JApplet implements ActionListener
 				{
 					//AUTOMATICALLY KNOCK BECAUSE THE TIME IS OVER
 					//update game state to knocked round!
-					GAME_STATE.updateGameState(KNOCKED_ROUND, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode());
+					GAME_STATE.updateGameState(KNOCKED_ROUND, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode(), GAME_STATE.getRoundNum());
 					
 					//Set player who knocked
 					playerWhoKnocked = GAME_STATE.getPlayer();
@@ -536,7 +539,7 @@ public class finalProject extends JApplet implements ActionListener
 					if(choice != 1)
 					{
 						//update game state to knocked round!
-						GAME_STATE.updateGameState(KNOCKED_ROUND, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode());
+						GAME_STATE.updateGameState(KNOCKED_ROUND, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode(), GAME_STATE.getRoundNum());
 						
 						//Set player who knocked
 						playerWhoKnocked = GAME_STATE.getPlayer();
@@ -616,7 +619,7 @@ public class finalProject extends JApplet implements ActionListener
 			{
 				//THE GAME IS OVER ALL PLAYERS HAVE HAD THEIR FINAL TURN!
 				//update game state
-				GAME_STATE.updateGameState(ROUND_OVER, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode());
+				GAME_STATE.updateGameState(ROUND_OVER, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode(), GAME_STATE.getRoundNum());
 				System.out.println("THE ROUND IS OVER");
 				
 				gameOver = true;
@@ -843,7 +846,7 @@ public class finalProject extends JApplet implements ActionListener
 		Scanner input = new Scanner(System.in);
 		
 		//CREATE GAME STATE
-		gameState GAME_STATE = new gameState(2);	
+		GAME_STATE = new gameState(2);	
 		
 		//CREATE UNIQUE GAME ID
 		UUID uniqueID = UUID.randomUUID();
@@ -911,7 +914,7 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//UPDATE GAME STATE
 		//public void updateGameState(int _status, int _winCon, int _player, int _mode)
-		GAME_STATE.updateGameState(NORMAL_ROUND, winCon, 0, NORMAL_PLAY);
+		GAME_STATE.updateGameState(NORMAL_ROUND, winCon, 0, NORMAL_PLAY, GAME_STATE.getRoundNum());
 		
 		GAME_STATE.print();
 		
@@ -950,14 +953,125 @@ public class finalProject extends JApplet implements ActionListener
 	
 	}
 	
+	public void prepareRound( Player[] playersArray, boolean debug, boolean extraHelp, UUID uniqueID, String endTime, int currentRound)
+	{
+		/*
+		 * WE NEED TO REINITIALIZE THE MAINDECK AND DISCARD PILE EVERYROUND!!!!!!!!!!!!
+		 */
+		System.out.println("DEBUG IS: " + debug);
+		System.out.println("EXTRAHELP IS: " + extraHelp);
+		
+		//CREATE DECK
+		Deck mainDeck = new Deck();
+		mainDeck.shuffle();
+		
+		//CREATE DISCARD PILE
+		Deck discard = new Deck();
+		discard.clear();
+		
+		//UPDATE GAME STATE
+		if(debug)
+		{
+			System.out.println("********************************");
+			System.out.println("ROUND STARTED - GAME STATE: ");
+			GAME_STATE.print();
+			System.out.println("********************************");
+		}
+		
+		//Clearing old player hands
+		playersArray[0].myHand.clear();
+		playersArray[1].myHand.clear();
+
+		//Give Players cards
+		for(int i = 0; i < 4; i++)
+		{
+			Card temp = mainDeck.getTopCard();
+			playersArray[0].myHand.addCard(temp);
+			
+			Card temp2 = mainDeck.getTopCard();
+			playersArray[1].myHand.addCard(temp2);
+		}
+		
+		//Start discard Pile
+		Card firstCard = mainDeck.getTopCard();
+		while(firstCard.isSpecial())
+		{
+			mainDeck.addCard(firstCard);
+			firstCard = mainDeck.getTopCard();
+		}
+		discard.addTopCard(firstCard);
+
+		//Calc end time if not null
+		String currentTime;
+		if(endTime != null)
+		{
+	    	Calendar cal = Calendar.getInstance();
+	    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+	    	currentTime = sdf.format(cal.getTime());
+		}
+		
+		if(debug || extraHelp)
+		{
+			System.out.println("********************************");
+			System.out.println(playersArray[0].getName() + "'s hand: ");
+			playersArray[0].myHand.showHand();
+			System.out.println("********************************");
+			System.out.println(playersArray[1].getName() + "'s hand: ");
+			playersArray[1].myHand.showHand();
+			System.out.println("********************************");
+		}
+		if(debug)
+		{
+			System.out.println("SHOWING THE REMAINING DECK");
+			System.out.println("********************************");
+			mainDeck.showDeck();
+			System.out.println("********************************");
+		}
+		
+
+				
+		//PEEKING FIRST PLAYERS TWO INITIAL CARDS
+		System.out.println("Before the game begins remember these cards!");
+		System.out.println("Your Left Most Card: " + playersArray[0].myHand.getCard(0).toString());
+		System.out.println("Your Right Most Card: " + playersArray[0].myHand.getCard(3).toString());
+		
+		
+		//-------------GAME STARTING----------------		
+		//----------------------------------------------------------------------GAME LOOP-----------
+		boolean gameOver = false;
+		boolean draw2SecondCard = false;
+		boolean sendJSON = false;
+		boolean gotDraw2 = false;
+		int handIndex = 0;
+		Card cardFromDeck;
+		int playerWhoKnocked = -1;
+		
+		if(sendJSON)
+		{
+			//--------PREPARE THE JSON---------
+			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, false, currentRound, mainDeck, discard);
+			tempScore.addPlayer(playersArray[0]);
+			tempScore.addPlayer(playersArray[1]);
+			Transporter tempTransport = new Transporter(tempScore);			
+		}
+	}
+	
 	public void actionPerformed(ActionEvent e)
 	{	
+		boolean debug = true;
+		boolean extraHelp = true;
 		//FOR THE GAME SETUP
 		if("numRounds".equals(e.getActionCommand()))
 		{
-			setUpGUI(1);
+			//SETUP GAME
 			Object[] gameParameters = initialGameSetup(NUM_ROUNDS, 0, (String)nameText.getText());
-			//gameLoop(gameParameters);
+			
+			//SETUP GUI
+			setUpGUI(1);
+			
+			//PLAYERS TURN
+			
+			GAME_STATE.getPlayer();
 		}
 		if("timedMatch".equals(e.getActionCommand()))
 		{
