@@ -23,126 +23,144 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="Player3Card4" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
                   <Component id="Player3Card3" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
                   <Component id="Player3Card2" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
                   <Component id="Player3Card1" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="195" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="Deck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="Discard" min="-2" pref="115" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="Player2Card1" min="-2" pref="136" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="Player2Card2" min="-2" pref="136" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="Player2Card3" min="-2" pref="129" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="Player2Card4" min="-2" pref="129" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="194" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="buttonDraw" min="-2" pref="92" max="-2" attributes="0"/>
-                          <Component id="buttonDiscard" min="-2" pref="92" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="buttonDraw" min="-2" pref="92" max="-2" attributes="0"/>
+                                  <Component id="buttonDiscard" alignment="1" min="-2" pref="92" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="195" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="Deck" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="Discard" min="-2" pref="135" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="PlayerCard1" min="-2" pref="135" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="PlayerCard2" min="-2" pref="138" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="PlayerCard3" min="-2" pref="137" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="PlayerCard4" min="-2" pref="130" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="buttonPeek" min="-2" pref="75" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="Player4Card4" min="-2" pref="176" max="-2" attributes="0"/>
+                                  <Component id="Player4Card3" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
+                                  <Component id="Player4Card1" min="-2" pref="176" max="-2" attributes="0"/>
+                                  <Component id="Player4Card2" min="-2" pref="176" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Player4Card4" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
-                  <Component id="Player4Card3" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
-                  <Component id="Player4Card2" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
-                  <Component id="Player4Card1" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="290" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="Player2Card1" min="-2" pref="121" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Player2Card2" min="-2" pref="121" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Player2Card3" min="-2" pref="121" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Player2Card4" min="-2" pref="121" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="PlayerCard1" min="-2" pref="121" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="PlayerCard2" min="-2" pref="121" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="PlayerCard3" min="-2" pref="121" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="PlayerCard4" min="-2" pref="121" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Component id="buttonPeek" min="-2" pref="75" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Player2Card1" alignment="3" min="-2" pref="168" max="-2" attributes="0"/>
-                  <Component id="Player2Card2" alignment="3" min="-2" pref="168" max="-2" attributes="0"/>
                   <Component id="Player2Card4" alignment="3" min="-2" pref="168" max="-2" attributes="0"/>
                   <Component id="Player2Card3" alignment="3" min="-2" pref="168" max="-2" attributes="0"/>
+                  <Component id="Player2Card2" alignment="3" min="-2" pref="168" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="339" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Deck" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="Discard" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="Player3Card1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Player3Card2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Player3Card3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Player3Card4" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="265" max="-2" attributes="0"/>
+                              <Component id="buttonDraw" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="buttonDiscard" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="Player4Card1" min="-2" pref="135" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Player4Card2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Player4Card3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Player4Card4" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      <Component id="buttonDraw" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="buttonDiscard" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="339" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="Deck" max="32767" attributes="0"/>
+                                  <Component id="Discard" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="PlayerCard1" alignment="3" min="-2" pref="168" max="-2" attributes="0"/>
-                  <Component id="PlayerCard2" alignment="3" min="-2" pref="168" max="-2" attributes="0"/>
-                  <Component id="PlayerCard3" alignment="3" min="-2" pref="168" max="-2" attributes="0"/>
-                  <Component id="PlayerCard4" alignment="3" min="-2" pref="168" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="Player4Card1" min="-2" pref="113" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Player4Card2" min="-2" pref="113" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Component id="Player4Card3" min="-2" pref="113" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Player4Card4" min="-2" pref="113" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="buttonPeek" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="Player3Card1" min="-2" pref="113" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Player3Card2" min="-2" pref="113" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Component id="Player3Card3" min="-2" pref="113" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Player3Card4" min="-2" pref="113" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="PlayerCard1" alignment="3" min="-2" pref="168" max="-2" attributes="0"/>
+                          <Component id="PlayerCard2" alignment="3" min="-2" pref="168" max="-2" attributes="0"/>
+                          <Component id="PlayerCard3" alignment="3" min="-2" pref="168" max="-2" attributes="0"/>
+                          <Component id="PlayerCard4" alignment="3" min="-2" pref="168" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="53" max="32767" attributes="0"/>
-              <Component id="buttonPeek" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -159,14 +177,14 @@
     <Component class="javax.swing.JLabel" name="Deck">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Deck/back.resize.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Deck/13_1.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="Discard">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Discard/4.resize.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Discard/4.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Discard Pile"/>
       </Properties>
@@ -182,7 +200,7 @@
     <Component class="javax.swing.JLabel" name="PlayerCard1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Deck/back.resize.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Deck/13_1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Player Card 1"/>
       </Properties>
@@ -190,7 +208,7 @@
     <Component class="javax.swing.JLabel" name="PlayerCard2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Deck/back.resize.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Deck/13_1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Player Card 2"/>
       </Properties>
@@ -198,7 +216,7 @@
     <Component class="javax.swing.JLabel" name="PlayerCard4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Deck/back.resize.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Deck/13_1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Player Card 4"/>
       </Properties>
@@ -206,7 +224,7 @@
     <Component class="javax.swing.JLabel" name="PlayerCard3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Deck/back.resize.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Deck/13_1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Player Card 3"/>
       </Properties>
@@ -214,7 +232,7 @@
     <Component class="javax.swing.JLabel" name="Player2Card1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Deck/back.resize.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Deck/13_1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Computer Card 1"/>
       </Properties>
@@ -222,7 +240,7 @@
     <Component class="javax.swing.JLabel" name="Player2Card2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Deck/back.resize.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Deck/13_1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Computer Card 2"/>
       </Properties>
@@ -230,7 +248,7 @@
     <Component class="javax.swing.JLabel" name="Player2Card3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Deck/back.resize.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Deck/13_1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Computer Card 3"/>
       </Properties>
@@ -238,7 +256,7 @@
     <Component class="javax.swing.JLabel" name="Player2Card4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Deck/back.resize.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Deck/13_1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Computer Card 4"/>
       </Properties>
@@ -246,7 +264,7 @@
     <Component class="javax.swing.JLabel" name="Player3Card1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Player3Card1/back.resizeright.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Player3Card1/14.png"/>
         </Property>
       </Properties>
     </Component>
@@ -268,21 +286,21 @@
     <Component class="javax.swing.JLabel" name="Player3Card4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Player3Card1/back.resizeright.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Player3Card1/14.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="Player3Card3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Player3Card1/back.resizeright.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Player3Card1/14.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="Player3Card2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Player3Card1/back.resizeright.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Player3Card1/14.png"/>
         </Property>
       </Properties>
     </Component>
@@ -294,28 +312,28 @@
     <Component class="javax.swing.JLabel" name="Player4Card1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Player3Card1/back.resizeright.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Player3Card1/14.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="Player4Card2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Player3Card1/back.resizeright.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Player3Card1/14.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="Player4Card3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Player3Card1/back.resizeright.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Player3Card1/14.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="Player4Card4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Player3Card1/back.resizeright.jpg"/>
+          <Image iconType="3" name="/javaapplication1/Player3Card1/14.png"/>
         </Property>
       </Properties>
     </Component>
