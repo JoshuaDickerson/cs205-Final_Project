@@ -32,6 +32,7 @@ $(document).ready(function(){
 				</ul>
 			</div>
 			<div class="span9 rightNest">
+				<APPLET CODE="Views/test2.jar"></APPLET>
 			</div>
 		</div>
 	</div>
