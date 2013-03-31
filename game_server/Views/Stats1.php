@@ -5,9 +5,15 @@
     <body>
     	<ul class="datasets">
     		<li>
-    			<a class="css3button" style="width:200px" href="http://slimdowndesign.com/cs205-Final_Project/game_server/User/?home=1">
-    				Back To Game
-    			</a>
+    			<ul>
+    				<li>
+    					<div class="title">Rat-A-Tat-Cat</div>
+    				<li style="margin-top:30px;">
+		    			<a class="css3button" style="width:200px" href="http://slimdowndesign.com/cs205-Final_Project/game_server/User/?home=1">
+		    				Back To Game
+		    			</a>
+		    		</li>
+		    	</ul>
     		</li>
     		<li class="dataControl">
 `				<ul>
