@@ -1,4 +1,5 @@
 <?php
+// model to access statistical data for graphing with amcharts
 class Stats{
 	function __construct(){
 
@@ -55,6 +56,10 @@ class Stats{
 		// return json_encode($dbWrapper->returnedRows);
 		// logThis($daysCount);
 		return json_encode($daysCount);
+	}
+
+	public function totalUserScore(){
+
 	}
 }
 

@@ -24,7 +24,7 @@
     				</li>
     				<li>
 				    	<input type="hidden" id="chartDat" value=<?echo "'".$this->vars['graphData']."'"; ?>>
-				        <div id="chartdiv" style="width:100%; height:400px; background:#efefef"></div>
+				        <div id="chartdiv"></div>
 				    </li>
 				</ul>
 			</li>

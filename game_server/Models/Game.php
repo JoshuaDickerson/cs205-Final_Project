@@ -37,7 +37,6 @@ class Game{
 			'pkGameID'=>$gameid
 		);
 		$dbWrapper = new InteractDB('select', $array);
-		// logThis($dbWrapper->returnedRows);
 		// our ID should be unique
 		if(count($dbWrapper->returnedRows) == 1){
 			$row = $dbWrapper->returnedRows[0];
@@ -87,8 +86,6 @@ class Game{
 		$this->p2Email = $jsonObj->allPlayers[1]->playername;
 		// build our players
 		// $this->player1_obj = new Player($jsonObj->allPlayers[0]);
-		// $this->player2_obj = new Player($jsonObj->allPlayers[1]);
-		// logThis($this->player1_obj);
 		$this->addGame();
 		$this->addState($jsonObj);
 	}
@@ -101,14 +98,12 @@ class Game{
 			'pkGameID'=>$this->gameID
 		);
 		$dbWrapper = new InteractDB('select', $array);
-		// logThis($dbWrapper);
 		// if we don't have this game, add it
 		if(count($dbWrapper->returnedRows) < 1){
 		// 	// first get the player IDs
 			$micro = microtime(true);
 			$timestamp = date("YmdHis").($micro*100);
 			$this->uid1 = $this->emailToUserID($this->p1Email);
-			// logThis($uid1);
 			$this->uid2 = $this->emailToUserID($this->p2Email);
 			$array2 = array(
 				'tableName'=>'tblGame',
@@ -121,12 +116,10 @@ class Game{
 			);
 
 			$dbWrapper = new InteractDB('insert', $array2);
-			// logThis($dbWrapper);
 		}
 	} // end addGame()
 
 	public function addState($jsonObj){
-		// logThis("inside add state");
 		if($jsonObj->gameOver == 1){
 			$micro = microtime(true);
 			$timestamp = date("YmdHis").($micro*100);

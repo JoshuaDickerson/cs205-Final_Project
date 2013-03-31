@@ -18,11 +18,16 @@ class Gamestate{
 	private $roundCount = -1;
 	private $gameOver= false;
 	private $roundOver = false;
+	private $dbError;
 
 	function __construct($jsonObj, $addToDB = false){
 		$this->jsonToState($jsonObj);
 		$this->gameID = $jsonObj->uniqueID;
 		$this->gameOver = $jsonObj->gameOver;
+		if($this->gameOver){
+			logThis("game over *******************");
+			$this->addFinalScores();
+		}
 		$this->roundOver = $jsonObj->roundOver;
 		if($jsonObj->roundCount != ""){
 			$this->roundCount = $jsonObj->roundCount;
@@ -64,6 +69,27 @@ class Gamestate{
 			'fldRoundCount'=>$this->roundCount
 		);
 		$dbWrapper = new InteractDB('insert', $array);
+	} // end addToDB()
+
+	public function addFinalScores(){
+		$micro = microtime(true);
+		$timestamp = date("YmdHis").($micro*100);
+		$players[0]['id'] = $this->player1->getID();
+		$players[1]['id'] = $this->player2->getID();
+		$players[0]['score'] = $this->player1->getScore();
+		$players[1]['score'] = $this->player2->getScore();
+		for($ii=0; $ii<2; $ii++){
+			$array = array(
+				'tableName'=>'tblScores',
+				'fkUserID'=>$players[$ii]['id'],
+				'fldScore'=>$players[$ii]['score'],
+				'fldTimestamp'=>$timestamp
+			);
+			$dbWrapper = new InteractDB('insert', $array);
+			logThis($dbWrapper);
+		}
+
+
 	}
-}
+} // end Gamestate class def
 ?>
