@@ -26,12 +26,16 @@ class StatisticsController{
 				// do --> for every action perform the switch statement
 				switch ($value) {
 					case "data":
+						require_once "Models/Stats.php";
 					// we're adding new game data to the db
 						if($actions['data'] == "gamesOverTime"){
-							require_once "Models/Stats.php";
 							$statObj = new Stats();
 							$this->vars['graphData'] = $statObj->gamesOverTime();
 							$this->vars['graphType'] = "line";
+						}else if($actions['data'] == "totalUserScore"){
+							$statObj = new Stats();
+							$this->vars['graphData'] = $statObj->totalUserScore();
+							$this->vars['graphType'] = "column";
 						}
 					break;
 					default:

@@ -88,8 +88,6 @@ class Gamestate{
 			$dbWrapper = new InteractDB('insert', $array);
 			logThis($dbWrapper);
 		}
-
-
-	}
+	} // end addFinalScores
 } // end Gamestate class def
 ?>

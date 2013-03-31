@@ -28,7 +28,7 @@ $(document).ready(function(){
 			<div class="span3 leftBar">
 				<ul>
 					<li><a class="leftbarLink newGameLink css3button">New Game</a></li>
-					<li><a href="<? echo HOSTNAME.BASEDIR; ?>Statistics/" class=" css3button leftbarLink leaderBoardLink">Leaderboard</a></li>
+					<li><a href="<? echo HOSTNAME.BASEDIR; ?>Statistics/?data=totalUserScore" class=" css3button leftbarLink leaderBoardLink">Leaderboard</a></li>
 					<li><a href="<? echo HOSTNAME.BASEDIR; ?>User/?logout=true" class=" css3button leftbarLink leaderBoardLink">logout</a></li>
 				</ul>
 			</div>
