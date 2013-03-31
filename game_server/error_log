@@ -180,3 +180,43 @@
 [25-Mar-2013 15:53:09 US/Eastern] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/slimdown/public_html/cs205-Final_Project/game_server/Views/Header.php:14) in /home/slimdown/public_html/cs205-Final_Project/game_server/Views/json.php on line 2
 [25-Mar-2013 16:04:35 US/Eastern] PHP Fatal error:  Call to undefined method StatisticsController::getVars() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 75
 [25-Mar-2013 16:23:21 US/Eastern] PHP Warning:  file_get_contents(../Views/js/areaChart.js) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/slimdown/public_html/cs205-Final_Project/game_server/Views/Stats1.php on line 3
+[28-Mar-2013 19:25:25 US/Eastern] PHP Warning:  Unknown: write failed: No space left on device (28) in Unknown on line 0
+[28-Mar-2013 19:25:25 US/Eastern] PHP Warning:  Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) in Unknown on line 0
+[28-Mar-2013 19:25:37 US/Eastern] PHP Warning:  Unknown: write failed: No space left on device (28) in Unknown on line 0
+[28-Mar-2013 19:25:37 US/Eastern] PHP Warning:  Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) in Unknown on line 0
+[29-Mar-2013 12:29:33 US/Eastern] PHP Fatal error:  Call to undefined method AnalyticsController::getView() in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php on line 71
+[29-Mar-2013 17:28:59 US/Eastern] PHP Parse error:  syntax error, unexpected '.' in /home/slimdown/public_html/cs205-Final_Project/game_server/Views/Stats1.php on line 2
+[29-Mar-2013 17:29:25 US/Eastern] PHP Parse error:  syntax error, unexpected '.' in /home/slimdown/public_html/cs205-Final_Project/game_server/Views/Stats1.php on line 3
+[29-Mar-2013 17:34:40 US/Eastern] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 14
+[29-Mar-2013 17:34:40 US/Eastern] PHP Fatal error:  Cannot unset string offsets in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 14
+[29-Mar-2013 17:34:40 US/Eastern] PHP Fatal error:  Cannot unset string offsets in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 14
+[29-Mar-2013 17:36:08 US/Eastern] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 13
+[29-Mar-2013 17:39:14 US/Eastern] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 14
+[29-Mar-2013 17:56:15 US/Eastern] PHP Catchable fatal error:  Object of class InteractDB could not be converted to string in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 15
+[29-Mar-2013 18:05:02 US/Eastern] PHP Warning:  Illegal offset type in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 38
+[29-Mar-2013 18:05:02 US/Eastern] PHP Warning:  Illegal offset type in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 38
+[29-Mar-2013 18:05:02 US/Eastern] PHP Warning:  Illegal offset type in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 38
+[29-Mar-2013 18:05:02 US/Eastern] PHP Warning:  Illegal offset type in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 38
+[29-Mar-2013 18:16:34 US/Eastern] PHP Parse error:  syntax error, unexpected T_STRING in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 46
+[29-Mar-2013 18:19:41 US/Eastern] PHP Fatal error:  Class 'Date' not found in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 40
+[29-Mar-2013 18:20:08 US/Eastern] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct() expects parameter 1 to be string, array given' in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php:40
+Stack trace:
+#0 /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php(40): DateTime->__construct(Array)
+#1 /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/StatisticsController.php(33): Stats->gamesOverTime()
+#2 /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/StatisticsController.php(9): StatisticsController->parseAction(Array)
+#3 /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php(69): StatisticsController->__construct(Array, Array)
+#4 /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php(38): Controller->getModelData()
+#5 /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php(17): Controller->__construct(Array, Array)
+#6 /home/slimdown/public_html/cs20 in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 40
+[29-Mar-2013 18:20:42 US/Eastern] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct() [<a href='datetime.--construct'>datetime.--construct</a>]: Failed to parse time string (20130327125820136440350025) at position 8 (1): Double date specification' in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php:40
+Stack trace:
+#0 /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php(40): DateTime->__construct('201303271258201...')
+#1 /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/StatisticsController.php(33): Stats->gamesOverTime()
+#2 /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/StatisticsController.php(9): StatisticsController->parseAction(Array)
+#3 /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php(69): StatisticsController->__construct(Array, Array)
+#4 /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/Controller.php(38): Controller->getModelData()
+#5 /home/slimdown/public_html/cs205- in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 40
+[29-Mar-2013 18:22:13 US/Eastern] PHP Fatal error:  Cannot use object of type DateTime as array in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 41
+[29-Mar-2013 18:23:36 US/Eastern] PHP Fatal error:  Call to undefined method DateTime::getDate() in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 41
+[29-Mar-2013 18:26:21 US/Eastern] PHP Fatal error:  Cannot use object of type DateTime as array in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 41
+[29-Mar-2013 18:26:41 US/Eastern] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 42

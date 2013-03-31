@@ -29,7 +29,9 @@ class StatisticsController{
 					// we're adding new game data to the db
 						if($actions['data'] == "gamesOverTime"){
 							require_once "Models/Stats.php";
-							$this->vars = "line";
+							$statObj = new Stats();
+							$this->vars['graphData'] = $statObj->gamesOverTime();
+							$this->vars['graphType'] = "line";
 						}
 					break;
 					default:

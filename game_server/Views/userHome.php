@@ -20,19 +20,20 @@ $(document).ready(function(){
 	<div id="userHomeContainer">
 		<div class="row-fluid row1">
 			<div class="span12 topBar">
-				<h2>Welcome back <span class="username_string"></span>!</h2>
+				<div class="title">Rat-A-Tat-Cat</div>
+				<div class="welcome">Logged in as:  <span class="username_string"></span></div>
 			</div>
 		</div>
 		<div class="row-fluid row2">
 			<div class="span3 leftBar">
 				<ul>
-					<li><a class="leftbarLink newGameLink css3button">Play a new game</a></li>
-					<li><a href="<? echo HOSTNAME.BASEDIR; ?>Statistics/" class=" css3button leftbarLink leaderBoardLink">Check the leaderboard</a></li>
+					<li><a class="leftbarLink newGameLink css3button">New Game</a></li>
+					<li><a href="<? echo HOSTNAME.BASEDIR; ?>Statistics/" class=" css3button leftbarLink leaderBoardLink">Leaderboard</a></li>
 					<li><a href="<? echo HOSTNAME.BASEDIR; ?>User/?logout=true" class=" css3button leftbarLink leaderBoardLink">logout</a></li>
 				</ul>
 			</div>
 			<div class="span9 rightNest">
-				<APPLET CODE="Views/test2.jar"></APPLET>
+				<APPLET width="90%" height="400" CODE="Views/test2.jar"></APPLET>
 			</div>
 		</div>
 	</div>
