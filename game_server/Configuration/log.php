@@ -12,7 +12,7 @@ function logThis($var, $lineNum = true){
 		$toLog = $toLog."\n";
 	}
 	$fHandle = fopen('Configuration/log.txt', 'a+');
-	fwrite($fHandle, date('Y/m/d-h:i:s').": ".$toLog."\n");
+	fwrite($fHandle, "*****************************************\n".date('Y/m/d-h:i:s').": ".$toLog."\n");
 }
 
 

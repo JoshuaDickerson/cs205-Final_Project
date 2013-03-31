@@ -221,3 +221,4 @@ Stack trace:
 [29-Mar-2013 18:26:21 US/Eastern] PHP Fatal error:  Cannot use object of type DateTime as array in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 41
 [29-Mar-2013 18:26:41 US/Eastern] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 42
 [31-Mar-2013 17:14:48 US/Eastern] PHP Fatal error:  Class 'Stats' not found in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/StatisticsController.php on line 36
+[31-Mar-2013 19:37:07 US/Eastern] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting T_FUNCTION in /home/slimdown/public_html/cs205-Final_Project/game_server/Controllers/LogController.php on line 4
