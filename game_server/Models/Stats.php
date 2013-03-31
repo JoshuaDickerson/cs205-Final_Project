@@ -43,14 +43,14 @@ class Stats{
 			for($zz=0; $zz<count($dataArr); $zz++){
 				if($dataArr[$zz]['day'] == $daysArr[$ii]){
 					$dateStamp = new DateTime($dataArr[$zz]['timestamp']);
-					$daysCount[$ii]['date'] = $dateStamp->format("Y-m-d");
+					$daysCount[$ii]['date'] = $dateStamp->format("Y-m-d H:i:s");
+					$daysCount[$ii]['dateStr'] = $daysCount[$ii]['date'];
 					$counter++;
 				}
 			}
 			// $daysCount[$ii]['date'] = "Mon Nov ".$daysArr[$ii]." 2013";
 			
-			$daysCount[$ii]['dateString'] = $ii;
-			$daysCount[$ii]['value'] = $counter;
+		$daysCount[$ii]['value'] = $counter;
 		}
 		// return json_encode($dbWrapper->returnedRows);
 		// logThis($daysCount);

@@ -2,8 +2,7 @@
     var lineChartData = $.parseJSON($('#chartDat').val());
     // var lineChartData = $('#chartDat').val();
     console.log(lineChartData);
-    for(var ii=0; ii<lineChartData[ii].length; ii++){
-        // alert(lineChartData[ii]->dateString);
+    for(var ii=0; ii<lineChartData.length; ii++){
         lineChartData[ii].date = new Date(lineChartData[ii].date)
     }
 

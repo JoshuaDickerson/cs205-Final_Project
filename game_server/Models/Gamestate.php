@@ -24,7 +24,9 @@ class Gamestate{
 		$this->gameID = $jsonObj->uniqueID;
 		$this->gameOver = $jsonObj->gameOver;
 		$this->roundOver = $jsonObj->roundOver;
-		$this->roundCount = $jsonObj->roundCount;
+		if($jsonObj->roundCount != ""){
+			$this->roundCount = $jsonObj->roundCount;
+		}
 		$this->winCon = $jsonObj->state->winCon;
 		$this->mode = $jsonObj->state->mode;
 		$this->numPlayers = $jsonObj->numPlayers;
