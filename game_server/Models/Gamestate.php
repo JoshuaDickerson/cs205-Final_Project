@@ -25,8 +25,8 @@ class Gamestate{
 		$this->gameID = $jsonObj->uniqueID;
 		$this->gameOver = $jsonObj->gameOver;
 		if($this->gameOver){
-			logThis("game over *******************");
-			$this->addFinalScores();
+			// logThis("game over *******************");
+			// $this->addFinalScores();
 		}
 		$this->roundOver = $jsonObj->roundOver;
 		if($jsonObj->roundCount != ""){
@@ -86,7 +86,7 @@ class Gamestate{
 				'fldTimestamp'=>$timestamp
 			);
 			$dbWrapper = new InteractDB('insert', $array);
-			logThis($dbWrapper);
+			// logThis($dbWrapper);
 		}
 	} // end addFinalScores
 } // end Gamestate class def

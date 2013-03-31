@@ -108,7 +108,7 @@ class InteractDB{
 		}catch(Exception $e){
 			$this->error = true;
 			$this->errorCondition = $e;
-			logThis($e);
+			logThis($e, true, 'dbError');
 		}
 	} // end selectStatement
 
