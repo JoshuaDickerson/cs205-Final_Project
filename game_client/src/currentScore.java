@@ -9,6 +9,7 @@ public class currentScore
 	private int currentIndex = 0;
 	private gameState state;
 	private UUID uniqueID;
+	private int gameOver = 1;
 	//REPLACE OBJECT WITH 
 	public currentScore(int _numPlayers, gameState _state, UUID _uniqueID)
 	{
