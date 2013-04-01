@@ -3,9 +3,9 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry excluding="src/" kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/josh/Dropbox/syllabus/cs-205-software-eng/cs205-Final_Project/game_client/commons-net-3.2.jar"/>
-	<classpathentry kind="lib" path="/home/josh/Dropbox/syllabus/cs-205-software-eng/cs205-Final_Project/game_client/gson-2.2.2.jar"/>
-	<classpathentry kind="lib" path="/home/josh/Dropbox/syllabus/cs-205-software-eng/cs205-Final_Project/game_client/httpclient-4.2.3.jar"/>
-	<classpathentry kind="lib" path="/home/josh/Dropbox/syllabus/cs-205-software-eng/cs205-Final_Project/game_client/httpcore-4.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Anders/SCHOOOOOOL/CS205/FinalProject/cs205-Final_Project/game_client/commons-net-3.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Anders/SCHOOOOOOL/CS205/FinalProject/cs205-Final_Project/game_client/gson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Anders/SCHOOOOOOL/CS205/FinalProject/cs205-Final_Project/game_client/httpclient-4.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Anders/SCHOOOOOOL/CS205/FinalProject/cs205-Final_Project/game_client/httpcore-4.2.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
