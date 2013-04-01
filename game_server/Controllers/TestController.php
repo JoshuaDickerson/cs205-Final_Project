@@ -80,6 +80,8 @@ class TestController{
 		foreach($tblArr as $tbl){
 			echo "&nbsp;&nbsp;&nbsp;&nbsp;----</br />";
 			echo "&nbsp;&nbsp;&nbsp;&nbsp;Table name: ".$tbl['table_name']."<br />";
+			$dbW2 = new InteractDB('select', array('tableName'=>$tbl['table_name']));
+			echo "&nbsp;&nbsp;&nbsp;&nbsp;Number of Rows: ".count($dbW2->returnedRows)."<br />";
 			echo "&nbsp;&nbsp;&nbsp;&nbsp;Table engine: " .$tbl['engine']."<br />";
 			$numRow = $dbWrapper->getNumRows($tbl['table_name']);
 		}

@@ -24,7 +24,7 @@ class InteractDB{
 	public $returnedRows = array();
 
 
-	function __construct($action, $data){
+	function __construct($action = null, $data = null){
 		// logThis('InteractDB called');
 		$this->dsn = "mysql:dbname=".DATABASE_NAME.";host=".DATABASE_HOST;
 		$this->data = $data;
@@ -108,7 +108,7 @@ class InteractDB{
 		}catch(Exception $e){
 			$this->error = true;
 			$this->errorCondition = $e;
-			logThis($e);
+			logThis($e, true, 'dbError');
 		}
 	} // end selectStatement
 

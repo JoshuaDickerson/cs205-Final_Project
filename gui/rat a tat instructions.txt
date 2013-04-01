@@ -1,0 +1,91 @@
+The goal is to have the lowest score at the end of the game.
+
+Choose one player to be the dealer, and a scorekeeper. The scorekeeper will record each player’s score at the end of each round of play.
+
+Shuffle the deck. The player to the left of the dealer cuts the cards. 
+The dealer then deals four cards, one at a time and face down, to each player.
+The remaining cards are placed face down, in the middle of the table, as the
+draw pile. The top card of the draw pile is turned over to start the discard
+pile. If that card is a Power card, it is placed back in the deck and another
+card is turned over.
+
+Without looking at his cards, each player places his or her four cards face down in a line on the table in front of them.
+
+During the game, players will always have their four cards face down on the
+table. To begin the game, players peek at their two outer cards once, then
+turn them face down again. Each player now knows the point values of two of
+his four cards and needs to remember them during the game.
+If either of the outer cards are Power cards, the player keeps them, but they
+do not have their powers (described below). Power cards only have their
+powers when they are drawn from the top of the draw pile.  
+The player to the left of the dealer has the first turn, and play continues in a
+clockwise direction.
+
+For each turn, a player may:
+
+1. Draw the top card from the discard pile. This card MUST be used to
+replace one of her cards. The card replaced is then discarded, face up, to the
+discard pile.
+
+2. Draw the top card from the draw pile. A player may use it to: 
+	1. Replace one of her cards
+	2. Peek, Swap, or Draw 2 if it is a Power card (see below)
+	3. Discard it face up to the discard pile
+
+A player’s choice is based on remembering the values of his four face down
+cards. Keep track of what you have so you won’t accidentally replace your
+low point cards with high point cards.
+During the game, when the draw pile is used up, shuffle the discard pile and
+turn it over for a new draw pile.
+
+Power cards only have their powers when you draw them from the draw pile. If a Power card is dealt to you at the beginning of the game, it cannot be used. Because Power cards have no point value, if one of them is among your cards at the end of the game, you must replace it with a card drawn from the draw pile. If a Power card is discarded, it may not be used again by any player.
+
+There are three kinds of Power cards:
+1. Peek
+	When you draw a Peek card, show it and then peek at any
+	one of your cards. Now you will know what you have, or you
+	can refresh your memory if you have forgotten what you have.
+	Your turn is over and you discard the Peek card.
+2. Swap
+	When you draw a Swap card, show the Swap card and 
+	discard it. You may now switch any one of your cards with
+	any card of another player (swapping is optional). Neither player 		can look at either of the cards being swapped. After the swap 		your turn is over.
+3. Draw 2
+	When you draw a Draw 2 card, show the card and then you
+	may take two more turns. First you draw the next card from the
+	draw pile. You must decide whether to use this card and forfeit
+	the second turn OR discard this card and draw a second card.
+	This second card may be used or discarded. Your turn is then
+	over. If either of the cards drawn are another Draw 2 card, the
+	Draw 2 sequence starts again.
+
+Ending the Round
+
+When a player thinks he has the lowest score and can win the round, he or she may end the round by knocking on the table and saying “rat-a-tat cat” at
+the end of their turn. Once they knock, every other player has one more turn.
+Each player then turns over their cards. Players replace all Power cards by
+drawing from the draw pile. If another Power card is drawn, the player
+draws again.
+
+Scoring
+
+Players add the point values of their four cards. This is each player’s score
+for the round. The scorekeeper records each player’s score. Remember that
+players are trying to get as low a score as possible.
+
+Next Rounds
+
+All cards are collected and passed to the player to the left of the dealer who
+reshuffles and deals for the next round.
+
+Ending the Game
+
+The player with the lowest total score at the end of the game is the winner.
+
+A game may be played three ways:
+1. Play for a certain number of rounds.
+2. Play for a specific length of time.
+3. Play to stay in the game and not reach 100 points. When a player 
+reaches 100 points, he is out of the game. The last player in the game is 
+the winner. Players may also choose to play to 200, or any other number 
+of points.
