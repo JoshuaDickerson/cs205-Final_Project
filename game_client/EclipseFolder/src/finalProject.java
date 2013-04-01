@@ -622,7 +622,7 @@ public class finalProject extends JApplet implements ActionListener
 		//DEBUG PARAMETERS
 		debug = true;
 		extraHelp = true;
-		sendJSON = false;
+		sendJSON = true;
 		
 		setSize(500, 300);
 		setUpGUI(0);
