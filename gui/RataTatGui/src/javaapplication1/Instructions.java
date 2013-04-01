@@ -31,8 +31,6 @@ public class Instructions extends javax.swing.JFrame {
         buttonPlay = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        textPlayerNumber = new javax.swing.JTextField();
-        textDifficulty = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -40,6 +38,8 @@ public class Instructions extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        comboGameStyle = new javax.swing.JComboBox();
+        comboDifficulty = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -57,29 +57,15 @@ public class Instructions extends javax.swing.JFrame {
                 buttonPlayActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 658, 127, 45));
+        getContentPane().add(buttonPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 658, 127, 45));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Style of Game:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 650, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 651, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Difficulty: ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 694, -1, -1));
-
-        textPlayerNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textPlayerNumberActionPerformed(evt);
-            }
-        });
-        getContentPane().add(textPlayerNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 648, 119, -1));
-
-        textDifficulty.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textDifficultyActionPerformed(evt);
-            }
-        });
-        getContentPane().add(textDifficulty, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 692, 119, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 695, -1, -1));
 
         jLabel5.setText("For More Game Rules See: http://www.gamewright.com/gamewright/pdfs/Rules/Rat-a-TatCat-RULES.pdf");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 616, -1, -1));
@@ -107,6 +93,23 @@ public class Instructions extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/9.png"))); // NOI18N
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 404, -1, -1));
 
+        comboGameStyle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rounds", "Time", "Points" }));
+        comboGameStyle.setToolTipText("");
+        comboGameStyle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboGameStyleActionPerformed(evt);
+            }
+        });
+        getContentPane().add(comboGameStyle, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 648, 100, -1));
+
+        comboDifficulty.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Easy", "Medium", "Hard" }));
+        comboDifficulty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboDifficultyActionPerformed(evt);
+            }
+        });
+        getContentPane().add(comboDifficulty, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 688, 100, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -114,13 +117,13 @@ public class Instructions extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonPlayActionPerformed
 
-    private void textDifficultyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDifficultyActionPerformed
+    private void comboDifficultyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboDifficultyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textDifficultyActionPerformed
+    }//GEN-LAST:event_comboDifficultyActionPerformed
 
-    private void textPlayerNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPlayerNumberActionPerformed
+    private void comboGameStyleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGameStyleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textPlayerNumberActionPerformed
+    }//GEN-LAST:event_comboGameStyleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,6 +161,8 @@ public class Instructions extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonPlay;
+    private javax.swing.JComboBox comboDifficulty;
+    private javax.swing.JComboBox comboGameStyle;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -169,7 +174,5 @@ public class Instructions extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField textDifficulty;
-    private javax.swing.JTextField textPlayerNumber;
     // End of variables declaration//GEN-END:variables
 }

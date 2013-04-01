@@ -4,6 +4,8 @@
  */
 package javaapplication1;
 
+import javax.swing.*;
+import java.awt.*;
 
 public class JavaApplication1 {
 
@@ -14,7 +16,11 @@ public class JavaApplication1 {
         // TODO code application logic here
     }
     
-    public void changeCard() {
-        
+    public void changeCardIcon(String image, JLabel label) {
+        //label = new JLabel(new ImageIcon(getClass().getResource(image)));
+        ImageIcon icon = new ImageIcon(getClass().getResource(image));
+        label.setIcon(icon);
     }
+    
+    
 }

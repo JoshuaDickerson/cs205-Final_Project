@@ -11,11 +11,10 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
+import javax.swing.*;
+import java.awt.*;
 
-/**
- *
- * @author Katie
- */
+
 public class SwapDialog extends javax.swing.JDialog {
 
     /**
@@ -62,17 +61,30 @@ public class SwapDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        okButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        labelCard = new javax.swing.JLabel();
+        Player2Card2 = new javax.swing.JLabel();
+        Player2Card5 = new javax.swing.JLabel();
+        Player2Card6 = new javax.swing.JLabel();
+        Player2Card7 = new javax.swing.JLabel();
+        Player2Card8 = new javax.swing.JLabel();
+        Player2Card9 = new javax.swing.JLabel();
+        Player2Card10 = new javax.swing.JLabel();
+        comboPlayerCard = new javax.swing.JComboBox();
+        comboOpponentCard = new javax.swing.JComboBox();
+        buttonDiscard = new javax.swing.JButton();
+        buttonSwap = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -81,62 +93,90 @@ public class SwapDialog extends javax.swing.JDialog {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        okButton.setText("OK");
-        okButton.addActionListener(new java.awt.event.ActionListener() {
+        labelCard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+        getContentPane().add(labelCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 25, -1, -1));
+
+        Player2Card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+        getContentPane().add(Player2Card2, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 25, -1, -1));
+
+        Player2Card5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+        getContentPane().add(Player2Card5, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 25, -1, -1));
+
+        Player2Card6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+        getContentPane().add(Player2Card6, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 25, -1, -1));
+
+        Player2Card7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+        getContentPane().add(Player2Card7, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 385, -1, -1));
+
+        Player2Card8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+        getContentPane().add(Player2Card8, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 385, -1, -1));
+
+        Player2Card9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+        getContentPane().add(Player2Card9, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 385, -1, -1));
+
+        Player2Card10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+        getContentPane().add(Player2Card10, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 385, -1, -1));
+
+        comboPlayerCard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Card 1", "Card 2", "Card 3", "Card 4" }));
+        getContentPane().add(comboPlayerCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 204, 83, -1));
+
+        comboOpponentCard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Card 1", "Card 2", "Card 3", "Card 4" }));
+        getContentPane().add(comboOpponentCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 237, 83, -1));
+
+        buttonDiscard.setText("Discard");
+        buttonDiscard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
+                buttonDiscardActionPerformed(evt);
             }
         });
-        getContentPane().add(okButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 72, 43));
-        getRootPane().setDefaultButton(okButton);
+        getContentPane().add(buttonDiscard, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 291, 83, 31));
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("You may trade one of your cards with an opponent's. Neither player may look at the card  values being swapped.");
-        jTextArea1.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(jTextArea1);
+        buttonSwap.setText("Swap");
+        buttonSwap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSwapActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonSwap, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 291, 83, 31));
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 272, -1));
+        jLabel7.setText("Card 1");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 128, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/SwapBackground/swaplarge.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 83, -1, -1));
+        jLabel8.setText("Card 2");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 128, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("You've Drawn a Swap Card!");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
+        jLabel9.setText("Card 3");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 128, -1, -1));
 
-        jTextArea2.setEditable(false);
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextArea2.setLineWrap(true);
-        jTextArea2.setRows(5);
-        jTextArea2.setText("Power cards have no value and if they are in a player's hand at the end of the round. They must be swapped for the top card of the deck.");
-        jTextArea2.setWrapStyleWord(true);
-        jScrollPane2.setViewportView(jTextArea2);
+        jLabel10.setText("Card 4");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 128, -1, -1));
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 272, -1));
+        jLabel11.setText("Card 1");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 365, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Swap/12.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 75, -1, -1));
+        jLabel12.setText("Card 2");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 365, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Swap/12.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 75, -1, -1));
+        jLabel13.setText("Card 3");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 365, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/12.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, -1, -1));
+        jLabel14.setText("Card 4");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 365, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/12.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        jLabel1.setText("Player 1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 340, -1, -1));
+
+        jLabel2.setText("Player 2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 153, -1, -1));
+
+        jLabel3.setText("Choose Your Card:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 208, -1, -1));
+
+        jLabel4.setText("Choose Opponent's Card:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 241, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        doClose(RET_OK);
-    }//GEN-LAST:event_okButtonActionPerformed
     
     /**
      * Closes the dialog
@@ -144,6 +184,14 @@ public class SwapDialog extends javax.swing.JDialog {
     private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
         doClose(RET_CANCEL);
     }//GEN-LAST:event_closeDialog
+
+    private void buttonDiscardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDiscardActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonDiscardActionPerformed
+
+    private void buttonSwapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSwapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonSwapActionPerformed
     
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -191,19 +239,34 @@ public class SwapDialog extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Player2Card10;
+    private javax.swing.JLabel Player2Card2;
+    private javax.swing.JLabel Player2Card5;
+    private javax.swing.JLabel Player2Card6;
+    private javax.swing.JLabel Player2Card7;
+    private javax.swing.JLabel Player2Card8;
+    private javax.swing.JLabel Player2Card9;
+    private javax.swing.JButton buttonDiscard;
+    private javax.swing.JButton buttonSwap;
+    private javax.swing.JComboBox comboOpponentCard;
+    private javax.swing.JComboBox comboPlayerCard;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JButton okButton;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel labelCard;
     // End of variables declaration//GEN-END:variables
     private int returnStatus = RET_CANCEL;
+
 }
