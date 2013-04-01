@@ -40,11 +40,11 @@
                 var graph = new AmCharts.AmGraph();
                 graph.type = "line";
                 graph.valueField = "value";
-                graph.lineColor = "#D8E63C";
+                graph.lineColor = "red";
                  // graph.lineColor = "#D2CB00";
-                graph.customBullet = "http://cochinherald.com/assets/images/dot_indicator_small.png"; // bullet for all data points
+                // graph.customBullet = "http://cochinherald.com/assets/images/dot_indicator_small.png"; // bullet for all data points
                 graph.bulletSize = 9; // bullet image should be a rectangle (width = height)
-                graph.customBulletField = "customBullet"; // this will make the graph to display custom bullet (red star)
+                // graph.customBulletField = "customBullet"; // this will make the graph to display custom bullet (red star)
                 chart.addGraph(graph);
 
                 // CURSOR
