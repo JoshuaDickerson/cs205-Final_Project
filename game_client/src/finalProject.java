@@ -713,7 +713,6 @@ public class finalProject extends JApplet implements ActionListener
 	method is actually inherited from the java.awt.*/
 	public void paint(Graphics g)
 	{
-		//HERE we can paint graphics to the screen which can be helpful
 		super.paint(g);
 		g.drawString("WOW THIS WORKED!",25,25);
 	}
@@ -722,8 +721,10 @@ public class finalProject extends JApplet implements ActionListener
 	It is called after the param tags inside the applet tag have been processed.*/
 	public void init()
 	{
-		//setUpGUI(MAIN_MENU);
-		gameLoop();
+//		setUpGUI(MAIN_MENU);
+		 Container content = getContentPane(); 
+		 content.add(new JButton("Button 1"));
+		 gameLoop();
 	}
 	
 	/* This method is automatically called after the browser calls the init method.
