@@ -103,8 +103,8 @@ public class MainGUI extends javax.swing.JFrame {
         });
         getContentPane().add(buttonDiscard, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, 90, 40));
 
-        jLabel1.setText("Deck");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, -1, -1));
+        jLabel1.setText("Click to Draw from Deck");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, -1, -1));
 
         jLabel3.setText("Card 4");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 540, -1, -1));
@@ -145,15 +145,30 @@ public class MainGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonDrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDrawActionPerformed
-        // TODO add your handling code here:
+        // This section would then draw a card from the deck constructor
+        /*
+         * Draw from the deck here;
+         * Card drawnCard = Deck.Draw();
+         * labelDiscard.setIcon(new Javax.swing.ImageIcon(getClass().getResource(drawnCard.Image)));
+         */
     }//GEN-LAST:event_buttonDrawActionPerformed
 
     private void buttonDiscardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDiscardActionPerformed
-        // TODO add your handling code here:
+        // This is when a card is discarded to the pile and the label changes image to display the discarded card
+        /*
+         * Power cards should be discarded automatically after use, so just change the label to whichever card it was
+         * If there's an object for current card or something like that, then the label would change to its image
+         * labelDiscard.setIcon(new Javax.swing.ImageIcon(getClass().getResource(currentCard.Image)));
+         */
     }//GEN-LAST:event_buttonDiscardActionPerformed
 
     private void buttonPeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPeekActionPerformed
-        // TODO add your handling code here:
+        // For peeking during tutorial mode
+        /*
+         * Each of the labels are called Player1Card1 and so forth, so each would then be set to their actual value of the card and changed to whichever image
+         * Example:
+         * Player1Card1.setIcon(new Javax.swing.ImageIcon(getClass().getResource(Player1Card1.Image)));
+         */
     }//GEN-LAST:event_buttonPeekActionPerformed
 
     /**
