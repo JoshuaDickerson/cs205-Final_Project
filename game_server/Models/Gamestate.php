@@ -16,7 +16,7 @@ class Gamestate{
 	private $mode;
 	private $numPlayers;
 	private $roundCount = -1;
-	private $gameOver= false;
+	private $gameOver = false;
 	private $roundOver = false;
 	private $dbError;
 
@@ -25,8 +25,7 @@ class Gamestate{
 		$this->gameID = $jsonObj->uniqueID;
 		$this->gameOver = $jsonObj->gameOver;
 		if($this->gameOver){
-			// logThis("game over *******************");
-			// $this->addFinalScores();
+			$this->addFinalScores();
 		}
 		$this->roundOver = $jsonObj->roundOver;
 		if($jsonObj->roundCount != ""){
@@ -37,6 +36,7 @@ class Gamestate{
 		$this->numPlayers = $jsonObj->numPlayers;
 		// if GamedataController sets $addToDB as true, add to db
 		if($addToDB){
+			logThis("in add to DB");
 			$this->addToDB();
 		}
 	}

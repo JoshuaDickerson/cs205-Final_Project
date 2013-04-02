@@ -5,6 +5,8 @@ class Player{
 	public $id;
 	public $score;
 	public $hand;
+	public $totalScore;
+	public $roundsWon;
 
 	function __construct($jsonPlayer){
 		$handJson = $jsonPlayer->myHand->hand;
@@ -12,6 +14,7 @@ class Player{
 		$this->id = $this->emailToUserID($this->playerName);
 		$this->isHuman = $jsonPlayer->isHuman;
 		$this->score = $jsonPlayer->score;
+		$this->totalScore = $jsonPlayer->totalScore;
 		$numCards = count($handJson);
 		for($ii=0; $ii<$numCards; $ii++){
 			$this->hand[$ii] = array(
