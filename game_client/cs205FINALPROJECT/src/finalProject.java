@@ -908,8 +908,8 @@ public class finalProject extends JApplet implements ActionListener
 	
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		
+	public void actionPerformed(ActionEvent e)
+	{	
 		if("enableLeft".equals(e.getActionCommand()))
 		{
 			System.out.println("left");
