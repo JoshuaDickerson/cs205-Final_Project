@@ -580,6 +580,7 @@ public class finalProject extends JApplet implements ActionListener
 
 	public void sendJSON()
 	{
+		System.out.println("dkfjsklfjakldsfjklsd");
 		//--------PREPARE THE JSON---------
 		currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, false, GAME_STATE.getRoundNum(), mainDeck, discard);
 		tempScore.addPlayer(playersArray[0]);
