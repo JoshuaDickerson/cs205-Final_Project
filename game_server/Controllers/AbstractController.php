@@ -7,7 +7,7 @@ abstract class ControllerObject{
 	public $modelObj;
 	private $testArray = array();
 
-	private function parseAction($actions){
+	 function parseAction($actions){
 		
 	}
 }

@@ -694,8 +694,10 @@ public class finalProject extends JApplet implements ActionListener
 		g.drawString("WOW THIS WORKED!",25,25);
 	}
 	
-	/*This method is intended for whatever initialization is needed for your applet.
-	It is called after the param tags inside the applet tag have been processed.*/
+	/**
+	*This method is intended for whatever initialization is needed for your applet.
+	*It is called after the param tags inside the applet tag have been processed.
+	**/
 	public void init()
 	{
 		gameLoop();
