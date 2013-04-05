@@ -60,7 +60,27 @@ class Stats{
 
 	public function totalUserScore(){
 		$dbWrapper = new InteractDB('select', array('tableName'=>'tblScores'));
-		return $dbWrapper->returnedRows;
+		$userIDArr = array();
+		foreach($dbWrapper->returnedRows as $row){
+			// get a unique array of user ID's
+			if(!in_array($row['fkUserID'], $userIDArr)){
+				array_push($userIDArr, $row['fkUserID']);
+			}
+		}
+		// sort our unique IDS for presentation
+		sort($userIDArr);
+		// return $userIDArr;
+		// foreach userID, sum their score
+		for($ii=0; $ii<count($userIDArr); $ii++){
+			$dbWrapper2 = new InteractDB();
+			$dbWrapper2->customStatement("SELECT sum(fldScore) from tblScores where fkUserID = ".$userIDArr[$ii].";");
+			$scores[$ii]['playerID'] = $userIDArr[$ii];
+			foreach($dbWrapper2->returnedRows as $row){
+				$scores[$ii]['value'] = $row[0];
+			}
+		}
+		
+		return json_encode($scores);
 	}
 }
 

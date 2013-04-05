@@ -1261,3 +1261,6 @@ Stack trace:
 [01-Apr-2013 13:00:43 US/Eastern] PHP Parse error:  syntax error, unexpected T_FUNCTION, expecting ',' or ';' in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Player.php on line 11
 [01-Apr-2013 13:00:44 US/Eastern] PHP Parse error:  syntax error, unexpected T_FUNCTION, expecting ',' or ';' in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Player.php on line 11
 [01-Apr-2013 13:00:44 US/Eastern] PHP Parse error:  syntax error, unexpected T_FUNCTION, expecting ',' or ';' in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Player.php on line 11
+[05-Apr-2013 17:54:33 US/Eastern] PHP Parse error:  syntax error, unexpected ';' in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 76
+[05-Apr-2013 17:54:47 US/Eastern] PHP Fatal error:  Call to undefined method InteractDB::custom() in /home/slimdown/public_html/cs205-Final_Project/game_server/Models/Stats.php on line 75
+[05-Apr-2013 17:59:43 US/Eastern] PHP Fatal error:  Cannot use [] for reading in /home/slimdown/public_html/cs205-Final_Project/game_server/Views/Stats1.php on line 2
