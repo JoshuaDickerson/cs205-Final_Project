@@ -45,9 +45,52 @@ public class TestObjects {
 		testdeck.showDeck();
 		System.out.println("Player 1 Hand: ");
 		p1hand.showHand();
+		System.out.println("Player 2 Hand: ");
+		p2hand.showHand();
+		if (p2hand.size() == 4)
+		{
+			System.out.println("P1Hand is proper size");
+		}  else {
+			System.out.println("Something's wrong with the hand.");
+		}
+		if (p2hand.size() == 4)
+		{
+			System.out.println("P2Hand is proper size");
+		}  else {
+			System.out.println("Something's wrong with the hand.");
+		}
+		System.out.println("Replacing first card in each hand with top card of deck...");
+		tempcard = testdeck.getTopCard();
+		Card tempcard2 = p1hand.replaceCard(0, tempcard);
+		testdeck.addCard(tempcard2);
+		
+		tempcard = testdeck.getTopCard();
+		tempcard2 = p2hand.replaceCard(0, tempcard);
+		testdeck.addCard(tempcard2);
+		
+		System.out.println("Deck: ");
+		testdeck.showDeck();
 		System.out.println("Player 1 Hand: ");
+		p1hand.showHand();
+		System.out.println("Player 2 Hand: ");
 		p2hand.showHand();
 		
+		//now for card
+		tempcard = testdeck.getTopCard();
+		System.out.print("Top card of deck: ");
+		System.out.println(tempcard);
+		if (tempcard.isSpecial()) {
+			System.out.println("This card is a special card!");
+			System.out.println(tempcard.getSpecial());
+		} else {
+			System.out.println("This card is an ordinary number.");
+			System.out.println(tempcard.getRank());
+		}
+		System.out.println(tempcard.getPictureName());
+		
+		//lastly, Player
+		Player p1 = new Player(true, 0, "Human", p1hand);
+		Player p2 = new Player(false, 1, "Computer", p2hand);
 		
 		
 		
