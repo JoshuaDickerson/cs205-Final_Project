@@ -59,7 +59,8 @@ class Stats{
 	}
 
 	public function totalUserScore(){
-
+		$dbWrapper = new InteractDB('select', array('tableName'=>'tblScores'));
+		return $dbWrapper->returnedRows;
 	}
 }
 

@@ -71,7 +71,7 @@ public class SwapDialog extends javax.swing.JDialog {
         Player2Card10 = new javax.swing.JLabel();
         comboPlayerCard = new javax.swing.JComboBox();
         comboOpponentCard = new javax.swing.JComboBox();
-        buttonDiscard = new javax.swing.JButton();
+        buttonSwapDiscard = new javax.swing.JButton();
         buttonSwap = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -123,13 +123,13 @@ public class SwapDialog extends javax.swing.JDialog {
         comboOpponentCard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Card 1", "Card 2", "Card 3", "Card 4" }));
         getContentPane().add(comboOpponentCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 237, 83, -1));
 
-        buttonDiscard.setText("Discard");
-        buttonDiscard.addActionListener(new java.awt.event.ActionListener() {
+        buttonSwapDiscard.setText("Discard");
+        buttonSwapDiscard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonDiscardActionPerformed(evt);
+                buttonSwapDiscardActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonDiscard, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 291, 83, 31));
+        getContentPane().add(buttonSwapDiscard, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 291, 83, 31));
 
         buttonSwap.setText("Swap");
         buttonSwap.addActionListener(new java.awt.event.ActionListener() {
@@ -185,12 +185,16 @@ public class SwapDialog extends javax.swing.JDialog {
         doClose(RET_CANCEL);
     }//GEN-LAST:event_closeDialog
 
-    private void buttonDiscardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDiscardActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonDiscardActionPerformed
+    private void buttonSwapDiscardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSwapDiscardActionPerformed
+        // This would move the swap card to the discard pile
+        /*
+         * DiscardPileArray.add(card);
+         * labelDiscard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/12.png")));
+         */
+    }//GEN-LAST:event_buttonSwapDiscardActionPerformed
 
     private void buttonSwapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSwapActionPerformed
-        // TODO add your handling code here:
+        // This will actually do the swap between the cards
     }//GEN-LAST:event_buttonSwapActionPerformed
     
     private void doClose(int retStatus) {
@@ -249,8 +253,8 @@ public class SwapDialog extends javax.swing.JDialog {
     private javax.swing.JLabel Player2Card7;
     private javax.swing.JLabel Player2Card8;
     private javax.swing.JLabel Player2Card9;
-    private javax.swing.JButton buttonDiscard;
     private javax.swing.JButton buttonSwap;
+    private javax.swing.JButton buttonSwapDiscard;
     private javax.swing.JComboBox comboOpponentCard;
     private javax.swing.JComboBox comboPlayerCard;
     private javax.swing.JLabel jLabel1;
