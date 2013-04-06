@@ -1,4 +1,4 @@
 <?php
 header('Content-type: application/json');
-echo json_encode($this->vars['gameObj']);
+echo json_encode($this->vars);
 ?>

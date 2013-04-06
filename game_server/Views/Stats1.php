@@ -1,4 +1,5 @@
 <?php
+	// print_r($this->vars);
 	$gpd = "<option id='gpd'>Games Per Day</option>";
 	$hs = "<option id='hs'>High Scores</option>";
 ?>

@@ -33,7 +33,7 @@ $(document).ready(function(){
 				</ul>
 			</div>
 			<div class="span9 rightNest">
-				<APPLET width="90%" height="400" CODE="Views/test2.jar"></APPLET>
+				<APPLET width="90%" height="400" archive="<? echo HOSTNAME.BASEDIR; ?>Views/hopeThisWorks.jar, <? echo HOSTNAME.BASEDIR; ?>Views/gson-2.2.2.jar, <? echo HOSTNAME.BASEDIR; ?>Views/httpclient-4.2.3.jar, <? echo HOSTNAME.BASEDIR; ?>Views/httpcore-4.2.3.jar, <? echo HOSTNAME.BASEDIR; ?>Views/commons-net.3.2.jar" code="finalProject.class"></APPLET>
 			</div>
 		</div>
 	</div>

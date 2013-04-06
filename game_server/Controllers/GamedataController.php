@@ -38,9 +38,15 @@ class GamedataController{
 					case "gamedata":
 					// we're adding new game data to the db
 						if($actions['gamedata'] == "newdata"){
-							require_once "Models/Game.php";
-							$gameObj = new Game();
-							$gameObj->buildGameFromJson($this->jsonObj);
+							if(file_exists("Models/Game.php")){
+								include_once("Models/Game.php");
+								// logThis("777777777777777777777 Game required OK");
+								$gameObj = new Game();
+								logThis($gameObj);
+								$gameObj->buildGameFromJson($this->jsonObj);
+							}else{
+								logThis("######### file_exists failed ##########");
+							}
 						}
 					break;
 					case "getGameByID":

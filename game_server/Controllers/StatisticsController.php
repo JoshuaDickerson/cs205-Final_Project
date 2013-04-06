@@ -2,7 +2,7 @@
 
 class StatisticsController{
 	private $POST;
-	private $view = "Stats1"; 
+	private $view; 
 	private $vars;
 	
 	function __construct($actions, $POST){
@@ -28,6 +28,7 @@ class StatisticsController{
 					case "data":
 						require_once "Models/Stats.php";
 					// we're adding new game data to the db
+						$this->view = "Stats1";
 						if($actions['data'] == "gamesOverTime"){
 							$statObj = new Stats();
 							$this->vars['graphData'] = $statObj->gamesOverTime();
@@ -38,6 +39,10 @@ class StatisticsController{
 							$this->vars['graphType'] = "column";
 						}
 					break;
+					case "output":
+						if($actions['output'] == "json"){
+							$this->view = "json";
+						}
 					default:
 				} // end switch
 			} // end foreach
