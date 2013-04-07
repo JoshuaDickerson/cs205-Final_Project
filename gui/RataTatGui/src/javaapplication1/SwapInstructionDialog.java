@@ -59,81 +59,98 @@ public class SwapInstructionDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        okButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        okButtonSwap = new javax.swing.JButton();
+        scrollSwap = new javax.swing.JScrollPane();
+        txtSwap = new javax.swing.JTextArea();
+        labelSwapTutorial = new javax.swing.JLabel();
+        scrollPowerCard1 = new javax.swing.JScrollPane();
+        txtPowerCard1 = new javax.swing.JTextArea();
+        labelPictureSwap1 = new javax.swing.JLabel();
+        labelPictureSwap2 = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        okButton.setText("OK");
-        okButton.addActionListener(new java.awt.event.ActionListener() {
+        okButtonSwap.setText("OK");
+        okButtonSwap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
+                okButtonSwapActionPerformed(evt);
             }
         });
-        getContentPane().add(okButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 72, 43));
-        getRootPane().setDefaultButton(okButton);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("You may trade one of your cards with an opponent's. Neither player may look at the card  values being swapped.");
-        jTextArea1.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtSwap.setEditable(false);
+        txtSwap.setColumns(20);
+        txtSwap.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtSwap.setLineWrap(true);
+        txtSwap.setRows(5);
+        txtSwap.setText("You may trade one of your cards with an opponent's. Neither player may look at the card  values being swapped.");
+        txtSwap.setWrapStyleWord(true);
+        scrollSwap.setViewportView(txtSwap);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 272, -1));
+        labelSwapTutorial.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelSwapTutorial.setText("You've Drawn a Swap Card!");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/SwapBackground/swaplarge.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 83, -1, -1));
+        txtPowerCard1.setEditable(false);
+        txtPowerCard1.setColumns(20);
+        txtPowerCard1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtPowerCard1.setLineWrap(true);
+        txtPowerCard1.setRows(5);
+        txtPowerCard1.setText("Power cards have no value and if they are in a player's hand at the end of the round. They must be swapped for the top card of the deck.");
+        txtPowerCard1.setWrapStyleWord(true);
+        scrollPowerCard1.setViewportView(txtPowerCard1);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("You've Drawn a Swap Card!");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
+        labelPictureSwap1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/12.png"))); // NOI18N
 
-        jTextArea2.setEditable(false);
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextArea2.setLineWrap(true);
-        jTextArea2.setRows(5);
-        jTextArea2.setText("Power cards have no value and if they are in a player's hand at the end of the round. They must be swapped for the top card of the deck.");
-        jTextArea2.setWrapStyleWord(true);
-        jScrollPane2.setViewportView(jTextArea2);
+        labelPictureSwap2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/12.png"))); // NOI18N
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 272, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(labelSwapTutorial))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(labelPictureSwap2)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollSwap, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scrollPowerCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(labelPictureSwap1))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(okButtonSwap, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(labelSwapTutorial)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelPictureSwap2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(scrollSwap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(scrollPowerCard1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelPictureSwap1))
+                .addGap(15, 15, 15)
+                .addComponent(okButtonSwap, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Swap/12.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 75, -1, -1));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Swap/12.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 75, -1, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/12.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, -1, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/12.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        getRootPane().setDefaultButton(okButtonSwap);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+    private void okButtonSwapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonSwapActionPerformed
         doClose(RET_OK);
-    }//GEN-LAST:event_okButtonActionPerformed
+    }//GEN-LAST:event_okButtonSwapActionPerformed
     
     /**
      * Closes the dialog
@@ -190,17 +207,14 @@ public class SwapInstructionDialog extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JButton okButton;
+    private javax.swing.JLabel labelPictureSwap1;
+    private javax.swing.JLabel labelPictureSwap2;
+    private javax.swing.JLabel labelSwapTutorial;
+    private javax.swing.JButton okButtonSwap;
+    private javax.swing.JScrollPane scrollPowerCard1;
+    private javax.swing.JScrollPane scrollSwap;
+    private javax.swing.JTextArea txtPowerCard1;
+    private javax.swing.JTextArea txtSwap;
     // End of variables declaration//GEN-END:variables
     private int returnStatus = RET_CANCEL;
 }

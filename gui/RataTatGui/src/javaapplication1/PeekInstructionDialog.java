@@ -59,23 +59,19 @@ public class PeekInstructionDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         okButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        scrollPeek = new javax.swing.JScrollPane();
+        txtPeek = new javax.swing.JTextArea();
+        scrollPowerCards = new javax.swing.JScrollPane();
+        txtPowerCards1 = new javax.swing.JTextArea();
+        labelPeek = new javax.swing.JLabel();
+        labelPeekPic1 = new javax.swing.JLabel();
+        labelPeekPic2 = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
@@ -83,49 +79,73 @@ public class PeekInstructionDialog extends javax.swing.JDialog {
                 okButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(okButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 78, 45));
+
+        txtPeek.setEditable(false);
+        txtPeek.setColumns(20);
+        txtPeek.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtPeek.setLineWrap(true);
+        txtPeek.setRows(5);
+        txtPeek.setText("Take a card from the draw pile, and either swap it with one of your cards or discard it and draw a second card to be swapped or thrown out.");
+        txtPeek.setWrapStyleWord(true);
+        scrollPeek.setViewportView(txtPeek);
+
+        txtPowerCards1.setEditable(false);
+        txtPowerCards1.setColumns(20);
+        txtPowerCards1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtPowerCards1.setLineWrap(true);
+        txtPowerCards1.setRows(5);
+        txtPowerCards1.setText("Power cards have no value and if they are in a player's hand at the end of the round. They must be swapped for the top card of the deck.");
+        txtPowerCards1.setWrapStyleWord(true);
+        scrollPowerCards.setViewportView(txtPowerCards1);
+
+        labelPeek.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelPeek.setText("You've Drawn a Peek Card!");
+
+        labelPeekPic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/11.png"))); // NOI18N
+
+        labelPeekPic2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/11.png"))); // NOI18N
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(labelPeek))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(labelPeekPic2)
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrollPeek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scrollPowerCards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addComponent(labelPeekPic1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(270, 270, 270)
+                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(labelPeek)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelPeekPic2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(scrollPeek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(scrollPowerCards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelPeekPic1))
+                .addGap(15, 15, 15)
+                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         getRootPane().setDefaultButton(okButton);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/PeekBackground/peeklarge.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 30, -1, -1));
-
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Take a card from the draw pile, and either swap it with one of your cards or discard it and draw a second card to be swapped or thrown out.");
-        jTextArea1.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
-
-        jTextArea2.setEditable(false);
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextArea2.setLineWrap(true);
-        jTextArea2.setRows(5);
-        jTextArea2.setText("Power cards have no value and if they are in a player's hand at the end of the round. They must be swapped for the top card of the deck.");
-        jTextArea2.setWrapStyleWord(true);
-        jScrollPane2.setViewportView(jTextArea2);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("You've Drawn a Peek Card!");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, -1, -1));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Peek/11.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 87, -1, -1));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Peek/11.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 87, -1, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/11.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/11.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -189,17 +209,14 @@ public class PeekInstructionDialog extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JLabel labelPeek;
+    private javax.swing.JLabel labelPeekPic1;
+    private javax.swing.JLabel labelPeekPic2;
     private javax.swing.JButton okButton;
+    private javax.swing.JScrollPane scrollPeek;
+    private javax.swing.JScrollPane scrollPowerCards;
+    private javax.swing.JTextArea txtPeek;
+    private javax.swing.JTextArea txtPowerCards1;
     // End of variables declaration//GEN-END:variables
     private int returnStatus = RET_CANCEL;
 }
