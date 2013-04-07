@@ -9,6 +9,8 @@ public class gameState
 	private int player;
 	private int mode;
 	private int numPlayers;	
+	private int roundNum;
+	private int playerWhoKnocked;
 			
 	//CONSTRUCTOR
 	public gameState(int _numPlayers)
@@ -18,17 +20,29 @@ public class gameState
 		this.player = -1;
 		this.mode = -1;
 		this.numPlayers = _numPlayers;
+		this.roundNum = 1;
+		this.playerWhoKnocked = -1;
 	}
 
 	//SETTER
-	public void updateGameState(int _status, int _winCon, int _player, int _mode)
+	public void updateGameState(int _status, int _winCon, int _player, int _mode, int _roundNum)
 	{
 		this.status = _status;
 		this.winCon = _winCon;
 		this.player = _player;
 		this.mode = _mode;
+		this.roundNum = _roundNum;
 	}
 	
+	public int getPlayerWhoKnocked()
+	{
+		return this.playerWhoKnocked;
+	}
+	
+	public void setPlayerWhoKnocked(int _knockedPlayer)
+	{
+		this.playerWhoKnocked = _knockedPlayer;
+	}
 	//GETTERS
 	public int getStatus()
 	{
@@ -45,6 +59,15 @@ public class gameState
 	public int getMode()
 	{
 		return this.mode;
+	}
+	public int getRoundNum()
+	{
+		return this.roundNum;
+	}
+	
+	public void setRoundNum(int _roundNum)
+	{
+		this.roundNum = _roundNum;
 	}
 	
 	public void setPlayer(int _curPlayer)
