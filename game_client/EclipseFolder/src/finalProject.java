@@ -3,9 +3,6 @@ import java.util.*;
 import java.awt.*;
 import java.applet.*;
 import java.util.Scanner;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 
 import java.awt.event.ActionEvent;
@@ -166,13 +163,25 @@ public class finalProject extends JApplet implements ActionListener
 		//getContentPane().removeAll();
 	}
 
-	public Player[] round(Scanner input, Player[] playersArray, gameState GAME_STATE, boolean debug, boolean extraHelp, UUID uniqueID, String endTime, int currentRound)
-	{		
-		/*
-		 * WE NEED TO REINITIALIZE THE MAINDECK AND DISCARD PILE EVERYROUND!!!!!!!!!!!!
-		 */
-		System.out.println("DEBUG IS: " + debug);
-		System.out.println("EXTRAHELP IS: " + extraHelp);
+	public void gameLoop()
+	{
+		//DEBUG
+		boolean debug = true;
+		boolean extraHelp = true;
+		
+		//NEW INPUT SCANNER
+		Scanner input = new Scanner(System.in);
+		
+		//CREATE GAME STATE
+		gameState GAME_STATE = new gameState(2);	
+		if(debug)
+		{
+			System.out.println("SHOWING INITIAL GAME STATE: ");
+			GAME_STATE.print();	
+		}
+		
+		//CREATE UNIQUE GAME ID
+		UUID uniqueID = UUID.randomUUID();
 		
 		//CREATE DECK
 		Deck mainDeck = new Deck();
@@ -182,19 +191,57 @@ public class finalProject extends JApplet implements ActionListener
 		Deck discard = new Deck();
 		discard.clear();
 		
-		//UPDATE GAME STATE
-		if(debug)
-		{
-			System.out.println("********************************");
-			System.out.println("ROUND STARTED - GAME STATE: ");
-			GAME_STATE.print();
-			System.out.println("********************************");
-		}
+		//PLAYERS ARRAY
+		Player [] playersArray = new Player[2];
 		
-		//Clearing old player hands
-		playersArray[0].myHand.clear();
-		playersArray[1].myHand.clear();
-
+		//HUMAN PLAYER
+	   System.out.println("---->WHAT IS YOUR NAME?");
+	   String name = input.next();
+		Hand humanHand = new Hand(0);
+		Player human = new Player(true, 0, name, humanHand);
+		playersArray[0] = human;
+		
+		String[] opponents = new String[5];
+		opponents[0] = "Jimmy";
+		opponents[1] = "Einstein";
+		opponents[2] = "God";
+		
+		//Difficulty
+		System.out.println("Choose Opponenets Difficulty:");
+		int difficulty = 0;
+		do{
+        	System.out.println("Type 1, for EASY");
+			System.out.println("Type 2, for MEDIUM");
+			System.out.println("Type 3, for HARD");
+			while(!input.hasNextInt())
+  			{
+				System.out.println("Thats not a number!");
+				input.next();
+  			}
+		   difficulty = input.nextInt();
+		}while(difficulty < 1 || difficulty > 3);
+      				
+		//COMPUTER PLAYER
+		Hand computerHand = new Hand(1);
+		Player computer = new Player(false, 1, opponents[difficulty -1], computerHand);
+		playersArray[1] = computer;
+		System.out.println("You are playing " + opponents[difficulty-1]);
+		
+		//Choose GAME MODE
+		System.out.println("What Type of Game Do You Want To Play?");
+		int gameMode = 0;
+		do{
+     		System.out.println("Type 1, for 5 Minute Max Round");
+			System.out.println("Type 2, for 10 Turns Max Round");
+			System.out.println("Type 3, for High Score Round");
+			while(!input.hasNextInt())
+  			{
+				System.out.println("Thats not a number!");
+				input.next();
+  			}
+		   gameMode = input.nextInt();
+		}while(gameMode < 1 || gameMode > 3);
+		
 		//Give Players cards
 		for(int i = 0; i < 4; i++)
 		{
@@ -214,14 +261,7 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		discard.addTopCard(firstCard);
 
-		//Calc end time if not null
-		String currentTime;
-		if(endTime != null)
-		{
-	    	Calendar cal = Calendar.getInstance();
-	    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-	    	currentTime = sdf.format(cal.getTime());
-		}
+	
 		
 		if(debug || extraHelp)
 		{
@@ -241,8 +281,16 @@ public class finalProject extends JApplet implements ActionListener
 			System.out.println("********************************");
 		}
 		
-
-				
+		//UPDATE GAME STATE
+		GAME_STATE.updateGameState(NORMAL_ROUND, gameMode, 0, NORMAL_PLAY);
+		if(debug)
+		{
+			System.out.println("********************************");
+			System.out.println("SHOWING UPDATED GAME STATE: ");
+			GAME_STATE.print();
+			System.out.println("********************************");
+		}
+		
 		//PEEKING FIRST PLAYERS TWO INITIAL CARDS
 		System.out.println("Before the game begins remember these cards!");
 		System.out.println("Your Left Most Card: " + playersArray[0].myHand.getCard(0).toString());
@@ -253,21 +301,10 @@ public class finalProject extends JApplet implements ActionListener
 		//----------------------------------------------------------------------GAME LOOP-----------
 		boolean gameOver = false;
 		boolean draw2SecondCard = false;
-		boolean sendJSON = true;
 		boolean gotDraw2 = false;
 		int handIndex = 0;
 		Card cardFromDeck;
 		int playerWhoKnocked = -1;
-		
-		if(sendJSON)
-		{
-			//--------PREPARE THE JSON---------
-			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, false, currentRound, mainDeck, discard);
-			tempScore.addPlayer(playersArray[0]);
-			tempScore.addPlayer(playersArray[1]);
-			Transporter tempTransport = new Transporter(tempScore);			
-		}
-		
 		while(!gameOver)
 		{
 			//CHECK IF DECK IS EMPTY
@@ -294,7 +331,9 @@ public class finalProject extends JApplet implements ActionListener
 				}
 			}
 			System.out.println("-------------------------------------");
-			System.out.println("------------" + playersArray[GAME_STATE.getPlayer()].getName());
+			System.out.println("-------------------------------------");
+			System.out.println("------------" + playersArray[GAME_STATE.getPlayer()].getName() + "-------------");
+			System.out.println("-------------------------------------");
 			System.out.println("-------------------------------------");
 			//------TURN
 			System.out.println("Discard Card: " + discard.getCard(0).toString());
@@ -304,12 +343,6 @@ public class finalProject extends JApplet implements ActionListener
 			}
 			
 			int choice = 1;
-			if(GAME_STATE.getStatus() == KNOCKED_ROUND)
-			{
-				System.out.println("<----------------WARNING-------------------->");
-				System.out.println("A PLAYER HAS KNOCKED, THIS IS YOUR LAST TURN!");
-				System.out.println("<----------------WARNING-------------------->");
-			}
 			if(discard.getCard(0).isSpecial())
 			{
 				if(debug)
@@ -375,13 +408,13 @@ public class finalProject extends JApplet implements ActionListener
 						{
 							Card fromOpponent = playersArray[1].myHand.getCard(othersIndex);
 							Card newCard = playersArray[0].myHand.replaceCard(myIndex, fromOpponent);
-							Card worthlessCard = playersArray[1].myHand.replaceCard(othersIndex, newCard);
+							Card whocares = playersArray[1].myHand.replaceCard(othersIndex, newCard);
 						}
 						else
 						{
 							Card fromOpponent = playersArray[0].myHand.getCard(othersIndex);
 							Card newCard = playersArray[1].myHand.replaceCard(myIndex, fromOpponent);
-							Card worthlessCard = playersArray[0].myHand.replaceCard(othersIndex, newCard);
+							Card whocares = playersArray[0].myHand.replaceCard(othersIndex, newCard);
 						}
 					}
 					else if(cardFromDeck.getSpecial() == "peek")
@@ -483,57 +516,36 @@ public class finalProject extends JApplet implements ActionListener
 			//DO YOU WANT TO KNOCK?
 			if(GAME_STATE.getStatus() != KNOCKED_ROUND)
 			{
-				//Check if current Time is past endTime if so automatically knock
-				Calendar cal = Calendar.getInstance();
-		    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-		    	currentTime = sdf.format(cal.getTime());
-				if(endTime != null && currentTime == endTime)
+				System.out.println("Do you want to knock?");
+				do{
+		     		System.out.println("----->Type 1, to keep playing");
+					System.out.println("----->Type 2, to knock (AKA this was your last turn)");
+					while(!input.hasNextInt())
+		  			{
+						System.out.println("Thats not a number!");
+						input.next();
+		  			}
+				   choice = input.nextInt();
+				}while(choice < 1 || choice > 2);
+				if(choice != 1)
 				{
-					//AUTOMATICALLY KNOCK BECAUSE THE TIME IS OVER
 					//update game state to knocked round!
 					GAME_STATE.updateGameState(KNOCKED_ROUND, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode());
 					
 					//Set player who knocked
 					playerWhoKnocked = GAME_STATE.getPlayer();
 				}
-				else
-				{
-					//normal turn knocking
-					System.out.println("Do you want to knock?");
-					do{
-			     		System.out.println("----->Type 1, to keep playing");
-						System.out.println("----->Type 2, to knock (AKA this was your last turn)");
-						while(!input.hasNextInt())
-			  			{
-							System.out.println("Thats not a number!");
-							input.next();
-			  			}
-					   choice = input.nextInt();
-					}while(choice < 1 || choice > 2);
-					if(choice != 1)
-					{
-						//update game state to knocked round!
-						GAME_STATE.updateGameState(KNOCKED_ROUND, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode());
-						
-						//Set player who knocked
-						playerWhoKnocked = GAME_STATE.getPlayer();
-					}
-				}
 			}		
 			//--------------------------------------------------------------------------------------END TURN
 		
 			
 			
-			if(sendJSON)
-			{
-				//--------PREPARE THE JSON---------
-				currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, false, currentRound, mainDeck, discard);
-				tempScore.addPlayer(playersArray[0]);
-				tempScore.addPlayer(playersArray[1]);
-				Transporter tempTransport = new Transporter(tempScore);			
-			}
-			
-			
+			//--------PREPARE THE JSON---------
+			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID);
+			tempScore.addPlayer(playersArray[0]);
+			tempScore.addPlayer(playersArray[1]);
+			Transporter tempTransport = new Transporter(tempScore);		
+
 			
 			if(debug || extraHelp)
 			{
@@ -560,12 +572,9 @@ public class finalProject extends JApplet implements ActionListener
 				{
 					//RESET BACK TO FIRST PLAYER
 					GAME_STATE.setPlayer(0);
-					if(debug)
-					{
-						System.out.println("********************************");
-						System.out.println("RESETTING BACK TO PLAYER 1");
-						System.out.println("********************************");
-					}
+					System.out.println("********************************");
+					System.out.println("RESETTING BACK TO PLAYER 1");
+					System.out.println("********************************");
 				}
 				else
 				{
@@ -600,7 +609,7 @@ public class finalProject extends JApplet implements ActionListener
 			}
 		}		
 		
-		//SHOWING ROUND SCORES
+		//SHOWING FINAL SCORES
 		int winner = -1;
 		int winningScore = 50;
 		for(int i = 0; i < 2; i++)
@@ -624,6 +633,7 @@ public class finalProject extends JApplet implements ActionListener
 						int tempSize = discard.size();
 						for(int k = 0; k < tempSize; k++)
 						{
+							System.out.println("adding");
 							mainDeck.addCard(discard.getTopCard());
 						}
 						discard.addTopCard(topCard);
@@ -642,6 +652,7 @@ public class finalProject extends JApplet implements ActionListener
 						cardFromDeck = mainDeck.getTopCard();
 					}
 					
+					System.out.println("FOUND SPECIAL");
 					Card oldPowerCard = playersArray[i].myHand.replaceCard(j, cardFromDeck);
 					discard.addTopCard(oldPowerCard);
 					if(debug)
@@ -649,40 +660,53 @@ public class finalProject extends JApplet implements ActionListener
 						System.out.println("Swapped '" + oldPowerCard.toString() + "' with '" + cardFromDeck + "'");
 					}
 				}
+				else
+				{
+					System.out.println("NO SPECIAL");
+				}
 			}
-			
-			//RESET players score
-			playersArray[i].setScore(0);
-			
 			System.out.println(playersArray[i].getName() + "'s final Score: " + playersArray[i].myHand.getScore());
 			playersArray[i].myHand.showHand();
-			//Update their game Score
-			playersArray[i].setScore(playersArray[i].getScore() + playersArray[i].myHand.getScore());
 			if(playersArray[i].myHand.getScore() < winningScore)
 			{
 				winner = i;
 				winningScore = playersArray[i].myHand.getScore();
 			}
-			//UPDATE PLAYERS TOTAL SCORE
-			playersArray[i].setTotalScore(playersArray[i].getTotalScore() + playersArray[i].myHand.getScore());
-			
 		}
-		//Increase round win counter
-		playersArray[winner].setRoundsWon(playersArray[winner].getRoundsWon() + 1);
 		
-		//show winner!
 		System.out.println("THE WINNER WAS: " + playersArray[winner].getName() + " with " + playersArray[winner].myHand.getScore());
+		//--------PREPARE THE JSON---------
+		currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID);
+		tempScore.addPlayer(playersArray[0]);
+		tempScore.addPlayer(playersArray[1]);
+		Transporter tempTransport = new Transporter(tempScore);		
+
+		/*
+		//TESTING GAME STATE
+		System.out.println("--------TESTING GAME STATE OBJECT------------");
+		gameState newGameState = new gameState();
+		System.out.println("Initital Game State");
+		newGameState.print();
+		System.out.println();
+		newGameState.updateGameState(NULL, NULL, PLAYER_THREE, NULL);
+		System.out.println("Changed Game State");
+		newGameState.print();
 		
-		if(sendJSON)
-		{
-			//--------PREPARE THE JSON---------
-			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, true, currentRound, mainDeck, discard);
-			tempScore.addPlayer(playersArray[0]);
-			tempScore.addPlayer(playersArray[1]);
-			Transporter tempTransport = new Transporter(tempScore);		
-		}
+		//TESTING PLAYER SCORE
+		System.out.println("--------TESTING PLAYER SCORE OBJECT------------");
+		playerScore player1 = new playerScore(19, "Anders");
+		playerScore player2 = new playerScore(183, "Bob");
 		
-		return playersArray;
+		//TESTING CURRENTSCORE
+		System.out.println("--------TESTING CURRENT SCORES OBJECT------------");
+		currentScore totalScore = new currentScore(2, newGameState);
+		totalScore.addPlayerScore(player1);
+		totalScore.addPlayerScore(player2);
+		System.out.println("TOTAL PLAYERS IN SCORE OBJECT SIZE: " + totalScore.getPlayerCount());
+		System.out.println(totalScore.getPlayerScoreAtIndex(0).getName() + " has score " + totalScore.getPlayerScoreAtIndex(0).getScore());
+		System.out.println(totalScore.getPlayerScoreAtIndex(1).getName() + " has score " + totalScore.getPlayerScoreAtIndex(1).getScore());
+		gameState tempGameState = totalScore.getGameState();
+		*/
 	}
 	/* Invoked immediately after the start() method, and also any time
 	the applet needs to repaint itself in the browser. The paint()
@@ -694,198 +718,12 @@ public class finalProject extends JApplet implements ActionListener
 		g.drawString("WOW THIS WORKED!",25,25);
 	}
 	
-	/**
-	*This method is intended for whatever initialization is needed for your applet.
-	*It is called after the param tags inside the applet tag have been processed.
-	**/
+	/*This method is intended for whatever initialization is needed for your applet.
+	It is called after the param tags inside the applet tag have been processed.*/
 	public void init()
 	{
+		//setUpGUI(MAIN_MENU);
 		gameLoop();
-	}
-	
-	public void gameLoop()
-	{
-		//DEBUG/EXTRA HELP PARAMETERS
-		boolean debug = false;
-		boolean extraHelp = true;
-		
-		//Setup Game
-		Object[] gameParameters = initialGameSetup();
-		
-		//rounds counter for while loops
-		int counter = 0;
-		//GAME MODES
-		switch(((gameState)gameParameters[2]).getWinCon())
-		{
-			case(NUM_ROUNDS):
-				if(debug)
-				{
-					System.out.println("------------------------------------------------NUM ROUNDS");
-				}
-				//rounds loop
-				for(int i = 0; i < 5; i++)
-				{
-					int roundNum = i+1;
-					System.out.println("-------------------------------------------------------------------------");
-					System.out.println("-----------------------------Starting Round " + roundNum + "----------------------------");
-					System.out.println("-------------------------------------------------------------------------");
-					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], null, roundNum);
-					counter = i+1;
-				}
-				break;
-			case(TIMED_PLAY):
-				if(debug)
-				{
-					System.out.println("------------------------------------------------TIMED");
-					
-				}
-				//Current Start and Stop time
-				Calendar cal = Calendar.getInstance();
-		    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-		    	Calendar start = Calendar.getInstance();
-		    	String startTime = sdf.format(start.getTime());
-		    	Calendar end = Calendar.getInstance();
-		        end.add(Calendar.MINUTE,5);
-		    	String endTime = sdf.format(end.getTime());
-		    			    	
-		    	
-				//rounds loop			
-				counter = 1;
-				while(((Player[])gameParameters[1])[0].getTotalScore() < 100 || ((Player[])gameParameters[1])[1].getTotalScore() < 100)
-				{
-					System.out.println("-------------------------------------------------------------------------");
-					System.out.println("------------------Started At: " + startTime + " - Ends At: " + endTime + "----------------------------");
-					System.out.println("-----------------------------Starting Round " + counter + "----------------------------");
-					System.out.println(((Player[])gameParameters[1])[0].getName() + "'s Score: " + ((Player[])gameParameters[1])[0].getTotalScore() + " | " + ((Player[])gameParameters[1])[1].getName() + "'s Score: " + ((Player[])gameParameters[1])[1].getTotalScore());
-					System.out.println("-------------------------------------------------------------------------");
-					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], endTime, counter);
-					counter++;
-				}
-				break;
-			case(HIGH_SCORE):
-				if(debug)
-				{
-					System.out.println("------------------------------------------------HIGH SCORE");
-				}
-				//rounds loop
-				counter = 1;
-				while(((Player[])gameParameters[1])[0].getTotalScore() < 100 || ((Player[])gameParameters[1])[1].getTotalScore() < 100)
-				{
-					System.out.println("-------------------------------------------------------------------------");
-					System.out.println("-----------------------------Starting Round " + counter + "----------------------------");
-					System.out.println(((Player[])gameParameters[1])[0].getName() + "'s Score: " + ((Player[])gameParameters[1])[0].getTotalScore() + " | " + ((Player[])gameParameters[1])[1].getName() + "'s Score: " + ((Player[])gameParameters[1])[1].getTotalScore());
-					System.out.println("-------------------------------------------------------------------------");
-					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], null, counter);
-					counter++;
-				}
-				break;
-		}
-		
-		int winner = -1;
-		int numWins = -1;
-		//SHOW FINAL WINNER
-		for(int i = 0; i < 2; i++)
-		{
-			if(((Player[])gameParameters[1])[i].getRoundsWon() > numWins)
-			{
-				numWins = ((Player[])gameParameters[1])[i].getRoundsWon();
-				winner = i;
-			}
-		}
-		
-		System.out.println("------------------------------------------------");
-		System.out.println("------------------------------------------------");
-		System.out.println("FINAL WINNER: " + ((Player[])gameParameters[1])[winner].getName() + ", with " + ((Player[])gameParameters[1])[winner].getRoundsWon() + " wins and " + ((Player[])gameParameters[1])[winner].getTotalScore() + " total points");
-		if(winner == 0)
-		{
-			System.out.println("FINAL LOSER: " + ((Player[])gameParameters[1])[1].getName() + ", with " + ((Player[])gameParameters[1])[1].getRoundsWon() + " wins and " + ((Player[])gameParameters[1])[1].getTotalScore() + " total points");
-		}
-		else
-		{
-			System.out.println("FINAL LOSER: " + ((Player[])gameParameters[1])[0].getName() + ", with " + ((Player[])gameParameters[1])[0].getRoundsWon() + " wins and " + ((Player[])gameParameters[1])[0].getTotalScore() + " total points");
-		}
-		System.out.println("-------------------------------------------------");
-		System.out.println("------------------------------------------------");
-		
-		//--------PREPARE THE JSON---------
-		currentScore tempScore = new currentScore(((gameState)gameParameters[2]).numPlayers(), (gameState)gameParameters[2], (UUID)gameParameters[3], true, true, counter, null, null);
-		tempScore.addPlayer(((Player[])gameParameters[1])[0]);
-		tempScore.addPlayer(((Player[])gameParameters[1])[1]);
-		Transporter tempTransport = new Transporter(tempScore);
-	}
-	
-	public Object[] initialGameSetup()
-	{
-		//NEW INPUT SCANNER1
-		Scanner input = new Scanner(System.in);
-		
-		//CREATE GAME STATE
-		gameState GAME_STATE = new gameState(2);	
-		
-		//CREATE UNIQUE GAME ID
-		UUID uniqueID = UUID.randomUUID();
-		
-		//PLAYERS ARRAY
-		Player [] playersArray = new Player[2];
-		
-		//HUMAN PLAYER
-	    System.out.println("---->WHAT IS YOUR NAME?");
-	    String name = input.next();
-		Hand humanHand = new Hand(0);
-		Player human = new Player(true, 0, name, humanHand);
-		playersArray[0] = human;
-		
-		String[] opponents = new String[5];
-		opponents[0] = "Jimmy";
-		opponents[1] = "Einstein";
-		opponents[2] = "God";
-		
-		//Difficulty
-		System.out.println("Choose Opponenets Difficulty:");
-		int difficulty = 0;
-		do{
-	    	System.out.println("Type 1, for EASY");
-			System.out.println("Type 2, for MEDIUM");
-			System.out.println("Type 3, for HARD");
-			while(!input.hasNextInt())
-			{
-				System.out.println("Thats not a number!");
-				input.next();
-			}
-		   difficulty = input.nextInt();
-		}while(difficulty < 1 || difficulty > 3);
-	  				
-		//COMPUTER PLAYER
-		Hand computerHand = new Hand(1);
-		Player computer = new Player(false, 1, opponents[difficulty -1], computerHand);
-		playersArray[1] = computer;
-		System.out.println("You are playing " + opponents[difficulty-1]);
-		
-		//Choose GAME MODE
-		System.out.println("What Type of Game Do You Want To Play?");
-		int winCon = 0;
-		do{
-	 		System.out.println("Type 1, for 5 Rounds");
-			System.out.println("Type 2, for 2 Minute Max Round");
-			System.out.println("Type 3, for last one to be under 100 points");
-			while(!input.hasNextInt())
-			{
-				System.out.println("Thats not a number!");
-				input.next();
-			}
-		   winCon = input.nextInt();
-		}while(winCon < 1 || winCon > 3);
-
-		//UPDATE GAME STATE
-		GAME_STATE.updateGameState(NORMAL_ROUND, winCon-1, 0, NORMAL_PLAY);
-		//Build return array
-		Object[] gameParameters = new Object[4];
-		gameParameters[0] = input;
-		gameParameters[1] = playersArray;
-		gameParameters[2] = GAME_STATE;
-		gameParameters[3] = uniqueID;
-		
-		return gameParameters;
 	}
 	
 	/* This method is automatically called after the browser calls the init method.
@@ -910,8 +748,8 @@ public class finalProject extends JApplet implements ActionListener
 	
 	}
 	
-	public void actionPerformed(ActionEvent e)
-	{	
+	public void actionPerformed(ActionEvent e) {
+		
 		if("enableLeft".equals(e.getActionCommand()))
 		{
 			System.out.println("left");
