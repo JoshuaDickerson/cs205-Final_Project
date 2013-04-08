@@ -60,7 +60,7 @@ class Stats{
 
 	public function usageOverTIme(){
 		
-		$query = "SELECT Count(*) as qty, month(visitDate) ";
+		$query = "SELECT Count(*) as qty, month(fldCurrentTimestamp) ";
 		$query .= "as month,day(fldCurrentTimestamp) as day,year(fldCurrentTimestamp) ";
 		$query .= "as year FROM `tblGame` GROUP BY year(fldCurrentTimestamp), ";
 		$query .= "month(fldCurrentTimestamp), day(fldCurrentTimestamp)";
@@ -212,7 +212,7 @@ class Stats{
 			}
 		}
 		
-		return json_encode($scores);
+		return $scores;
 	}
 }
 
