@@ -59,13 +59,13 @@ public class Draw2InstructionDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
+        scrollPowerCard2 = new javax.swing.JScrollPane();
         txtPowerCards = new javax.swing.JTextArea();
         labelDraw2 = new javax.swing.JLabel();
         labelDraw2Picture1 = new javax.swing.JLabel();
         labelDraw2Picture2 = new javax.swing.JLabel();
         okButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollDraw2 = new javax.swing.JScrollPane();
         txtDraw2 = new javax.swing.JTextArea();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -81,7 +81,7 @@ public class Draw2InstructionDialog extends javax.swing.JDialog {
         txtPowerCards.setRows(5);
         txtPowerCards.setText("Power cards have no value and if they are in a player's hand at the end of the round. They must be swapped for the top card of the deck.");
         txtPowerCards.setWrapStyleWord(true);
-        jScrollPane2.setViewportView(txtPowerCards);
+        scrollPowerCard2.setViewportView(txtPowerCards);
 
         labelDraw2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         labelDraw2.setText("You've Drawn a Draw 2 Card!");
@@ -99,7 +99,7 @@ public class Draw2InstructionDialog extends javax.swing.JDialog {
         txtDraw2.setRows(5);
         txtDraw2.setText("Take a card from the draw pile, and either swap it with one of your cards or discard it and draw a second card to be swapped or thrown out.");
         txtDraw2.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(txtDraw2);
+        scrollDraw2.setViewportView(txtDraw2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,14 +109,14 @@ public class Draw2InstructionDialog extends javax.swing.JDialog {
                 .addGap(130, 130, 130)
                 .addComponent(labelDraw2))
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(40, 40, 40)
                 .addComponent(labelDraw2Picture2)
-                .addGap(25, 25, 25)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(labelDraw2Picture1))
+                    .addComponent(scrollDraw2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scrollPowerCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addComponent(labelDraw2Picture1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(270, 270, 270)
                 .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -124,17 +124,17 @@ public class Draw2InstructionDialog extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(70, 70, 70)
                 .addComponent(labelDraw2)
-                .addGap(31, 31, 31)
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelDraw2Picture2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollDraw2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scrollPowerCard2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelDraw2Picture1))
-                .addGap(19, 19, 19)
+                .addGap(39, 39, 39)
                 .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -198,12 +198,12 @@ public class Draw2InstructionDialog extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelDraw2;
     private javax.swing.JLabel labelDraw2Picture1;
     private javax.swing.JLabel labelDraw2Picture2;
     private javax.swing.JButton okButton;
+    private javax.swing.JScrollPane scrollDraw2;
+    private javax.swing.JScrollPane scrollPowerCard2;
     private javax.swing.JTextArea txtDraw2;
     private javax.swing.JTextArea txtPowerCards;
     // End of variables declaration//GEN-END:variables

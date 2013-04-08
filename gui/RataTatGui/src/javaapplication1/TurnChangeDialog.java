@@ -65,6 +65,7 @@ public class TurnChangeDialog extends javax.swing.JDialog {
         labelCardPicture1 = new javax.swing.JLabel();
         labelCardPicture2 = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(640, 480));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
@@ -109,7 +110,7 @@ public class TurnChangeDialog extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(78, 78, 78)
                 .addComponent(labelPlayerTurn)
                 .addGap(6, 6, 6)
                 .addComponent(labelDontLook)
@@ -119,7 +120,8 @@ public class TurnChangeDialog extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(okButtonTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelCardPicture1)))
+                    .addComponent(labelCardPicture1))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         getRootPane().setDefaultButton(okButtonTurn);

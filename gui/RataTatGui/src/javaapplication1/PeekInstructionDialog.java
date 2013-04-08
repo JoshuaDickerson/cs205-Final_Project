@@ -58,7 +58,7 @@ public class PeekInstructionDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        okButton = new javax.swing.JButton();
+        okButtonPeek = new javax.swing.JButton();
         scrollPeek = new javax.swing.JScrollPane();
         txtPeek = new javax.swing.JTextArea();
         scrollPowerCards = new javax.swing.JScrollPane();
@@ -73,10 +73,10 @@ public class PeekInstructionDialog extends javax.swing.JDialog {
             }
         });
 
-        okButton.setText("OK");
-        okButton.addActionListener(new java.awt.event.ActionListener() {
+        okButtonPeek.setText("OK");
+        okButtonPeek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
+                okButtonPeekActionPerformed(evt);
             }
         });
 
@@ -110,12 +110,9 @@ public class PeekInstructionDialog extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(labelPeek))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
                         .addComponent(labelPeekPic2)
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,16 +121,19 @@ public class PeekInstructionDialog extends javax.swing.JDialog {
                         .addGap(24, 24, 24)
                         .addComponent(labelPeekPic1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30))
+                        .addGap(233, 233, 233)
+                        .addComponent(okButtonPeek, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(labelPeek)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(70, 70, 70)
                 .addComponent(labelPeek)
-                .addGap(31, 31, 31)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelPeekPic2)
                     .addGroup(layout.createSequentialGroup()
@@ -141,18 +141,19 @@ public class PeekInstructionDialog extends javax.swing.JDialog {
                         .addGap(9, 9, 9)
                         .addComponent(scrollPowerCards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelPeekPic1))
-                .addGap(15, 15, 15)
-                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(okButtonPeek, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
-        getRootPane().setDefaultButton(okButton);
+        getRootPane().setDefaultButton(okButtonPeek);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+    private void okButtonPeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonPeekActionPerformed
         doClose(RET_OK);
-    }//GEN-LAST:event_okButtonActionPerformed
+    }//GEN-LAST:event_okButtonPeekActionPerformed
     
     /**
      * Closes the dialog
@@ -212,7 +213,7 @@ public class PeekInstructionDialog extends javax.swing.JDialog {
     private javax.swing.JLabel labelPeek;
     private javax.swing.JLabel labelPeekPic1;
     private javax.swing.JLabel labelPeekPic2;
-    private javax.swing.JButton okButton;
+    private javax.swing.JButton okButtonPeek;
     private javax.swing.JScrollPane scrollPeek;
     private javax.swing.JScrollPane scrollPowerCards;
     private javax.swing.JTextArea txtPeek;

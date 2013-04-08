@@ -61,10 +61,10 @@ public class SwapDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Player2Card1 = new javax.swing.JLabel();
-        Player2Card2 = new javax.swing.JLabel();
-        Player2Card4 = new javax.swing.JLabel();
-        Player2Card3 = new javax.swing.JLabel();
+        OpponentCard1 = new javax.swing.JLabel();
+        OpponentCard2 = new javax.swing.JLabel();
+        OpponentCard4 = new javax.swing.JLabel();
+        OpponentCard3 = new javax.swing.JLabel();
         Player1Card2 = new javax.swing.JLabel();
         Player1Card1 = new javax.swing.JLabel();
         Player1Card4 = new javax.swing.JLabel();
@@ -72,7 +72,7 @@ public class SwapDialog extends javax.swing.JDialog {
         comboPlayerCard = new javax.swing.JComboBox();
         comboOpponentCard = new javax.swing.JComboBox();
         buttonSwapDiscard = new javax.swing.JButton();
-        buttonSwap = new javax.swing.JButton();
+        buttonPeek = new javax.swing.JButton();
         labelPlayer2Card1 = new javax.swing.JLabel();
         labelPlayer2Card2 = new javax.swing.JLabel();
         labelPlayer2Card3 = new javax.swing.JLabel();
@@ -85,6 +85,8 @@ public class SwapDialog extends javax.swing.JDialog {
         labelPlayer2 = new javax.swing.JLabel();
         labelChooseCard = new javax.swing.JLabel();
         labelChooseOppCard = new javax.swing.JLabel();
+        buttonSwap = new javax.swing.JButton();
+        labelCardShow = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -92,13 +94,13 @@ public class SwapDialog extends javax.swing.JDialog {
             }
         });
 
-        Player2Card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+        OpponentCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
 
-        Player2Card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+        OpponentCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
 
-        Player2Card4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+        OpponentCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
 
-        Player2Card3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+        OpponentCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
 
         Player1Card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
 
@@ -119,10 +121,10 @@ public class SwapDialog extends javax.swing.JDialog {
             }
         });
 
-        buttonSwap.setText("Swap");
-        buttonSwap.addActionListener(new java.awt.event.ActionListener() {
+        buttonPeek.setText("Peek");
+        buttonPeek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSwapActionPerformed(evt);
+                buttonPeekActionPerformed(evt);
             }
         });
 
@@ -150,106 +152,120 @@ public class SwapDialog extends javax.swing.JDialog {
 
         labelChooseOppCard.setText("Choose Opponent's Card:");
 
+        buttonSwap.setText("Swap");
+        buttonSwap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSwapActionPerformed(evt);
+            }
+        });
+
+        labelCardShow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(70, 70, 70)
+                .addComponent(OpponentCard1)
+                .addGap(25, 25, 25)
+                .addComponent(OpponentCard2)
+                .addGap(15, 15, 15)
+                .addComponent(OpponentCard3)
+                .addGap(15, 15, 15)
+                .addComponent(OpponentCard4))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(labelPlayer2Card1)
+                .addGap(58, 58, 58)
+                .addComponent(labelPlayer2Card2)
+                .addGap(58, 58, 58)
+                .addComponent(labelPlayer2Card3)
+                .addGap(58, 58, 58)
+                .addComponent(labelPlayer2Card4))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Player2Card1)
-                        .addGap(18, 18, 18)
-                        .addComponent(Player2Card2)
-                        .addGap(18, 18, 18)
-                        .addComponent(Player2Card3)
-                        .addGap(18, 18, 18)
-                        .addComponent(Player2Card4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(labelPlayer2Card1)
-                        .addGap(59, 59, 59)
-                        .addComponent(labelPlayer2Card2)
-                        .addGap(64, 64, 64)
-                        .addComponent(labelPlayer2Card3)
-                        .addGap(57, 57, 57)
-                        .addComponent(labelPlayer2Card4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
+                        .addGap(120, 120, 120)
                         .addComponent(labelPlayer2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(labelChooseCard)
-                        .addGap(18, 18, 18)
-                        .addComponent(comboPlayerCard, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(110, 110, 110)
+                        .addComponent(labelChooseCard))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(labelChooseOppCard)
-                        .addGap(18, 18, 18)
-                        .addComponent(comboOpponentCard, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(80, 80, 80)
+                        .addComponent(labelChooseOppCard))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(buttonSwap, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(buttonSwapDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(labelPlayer1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(labelPlayer1Card1)
-                        .addGap(59, 59, 59)
-                        .addComponent(labelPlayer1Card2)
-                        .addGap(61, 61, 61)
-                        .addComponent(labelPlayer1Card3)
-                        .addGap(57, 57, 57)
-                        .addComponent(labelPlayer1Card4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Player1Card1)
-                        .addGap(18, 18, 18)
-                        .addComponent(Player1Card2)
-                        .addGap(18, 18, 18)
-                        .addComponent(Player1Card3)
-                        .addGap(18, 18, 18)
-                        .addComponent(Player1Card4)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addComponent(buttonPeek, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(buttonSwap, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboPlayerCard, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboOpponentCard, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSwapDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(labelCardShow))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(230, 230, 230)
+                .addComponent(labelPlayer1))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(labelPlayer1Card1)
+                .addGap(58, 58, 58)
+                .addComponent(labelPlayer1Card2)
+                .addGap(58, 58, 58)
+                .addComponent(labelPlayer1Card3)
+                .addGap(58, 58, 58)
+                .addComponent(labelPlayer1Card4))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(Player1Card1)
+                .addGap(25, 25, 25)
+                .addComponent(Player1Card2)
+                .addGap(15, 15, 15)
+                .addComponent(Player1Card3)
+                .addGap(15, 15, 15)
+                .addComponent(Player1Card4))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Player2Card1)
-                    .addComponent(Player2Card2)
-                    .addComponent(Player2Card3)
-                    .addComponent(Player2Card4))
-                .addGap(6, 6, 6)
+                    .addComponent(OpponentCard1)
+                    .addComponent(OpponentCard2)
+                    .addComponent(OpponentCard3)
+                    .addComponent(OpponentCard4))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelPlayer2Card1)
                     .addComponent(labelPlayer2Card2)
                     .addComponent(labelPlayer2Card3)
                     .addComponent(labelPlayer2Card4))
-                .addGap(11, 11, 11)
-                .addComponent(labelPlayer2)
-                .addGap(37, 37, 37)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(labelChooseCard))
-                    .addComponent(comboPlayerCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(labelPlayer2)
+                        .addGap(26, 26, 26)
+                        .addComponent(labelChooseCard)
+                        .addGap(16, 16, 16)
+                        .addComponent(labelChooseOppCard)
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonPeek, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonSwap, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(labelChooseOppCard))
-                    .addComponent(comboOpponentCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonSwap, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonSwapDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addGap(30, 30, 30)
+                        .addComponent(comboPlayerCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboOpponentCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(buttonSwapDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelCardShow))
+                .addGap(5, 5, 5)
                 .addComponent(labelPlayer1)
-                .addGap(11, 11, 11)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelPlayer1Card1)
                     .addComponent(labelPlayer1Card2)
@@ -260,8 +276,7 @@ public class SwapDialog extends javax.swing.JDialog {
                     .addComponent(Player1Card1)
                     .addComponent(Player1Card2)
                     .addComponent(Player1Card3)
-                    .addComponent(Player1Card4))
-                .addContainerGap())
+                    .addComponent(Player1Card4)))
         );
 
         pack();
@@ -282,8 +297,12 @@ public class SwapDialog extends javax.swing.JDialog {
          */
     }//GEN-LAST:event_buttonSwapDiscardActionPerformed
 
-    private void buttonSwapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSwapActionPerformed
+    private void buttonPeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPeekActionPerformed
         // This will actually do the swap between the cards
+    }//GEN-LAST:event_buttonPeekActionPerformed
+
+    private void buttonSwapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSwapActionPerformed
+        // TODO add your handling code here:
     }//GEN-LAST:event_buttonSwapActionPerformed
     
     private void doClose(int retStatus) {
@@ -335,18 +354,20 @@ public class SwapDialog extends javax.swing.JDialog {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel OpponentCard1;
+    private javax.swing.JLabel OpponentCard2;
+    private javax.swing.JLabel OpponentCard3;
+    private javax.swing.JLabel OpponentCard4;
     private javax.swing.JLabel Player1Card1;
     private javax.swing.JLabel Player1Card2;
     private javax.swing.JLabel Player1Card3;
     private javax.swing.JLabel Player1Card4;
-    private javax.swing.JLabel Player2Card1;
-    private javax.swing.JLabel Player2Card2;
-    private javax.swing.JLabel Player2Card3;
-    private javax.swing.JLabel Player2Card4;
+    private javax.swing.JButton buttonPeek;
     private javax.swing.JButton buttonSwap;
     private javax.swing.JButton buttonSwapDiscard;
     private javax.swing.JComboBox comboOpponentCard;
     private javax.swing.JComboBox comboPlayerCard;
+    private javax.swing.JLabel labelCardShow;
     private javax.swing.JLabel labelChooseCard;
     private javax.swing.JLabel labelChooseOppCard;
     private javax.swing.JLabel labelPlayer1;
