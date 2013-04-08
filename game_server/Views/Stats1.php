@@ -2,7 +2,7 @@
 	// print_r($this->vars);
 	$gpd = "<option id='gpd'>Games Per Day</option>";
 	$hs = "<option id='hs'>High Scores</option>";
-	?>
+?>
 <script type="text/javascript" src=<?= "\"".BASEDIR."Views/js/amcharts/amcharts.js"."\""; ?>></script>
 <script type="text/javascript">
 <?
@@ -27,7 +27,7 @@
     	});
     });
     </script>
-    
+
     <body>
     	<ul class="datasets">
     		<li>
@@ -75,8 +75,5 @@
 			</li>
 		</ul>
     </body>
-
-
-
 </html>
 
