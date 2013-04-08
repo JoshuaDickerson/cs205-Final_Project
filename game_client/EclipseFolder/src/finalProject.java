@@ -106,20 +106,13 @@ public class finalProject extends JApplet implements ActionListener
 		        comboGameStyle = new javax.swing.JComboBox();
 		        comboDifficulty = new javax.swing.JComboBox();
 
-		        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/RataTat/rat a tat.jpg"))); 
+		        //jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("../javaapplication1/RataTat/rat_a_tat.jpg"))); 
 
 		        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24));
 		        jLabel2.setText("Instructions:");
 
 		        buttonPlay.setText("Play");
 		        
-		        buttonPlay.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-		            	
-		           
-		            }
-		        });
-
 		        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 		        jLabel3.setText("Style of Game:");
 
@@ -137,32 +130,20 @@ public class finalProject extends JApplet implements ActionListener
 		        jTextArea1.setWrapStyleWord(true);
 		        jScrollPane1.setViewportView(jTextArea1);
 
-		        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Player1Card1/3.png"))); // NOI18N
+		        //jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("../javaapplication1/Cards/3.png"))); // NOI18N
 
-		        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Player1Card1/9.png"))); // NOI18N
+		        //jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("../javaapplication1/Cards/9.png"))); // NOI18N
 
-		        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/3.png"))); // NOI18N
+		        //jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("../javaapplication1/Cards/3.png"))); // NOI18N
 
-		        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/9.png"))); // NOI18N
+		        //jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("../javaapplication1/Cards/9.png"))); // NOI18N
 
 		        comboGameStyle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rounds", "Time", "Points" }));
 		        comboGameStyle.setToolTipText("");
 		        
-		        comboGameStyle.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-		             
-		            	
-		            }
-		        });
-
 		        comboDifficulty.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Easy", "Medium", "Hard" }));
 		        
-		        comboDifficulty.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-		            	
-		                
-		            }
-		        });
+		
 
 		        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
