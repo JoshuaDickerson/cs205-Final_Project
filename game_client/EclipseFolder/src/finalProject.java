@@ -299,6 +299,13 @@ public class finalProject extends JApplet implements ActionListener
 		        buttonDraw.addActionListener(new java.awt.event.ActionListener() {
 		            public void actionPerformed(java.awt.event.ActionEvent evt) {
 
+			            // This section would then draw a card from the deck constructor
+			            /*
+			             * Draw from the deck here;
+			             * Card drawnCard = Deck.Draw();
+			             * labelDiscard.setIcon(new Javax.swing.ImageIcon(getClass().getResource(drawnCard.Image)));
+			             */
+		            	
 		            }
 		        });
 
@@ -329,6 +336,13 @@ public class finalProject extends JApplet implements ActionListener
 		        buttonDiscard.addActionListener(new java.awt.event.ActionListener() {
 		            public void actionPerformed(java.awt.event.ActionEvent evt) {
 
+			            // This is when a card is discarded to the pile and the label changes image to display the discarded card
+			            /*
+			             * Power cards should be discarded automatically after use, so just change the label to whichever card it was
+			             * If there's an object for current card or something like that, then the label would change to its image
+			             * labelDiscard.setIcon(new Javax.swing.ImageIcon(getClass().getResource(currentCard.Image)));
+			             */
+		            	
 		            }
 		        });
 
@@ -354,6 +368,13 @@ public class finalProject extends JApplet implements ActionListener
 		        
 		        buttonPeek.addActionListener(new java.awt.event.ActionListener() {
 		            public void actionPerformed(java.awt.event.ActionEvent evt) {
+		            	
+			            // For peeking during tutorial mode
+			            /*
+			             * Each of the labels are called Player1Card1 and so forth, so each would then be set to their actual value of the card and changed to whichever image
+			             * Example:
+			             * Player1Card1.setIcon(new Javax.swing.ImageIcon(getClass().getResource(Player1Card1.Image)));
+			             */
 		            	
 		            }
 		        });
@@ -465,6 +486,8 @@ public class finalProject extends JApplet implements ActionListener
 		                    .addComponent(PlayerCard3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
 		                    .addComponent(PlayerCard4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
 		        );
+		        
+	        
 				
 				break;
 			case(2): //Draw 2 Tutorial GUI
@@ -724,6 +747,12 @@ public class finalProject extends JApplet implements ActionListener
 		        buttonSwapDiscard.addActionListener(new java.awt.event.ActionListener() {
 		            public void actionPerformed(java.awt.event.ActionEvent evt) {
 		            
+		                // This would move the swap card to the discard pile
+		                /*
+		                 * DiscardPileArray.add(card);
+		                 * labelDiscard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/12.png")));
+		                 */
+		            	
 		            }
 		        });
 
@@ -731,6 +760,8 @@ public class finalProject extends JApplet implements ActionListener
 		        buttonSwap.addActionListener(new java.awt.event.ActionListener() {
 		            public void actionPerformed(java.awt.event.ActionEvent evt) {
 		           
+		            	// This will actually do the swap between the cards
+		            	
 		            }
 		        });
 
