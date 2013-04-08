@@ -3,7 +3,7 @@ logThis($this->vars);
 	// print_r($this->vars);
 	$gpd = "<option id='gpd'>Games Per Day</option>";
 	$hs = "<option id='hs'>High Scores</option>";
-	?>
+?>
 <script type="text/javascript" src=<?= "\"".BASEDIR."Views/js/amcharts/amcharts.js"."\""; ?>></script>
 <script type="text/javascript">
 <?
@@ -28,7 +28,7 @@ logThis($this->vars);
     	});
     });
     </script>
-    
+
     <body>
     	<ul class="datasets">
     		<li>
@@ -76,8 +76,5 @@ logThis($this->vars);
 			</li>
 		</ul>
     </body>
-
-
-
 </html>
 
