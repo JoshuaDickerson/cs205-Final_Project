@@ -3,9 +3,6 @@ import java.util.*;
 import java.awt.*;
 import java.applet.*;
 import java.util.Scanner;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 
 import java.awt.event.ActionEvent;
@@ -19,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
-public class finalProject extends JApplet implements ActionListener
+public class finalProject extends JApplet implements ActionListener 
 {
 	//GAME STATE DEFINITIONS
 	//UNIVERSAL NULL CASE
@@ -49,1016 +46,110 @@ public class finalProject extends JApplet implements ActionListener
 	public static final int GAME_SCREEN = 1;
 	public static final int CREDITS_SCREEN = 2; //not sure if we need this...
 	
-	//GLOBAL OBJECTs
-	gameState GAME_STATE;
-	Player[] playersArray;
-	Deck mainDeck;
-	Deck discard;
-	boolean debug;
-	boolean extraHelp;
-	boolean sendJSON;
-	String endTime;
-	boolean draw2FirstCard;
-	boolean draw2SecondCard;
-	UUID uniqueID;
-	boolean gameOver;
-	
 	//GUI
 	JButton jbnLeft;
 	JButton jbnRight;
 	JButton jbnMiddle;
 	JLabel title;
-	TextField nameText;
 	
 	public void setUpGUI(int guiMode)
 	{
 		clearGUI();
+		
+		System.out.println("AFTER CLEAR");
+		//setLayout(new BorderLayout());
+			System.out.println("CREATED NEW BORDERLAYOUT");
+				System.out.println(guiMode);
 		switch(guiMode)
 		{
-			case(0): //Instructions GUI
-			    javax.swing.JButton buttonPlay;
-				javax.swing.JComboBox comboDifficulty;
-				javax.swing.JComboBox comboGameStyle;
-				javax.swing.JLabel jLabel1;
-				javax.swing.JLabel jLabel2;
-				javax.swing.JLabel jLabel3;
-				javax.swing.JLabel jLabel4;
-		    	javax.swing.JLabel jLabel5;
-		    	javax.swing.JLabel jLabel6;
-		    	javax.swing.JLabel jLabel7;
-		    	javax.swing.JLabel jLabel8;
-		    	javax.swing.JLabel jLabel9;
-		    	javax.swing.JScrollPane jScrollPane1;
-		    	javax.swing.JTextArea jTextArea1;
+			case(0): //MAIN_MENU GUI
+			System.out.println("0");
+				
+				//TITLE
+				title = new JLabel("Menu");
+				getContentPane().add(title, BorderLayout.NORTH);
+				
+				//LEFT
+				jbnLeft = new JButton("Menu");
+				jbnLeft.setEnabled(false);
+				jbnLeft.addActionListener(this);
+				
+				//MIDDLE
+				jbnMiddle = new JButton("Game Board");
+				jbnMiddle.setEnabled(true);
+				jbnMiddle.setActionCommand("enableMiddle");
+				jbnMiddle.addActionListener(this);
+				
+				//RIGHT
+				jbnRight = new JButton("Credits");
+				jbnRight.setEnabled(true);
+				jbnRight.setActionCommand("enableRight");
+				jbnRight.addActionListener(this);
+				
+				//ADD THEM
+				add(jbnLeft, BorderLayout.WEST);
+				add(jbnRight, BorderLayout.EAST);
+				add(jbnMiddle, BorderLayout.CENTER);
+				break;
 			
-		    	jLabel1 = new javax.swing.JLabel();
-		        jLabel2 = new javax.swing.JLabel();
-		        buttonPlay = new javax.swing.JButton();
-		        jLabel3 = new javax.swing.JLabel();
-		        jLabel4 = new javax.swing.JLabel();
-		        jLabel5 = new javax.swing.JLabel();
-		        jScrollPane1 = new javax.swing.JScrollPane();
-		        jTextArea1 = new javax.swing.JTextArea();
-		        jLabel6 = new javax.swing.JLabel();
-		        jLabel7 = new javax.swing.JLabel();
-		        jLabel8 = new javax.swing.JLabel();
-		        jLabel9 = new javax.swing.JLabel();
-		        comboGameStyle = new javax.swing.JComboBox();
-		        comboDifficulty = new javax.swing.JComboBox();
-
-		        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/RataTat/rat a tat.jpg"))); 
-
-		        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24));
-		        jLabel2.setText("Instructions:");
-
-		        buttonPlay.setText("Play");
-		        
-		        buttonPlay.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-		            	
-		           
-		            }
-		        });
-
-		        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-		        jLabel3.setText("Style of Game:");
-
-		        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-		        jLabel4.setText("Difficulty: ");
-
-		        jLabel5.setText("For More Game Rules See: http://www.gamewright.com/gamewright/pdfs/Rules/Rat-a-TatCat-RULES.pdf");
-
-		        jTextArea1.setEditable(false);
-		        jTextArea1.setColumns(20);
-		        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-		        jTextArea1.setLineWrap(true);
-		        jTextArea1.setRows(5);
-		        jTextArea1.setText("The goal is to have the lowest score at the end of the game.\n\nChoose one player to be the dealer, and a scorekeeper. The scorekeeper will record each player’s score at the end of each round of play.\n\nShuffle the deck. The player to the left of the dealer cuts the cards. \nThe dealer then deals four cards, one at a time and face down, to each player.\nThe remaining cards are placed face down, in the middle of the table, as the\ndraw pile. The top card of the draw pile is turned over to start the discard\npile. If that card is a Power card, it is placed back in the deck and another\ncard is turned over.\n\nWithout looking at his cards, each player places his or her four cards face down in a line on the table in front of them.\n\nDuring the game, players will always have their four cards face down on the\ntable. To begin the game, players peek at their two outer cards once, then\nturn them face down again. Each player now knows the point values of two of\nhis four cards and needs to remember them during the game.\nIf either of the outer cards are Power cards, the player keeps them, but they\ndo not have their powers (described below). Power cards only have their\npowers when they are drawn from the top of the draw pile.  \nThe player to the left of the dealer has the first turn, and play continues in a\nclockwise direction.\n\nFor each turn, a player may:\n\n1. Draw the top card from the discard pile. This card MUST be used to\nreplace one of her cards. The card replaced is then discarded, face up, to the\ndiscard pile.\n\n2. Draw the top card from the draw pile. A player may use it to: \n\t1. Replace one of her cards\n\t2. Peek, Swap, or Draw 2 if it is a Power card (see below)\n\t3. Discard it face up to the discard pile\n\nA player’s choice is based on remembering the values of his four face down\ncards. Keep track of what you have so you won’t accidentally replace your\nlow point cards with high point cards.\nDuring the game, when the draw pile is used up, shuffle the discard pile and\nturn it over for a new draw pile.\n\nPower cards only have their powers when you draw them from the draw pile. If a Power card is dealt to you at the beginning of the game, it cannot be used. Because Power cards have no point value, if one of them is among your cards at the end of the game, you must replace it with a card drawn from the draw pile. If a Power card is discarded, it may not be used again by any player.\n\nThere are three kinds of Power cards:\n1. Peek\n\tWhen you draw a Peek card, show it and then peek at any\n\tone of your cards. Now you will know what you have, or you\n\tcan refresh your memory if you have forgotten what you have.\n\tYour turn is over and you discard the Peek card.\n2. Swap\n\tWhen you draw a Swap card, show the Swap card and \n\tdiscard it. You may now switch any one of your cards with\n\tany card of another player (swapping is optional). Neither player \t\tcan look at either of the cards being swapped. After the swap \t\tyour turn is over.\n3. Draw 2\n\tWhen you draw a Draw 2 card, show the card and then you\n\tmay take two more turns. First you draw the next card from the\n\tdraw pile. You must decide whether to use this card and forfeit\n\tthe second turn OR discard this card and draw a second card.\n\tThis second card may be used or discarded. Your turn is then\n\tover. If either of the cards drawn are another Draw 2 card, the\n\tDraw 2 sequence starts again.\n\nEnding the Round\n\nWhen a player thinks he has the lowest score and can win the round, he or she may end the round by knocking on the table and saying “rat-a-tat cat” at\nthe end of their turn. Once they knock, every other player has one more turn.\nEach player then turns over their cards. Players replace all Power cards by\ndrawing from the draw pile. If another Power card is drawn, the player\ndraws again.\n\nScoring\n\nPlayers add the point values of their four cards. This is each player’s score\nfor the round. The scorekeeper records each player’s score. Remember that\nplayers are trying to get as low a score as possible.\n\nNext Rounds\n\nAll cards are collected and passed to the player to the left of the dealer who\nreshuffles and deals for the next round.\n\nEnding the Game\n\nThe player with the lowest total score at the end of the game is the winner.\n\nA game may be played three ways:\n1. Play for a certain number of rounds.\n2. Play for a specific length of time.\n3. Play to stay in the game and not reach 100 points. When a player \nreaches 100 points, he is out of the game. The last player in the game is \nthe winner. Players may also choose to play to 200, or any other number \nof points.");
-		        jTextArea1.setWrapStyleWord(true);
-		        jScrollPane1.setViewportView(jTextArea1);
-
-		        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Player1Card1/3.png"))); // NOI18N
-
-		        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Player1Card1/9.png"))); // NOI18N
-
-		        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/3.png"))); // NOI18N
-
-		        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/9.png"))); // NOI18N
-
-		        comboGameStyle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rounds", "Time", "Points" }));
-		        comboGameStyle.setToolTipText("");
-		        
-		        comboGameStyle.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-		             
-		            	
-		            }
-		        });
-
-		        comboDifficulty.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Easy", "Medium", "Hard" }));
-		        
-		        comboDifficulty.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-		            	
-		                
-		            }
-		        });
-
-		        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		        getContentPane().setLayout(layout);
-		        layout.setHorizontalGroup(
-		            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(layout.createSequentialGroup()
-		                .addGap(10, 10, 10)
-		                .addComponent(jLabel6)
-		                .addGap(6, 6, 6)
-		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(jLabel1)
-		                    .addComponent(jLabel8)
-		                    .addGroup(layout.createSequentialGroup()
-		                        .addGap(65, 65, 65)
-		                        .addComponent(jLabel9)))
-		                .addComponent(jLabel7)
-		                .addGap(18, 18, 18)
-		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addGroup(layout.createSequentialGroup()
-		                        .addGap(154, 154, 154)
-		                        .addComponent(jLabel2))
-		                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
-		            .addGroup(layout.createSequentialGroup()
-		                .addGap(94, 94, 94)
-		                .addComponent(jLabel5))
-		            .addGroup(layout.createSequentialGroup()
-		                .addGap(155, 155, 155)
-		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(jLabel3)
-		                    .addGroup(layout.createSequentialGroup()
-		                        .addGap(26, 26, 26)
-		                        .addComponent(jLabel4)))
-		                .addGap(18, 18, 18)
-		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(comboGameStyle, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addComponent(comboDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                .addGap(37, 37, 37)
-		                .addComponent(buttonPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-		        );
-		        layout.setVerticalGroup(
-		            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(layout.createSequentialGroup()
-		                .addGap(25, 25, 25)
-		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addGroup(layout.createSequentialGroup()
-		                        .addGap(173, 173, 173)
-		                        .addComponent(jLabel6))
-		                    .addGroup(layout.createSequentialGroup()
-		                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                        .addGap(6, 6, 6)
-		                        .addComponent(jLabel8)
-		                        .addGap(18, 18, 18)
-		                        .addComponent(jLabel9))
-		                    .addGroup(layout.createSequentialGroup()
-		                        .addGap(210, 210, 210)
-		                        .addComponent(jLabel7))
-		                    .addGroup(layout.createSequentialGroup()
-		                        .addComponent(jLabel2)
-		                        .addGap(6, 6, 6)
-		                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)))
-		                .addGap(11, 11, 11)
-		                .addComponent(jLabel5)
-		                .addGap(18, 18, 18)
-		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addGroup(layout.createSequentialGroup()
-		                        .addGap(3, 3, 3)
-		                        .addComponent(jLabel3)
-		                        .addGap(29, 29, 29)
-		                        .addComponent(jLabel4))
-		                    .addGroup(layout.createSequentialGroup()
-		                        .addComponent(comboGameStyle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                        .addGap(18, 18, 18)
-		                        .addComponent(comboDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                    .addGroup(layout.createSequentialGroup()
-		                        .addGap(10, 10, 10)
-		                        .addComponent(buttonPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
-		        );
-
+			case(1): //GAME_SCREEN
+			System.out.println("1");
+			
+				 //TITLE
+				title = new JLabel("Game Board");
+				getContentPane().add(title, BorderLayout.NORTH);
+				//LEFT
+				jbnLeft = new JButton("Disable centre button");
+				jbnLeft.setEnabled(true);
+				jbnLeft.setActionCommand("enableLeft");
+				jbnLeft.addActionListener(this);
+				
+				//MIDDLE
+				jbnMiddle = new JButton("Game Board");
+				jbnMiddle.setEnabled(false);
+				jbnMiddle.addActionListener(this);
+				
+				//RIGHT
+				jbnRight = new JButton("Credits");
+				jbnRight.setEnabled(true);
+				jbnRight.setActionCommand("enableRight");
+				jbnRight.addActionListener(this);
+				
+				//ADD THEM
+				add(jbnLeft, BorderLayout.WEST);
+				add(jbnRight, BorderLayout.EAST);
+				add(jbnMiddle, BorderLayout.CENTER);
 				break;
-			case(1): //Main GUI
-
-			    javax.swing.JLabel Deck;
-		    	javax.swing.JLabel Player2Card1;
-		    	javax.swing.JLabel Player2Card2;
-		    	javax.swing.JLabel Player2Card3;
-		    	javax.swing.JLabel Player2Card4;
-		    	javax.swing.JLabel PlayerCard1;
-		    	javax.swing.JLabel PlayerCard2;
-		    	javax.swing.JLabel PlayerCard3;
-		    	javax.swing.JLabel PlayerCard4;
-		    	javax.swing.JButton buttonDiscard;
-		    	javax.swing.JButton buttonDraw;
-		    	javax.swing.JButton buttonPeek;
-		    	javax.swing.JScrollPane scrollGameLog;
-		    	javax.swing.JLabel labelDiscard;
-		    	javax.swing.JLabel labelDrawFromDeck;
-		    	javax.swing.JLabel labelOpponentCard1;
-		    	javax.swing.JLabel labelOpponentCard2;
-		    	javax.swing.JLabel labelOpponentCard3;
-		    	javax.swing.JLabel labelOpponentCard4;
-		    	javax.swing.JLabel labelPlayerCard1;
-		    	javax.swing.JLabel labelPlayerCard2;
-		    	javax.swing.JLabel labelPlayerCard3;
-		    	javax.swing.JLabel labelPlayerCard4;
-		    	javax.swing.JTextArea textGameLog;
+			
+			case(2): //CREDITS!
+			System.out.println("2");
+			
+				 //TITLE
+				title = new JLabel("Credits");
+				getContentPane().add(title, BorderLayout.NORTH);
 				
-		        buttonDraw = new javax.swing.JButton();
-		        Deck = new javax.swing.JLabel();
-		        PlayerCard1 = new javax.swing.JLabel();
-		        PlayerCard2 = new javax.swing.JLabel();
-		        PlayerCard4 = new javax.swing.JLabel();
-		        PlayerCard3 = new javax.swing.JLabel();
-		        Player2Card1 = new javax.swing.JLabel();
-		        Player2Card2 = new javax.swing.JLabel();
-		        Player2Card3 = new javax.swing.JLabel();
-		        labelDiscard = new javax.swing.JLabel();
-		        scrollGameLog = new javax.swing.JScrollPane();
-		        textGameLog = new javax.swing.JTextArea();
-		        buttonDiscard = new javax.swing.JButton();
-		        labelDrawFromDeck = new javax.swing.JLabel();
-		        labelPlayerCard4 = new javax.swing.JLabel();
-		        labelPlayerCard1 = new javax.swing.JLabel();
-		        labelPlayerCard2 = new javax.swing.JLabel();
-		        labelPlayerCard3 = new javax.swing.JLabel();
-		        labelOpponentCard1 = new javax.swing.JLabel();
-		        labelOpponentCard2 = new javax.swing.JLabel();
-		        labelOpponentCard3 = new javax.swing.JLabel();
-		        labelOpponentCard4 = new javax.swing.JLabel();
-		        buttonPeek = new javax.swing.JButton();
-		        Player2Card4 = new javax.swing.JLabel();
-
-		        buttonDraw.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png")));
-		        
-		        buttonDraw.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-
-			            // This section would then draw a card from the deck constructor
-			            /*
-			             * Draw from the deck here;
-			             * Card drawnCard = Deck.Draw();
-			             * labelDiscard.setIcon(new Javax.swing.ImageIcon(getClass().getResource(drawnCard.Image)));
-			             */
-		            	
-		            }
-		        });
-
-		        Deck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Deck/13_1.png")));
-
-		        PlayerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png")));
-
-		        PlayerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png")));
-
-		        PlayerCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png")));
-
-		        PlayerCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png")));
-
-		        Player2Card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png")));
-
-		        Player2Card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png")));
-
-		        Player2Card3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png")));
-
-		        labelDiscard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/4.png")));
-
-		        textGameLog.setColumns(20);
-		        textGameLog.setRows(5);
-		        scrollGameLog.setViewportView(textGameLog);
-
-		        buttonDiscard.setText("Discard");
-		        
-		        buttonDiscard.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-
-			            // This is when a card is discarded to the pile and the label changes image to display the discarded card
-			            /*
-			             * Power cards should be discarded automatically after use, so just change the label to whichever card it was
-			             * If there's an object for current card or something like that, then the label would change to its image
-			             * labelDiscard.setIcon(new Javax.swing.ImageIcon(getClass().getResource(currentCard.Image)));
-			             */
-		            	
-		            }
-		        });
-
-		        labelDrawFromDeck.setText("Click to Draw from Deck");
-
-		        labelPlayerCard4.setText("Card 4");
-
-		        labelPlayerCard1.setText("Card 1");
-
-		        labelPlayerCard2.setText("Card 2");
-
-		        labelPlayerCard3.setText("Card 3");
-
-		        labelOpponentCard1.setText("Card 1");
-
-		        labelOpponentCard2.setText("Card 2");
-
-		        labelOpponentCard3.setText("Card 3");
-
-		        labelOpponentCard4.setText("Card 4");
-
-		        buttonPeek.setText("Peek");
-		        
-		        buttonPeek.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-		            	
-			            // For peeking during tutorial mode
-			            /*
-			             * Each of the labels are called Player1Card1 and so forth, so each would then be set to their actual value of the card and changed to whichever image
-			             * Example:
-			             * Player1Card1.setIcon(new Javax.swing.ImageIcon(getClass().getResource(Player1Card1.Image)));
-			             */
-		            	
-		            }
-		        });
-
-		        Player2Card4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
-
-		        javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(getContentPane());
-		        getContentPane().setLayout(mainLayout);
-		        mainLayout.setHorizontalGroup(
-		            mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addComponent(Deck)
-		            .addGroup(mainLayout.createSequentialGroup()
-		                .addGap(60, 60, 60)
-		                .addComponent(Player2Card1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                .addGap(4, 4, 4)
-		                .addComponent(Player2Card2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                .addGap(0, 0, 0)
-		                .addComponent(Player2Card3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                .addGap(0, 0, 0)
-		                .addComponent(Player2Card4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-		            .addGroup(mainLayout.createSequentialGroup()
-		                .addGap(110, 110, 110)
-		                .addComponent(labelOpponentCard1)
-		                .addGap(108, 108, 108)
-		                .addComponent(labelOpponentCard2)
-		                .addGap(108, 108, 108)
-		                .addComponent(labelOpponentCard3)
-		                .addGap(108, 108, 108)
-		                .addComponent(labelOpponentCard4))
-		            .addGroup(mainLayout.createSequentialGroup()
-		                .addGap(70, 70, 70)
-		                .addComponent(scrollGameLog, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                .addGap(14, 14, 14)
-		                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(buttonDraw, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addGroup(mainLayout.createSequentialGroup()
-		                        .addGap(10, 10, 10)
-		                        .addComponent(labelDrawFromDeck))
-		                    .addGroup(mainLayout.createSequentialGroup()
-		                        .addGap(40, 40, 40)
-		                        .addComponent(buttonPeek, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-		                .addGap(23, 23, 23)
-		                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(labelDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addGroup(mainLayout.createSequentialGroup()
-		                        .addGap(20, 20, 20)
-		                        .addComponent(buttonDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-		            .addGroup(mainLayout.createSequentialGroup()
-		                .addGap(110, 110, 110)
-		                .addComponent(labelPlayerCard1)
-		                .addGap(98, 98, 98)
-		                .addComponent(labelPlayerCard2)
-		                .addGap(108, 108, 108)
-		                .addComponent(labelPlayerCard3)
-		                .addGap(108, 108, 108)
-		                .addComponent(labelPlayerCard4))
-		            .addGroup(mainLayout.createSequentialGroup()
-		                .addGap(50, 50, 50)
-		                .addComponent(PlayerCard1)
-		                .addGap(5, 5, 5)
-		                .addComponent(PlayerCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                .addGap(0, 0, 0)
-		                .addComponent(PlayerCard3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                .addGap(0, 0, 0)
-		                .addComponent(PlayerCard4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-		        );
-		        mainLayout.setVerticalGroup(
-		            mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(mainLayout.createSequentialGroup()
-		                .addComponent(Deck)
-		                .addGap(10, 10, 10)
-		                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(Player2Card1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addComponent(Player2Card2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addComponent(Player2Card3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addComponent(Player2Card4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                .addGap(12, 12, 12)
-		                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(labelOpponentCard1)
-		                    .addComponent(labelOpponentCard2)
-		                    .addComponent(labelOpponentCard3)
-		                    .addComponent(labelOpponentCard4))
-		                .addGap(26, 26, 26)
-		                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(scrollGameLog, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addGroup(mainLayout.createSequentialGroup()
-		                        .addGap(20, 20, 20)
-		                        .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                            .addGroup(mainLayout.createSequentialGroup()
-		                                .addComponent(buttonDraw, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                                .addGap(3, 3, 3)
-		                                .addComponent(labelDrawFromDeck)
-		                                .addGap(46, 46, 46)
-		                                .addComponent(buttonPeek))
-		                            .addGroup(mainLayout.createSequentialGroup()
-		                                .addComponent(labelDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                                .addGap(10, 10, 10)
-		                                .addComponent(buttonDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-		                .addGap(18, 18, 18)
-		                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(labelPlayerCard1)
-		                    .addComponent(labelPlayerCard2)
-		                    .addComponent(labelPlayerCard3)
-		                    .addComponent(labelPlayerCard4))
-		                .addGap(6, 6, 6)
-		                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(PlayerCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addComponent(PlayerCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addComponent(PlayerCard3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addComponent(PlayerCard4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-		        );
-		        
-	        
+				//LEFT
+				jbnLeft = new JButton("Disable centre button");
+				jbnLeft.setEnabled(true);
+				jbnLeft.setActionCommand("enableLeft");
+				jbnLeft.addActionListener(this);
 				
+				//MIDDLE
+				jbnMiddle = new JButton("Game Board");
+				jbnMiddle.setEnabled(true);
+				jbnMiddle.setActionCommand("enableMiddle");
+				jbnMiddle.addActionListener(this);
+				
+				//RIGHT
+				jbnRight = new JButton("Credits");
+				jbnRight.setEnabled(false);
+				jbnRight.addActionListener(this);
+				
+				//ADD THEM
+				add(jbnLeft, BorderLayout.WEST);
+				add(jbnRight, BorderLayout.EAST);
+				add(jbnMiddle, BorderLayout.CENTER);
 				break;
-			case(2): //Draw 2 Tutorial GUI
-
-				javax.swing.JScrollPane scrollDraw2;
-				javax.swing.JScrollPane jScrollPane2;
-				javax.swing.JLabel labelDraw2;
-				javax.swing.JLabel labelDraw2Picture1;
-		    	javax.swing.JLabel labelDraw2Picture2;
-		    	javax.swing.JButton okButton;
-		    	javax.swing.JTextArea txtDraw2;
-		    	javax.swing.JTextArea txtPowerCards;
-				
-		        jScrollPane2 = new javax.swing.JScrollPane();
-		        txtPowerCards = new javax.swing.JTextArea();
-		        labelDraw2 = new javax.swing.JLabel();
-		        labelDraw2Picture1 = new javax.swing.JLabel();
-		        labelDraw2Picture2 = new javax.swing.JLabel();
-		        okButton = new javax.swing.JButton();
-		        scrollDraw2 = new javax.swing.JScrollPane();
-		        txtDraw2 = new javax.swing.JTextArea();
-
-
-		        txtPowerCards.setEditable(false);
-		        txtPowerCards.setColumns(20);
-		        txtPowerCards.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-		        txtPowerCards.setLineWrap(true);
-		        txtPowerCards.setRows(5);
-		        txtPowerCards.setText("Power cards have no value and if they are in a player's hand at the end of the round. They must be swapped for the top card of the deck.");
-		        txtPowerCards.setWrapStyleWord(true);
-		        jScrollPane2.setViewportView(txtPowerCards);
-
-		        labelDraw2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-		        labelDraw2.setText("You've Drawn a Draw 2 Card!");
-
-		        labelDraw2Picture1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/10.png"))); // NOI18N
-
-		        labelDraw2Picture2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/10.png"))); // NOI18N
-
-		        okButton.setText("OK");
-
-		        txtDraw2.setEditable(false);
-		        txtDraw2.setColumns(20);
-		        txtDraw2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-		        txtDraw2.setLineWrap(true);
-		        txtDraw2.setRows(5);
-		        txtDraw2.setText("Take a card from the draw pile, and either swap it with one of your cards or discard it and draw a second card to be swapped or thrown out.");
-		        txtDraw2.setWrapStyleWord(true);
-		        scrollDraw2.setViewportView(txtDraw2);
-
-		        javax.swing.GroupLayout draw2Layout = new javax.swing.GroupLayout(getContentPane());
-		        getContentPane().setLayout(draw2Layout);
-		        draw2Layout.setHorizontalGroup(
-		            draw2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(draw2Layout.createSequentialGroup()
-		                .addGap(130, 130, 130)
-		                .addComponent(labelDraw2))
-		            .addGroup(draw2Layout.createSequentialGroup()
-		                .addGap(30, 30, 30)
-		                .addComponent(labelDraw2Picture2)
-		                .addGap(25, 25, 25)
-		                .addGroup(draw2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(scrollDraw2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                .addGap(24, 24, 24)
-		                .addComponent(labelDraw2Picture1))
-		            .addGroup(draw2Layout.createSequentialGroup()
-		                .addGap(270, 270, 270)
-		                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-		        );
-		        draw2Layout.setVerticalGroup(
-		            draw2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(draw2Layout.createSequentialGroup()
-		                .addGap(30, 30, 30)
-		                .addComponent(labelDraw2)
-		                .addGap(31, 31, 31)
-		                .addGroup(draw2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(labelDraw2Picture2)
-		                    .addGroup(draw2Layout.createSequentialGroup()
-		                        .addComponent(scrollDraw2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                        .addGap(19, 19, 19)
-		                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                    .addComponent(labelDraw2Picture1))
-		                .addGap(19, 19, 19)
-		                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-		        );
-				
-				
-				
-				break;
-			case(3): //Peek Tutorial GUI
-				
-			    javax.swing.JLabel labelPeek;
-				javax.swing.JLabel labelPeekPic1;
-		    	javax.swing.JLabel labelPeekPic2;
-		    	javax.swing.JButton okButtonPeek;
-		    	javax.swing.JScrollPane scrollPeek;
-		    	javax.swing.JScrollPane scrollPowerCards;
-		    	javax.swing.JTextArea txtPeek;
-		    	javax.swing.JTextArea txtPowerCards1;
-		    	
-		        okButtonPeek = new javax.swing.JButton();
-		        scrollPeek = new javax.swing.JScrollPane();
-		        txtPeek = new javax.swing.JTextArea();
-		        scrollPowerCards = new javax.swing.JScrollPane();
-		        txtPowerCards1 = new javax.swing.JTextArea();
-		        labelPeek = new javax.swing.JLabel();
-		        labelPeekPic1 = new javax.swing.JLabel();
-		        labelPeekPic2 = new javax.swing.JLabel();
-
-		        okButtonPeek.setText("OK");
-		        okButtonPeek.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-		              
-		            }
-		        });
-
-		        txtPeek.setEditable(false);
-		        txtPeek.setColumns(20);
-		        txtPeek.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-		        txtPeek.setLineWrap(true);
-		        txtPeek.setRows(5);
-		        txtPeek.setText("Take a card from the draw pile, and either swap it with one of your cards or discard it and draw a second card to be swapped or thrown out.");
-		        txtPeek.setWrapStyleWord(true);
-		        scrollPeek.setViewportView(txtPeek);
-
-		        txtPowerCards1.setEditable(false);
-		        txtPowerCards1.setColumns(20);
-		        txtPowerCards1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-		        txtPowerCards1.setLineWrap(true);
-		        txtPowerCards1.setRows(5);
-		        txtPowerCards1.setText("Power cards have no value and if they are in a player's hand at the end of the round. They must be swapped for the top card of the deck.");
-		        txtPowerCards1.setWrapStyleWord(true);
-		        scrollPowerCards.setViewportView(txtPowerCards1);
-
-		        labelPeek.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-		        labelPeek.setText("You've Drawn a Peek Card!");
-
-		        labelPeekPic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/11.png"))); // NOI18N
-
-		        labelPeekPic2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/11.png"))); // NOI18N
-
-		        javax.swing.GroupLayout peekLayout = new javax.swing.GroupLayout(getContentPane());
-		        getContentPane().setLayout(peekLayout);
-		        peekLayout.setHorizontalGroup(
-		            peekLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(peekLayout.createSequentialGroup()
-		                .addGroup(peekLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addGroup(peekLayout.createSequentialGroup()
-		                        .addGap(140, 140, 140)
-		                        .addComponent(labelPeek))
-		                    .addGroup(peekLayout.createSequentialGroup()
-		                        .addGap(30, 30, 30)
-		                        .addComponent(labelPeekPic2)
-		                        .addGap(25, 25, 25)
-		                        .addGroup(peekLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                            .addComponent(scrollPeek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                            .addComponent(scrollPowerCards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                        .addGap(24, 24, 24)
-		                        .addComponent(labelPeekPic1))
-		                    .addGroup(peekLayout.createSequentialGroup()
-		                        .addGap(270, 270, 270)
-		                        .addComponent(okButtonPeek, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-		                .addGap(30, 30, 30))
-		        );
-		        peekLayout.setVerticalGroup(
-		            peekLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(peekLayout.createSequentialGroup()
-		                .addGap(40, 40, 40)
-		                .addComponent(labelPeek)
-		                .addGap(31, 31, 31)
-		                .addGroup(peekLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(labelPeekPic2)
-		                    .addGroup(peekLayout.createSequentialGroup()
-		                        .addComponent(scrollPeek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                        .addGap(9, 9, 9)
-		                        .addComponent(scrollPowerCards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                    .addComponent(labelPeekPic1))
-		                .addGap(15, 15, 15)
-		                .addComponent(okButtonPeek, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-		        );    	
-		    	
-		    break;
-			case(4): //Swap GUI
-				
-			    javax.swing.JLabel Player1Card1;
-		    	javax.swing.JLabel Player1Card2;
-		    	javax.swing.JLabel Player1Card3;
-		    	javax.swing.JLabel Player1Card4;
-		    	javax.swing.JLabel OpponentCard1;
-		    	javax.swing.JLabel OpponentCard2;
-		    	javax.swing.JLabel OpponentCard3;
-		    	javax.swing.JLabel OpponentCard4;
-		    	javax.swing.JButton buttonSwap;
-		    	javax.swing.JButton buttonSwapDiscard;
-		    	javax.swing.JComboBox comboOpponentCard;
-		    	javax.swing.JComboBox comboPlayerCard;
-		    	javax.swing.JLabel labelChooseCard;
-		    	javax.swing.JLabel labelChooseOppCard;
-		    	javax.swing.JLabel labelPlayer1;
-		    	javax.swing.JLabel labelPlayer1Card1;
-		    	javax.swing.JLabel labelPlayer1Card2;
-		    	javax.swing.JLabel labelPlayer1Card3;
-		    	javax.swing.JLabel labelPlayer1Card4;
-		    	javax.swing.JLabel labelPlayer2;
-		    	javax.swing.JLabel labelPlayer2Card1;
-		    	javax.swing.JLabel labelPlayer2Card2;
-		    	javax.swing.JLabel labelPlayer2Card3;
-		    	javax.swing.JLabel labelPlayer2Card4;
-				
-		        OpponentCard1 = new javax.swing.JLabel();
-		        OpponentCard2 = new javax.swing.JLabel();
-		        OpponentCard4 = new javax.swing.JLabel();
-		        OpponentCard3 = new javax.swing.JLabel();
-		        Player1Card2 = new javax.swing.JLabel();
-		        Player1Card1 = new javax.swing.JLabel();
-		        Player1Card4 = new javax.swing.JLabel();
-		        Player1Card3 = new javax.swing.JLabel();
-		        comboPlayerCard = new javax.swing.JComboBox();
-		        comboOpponentCard = new javax.swing.JComboBox();
-		        buttonSwapDiscard = new javax.swing.JButton();
-		        buttonSwap = new javax.swing.JButton();
-		        labelPlayer2Card1 = new javax.swing.JLabel();
-		        labelPlayer2Card2 = new javax.swing.JLabel();
-		        labelPlayer2Card3 = new javax.swing.JLabel();
-		        labelPlayer2Card4 = new javax.swing.JLabel();
-		        labelPlayer1Card1 = new javax.swing.JLabel();
-		        labelPlayer1Card2 = new javax.swing.JLabel();
-		        labelPlayer1Card3 = new javax.swing.JLabel();
-		        labelPlayer1Card4 = new javax.swing.JLabel();
-		        labelPlayer1 = new javax.swing.JLabel();
-		        labelPlayer2 = new javax.swing.JLabel();
-		        labelChooseCard = new javax.swing.JLabel();
-		        labelChooseOppCard = new javax.swing.JLabel();
-
-		        OpponentCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
-
-		        OpponentCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
-
-		        OpponentCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
-
-		        OpponentCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
-
-		        Player1Card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
-
-		        Player1Card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
-
-		        Player1Card4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
-
-		        Player1Card3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
-
-		        comboPlayerCard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Card 1", "Card 2", "Card 3", "Card 4" }));
-
-		        comboOpponentCard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Card 1", "Card 2", "Card 3", "Card 4" }));
-
-		        buttonSwapDiscard.setText("Discard");
-		        buttonSwapDiscard.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-		            
-		                // This would move the swap card to the discard pile
-		                /*
-		                 * DiscardPileArray.add(card);
-		                 * labelDiscard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/12.png")));
-		                 */
-		            	
-		            }
-		        });
-
-		        buttonSwap.setText("Swap");
-		        buttonSwap.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-		           
-		            	// This will actually do the swap between the cards
-		            	
-		            }
-		        });
-
-		        labelPlayer2Card1.setText("Card 1");
-
-		        labelPlayer2Card2.setText("Card 2");
-
-		        labelPlayer2Card3.setText("Card 3");
-
-		        labelPlayer2Card4.setText("Card 4");
-
-		        labelPlayer1Card1.setText("Card 1");
-
-		        labelPlayer1Card2.setText("Card 2");
-
-		        labelPlayer1Card3.setText("Card 3");
-
-		        labelPlayer1Card4.setText("Card 4");
-
-		        labelPlayer1.setText("Player 1");
-
-		        labelPlayer2.setText("Player 2");
-
-		        labelChooseCard.setText("Choose Your Card:");
-
-		        labelChooseOppCard.setText("Choose Opponent's Card:");
-
-		        javax.swing.GroupLayout swapLayout = new javax.swing.GroupLayout(getContentPane());
-		        getContentPane().setLayout(swapLayout);
-		        swapLayout.setHorizontalGroup(
-		            swapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(swapLayout.createSequentialGroup()
-		                .addGap(69, 69, 69)
-		                .addComponent(OpponentCard1)
-		                .addGap(18, 18, 18)
-		                .addComponent(OpponentCard2)
-		                .addGap(18, 18, 18)
-		                .addComponent(OpponentCard3)
-		                .addGap(18, 18, 18)
-		                .addComponent(OpponentCard4))
-		            .addGroup(swapLayout.createSequentialGroup()
-		                .addGap(92, 92, 92)
-		                .addComponent(labelPlayer2Card1)
-		                .addGap(59, 59, 59)
-		                .addComponent(labelPlayer2Card2)
-		                .addGap(64, 64, 64)
-		                .addComponent(labelPlayer2Card3)
-		                .addGap(57, 57, 57)
-		                .addComponent(labelPlayer2Card4))
-		            .addGroup(swapLayout.createSequentialGroup()
-		                .addGap(225, 225, 225)
-		                .addComponent(labelPlayer2))
-		            .addGroup(swapLayout.createSequentialGroup()
-		                .addGap(162, 162, 162)
-		                .addComponent(labelChooseCard)
-		                .addGap(18, 18, 18)
-		                .addComponent(comboPlayerCard, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-		            .addGroup(swapLayout.createSequentialGroup()
-		                .addGap(129, 129, 129)
-		                .addComponent(labelChooseOppCard)
-		                .addGap(18, 18, 18)
-		                .addComponent(comboOpponentCard, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-		            .addGroup(swapLayout.createSequentialGroup()
-		                .addGap(143, 143, 143)
-		                .addComponent(buttonSwap, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                .addGap(45, 45, 45)
-		                .addComponent(buttonSwapDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-		            .addGroup(swapLayout.createSequentialGroup()
-		                .addGap(225, 225, 225)
-		                .addComponent(labelPlayer1))
-		            .addGroup(swapLayout.createSequentialGroup()
-		                .addGap(92, 92, 92)
-		                .addComponent(labelPlayer1Card1)
-		                .addGap(59, 59, 59)
-		                .addComponent(labelPlayer1Card2)
-		                .addGap(61, 61, 61)
-		                .addComponent(labelPlayer1Card3)
-		                .addGap(57, 57, 57)
-		                .addComponent(labelPlayer1Card4))
-		            .addGroup(swapLayout.createSequentialGroup()
-		                .addGap(69, 69, 69)
-		                .addComponent(Player1Card1)
-		                .addGap(18, 18, 18)
-		                .addComponent(Player1Card2)
-		                .addGap(18, 18, 18)
-		                .addComponent(Player1Card3)
-		                .addGap(18, 18, 18)
-		                .addComponent(Player1Card4))
-		        );
-		        swapLayout.setVerticalGroup(
-		            swapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(swapLayout.createSequentialGroup()
-		                .addGap(25, 25, 25)
-		                .addGroup(swapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(OpponentCard1)
-		                    .addComponent(OpponentCard2)
-		                    .addComponent(OpponentCard3)
-		                    .addComponent(OpponentCard4))
-		                .addGap(6, 6, 6)
-		                .addGroup(swapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(labelPlayer2Card1)
-		                    .addComponent(labelPlayer2Card2)
-		                    .addComponent(labelPlayer2Card3)
-		                    .addComponent(labelPlayer2Card4))
-		                .addGap(11, 11, 11)
-		                .addComponent(labelPlayer2)
-		                .addGap(37, 37, 37)
-		                .addGroup(swapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addGroup(swapLayout.createSequentialGroup()
-		                        .addGap(4, 4, 4)
-		                        .addComponent(labelChooseCard))
-		                    .addComponent(comboPlayerCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                .addGap(11, 11, 11)
-		                .addGroup(swapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addGroup(swapLayout.createSequentialGroup()
-		                        .addGap(4, 4, 4)
-		                        .addComponent(labelChooseOppCard))
-		                    .addComponent(comboOpponentCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                .addGap(32, 32, 32)
-		                .addGroup(swapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(buttonSwap, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addComponent(buttonSwapDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                .addGap(18, 18, 18)
-		                .addComponent(labelPlayer1)
-		                .addGap(11, 11, 11)
-		                .addGroup(swapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(labelPlayer1Card1)
-		                    .addComponent(labelPlayer1Card2)
-		                    .addComponent(labelPlayer1Card3)
-		                    .addComponent(labelPlayer1Card4))
-		                .addGap(6, 6, 6)
-		                .addGroup(swapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(Player1Card1)
-		                    .addComponent(Player1Card2)
-		                    .addComponent(Player1Card3)
-		                    .addComponent(Player1Card4)))
-		        );
-				
-			break;
-			case(5): //Swap Tutorial GUI
-				
-			    javax.swing.JLabel labelPictureSwap1;
-		    	javax.swing.JLabel labelPictureSwap2;
-		    	javax.swing.JLabel labelSwapTutorial;
-		    	javax.swing.JButton okButtonSwap;
-		    	javax.swing.JScrollPane scrollPowerCard1;
-		    	javax.swing.JScrollPane scrollSwap;
-		    	javax.swing.JTextArea txtPowerCard1;
-		    	javax.swing.JTextArea txtSwap;
-		    	
-		        okButtonSwap = new javax.swing.JButton();
-		        scrollSwap = new javax.swing.JScrollPane();
-		        txtSwap = new javax.swing.JTextArea();
-		        labelSwapTutorial = new javax.swing.JLabel();
-		        scrollPowerCard1 = new javax.swing.JScrollPane();
-		        txtPowerCard1 = new javax.swing.JTextArea();
-		        labelPictureSwap1 = new javax.swing.JLabel();
-		        labelPictureSwap2 = new javax.swing.JLabel();
-
-		        okButtonSwap.setText("OK");
-		        okButtonSwap.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-		                
-		            }
-		        });
-
-		        txtSwap.setEditable(false);
-		        txtSwap.setColumns(20);
-		        txtSwap.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-		        txtSwap.setLineWrap(true);
-		        txtSwap.setRows(5);
-		        txtSwap.setText("You may trade one of your cards with an opponent's. Neither player may look at the card  values being swapped.");
-		        txtSwap.setWrapStyleWord(true);
-		        scrollSwap.setViewportView(txtSwap);
-
-		        labelSwapTutorial.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-		        labelSwapTutorial.setText("You've Drawn a Swap Card!");
-
-		        txtPowerCard1.setEditable(false);
-		        txtPowerCard1.setColumns(20);
-		        txtPowerCard1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-		        txtPowerCard1.setLineWrap(true);
-		        txtPowerCard1.setRows(5);
-		        txtPowerCard1.setText("Power cards have no value and if they are in a player's hand at the end of the round. They must be swapped for the top card of the deck.");
-		        txtPowerCard1.setWrapStyleWord(true);
-		        scrollPowerCard1.setViewportView(txtPowerCard1);
-
-		        labelPictureSwap1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/12.png"))); // NOI18N
-
-		        labelPictureSwap2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/12.png"))); // NOI18N
-
-		        javax.swing.GroupLayout swapTutLayout = new javax.swing.GroupLayout(getContentPane());
-		        getContentPane().setLayout(swapTutLayout);
-		        swapTutLayout.setHorizontalGroup(
-		            swapTutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(swapTutLayout.createSequentialGroup()
-		                .addGap(130, 130, 130)
-		                .addComponent(labelSwapTutorial))
-		            .addGroup(swapTutLayout.createSequentialGroup()
-		                .addGap(10, 10, 10)
-		                .addComponent(labelPictureSwap2)
-		                .addGap(15, 15, 15)
-		                .addGroup(swapTutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(scrollSwap, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addComponent(scrollPowerCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                .addGap(18, 18, 18)
-		                .addComponent(labelPictureSwap1))
-		            .addGroup(swapTutLayout.createSequentialGroup()
-		                .addGap(260, 260, 260)
-		                .addComponent(okButtonSwap, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-		        );
-		        swapTutLayout.setVerticalGroup(
-		            swapTutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(swapTutLayout.createSequentialGroup()
-		                .addGap(40, 40, 40)
-		                .addComponent(labelSwapTutorial)
-		                .addGap(21, 21, 21)
-		                .addGroup(swapTutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(labelPictureSwap2)
-		                    .addGroup(swapTutLayout.createSequentialGroup()
-		                        .addComponent(scrollSwap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                        .addGap(9, 9, 9)
-		                        .addComponent(scrollPowerCard1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                    .addComponent(labelPictureSwap1))
-		                .addGap(15, 15, 15)
-		                .addComponent(okButtonSwap, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-		        );
-		    break;
-			case(6): //Change Turn GUI
-				
-			    javax.swing.JLabel labelCardPicture1;
-				javax.swing.JLabel labelCardPicture2;
-				javax.swing.JLabel labelDontLook;
-				javax.swing.JLabel labelPlayerTurn;
-		     	javax.swing.JButton okButtonTurn;
-		     	
-		        okButtonTurn = new javax.swing.JButton();
-		        labelPlayerTurn = new javax.swing.JLabel();
-		        labelDontLook = new javax.swing.JLabel();
-		        labelCardPicture1 = new javax.swing.JLabel();
-		        labelCardPicture2 = new javax.swing.JLabel();
-
-		        okButtonTurn.setText("OK");
-		        okButtonTurn.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-		                
-		            }
-		        });
-
-		        labelPlayerTurn.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-		        labelPlayerTurn.setText("It's Player 2's Turn!");
-
-		        labelDontLook.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-		        labelDontLook.setText("Other Players, Don't Look!");
-
-		        labelCardPicture1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
-
-		        labelCardPicture2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
-
-		        javax.swing.GroupLayout turnLayout = new javax.swing.GroupLayout(getContentPane());
-		        getContentPane().setLayout(turnLayout);
-		        turnLayout.setHorizontalGroup(
-		            turnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(turnLayout.createSequentialGroup()
-		                .addGap(130, 130, 130)
-		                .addComponent(labelPlayerTurn))
-		            .addGroup(turnLayout.createSequentialGroup()
-		                .addGap(180, 180, 180)
-		                .addComponent(labelDontLook))
-		            .addGroup(turnLayout.createSequentialGroup()
-		                .addGap(70, 70, 70)
-		                .addComponent(labelCardPicture2)
-		                .addGap(55, 55, 55)
-		                .addComponent(okButtonTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                .addGap(64, 64, 64)
-		                .addComponent(labelCardPicture1))
-		        );
-		        turnLayout.setVerticalGroup(
-		            turnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(turnLayout.createSequentialGroup()
-		                .addGap(30, 30, 30)
-		                .addComponent(labelPlayerTurn)
-		                .addGap(6, 6, 6)
-		                .addComponent(labelDontLook)
-		                .addGap(11, 11, 11)
-		                .addGroup(turnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(labelCardPicture2)
-		                    .addGroup(turnLayout.createSequentialGroup()
-		                        .addGap(50, 50, 50)
-		                        .addComponent(okButtonTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                    .addComponent(labelCardPicture1)))
-		        );
-		    
-		    
-			break;
-		  
-		  
 		}
 		
 	}
@@ -1068,209 +159,89 @@ public class finalProject extends JApplet implements ActionListener
 		//this method should be called to remove everything from the frame
 		//every time we switch from main menu to game screen or what ever
 		//we need to clear and remove everything from the last view
-		getContentPane().removeAll();
-	}
-	
-	public void drawFromDeck()
-	{
-		/*
-		Card cardFromDeck;
 		
-		//GET NEW CARD FROM DECK
-		System.out.println("Picking From Deck");
-		cardFromDeck = mainDeck.getTopCard();
+		//getContentPane().removeAll();
+	}
 
-		if(cardFromDeck.isSpecial())
-		{
-			discard.addTopCard(cardFromDeck);
-			if(cardFromDeck.getSpecial() == "swap")
-			{
-				draw2FirstCard = false;
-				System.out.println("--------------------------------------------WE GOT A SWAP");
-				//MY INDEX
-				int myIndex;
-				
-				myIndex = 0;
-				
-				//OPPOENETS INDEX
-				int othersIndex;
-				othersIndex = 0;
-				
-				if(GAME_STATE.getPlayer() == 0)
-				{
-					Card fromOpponent = playersArray[1].myHand.getCard(othersIndex);
-					Card newCard = playersArray[0].myHand.replaceCard(myIndex, fromOpponent);
-					Card worthlessCard = playersArray[1].myHand.replaceCard(othersIndex, newCard);
-				}
-				else
-				{
-					Card fromOpponent = playersArray[0].myHand.getCard(othersIndex);
-					Card newCard = playersArray[1].myHand.replaceCard(myIndex, fromOpponent);
-					Card worthlessCard = playersArray[0].myHand.replaceCard(othersIndex, newCard);
-				}
-			}
-			else if(cardFromDeck.getSpecial() == "peek")
-			{
-				draw2FirstCard = false;
-				System.out.println("--------------------------------------------WE GOT A PEEK");
-				
-				handIndex = 0;
-				System.out.println("Card " + handIndex + " is a " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex));
-			}
-			else if(cardFromDeck.getSpecial() == "draw2")
-			{
-				System.out.println("--------------------------------------------WE GOT A DRAW2");
-				gotDraw2 = true;
-			}
-		}
-		else
-		{
-			System.out.println("You got an " + cardFromDeck.toString());
-			
-			handIndex = 0;
-			
-			if(handIndex == -1)
-			{
-				if(!draw2SecondCard && gotDraw2)
-				{
-					//we get to try again drawing
-					draw2SecondCard = true;
-				}
-				else
-				{
-					//this was already our second attempt
-					draw2SecondCard = false;
-				}
-				gotDraw2 = false;
-				//User discards back to deck
-				discard.addTopCard(cardFromDeck);
-				if(debug)
-				{
-					System.out.println("Decided to discard " + cardFromDeck.toString());
-				}
-			}
-			else
-			{
-				//user wants to swap card with hand
-				gotDraw2 = false;
-				draw2SecondCard = false;
-				if(debug)
-				{
-					System.out.println("Swapped " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex).toString() + ", with " + cardFromDeck.toString());
-				}					
-				Card removedFromHand = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
-				discard.addTopCard(removedFromHand);
-			}
-		}
-		*/
-	}
-	
-	public void drawDiscard()
+	public void gameLoop()
 	{
-		/*
-		gotDraw2 = false;
-		draw2SecondCard = false;
+		//DEBUG
+		boolean debug = true;
+		boolean extraHelp = true;
 		
-		cardFromDeck = discard.getTopCard();
-		handIndex = 0;
+		//NEW INPUT SCANNER
+		Scanner input = new Scanner(System.in);
 		
-		Card removedFromHand = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
-		discard.addTopCard(removedFromHand);
+		//CREATE GAME STATE
+		gameState GAME_STATE = new gameState(2);	
 		if(debug)
 		{
-			System.out.println("Swapped " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex).toString() + ", with " + cardFromDeck.toString());
+			System.out.println("SHOWING INITIAL GAME STATE: ");
+			GAME_STATE.print();	
 		}
-		*/
-	}
-	
-	public void swap()
-	{
-		
-	}
-	
-	public void peek()
-	{
-		
-	}
-	
-	public void draw2()
-	{
-		
-	}
-	
-	public void initGame()
-	{		
-		//CREATE GAME STATE
-		GAME_STATE = new gameState(2);	
-		
 		
 		//CREATE UNIQUE GAME ID
-		uniqueID = UUID.randomUUID();
+		UUID uniqueID = UUID.randomUUID();
+		
+		//CREATE DECK
+		Deck mainDeck = new Deck();
+		mainDeck.shuffle();
+		
+		//CREATE DISCARD PILE
+		Deck discard = new Deck();
+		discard.clear();
 		
 		//PLAYERS ARRAY
-		playersArray = new Player[2];
+		Player [] playersArray = new Player[2];
 		
 		//HUMAN PLAYER
+	   System.out.println("---->WHAT IS YOUR NAME?");
+	   String name = input.next();
 		Hand humanHand = new Hand(0);
-		Player human = new Player(true, 0, nameText.getText() , humanHand);
+		Player human = new Player(true, 0, name, humanHand);
 		playersArray[0] = human;
 		
-		//COMPUTER OPPONENTS
 		String[] opponents = new String[5];
 		opponents[0] = "Jimmy";
 		opponents[1] = "Einstein";
 		opponents[2] = "God";
 		
 		//Difficulty
-		int difficulty = 1;
-		
+		System.out.println("Choose Opponenets Difficulty:");
+		int difficulty = 0;
+		do{
+        	System.out.println("Type 1, for EASY");
+			System.out.println("Type 2, for MEDIUM");
+			System.out.println("Type 3, for HARD");
+			while(!input.hasNextInt())
+  			{
+				System.out.println("Thats not a number!");
+				input.next();
+  			}
+		   difficulty = input.nextInt();
+		}while(difficulty < 1 || difficulty > 3);
+      				
 		//COMPUTER PLAYER
 		Hand computerHand = new Hand(1);
 		Player computer = new Player(false, 1, opponents[difficulty -1], computerHand);
 		playersArray[1] = computer;
 		System.out.println("You are playing " + opponents[difficulty-1]);
 		
-		//UPDATE GAME STATE
-		//public void updateGameState(int _status, int _winCon, int _player, int _mode)
-		GAME_STATE.updateGameState(NORMAL_ROUND, GAME_STATE.getWinCon(), 0, NORMAL_PLAY, GAME_STATE.getRoundNum());
+		//Choose GAME MODE
+		System.out.println("What Type of Game Do You Want To Play?");
+		int gameMode = 0;
+		do{
+     		System.out.println("Type 1, for 5 Minute Max Round");
+			System.out.println("Type 2, for 10 Turns Max Round");
+			System.out.println("Type 3, for High Score Round");
+			while(!input.hasNextInt())
+  			{
+				System.out.println("Thats not a number!");
+				input.next();
+  			}
+		   gameMode = input.nextInt();
+		}while(gameMode < 1 || gameMode > 3);
 		
-		if(debug)
-		{
-			GAME_STATE.print();
-		}
-		
-		//UPDATE SERVER
-		if(sendJSON)
-		{
-			sendJSON();
-		}
-	}	
-	
-	public void initRound()
-	{
-		System.out.println("DEBUG IS: " + debug);
-		System.out.println("EXTRAHELP IS: " + extraHelp);
-		
-		//CREATE DECK
-		mainDeck = new Deck();
-		mainDeck.shuffle();
-		
-		//CREATE DISCARD PILE
-		discard = new Deck();
-		discard.clear();
-		
-		if(debug)
-		{
-			System.out.println("********************************");
-			System.out.println("ROUND STARTED - GAME STATE: ");
-			GAME_STATE.print();
-			System.out.println("********************************");
-		}
-		
-		//Clearing old player hands
-		playersArray[0].myHand.clear();
-		playersArray[1].myHand.clear();
-
 		//Give Players cards
 		for(int i = 0; i < 4; i++)
 		{
@@ -1290,14 +261,7 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		discard.addTopCard(firstCard);
 
-		//Calc end time if not null
-		String currentTime;
-		if(endTime != null)
-		{
-	    	Calendar cal = Calendar.getInstance();
-	    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-	    	currentTime = sdf.format(cal.getTime());
-		}
+	
 		
 		if(debug || extraHelp)
 		{
@@ -1317,49 +281,335 @@ public class finalProject extends JApplet implements ActionListener
 			System.out.println("********************************");
 		}
 		
-		//SET FIRST PLAYER TO GO FIRST!
-		GAME_STATE.setPlayer(0);
-		
+		//UPDATE GAME STATE
+		GAME_STATE.updateGameState(NORMAL_ROUND, gameMode, 0, NORMAL_PLAY);
 		if(debug)
 		{
+			System.out.println("********************************");
+			System.out.println("SHOWING UPDATED GAME STATE: ");
 			GAME_STATE.print();
+			System.out.println("********************************");
 		}
-	
-		//UPDATE SERVER
-		if(sendJSON)
+		
+		//PEEKING FIRST PLAYERS TWO INITIAL CARDS
+		System.out.println("Before the game begins remember these cards!");
+		System.out.println("Your Left Most Card: " + playersArray[0].myHand.getCard(0).toString());
+		System.out.println("Your Right Most Card: " + playersArray[0].myHand.getCard(3).toString());
+		
+		
+		//-------------GAME STARTING----------------		
+		//----------------------------------------------------------------------GAME LOOP-----------
+		boolean gameOver = false;
+		boolean draw2SecondCard = false;
+		boolean gotDraw2 = false;
+		int handIndex = 0;
+		Card cardFromDeck;
+		int playerWhoKnocked = -1;
+		while(!gameOver)
 		{
-			sendJSON();
-		}
-	}
-	
-	public void rebuildEmptyDeck()
-	{
-		//CHECK IF DECK IS EMPTY
-		System.out.println("----------------------------RESHUFFLING DECK!");
-		//Deck is empty, shuffle discard and create new deck
-		Card topCard = discard.getTopCard();
-		discard.shuffle();
-		if(debug)
-		{
-			System.out.println("BEFORE| deck: " + mainDeck.size() + " discard: " + discard.size());
-		}	
-		int tempSize = discard.size();
-		for(int i = 0; i < tempSize; i++)
-		{
-			System.out.println("adding");
-			mainDeck.addCard(discard.getTopCard());
-		}
-		discard.addTopCard(topCard);
-		if(debug)
-		{
-			System.out.println("After| deck: " + mainDeck.size() + " discard: " + discard.size());
-		}
-	}
-	
-	public void showEndRound()
-	{
-		/*
-		//SHOWING ROUND SCORES
+			//CHECK IF DECK IS EMPTY
+			if(mainDeck.size() == 0)
+			{
+				System.out.println("----------------------------RESHUFFLING DECK!");
+				//Deck is empty, shuffle discard and create new deck
+				Card topCard = discard.getTopCard();
+				discard.shuffle();
+				if(debug)
+				{
+					System.out.println("BEFORE| deck: " + mainDeck.size() + " discard: " + discard.size());
+				}	
+				int tempSize = discard.size();
+				for(int i = 0; i < tempSize; i++)
+				{
+					System.out.println("adding");
+					mainDeck.addCard(discard.getTopCard());
+				}
+				discard.addTopCard(topCard);
+				if(debug)
+				{
+					System.out.println("After| deck: " + mainDeck.size() + " discard: " + discard.size());
+				}
+			}
+			System.out.println("-------------------------------------");
+			System.out.println("-------------------------------------");
+			System.out.println("------------" + playersArray[GAME_STATE.getPlayer()].getName() + "-------------");
+			System.out.println("-------------------------------------");
+			System.out.println("-------------------------------------");
+			//------TURN
+			System.out.println("Discard Card: " + discard.getCard(0).toString());
+			if(extraHelp)
+			{
+				System.out.println("Top Card In Deck: " + mainDeck.getCard(0).toString());			
+			}
+			
+			int choice = 1;
+			if(discard.getCard(0).isSpecial())
+			{
+				if(debug)
+				{
+					System.out.println("Cannot draw from discard pile because its a power card");
+				}
+				choice = 1;
+			}
+			else
+			{
+				do{
+		     		System.out.println("----->Type 1, for deck pile");
+					System.out.println("----->Type 2, for discard pile");
+					while(!input.hasNextInt())
+		  			{
+						System.out.println("Thats not a number!");
+						input.next();
+		  			}
+				   choice = input.nextInt();
+				}while(choice < 1 || choice > 2);
+						
+				
+			}
+			if(choice == 1)
+			{
+				//GET NEW CARD FROM DECK
+				System.out.println("Picking From Deck");
+				cardFromDeck = mainDeck.getTopCard();
+		
+				if(cardFromDeck.isSpecial())
+				{
+					discard.addTopCard(cardFromDeck);
+					if(cardFromDeck.getSpecial() == "swap")
+					{
+						gotDraw2 = false;
+						System.out.println("--------------------------------------------WE GOT A SWAP");
+						//MY INDEX
+						int myIndex;
+						do{
+				     		System.out.println("Type index, of YOUR card you want to swap");
+							while(!input.hasNextInt())
+				  			{
+								System.out.println("Thats not a number!");
+								input.next();
+				  			}
+						   myIndex = input.nextInt();
+						}while(myIndex < 0 || myIndex > 3);
+						
+						//OPPOENETS INDEX
+						int othersIndex;
+						do{
+				     		System.out.println("Type index, of OPPONENTS card you want to swap");
+							while(!input.hasNextInt())
+				  			{
+								System.out.println("Thats not a number!");
+								input.next();
+				  			}
+						   othersIndex = input.nextInt();
+						}while(othersIndex < 0 || othersIndex > 3);
+						
+						
+						if(GAME_STATE.getPlayer() == 0)
+						{
+							Card fromOpponent = playersArray[1].myHand.getCard(othersIndex);
+							Card newCard = playersArray[0].myHand.replaceCard(myIndex, fromOpponent);
+							Card whocares = playersArray[1].myHand.replaceCard(othersIndex, newCard);
+						}
+						else
+						{
+							Card fromOpponent = playersArray[0].myHand.getCard(othersIndex);
+							Card newCard = playersArray[1].myHand.replaceCard(myIndex, fromOpponent);
+							Card whocares = playersArray[0].myHand.replaceCard(othersIndex, newCard);
+						}
+					}
+					else if(cardFromDeck.getSpecial() == "peek")
+					{
+						gotDraw2 = false;
+						System.out.println("--------------------------------------------WE GOT A PEEK");
+						do{
+				     		System.out.println("Type index, of the card you want to peek");
+							while(!input.hasNextInt())
+				  			{
+								System.out.println("Thats not a number!");
+								input.next();
+				  			}
+						   handIndex = input.nextInt();
+						}while(handIndex < 0 || handIndex > 3);
+						System.out.println("Card " + handIndex + " is a " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex));
+					}
+					else if(cardFromDeck.getSpecial() == "draw2")
+					{
+						System.out.println("--------------------------------------------WE GOT A DRAW2");
+						gotDraw2 = true;
+					}
+				}
+				else
+				{
+					System.out.println("You got an " + cardFromDeck.toString());
+					do{
+			     		System.out.println("----->Type -1, for discard");
+						System.out.println("----->Type index, for swapping");
+						while(!input.hasNextInt())
+			  			{
+							System.out.println("Thats not a number!");
+							input.next();
+			  			}
+					   handIndex = input.nextInt();
+					}while(handIndex < -1 || handIndex > 3);
+
+					
+					if(handIndex == -1)
+					{
+						if(!draw2SecondCard && gotDraw2)
+						{
+							//we get to try again drawing
+							draw2SecondCard = true;
+						}
+						else
+						{
+							//this was already our second attempt
+							draw2SecondCard = false;
+						}
+						gotDraw2 = false;
+						//User discards back to deck
+						discard.addTopCard(cardFromDeck);
+						if(debug)
+						{
+							System.out.println("Decided to discard " + cardFromDeck.toString());
+						}
+					}
+					else
+					{
+						//user wants to swap card with hand
+						gotDraw2 = false;
+						draw2SecondCard = false;
+						if(debug)
+						{
+							System.out.println("Swapped " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex).toString() + ", with " + cardFromDeck.toString());
+						}					
+						Card removedFromHand = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
+						discard.addTopCard(removedFromHand);
+					}
+
+				}
+			}
+			else
+			{
+				//GET CARD FROM TOP OF DISCARD PILE
+				gotDraw2 = false;
+				draw2SecondCard = false;
+				
+				cardFromDeck = discard.getTopCard();
+				do{
+		     		System.out.println("----->Type index, of the card you want to swap");
+					while(!input.hasNextInt())
+		  			{
+						System.out.println("Thats not a number!");
+						input.next();
+		  			}
+				   handIndex = input.nextInt();
+				}while(handIndex < 0 || handIndex > 3);
+			
+				Card removedFromHand = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
+				discard.addTopCard(removedFromHand);
+				if(debug)
+				{
+					System.out.println("Swapped " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex).toString() + ", with " + cardFromDeck.toString());
+				}	
+			}
+			
+			//DO YOU WANT TO KNOCK?
+			if(GAME_STATE.getStatus() != KNOCKED_ROUND)
+			{
+				System.out.println("Do you want to knock?");
+				do{
+		     		System.out.println("----->Type 1, to keep playing");
+					System.out.println("----->Type 2, to knock (AKA this was your last turn)");
+					while(!input.hasNextInt())
+		  			{
+						System.out.println("Thats not a number!");
+						input.next();
+		  			}
+				   choice = input.nextInt();
+				}while(choice < 1 || choice > 2);
+				if(choice != 1)
+				{
+					//update game state to knocked round!
+					GAME_STATE.updateGameState(KNOCKED_ROUND, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode());
+					
+					//Set player who knocked
+					playerWhoKnocked = GAME_STATE.getPlayer();
+				}
+			}		
+			//--------------------------------------------------------------------------------------END TURN
+		
+			
+			
+			//--------PREPARE THE JSON---------
+			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID);
+			tempScore.addPlayer(playersArray[0]);
+			tempScore.addPlayer(playersArray[1]);
+			Transporter tempTransport = new Transporter(tempScore);		
+
+			
+			if(debug || extraHelp)
+			{
+				System.out.println("********************************");
+				System.out.println(playersArray[0].getName() + "'s hand: ");
+				playersArray[0].myHand.showHand();
+				System.out.println("********************************");
+				System.out.println(playersArray[1].getName() + "'s hand: ");
+				playersArray[1].myHand.showHand();
+				System.out.println("********************************");
+			}
+			if(debug)
+			{
+				System.out.println("SHOWING THE REMAINING DECK");
+				System.out.println("********************************");
+				mainDeck.showDeck();
+				System.out.println("********************************");
+			}
+			
+			//UPDATE GAME STATE
+			if(!gotDraw2 && !draw2SecondCard)
+			{
+				if(GAME_STATE.getPlayer() == GAME_STATE.numPlayers() - 1)
+				{
+					//RESET BACK TO FIRST PLAYER
+					GAME_STATE.setPlayer(0);
+					System.out.println("********************************");
+					System.out.println("RESETTING BACK TO PLAYER 1");
+					System.out.println("********************************");
+				}
+				else
+				{
+					//NEXT PLAYERS TURN
+					GAME_STATE.setPlayer(GAME_STATE.getPlayer() + 1);
+				}
+			}
+			else
+			{
+				if(debug)
+				{
+					System.out.println(playersArray[GAME_STATE.getPlayer()].getName() + "'s got a draw 2, they go again.......");
+				}
+			}
+			if(debug)
+			{
+				System.out.println("********************************");
+				System.out.println("SHOWING GAME STATE AFTER TURN: ");
+				GAME_STATE.print();
+				System.out.println("********************************");
+			}
+			
+			//CHECKING IF GAME IS OVER!
+			if(GAME_STATE.getStatus() == KNOCKED_ROUND && GAME_STATE.getPlayer() == playerWhoKnocked)
+			{
+				//THE GAME IS OVER ALL PLAYERS HAVE HAD THEIR FINAL TURN!
+				//update game state
+				GAME_STATE.updateGameState(ROUND_OVER, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode());
+				System.out.println("THE ROUND IS OVER");
+				
+				gameOver = true;
+			}
+		}		
+		
+		//SHOWING FINAL SCORES
 		int winner = -1;
 		int winningScore = 50;
 		for(int i = 0; i < 2; i++)
@@ -1383,6 +633,7 @@ public class finalProject extends JApplet implements ActionListener
 						int tempSize = discard.size();
 						for(int k = 0; k < tempSize; k++)
 						{
+							System.out.println("adding");
 							mainDeck.addCard(discard.getTopCard());
 						}
 						discard.addTopCard(topCard);
@@ -1401,6 +652,7 @@ public class finalProject extends JApplet implements ActionListener
 						cardFromDeck = mainDeck.getTopCard();
 					}
 					
+					System.out.println("FOUND SPECIAL");
 					Card oldPowerCard = playersArray[i].myHand.replaceCard(j, cardFromDeck);
 					discard.addTopCard(oldPowerCard);
 					if(debug)
@@ -1408,100 +660,54 @@ public class finalProject extends JApplet implements ActionListener
 						System.out.println("Swapped '" + oldPowerCard.toString() + "' with '" + cardFromDeck + "'");
 					}
 				}
+				else
+				{
+					System.out.println("NO SPECIAL");
+				}
 			}
-			
-			//RESET players score
-			playersArray[i].setScore(0);
-			
 			System.out.println(playersArray[i].getName() + "'s final Score: " + playersArray[i].myHand.getScore());
 			playersArray[i].myHand.showHand();
-			//Update their game Score
-			playersArray[i].setScore(playersArray[i].getScore() + playersArray[i].myHand.getScore());
 			if(playersArray[i].myHand.getScore() < winningScore)
 			{
 				winner = i;
 				winningScore = playersArray[i].myHand.getScore();
 			}
-			//UPDATE PLAYERS TOTAL SCORE
-			playersArray[i].setTotalScore(playersArray[i].getTotalScore() + playersArray[i].myHand.getScore());
-			
 		}
-		//Increase round win counter
-		playersArray[winner].setRoundsWon(playersArray[winner].getRoundsWon() + 1);
 		
-		//show winner!
 		System.out.println("THE WINNER WAS: " + playersArray[winner].getName() + " with " + playersArray[winner].myHand.getScore());
-		
-		if(sendJSON)
-		{
-			//--------PREPARE THE JSON---------
-			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, true, currentRound, mainDeck, discard);
-			tempScore.addPlayer(playersArray[0]);
-			tempScore.addPlayer(playersArray[1]);
-			Transporter tempTransport = new Transporter(tempScore);		
-		}
-		*/
-	}
-	
-	public boolean checkIfRoundTimedOut()
-	{
-		return false;
-		/*
-		//DO YOU WANT TO KNOCK?
-		if(GAME_STATE.getStatus() != KNOCKED_ROUND)
-		{
-			//Check if current Time is past endTime if so automatically knock
-			Calendar cal = Calendar.getInstance();
-	    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-	    	currentTime = sdf.format(cal.getTime());
-	    	
-			if(endTime != null && currentTime == endTime)
-			{
-				//AUTOMATICALLY KNOCK BECAUSE THE TIME IS OVER
-				//update game state to knocked round!
-				GAME_STATE.updateGameState(KNOCKED_ROUND, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode(), GAME_STATE.getRoundNum());
-				
-				//Set player who knocked
-				playerWhoKnocked = GAME_STATE.getPlayer();
-			}
-		}
-		
-		//update game state to knocked round!
-		GAME_STATE.updateGameState(KNOCKED_ROUND, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode(), GAME_STATE.getRoundNum());
-		
-		//Set player who knocked
-		playerWhoKnocked = GAME_STATE.getPlayer();
-		*/
-	}
-
-	public void sendJSON()
-	{
-		System.out.println("dkfjsklfjakldsfjklsd");
 		//--------PREPARE THE JSON---------
-		currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, false, GAME_STATE.getRoundNum(), mainDeck, discard);
+		currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID);
 		tempScore.addPlayer(playersArray[0]);
 		tempScore.addPlayer(playersArray[1]);
-		Transporter tempTransport = new Transporter(tempScore);	
-	}
-	
-	public boolean checkGameOver()
-	{
-		return false;
+		Transporter tempTransport = new Transporter(tempScore);		
+
 		/*
-		//CHECKING IF GAME IS OVER!
-		if(GAME_STATE.getStatus() == KNOCKED_ROUND && GAME_STATE.getPlayer() == GAME_STATE.getPlayerWhoKnocked())
-		{
-			//THE GAME IS OVER ALL PLAYERS HAVE HAD THEIR FINAL TURN!
-			//update game state
-			GAME_STATE.updateGameState(ROUND_OVER, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode(), GAME_STATE.getRoundNum());
-			System.out.println("THE ROUND IS OVER");
-			
-			gameOver = true;
-		}
+		//TESTING GAME STATE
+		System.out.println("--------TESTING GAME STATE OBJECT------------");
+		gameState newGameState = new gameState();
+		System.out.println("Initital Game State");
+		newGameState.print();
+		System.out.println();
+		newGameState.updateGameState(NULL, NULL, PLAYER_THREE, NULL);
+		System.out.println("Changed Game State");
+		newGameState.print();
+		
+		//TESTING PLAYER SCORE
+		System.out.println("--------TESTING PLAYER SCORE OBJECT------------");
+		playerScore player1 = new playerScore(19, "Anders");
+		playerScore player2 = new playerScore(183, "Bob");
+		
+		//TESTING CURRENTSCORE
+		System.out.println("--------TESTING CURRENT SCORES OBJECT------------");
+		currentScore totalScore = new currentScore(2, newGameState);
+		totalScore.addPlayerScore(player1);
+		totalScore.addPlayerScore(player2);
+		System.out.println("TOTAL PLAYERS IN SCORE OBJECT SIZE: " + totalScore.getPlayerCount());
+		System.out.println(totalScore.getPlayerScoreAtIndex(0).getName() + " has score " + totalScore.getPlayerScoreAtIndex(0).getScore());
+		System.out.println(totalScore.getPlayerScoreAtIndex(1).getName() + " has score " + totalScore.getPlayerScoreAtIndex(1).getScore());
+		gameState tempGameState = totalScore.getGameState();
 		*/
 	}
-	
-		
 	/* Invoked immediately after the start() method, and also any time
 	the applet needs to repaint itself in the browser. The paint()
 	method is actually inherited from the java.awt.*/
@@ -1509,145 +715,23 @@ public class finalProject extends JApplet implements ActionListener
 	{
 		//HERE we can paint graphics to the screen which can be helpful
 		super.paint(g);
-		//g.drawString("WOW THIS WORKED!",25,25);
+		g.drawString("WOW THIS WORKED!",25,25);
 	}
 	
-	/**
-	*This method is intended for whatever initialization is needed for your applet.
-	*It is called after the param tags inside the applet tag have been processed.
-	**/
+	/*This method is intended for whatever initialization is needed for your applet.
+	It is called after the param tags inside the applet tag have been processed.*/
 	public void init()
-	{		
-		//DEBUG PARAMETERS
-		debug = true;
-		extraHelp = true;
-		sendJSON = true;
-		
-		setSize(500, 300);
-		setUpGUI(0);
-	}
-	
-	public void gameLoop(Object[] gameParameters)
 	{
-		/*
-		//DEBUG/EXTRA HELP PARAMETERS
-		boolean debug = false;
-		boolean extraHelp = true;
-		
-		System.out.println("GAME LOOP!");
-		//Setup Game
-		//Object[] gameParameters = initialGameSetup();
-		//rounds counter for while loops
-		int counter = 0;
-		//GAME MODES
-		switch(((gameState)gameParameters[2]).getWinCon())
-		{
-			case(NUM_ROUNDS):
-				if(debug)
-				{
-					System.out.println("------------------------------------------------NUM ROUNDS");
-				}
-				//rounds loop
-				for(int i = 0; i < 5; i++)
-				{
-					int roundNum = i+1;
-					System.out.println("-------------------------------------------------------------------------");
-					System.out.println("-----------------------------Starting Round " + roundNum + "----------------------------");
-					System.out.println("-------------------------------------------------------------------------");
-					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], null, roundNum);
-					counter = i+1;
-				}
-				break;
-			case(TIMED_PLAY):
-				if(debug)
-				{
-					System.out.println("------------------------------------------------TIMED");
-					
-				}
-				//Current Start and Stop time
-				Calendar cal = Calendar.getInstance();
-		    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-		    	Calendar start = Calendar.getInstance();
-		    	String startTime = sdf.format(start.getTime());
-		    	Calendar end = Calendar.getInstance();
-		        end.add(Calendar.MINUTE,5);
-		    	String endTime = sdf.format(end.getTime());
-		    			    	
-		    	
-				//rounds loop			
-				counter = 1;
-				while(((Player[])gameParameters[1])[0].getTotalScore() < 100 || ((Player[])gameParameters[1])[1].getTotalScore() < 100)
-				{
-					System.out.println("-------------------------------------------------------------------------");
-					System.out.println("------------------Started At: " + startTime + " - Ends At: " + endTime + "----------------------------");
-					System.out.println("-----------------------------Starting Round " + counter + "----------------------------");
-					System.out.println(((Player[])gameParameters[1])[0].getName() + "'s Score: " + ((Player[])gameParameters[1])[0].getTotalScore() + " | " + ((Player[])gameParameters[1])[1].getName() + "'s Score: " + ((Player[])gameParameters[1])[1].getTotalScore());
-					System.out.println("-------------------------------------------------------------------------");
-					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], endTime, counter);
-					counter++;
-				}
-				break;
-			case(HIGH_SCORE):
-				if(debug)
-				{
-					System.out.println("------------------------------------------------HIGH SCORE");
-				}
-				//rounds loop
-				counter = 1;
-				while(((Player[])gameParameters[1])[0].getTotalScore() < 100 || ((Player[])gameParameters[1])[1].getTotalScore() < 100)
-				{
-					System.out.println("-------------------------------------------------------------------------");
-					System.out.println("-----------------------------Starting Round " + counter + "----------------------------");
-					System.out.println(((Player[])gameParameters[1])[0].getName() + "'s Score: " + ((Player[])gameParameters[1])[0].getTotalScore() + " | " + ((Player[])gameParameters[1])[1].getName() + "'s Score: " + ((Player[])gameParameters[1])[1].getTotalScore());
-					System.out.println("-------------------------------------------------------------------------");
-					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], null, counter);
-					counter++;
-				}
-				break;
-		}
-		
-		
-		int winner = -1;
-		int numWins = -1;
-		//SHOW FINAL WINNER
-		for(int i = 0; i < 2; i++)
-		{
-			if(((Player[])gameParameters[1])[i].getRoundsWon() > numWins)
-			{
-				numWins = ((Player[])gameParameters[1])[i].getRoundsWon();
-				winner = i;
-			}
-		}
-		
-		System.out.println("------------------------------------------------");
-		System.out.println("------------------------------------------------");
-		System.out.println("FINAL WINNER: " + ((Player[])gameParameters[1])[winner].getName() + ", with " + ((Player[])gameParameters[1])[winner].getRoundsWon() + " wins and " + ((Player[])gameParameters[1])[winner].getTotalScore() + " total points");
-		if(winner == 0)
-		{
-			System.out.println("FINAL LOSER: " + ((Player[])gameParameters[1])[1].getName() + ", with " + ((Player[])gameParameters[1])[1].getRoundsWon() + " wins and " + ((Player[])gameParameters[1])[1].getTotalScore() + " total points");
-		}
-		else
-		{
-			System.out.println("FINAL LOSER: " + ((Player[])gameParameters[1])[0].getName() + ", with " + ((Player[])gameParameters[1])[0].getRoundsWon() + " wins and " + ((Player[])gameParameters[1])[0].getTotalScore() + " total points");
-		}
-		System.out.println("-------------------------------------------------");
-		System.out.println("------------------------------------------------");
-		
-		//--------PREPARE THE JSON---------
-		currentScore tempScore = new currentScore(((gameState)gameParameters[2]).numPlayers(), (gameState)gameParameters[2], (UUID)gameParameters[3], true, true, counter, null, null);
-		tempScore.addPlayer(((Player[])gameParameters[1])[0]);
-		tempScore.addPlayer(((Player[])gameParameters[1])[1]);
-		Transporter tempTransport = new Transporter(tempScore);
-		*/
+		//setUpGUI(MAIN_MENU);
+		gameLoop();
 	}
-
 	
 	/* This method is automatically called after the browser calls the init method.
 	It is also called whenever the user returns to the page containing the applet
 	after having gone off to other pages.*/
 	public void start()
 	{
-		//gameLoop();
+	
 	}
 	/*This method is automatically called when the user moves off the page on which the applet sits.
 	It can, therefore, be called repeatedly in the same applet.*/
@@ -1655,8 +739,6 @@ public class finalProject extends JApplet implements ActionListener
 	{
 	
 	}
-	
-
 	/*This method is only called when the browser shuts down normally.
 	Because applets are meant to live on an HTML page, you should
 	not normally leave resources behind after a user leaves the page
@@ -1665,43 +747,23 @@ public class finalProject extends JApplet implements ActionListener
 	{
 	
 	}
-
-
-	public void actionPerformed(ActionEvent e)
-	{	
-		//FOR THE GAME SETUP
-		if("numRounds".equals(e.getActionCommand()))
-		{
-			//INIT GAME
-			initGame();
-			
-			initRound();
-			
-			//SETUP GUI
-			setUpGUI(1);
-			
-		}
+	
+	public void actionPerformed(ActionEvent e) {
+		
 		if("enableLeft".equals(e.getActionCommand()))
 		{
-			System.out.println("DECK");
-			setUpGUI(2);
+			System.out.println("left");
+			setUpGUI(MAIN_MENU);
 		}
-		if("drawDiscard".equals(e.getActionCommand()))
+		else if("enableMiddle".equals(e.getActionCommand()))
 		{
-			System.out.println("DISCARD");
-			setUpGUI(2);
+			System.out.println("middle");
+			setUpGUI(GAME_SCREEN);
 		}
-		
-		//KNOCK OR STAY
-		if("knock".equals(e.getActionCommand()))
+		else if("enableRight".equals(e.getActionCommand()))
 		{
-			System.out.println("knock");
-			setUpGUI(0);
-		}
-		if("keepPlaying".equals(e.getActionCommand()))
-		{
-			System.out.println("keep playing");
-			setUpGUI(0);
+			System.out.println("right");
+			setUpGUI(CREDITS_SCREEN);
 		}
 	}	
 }
