@@ -61,28 +61,49 @@
               <Component id="labelDiscard" min="-2" pref="140" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
-              <EmptySpace min="160" pref="160" max="-2" attributes="0"/>
-              <Component id="labelPlayerCard1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="58" pref="58" max="-2" attributes="0"/>
-              <Component id="labelPlayerCard2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="58" pref="58" max="-2" attributes="0"/>
-              <Component id="labelPlayerCard3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="58" pref="58" max="-2" attributes="0"/>
-              <Component id="labelPlayerCard4" min="-2" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
-              <Component id="labelYourHand1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="labelYourHand1" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonKnock" min="-2" pref="90" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
-              <Component id="PlayerCard1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                      <Component id="labelPlayerCard1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="PlayerCard1" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
-              <Component id="PlayerCard2" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                      <Component id="labelPlayerCard2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="PlayerCard2" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
-              <Component id="PlayerCard3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                      <Component id="labelPlayerCard3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="PlayerCard3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
-              <Component id="PlayerCard4" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                      <Component id="labelPlayerCard4" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="PlayerCard4" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
-              <Component id="buttonDiscard" min="-2" pref="90" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="comboSelectCard" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="buttonDiscard" min="-2" pref="90" max="-2" attributes="0"/>
+                  <Component id="buttonChangeCard" min="-2" pref="90" max="-2" attributes="0"/>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -123,26 +144,42 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="labelPlayerCard1" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelPlayerCard2" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelPlayerCard3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelPlayerCard4" min="-2" max="-2" attributes="0"/>
-              </Group>
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Component id="buttonKnock" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Component id="labelYourHand1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="PlayerCard1" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="PlayerCard2" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="PlayerCard3" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="PlayerCard4" min="-2" pref="100" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                      <Component id="labelPlayerCard1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <Component id="PlayerCard1" min="-2" pref="100" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="labelPlayerCard2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <Component id="PlayerCard2" min="-2" pref="100" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="labelPlayerCard3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <Component id="PlayerCard3" min="-2" pref="100" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
+                      <Component id="labelPlayerCard4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="PlayerCard4" min="-2" pref="100" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
+                      <Component id="comboSelectCard" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                       <Component id="buttonDiscard" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="buttonChangeCard" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -316,6 +353,37 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Rat a Tat Cat"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboSelectCard">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="Rounds"/>
+            <StringItem index="1" value="Time"/>
+            <StringItem index="2" value="Points"/>
+          </StringArray>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboSelectCardActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonChangeCard">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Swap Card"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonChangeCardActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonKnock">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Knock"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonKnockActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

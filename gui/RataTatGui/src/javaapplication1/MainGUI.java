@@ -51,6 +51,9 @@ public class MainGUI extends javax.swing.JFrame {
         labelOpponentHand = new javax.swing.JLabel();
         labelYourHand1 = new javax.swing.JLabel();
         labelRataTat = new javax.swing.JLabel();
+        comboSelectCard = new javax.swing.JComboBox();
+        buttonChangeCard = new javax.swing.JButton();
+        buttonKnock = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(640, 480));
@@ -119,6 +122,28 @@ public class MainGUI extends javax.swing.JFrame {
         labelRataTat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelRataTat.setText("Rat a Tat Cat");
 
+        comboSelectCard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rounds", "Time", "Points" }));
+        comboSelectCard.setToolTipText("");
+        comboSelectCard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboSelectCardActionPerformed(evt);
+            }
+        });
+
+        buttonChangeCard.setText("Swap Card");
+        buttonChangeCard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonChangeCardActionPerformed(evt);
+            }
+        });
+
+        buttonKnock.setText("Knock");
+        buttonKnock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonKnockActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -154,27 +179,39 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(labelDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addComponent(labelPlayerCard1)
-                .addGap(58, 58, 58)
-                .addComponent(labelPlayerCard2)
-                .addGap(58, 58, 58)
-                .addComponent(labelPlayerCard3)
-                .addGap(58, 58, 58)
-                .addComponent(labelPlayerCard4))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(labelYourHand1)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelYourHand1)
+                    .addComponent(buttonKnock, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
-                .addComponent(PlayerCard1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(labelPlayerCard1))
+                    .addComponent(PlayerCard1))
                 .addGap(15, 15, 15)
-                .addComponent(PlayerCard2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(labelPlayerCard2))
+                    .addComponent(PlayerCard2))
                 .addGap(15, 15, 15)
-                .addComponent(PlayerCard3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(labelPlayerCard3))
+                    .addComponent(PlayerCard3))
                 .addGap(15, 15, 15)
-                .addComponent(PlayerCard4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(labelPlayerCard4))
+                    .addComponent(PlayerCard4))
                 .addGap(25, 25, 25)
-                .addComponent(buttonDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboSelectCard, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonChangeCard, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,24 +243,37 @@ public class MainGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonDraw, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelPlayerCard1)
-                    .addComponent(labelPlayerCard2)
-                    .addComponent(labelPlayerCard3)
-                    .addComponent(labelPlayerCard4))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(5, 5, 5)
+                        .addComponent(buttonKnock, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
                         .addComponent(labelYourHand1))
-                    .addComponent(PlayerCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PlayerCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PlayerCard3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PlayerCard4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(buttonDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(labelPlayerCard1)
+                        .addGap(10, 10, 10)
+                        .addComponent(PlayerCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelPlayerCard2)
+                        .addGap(10, 10, 10)
+                        .addComponent(PlayerCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelPlayerCard3)
+                        .addGap(10, 10, 10)
+                        .addComponent(PlayerCard3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(labelPlayerCard4)
+                        .addGap(6, 6, 6)
+                        .addComponent(PlayerCard4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(comboSelectCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(buttonChangeCard, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
@@ -246,6 +296,18 @@ public class MainGUI extends javax.swing.JFrame {
          * labelDiscard.setIcon(new Javax.swing.ImageIcon(getClass().getResource(currentCard.Image)));
          */
     }//GEN-LAST:event_buttonDiscardActionPerformed
+
+    private void comboSelectCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSelectCardActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboSelectCardActionPerformed
+
+    private void buttonChangeCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeCardActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonChangeCardActionPerformed
+
+    private void buttonKnockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonKnockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonKnockActionPerformed
 
     /**
      * @param args the command line arguments
@@ -291,8 +353,11 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel PlayerCard2;
     private javax.swing.JLabel PlayerCard3;
     private javax.swing.JLabel PlayerCard4;
+    private javax.swing.JButton buttonChangeCard;
     private javax.swing.JButton buttonDiscard;
     private javax.swing.JButton buttonDraw;
+    private javax.swing.JButton buttonKnock;
+    private javax.swing.JComboBox comboSelectCard;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelDiscard;
     private javax.swing.JLabel labelOpponentCard1;
