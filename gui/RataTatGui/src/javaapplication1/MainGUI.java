@@ -35,7 +35,6 @@ public class MainGUI extends javax.swing.JFrame {
         Player2Card1 = new javax.swing.JLabel();
         Player2Card2 = new javax.swing.JLabel();
         Player2Card3 = new javax.swing.JLabel();
-        labelDiscard = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         textGameLog = new javax.swing.JTextArea();
         labelPlayerCard4 = new javax.swing.JLabel();
@@ -49,13 +48,13 @@ public class MainGUI extends javax.swing.JFrame {
         Player2Card4 = new javax.swing.JLabel();
         labelOpponentHand = new javax.swing.JLabel();
         labelYourHand1 = new javax.swing.JLabel();
-        labelRataTat = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(640, 480));
         setResizable(false);
 
+        buttonDraw.setBackground(new java.awt.Color(255, 255, 255));
         buttonDraw.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
         buttonDraw.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,8 +77,6 @@ public class MainGUI extends javax.swing.JFrame {
         Player2Card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
 
         Player2Card3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
-
-        labelDiscard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/4.png"))); // NOI18N
 
         textGameLog.setColumns(20);
         textGameLog.setRows(5);
@@ -109,9 +106,6 @@ public class MainGUI extends javax.swing.JFrame {
         labelYourHand1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelYourHand1.setText("Your Hand:");
 
-        labelRataTat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelRataTat.setText("Rat a Tat Cat");
-
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0.png"))); // NOI18N
         jButton1.setText("jButton1");
@@ -121,113 +115,97 @@ public class MainGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(Deck)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Deck)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(labelOpponentHand)
-                        .addGap(9, 9, 9)
-                        .addComponent(Player2Card1)
-                        .addGap(15, 15, 15)
-                        .addComponent(Player2Card2)
-                        .addGap(15, 15, 15)
-                        .addComponent(Player2Card3)
-                        .addGap(15, 15, 15)
-                        .addComponent(Player2Card4)
-                        .addGap(15, 15, 15)
-                        .addComponent(labelRataTat))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonDraw, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(labelOpponentCard1)
-                        .addGap(58, 58, 58)
-                        .addComponent(labelOpponentCard2)
-                        .addGap(58, 58, 58)
-                        .addComponent(labelOpponentCard3)
-                        .addGap(58, 58, 58)
-                        .addComponent(labelOpponentCard4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(labelYourHand1)
-                        .addGap(22, 22, 22)
-                        .addComponent(PlayerCard1)
-                        .addGap(15, 15, 15)
-                        .addComponent(PlayerCard2)
-                        .addGap(15, 15, 15)
-                        .addComponent(PlayerCard3)
-                        .addGap(15, 15, 15)
-                        .addComponent(PlayerCard4))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(160, 160, 160)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Player2Card1)
+                                    .addComponent(labelOpponentCard1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelOpponentCard2)
+                                    .addComponent(Player2Card2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelOpponentCard3)
+                                    .addComponent(Player2Card3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelOpponentCard4)
+                                    .addComponent(Player2Card4)))
+                            .addComponent(labelOpponentHand)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelYourHand1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(labelPlayerCard1)
-                                .addGap(58, 58, 58)
-                                .addComponent(labelPlayerCard2)
-                                .addGap(58, 58, 58)
-                                .addComponent(labelPlayerCard3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(buttonDraw, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(PlayerCard1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(labelPlayerCard4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 127, Short.MAX_VALUE)
-                .addComponent(labelDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelPlayerCard2)
+                            .addComponent(PlayerCard2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelPlayerCard3)
+                            .addComponent(PlayerCard3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelPlayerCard4)
+                            .addComponent(PlayerCard4))))
+                .addContainerGap(398, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Deck)
-                .addGap(476, 476, 476)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelOpponentHand)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(labelOpponentHand))
                     .addComponent(Player2Card1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Player2Card2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Player2Card3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Player2Card4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(labelRataTat)))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelOpponentCard1)
+                    .addComponent(Player2Card4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelOpponentCard2)
                     .addComponent(labelOpponentCard3)
-                    .addComponent(labelOpponentCard4))
+                    .addComponent(labelOpponentCard4)
+                    .addComponent(labelOpponentCard1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                    .addComponent(buttonDraw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(labelYourHand1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonDraw, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(10, 10, 10)
+                    .addComponent(PlayerCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PlayerCard3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PlayerCard4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PlayerCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelPlayerCard1)
-                    .addComponent(labelPlayerCard2)
-                    .addComponent(labelPlayerCard3)
-                    .addComponent(labelPlayerCard4))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(labelYourHand1))
-                    .addComponent(PlayerCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PlayerCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PlayerCard3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PlayerCard4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(187, 187, 187))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelPlayerCard2)
+                        .addComponent(labelPlayerCard3)
+                        .addComponent(labelPlayerCard4)))
+                .addGap(509, 509, 509))
         );
 
         pack();
@@ -289,7 +267,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JButton buttonDraw;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelDiscard;
     private javax.swing.JLabel labelOpponentCard1;
     private javax.swing.JLabel labelOpponentCard2;
     private javax.swing.JLabel labelOpponentCard3;
@@ -299,7 +276,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel labelPlayerCard2;
     private javax.swing.JLabel labelPlayerCard3;
     private javax.swing.JLabel labelPlayerCard4;
-    private javax.swing.JLabel labelRataTat;
     private javax.swing.JLabel labelYourHand1;
     private javax.swing.JTextArea textGameLog;
     // End of variables declaration//GEN-END:variables
