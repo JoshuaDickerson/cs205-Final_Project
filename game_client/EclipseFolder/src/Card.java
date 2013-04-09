@@ -50,32 +50,10 @@ class Card
 	{
 		return faceup;
 	}
-	public void setPictureFolder(String newPictureName)
-	{
-		pictureName = newPictureName;
-		pictureName += "/";
-	}
+	
 	public String getPictureName()
 	{
-		pictureName = "cards/";
-		if(this.rank >= 0)
-		{
-			pictureName += this.rank+".png";
-		}
-		else if(this.special == "swap")
-		{
-			pictureName += "swap.png";
-		}
-		
-		else if(this.special == "draw2")
-		{
-			pictureName += "draw2.png";
-		}
-		else if(this.special == "peek")
-		{
-			pictureName += "peek.png";
-		}
-		return pictureName;
+		return this.pictureName;
 	}
 	
 	public boolean isSpecial()
