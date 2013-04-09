@@ -308,27 +308,27 @@ public class finalProject extends JApplet implements ActionListener
 
 	        setPreferredSize(new java.awt.Dimension(640, 480));
 
-	        buttonDraw.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13.png"))))); // NOI18N
+	        buttonDraw.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13.png"))))); // NOI18N
 	        buttonDraw.addActionListener(this);
 	        buttonDraw.setActionCommand("Deck");
 	        
-	        Deck.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13.png"))))); // NOI18N
+	        Deck.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13.png"))))); // NOI18N
 
-	        PlayerCard1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
+	        PlayerCard1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))))); // NOI18N
 
-	        PlayerCard2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
+	        PlayerCard2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))))); // NOI18N
 
-	        PlayerCard4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
+	        PlayerCard4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))))); // NOI18N
 
-	        PlayerCard3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
+	        PlayerCard3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))))); // NOI18N
 
-	        Player2Card1.setIcon(new javax.swing.ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png")))); // NOI18N
+	        Player2Card1.setIcon(new javax.swing.ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png")))); // NOI18N
 
-	        Player2Card2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
+	        Player2Card2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))))); // NOI18N
 
-	        Player2Card3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
+	        Player2Card3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))))); // NOI18N
 
-	        labelDiscard.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/4.png"))))); // NOI18N
+	        labelDiscard.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/4.png"))))); // NOI18N
 			
 	        textGameLog.setColumns(20);
 	        textGameLog.setRows(5);
@@ -355,7 +355,7 @@ public class finalProject extends JApplet implements ActionListener
 
 	        labelOpponentCard4.setText("Card 4");
 
-	        //Player2Card4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))); // NOI18N
+	        //Player2Card4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
 
 	        labelOpponentHand.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 	        labelOpponentHand.setText("Opponent's Hand:");
@@ -501,9 +501,9 @@ public class finalProject extends JApplet implements ActionListener
 	        labelDraw2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 	        labelDraw2.setText("You've Drawn a Draw 2 Card!");
 
-	        labelDraw2Picture1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/10.png"))))); // NOI18N
+	        labelDraw2Picture1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/10.png"))))); // NOI18N
 
-	        labelDraw2Picture2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/10.png"))))); // NOI18N
+	        labelDraw2Picture2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/10.png"))))); // NOI18N
 
 	        okButton.setText("OK");
 	        okButton.addActionListener(new java.awt.event.ActionListener() {
@@ -602,9 +602,9 @@ public class finalProject extends JApplet implements ActionListener
 	        labelPeek.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 	        labelPeek.setText("You've Drawn a Peek Card!");
 
-	        labelPeekPic1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/11.png"))))); // NOI18N
+	        labelPeekPic1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/11.png"))))); // NOI18N
 
-	        labelPeekPic2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/11.png"))))); // NOI18N
+	        labelPeekPic2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/11.png"))))); // NOI18N
 
 	        javax.swing.GroupLayout peekLayout = new javax.swing.GroupLayout(getContentPane());
 	        getContentPane().setLayout(peekLayout);
@@ -680,21 +680,21 @@ public class finalProject extends JApplet implements ActionListener
 
 	        setPreferredSize(new java.awt.Dimension(640, 480));
 
-	        OpponentCard1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
+	        OpponentCard1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))))); // NOI18N
 
-	        OpponentCard2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
+	        OpponentCard2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))))); // NOI18N
 
-	        OpponentCard4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
+	        OpponentCard4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))))); // NOI18N
 
-	        OpponentCard3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
+	        OpponentCard3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))))); // NOI18N
 
-	        Player1Card2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
+	        Player1Card2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))))); // NOI18N
 
-	        Player1Card1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
+	        Player1Card1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))))); // NOI18N
 
-	        Player1Card4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
+	        Player1Card4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))))); // NOI18N
 
-	        Player1Card3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
+	        Player1Card3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13tiny.png"))))); // NOI18N
 
 	        comboPlayerCard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Card 1", "Card 2", "Card 3", "Card 4" }));
 	        comboPlayerCard.addActionListener(new java.awt.event.ActionListener() {
@@ -779,7 +779,7 @@ public class finalProject extends JApplet implements ActionListener
 	            }
 	        });
 
-	        labelCardShow.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13.png"))))); // NOI18N
+	        labelCardShow.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13.png"))))); // NOI18N
 
 	        javax.swing.GroupLayout swapPeekLayout = new javax.swing.GroupLayout(getContentPane());
 	        getContentPane().setLayout(swapPeekLayout);
@@ -942,9 +942,9 @@ public class finalProject extends JApplet implements ActionListener
 	        txtPowerCard1.setWrapStyleWord(true);
 	        scrollPowerCard1.setViewportView(txtPowerCard1);
 
-	        labelPictureSwap1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/12.png"))))); // NOI18N
+	        labelPictureSwap1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/12.png"))))); // NOI18N
 
-	        labelPictureSwap2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/12.png"))))); // NOI18N
+	        labelPictureSwap2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/12.png"))))); // NOI18N
 
 	        javax.swing.GroupLayout swapLayout = new javax.swing.GroupLayout(getContentPane());
 	        getContentPane().setLayout(swapLayout);
@@ -1014,9 +1014,9 @@ public class finalProject extends JApplet implements ActionListener
 	        labelDontLook.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 	        labelDontLook.setText("Other Players, Don't Look!");
 
-	        labelCardPicture1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13.png"))))); // NOI18N
+	        labelCardPicture1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13.png"))))); // NOI18N
 
-	        labelCardPicture2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13.png"))))); // NOI18N
+	        labelCardPicture2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"/13.png"))))); // NOI18N
 
 	        javax.swing.GroupLayout turnLayout = new javax.swing.GroupLayout(getContentPane());
 	        getContentPane().setLayout(turnLayout);
