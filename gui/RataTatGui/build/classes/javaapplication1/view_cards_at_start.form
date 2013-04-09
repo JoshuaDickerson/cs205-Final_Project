@@ -26,15 +26,15 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jLabel5" max="32767" attributes="0"/>
+                  <Component id="viewCardsStart_label1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="start_show_card_1" min="-2" pref="136" max="-2" attributes="0"/>
+                      <Component id="viewCardsStart_card1" min="-2" pref="136" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" pref="136" max="-2" attributes="0"/>
+                      <Component id="viewCardsStart_card2" min="-2" pref="136" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" pref="136" max="-2" attributes="0"/>
+                      <Component id="viewCardStart_card3" min="-2" pref="136" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="start_show_card_4" min="-2" pref="136" max="-2" attributes="0"/>
+                      <Component id="viewCardStart_card4" min="-2" pref="136" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="47" max="32767" attributes="0"/>
@@ -46,20 +46,28 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="start_show_card_1" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="start_show_card_4" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
+                  <Component id="viewCardsStart_card1" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
+                  <Component id="viewCardStart_card4" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
+                  <Component id="viewCardsStart_card2" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
+                  <Component id="viewCardStart_card3" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Component id="jLabel5" min="-2" pref="85" max="-2" attributes="0"/>
+              <Component id="viewCardsStart_label1" min="-2" pref="85" max="-2" attributes="0"/>
               <EmptySpace pref="37" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="start_show_card_4">
+    <Component class="javax.swing.JLabel" name="viewCardStart_card4">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/javaapplication1/Cards/6.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="viewCardStart_card3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/13.png"/>
@@ -67,7 +75,7 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="viewCardsStart_card2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/13.png"/>
@@ -75,23 +83,15 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="viewCardsStart_card1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Cards/13.png"/>
+          <Image iconType="3" name="/javaapplication1/Cards/3.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="start_show_card_1">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/javaapplication1/Cards/13.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="viewCardsStart_label1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="36" style="1"/>

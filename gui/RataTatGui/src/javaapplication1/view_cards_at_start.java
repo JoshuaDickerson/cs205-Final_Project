@@ -26,29 +26,29 @@ public class view_cards_at_start extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        start_show_card_4 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        start_show_card_1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        viewCardStart_card4 = new javax.swing.JLabel();
+        viewCardStart_card3 = new javax.swing.JLabel();
+        viewCardsStart_card2 = new javax.swing.JLabel();
+        viewCardsStart_card1 = new javax.swing.JLabel();
+        viewCardsStart_label1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        start_show_card_4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
-        start_show_card_4.setText("jLabel1");
+        viewCardStart_card4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/6.png"))); // NOI18N
+        viewCardStart_card4.setText("jLabel1");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
-        jLabel4.setText("jLabel1");
+        viewCardStart_card3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
+        viewCardStart_card3.setText("jLabel1");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
-        jLabel3.setText("jLabel1");
+        viewCardsStart_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
+        viewCardsStart_card2.setText("jLabel1");
 
-        start_show_card_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
-        start_show_card_1.setText("jLabel1");
+        viewCardsStart_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/3.png"))); // NOI18N
+        viewCardsStart_card1.setText("jLabel1");
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Remember Your Cards!");
+        viewCardsStart_label1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        viewCardsStart_label1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        viewCardsStart_label1.setText("Remember Your Cards!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,15 +57,15 @@ public class view_cards_at_start extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewCardsStart_label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(start_show_card_1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(viewCardsStart_card1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(viewCardsStart_card2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(viewCardStart_card3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(start_show_card_4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(viewCardStart_card4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -73,12 +73,12 @@ public class view_cards_at_start extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(start_show_card_1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(start_show_card_4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(viewCardsStart_card1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewCardStart_card4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewCardsStart_card2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewCardStart_card3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewCardsStart_label1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -120,10 +120,10 @@ public class view_cards_at_start extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel start_show_card_1;
-    private javax.swing.JLabel start_show_card_4;
+    private javax.swing.JLabel viewCardStart_card3;
+    private javax.swing.JLabel viewCardStart_card4;
+    private javax.swing.JLabel viewCardsStart_card1;
+    private javax.swing.JLabel viewCardsStart_card2;
+    private javax.swing.JLabel viewCardsStart_label1;
     // End of variables declaration//GEN-END:variables
 }
