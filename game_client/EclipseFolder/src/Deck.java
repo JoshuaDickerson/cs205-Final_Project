@@ -15,6 +15,7 @@ class Deck
 		for(int i = 0; i < 9; i++)
 		{
 			tempCard = new Card(i);
+			tempCard.setPictureName("/javaapplication1/Cards/" + i + ".png");
 			mainDeck.add(tempCard);
 			mainDeck.add(tempCard);
 			mainDeck.add(tempCard);
@@ -23,16 +24,20 @@ class Deck
 		for(int i = 0; i < 9; i++)
 		{
 			tempCard = new Card(9);
+			tempCard.setPictureName("/javaapplication1/Cards/9.png");
 			mainDeck.add(tempCard);
 		}
 		
 		for(int i = 0; i < 3; i++)
 		{
 			tempCard = new Card("peek");
+			tempCard.setPictureName("/javaapplication1/Cards/11.png");
 			mainDeck.add(tempCard);
 			tempCard = new Card("swap");
+			tempCard.setPictureName("/javaapplication1/Cards/12.png");
 			mainDeck.add(tempCard);
 			tempCard = new Card("draw2");
+			tempCard.setPictureName("/javaapplication1/Cards/10.png");
 			mainDeck.add(tempCard);
 		}
 	}
