@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="C:/Users/Anders/SCHOOOOOOL/CS205/FinalProject/cs205-Final_Project/game_client/EclipseFolder/commons-net-3.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Anders/SCHOOOOOOL/CS205/FinalProject/cs205-Final_Project/game_client/EclipseFolder/gson-2.2.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Anders/SCHOOOOOOL/CS205/FinalProject/cs205-Final_Project/game_client/EclipseFolder/httpclient-4.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Anders/SCHOOOOOOL/CS205/FinalProject/cs205-Final_Project/game_client/EclipseFolder/httpcore-4.2.3.jar"/>
+	<classpathentry kind="lib" path="/home/josh/Dropbox/syllabus/cs-205-software-eng/cs205-Final_Project/game_client/EclipseFolder/commons-net-3.2.jar"/>
+	<classpathentry kind="lib" path="/home/josh/Dropbox/syllabus/cs-205-software-eng/cs205-Final_Project/game_client/EclipseFolder/gson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/josh/Dropbox/syllabus/cs-205-software-eng/cs205-Final_Project/game_client/EclipseFolder/httpclient-4.2.3.jar"/>
+	<classpathentry kind="lib" path="/home/josh/Dropbox/syllabus/cs-205-software-eng/cs205-Final_Project/game_client/EclipseFolder/httpcore-4.2.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
