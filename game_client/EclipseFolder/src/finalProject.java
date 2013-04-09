@@ -49,8 +49,6 @@ public class finalProject extends JApplet implements ActionListener
 	public static final int GAME_SCREEN = 1;
 	public static final int CREDITS_SCREEN = 2; //not sure if we need this...
 	
-	public static final String BASEDIR = "/Final_2/Images";
-	
 	//GLOBAL OBJECTs
 	gameState GAME_STATE;
 	Player[] playersArray;
@@ -60,10 +58,11 @@ public class finalProject extends JApplet implements ActionListener
 	boolean extraHelp;
 	boolean sendJSON;
 	String endTime;
-	boolean draw2FirstCard;
+	boolean gotDraw2;
 	boolean draw2SecondCard;
 	UUID uniqueID;
 	boolean gameOver;
+	
 	
 	//GUI
 	//Within Instructions GUI
@@ -144,7 +143,7 @@ public class finalProject extends JApplet implements ActionListener
     javax.swing.JLabel labelPlayer1Card3;
     javax.swing.JLabel labelPlayer1Card4;
     javax.swing.JLabel labelPlayer2;
-    javax.swing.JLabel labelPlayer2Card1;			String basedir = "/Final_2/images";
+    javax.swing.JLabel labelPlayer2Card1;
     javax.swing.JLabel labelPlayer2Card2;
     javax.swing.JLabel labelPlayer2Card3;
     javax.swing.JLabel labelPlayer2Card4;
@@ -163,7 +162,6 @@ public class finalProject extends JApplet implements ActionListener
     javax.swing.JLabel labelDontLook;
     javax.swing.JLabel labelPlayerTurn;
     javax.swing.JButton okButtonTurn;
-	private AbstractButton nameText;
 
 	
 	public void setUpGUI(int guiMode)
@@ -190,12 +188,9 @@ public class finalProject extends JApplet implements ActionListener
 	        labelInstructions.setText("Instructions:");
 
 	        buttonPlay.setText("Play");
-	        buttonPlay.addActionListener(new java.awt.event.ActionListener() {
-	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                buttonPlay.setActionCommand("Play");
-	            }
-	        });
-
+	        buttonPlay.addActionListener(this);
+	        buttonPlay.setActionCommand("Play");
+	        
 	        labelStyle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 	        labelStyle.setText("Style of Game:");
 
@@ -209,48 +204,16 @@ public class finalProject extends JApplet implements ActionListener
 	        txtGameRules.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 	        txtGameRules.setLineWrap(true);
 	        txtGameRules.setRows(5);
-	        txtGameRules.setText("The goal is to have the lowest score at the end of the game.\n\nChoose one player to be the dealer, and a scorekeeper. The scorekeeper will record each player�s score at the end of each round of play.\n\nShuffle the deck. The player to the left of the dealer cuts the cards. \nThe dealer then deals four cards, one at a time and face down, to each player.\nThe remaining cards are placed face down, in the middle of the table, as the\ndraw pile. The top card of the draw pile is turned over to start the discard\npile. If that card is a Power card, it is placed back in the deck and another\ncard is turned over.\n\nWithout looking at his cards, each player places his or her four cards face down in a line on the table in front of them.\n\nDuring the game, players will always have their four cards face down on the\ntable. To begin the game, players peek at their two outer cards once, then\nturn them face down again. Each player now knows the point values of two of\nhis four cards and needs to remember them during the game.\nIf either of the outer cards are Power cards, the player keeps them, but they\ndo not have their powers (described below). Power cards only have their\npowers when they are drawn from the top of the draw pile.  \nThe player to the left of the dealer has the first turn, and play continues in a\nclockwise direction.\n\nFor each turn, a player may:\n\n1. Draw the top card from the discard pile. This card MUST be used to\nreplace one of her cards. The card replaced is then discarded, face up, to the\ndiscard pile.\n\n2. Draw the top card from the draw pile. A player may use it to: \n\t1. Replace one of her cards\n\t2. Peek, Swap, or Draw 2 if it is a Power card (see below)\n\t3. Discard it face up to the discard pile\n\nA player�s choice is based on remembering the values of his four face down\ncards. Keep track of what you have so you won�t accidentally replace your\nlow point cards with high point cards.\nDuring the game, when the draw pile is used up, shuffle the discard pile and\nturn it over for a new draw pile.\n\nPower cards only have their powers when you draw them from the draw pile. If a Power card is dealt to you at the beginning of the game, it cannot be used. Because Power cards have no point value, if one of them is among your cards at the end of the game, you must replace it with a card drawn from the draw pile. If a Power card is discarded, it may not be used again by any player.\n\nThere are three kinds of Power cards:\n1. Peek\n\tWhen you draw a Peek card, show it and then peek at any\n\tone of your cards. Now you will know what you have, or you\n\tcan refresh your memory if you have forgotten what you have.\n\tYour turn is over and you discard the Peek card.\n2. Swap\n\tWhen you draw a Swap card, show the Swap card and \n\tdiscard it. You may now switch any one of your cards with\n\tany card of another player (swapping is optional). Neither player \t\tcan look at either of the cards being swapped. After the swap \t\tyour turn is over.\n3. Draw 2\n\tWhen you draw a Draw 2 card, show the card and then you\n\tmay take two more turns. First you draw the next card from the\n\tdraw pile. You must decide whether to use this card and forfeit\n\tthe second turn OR discard this card and draw a second card.\n\tThis second card may be used or discarded. Your turn is then\n\tover. If either of the cards drawn are another Draw 2 card, the\n\tDraw 2 sequence starts again.\n\nEnding the Round\n\nWhen a player thinks he has the lowest score and can win the round, he or she may end the round by knocking on the table and saying �rat-a-tat cat� at\nthe end of their turn. Once they knock, every other player has one more turn.\nEach player then turns over their cards. Players replace all Power cards by\ndrawing from the draw pile. If another Power card is drawn, the player\ndraws again.\n\nScoring\n\nPlayers add the point values of their four cards. This is each player�s score\nfor the round. The scorekeeper records each player�s score. Remember that\nplayers are trying to get as low a score as possible.\n\nNext Rounds\n\nAll cards are collected and passed to the player to the left of the dealer who\nreshuffles and deals for the next round.\n\nEnding the Game\n\nThe player with the lowest total score at the end of the game is the winner.\n\nA game may be played three ways:\n1. Play for a certain number of rounds.\n2. Play for a specific length of time.\n3. Play to stay in the game and not reach 100 points. When a player \nreaches 100 points, he is out of the game. The last player in the game is \nthe winner. Players may also choose to play to 200, or any other number \nof points.");
+	        txtGameRules.setText("The goal is to have the lowest score at the end of the game.\n\nChoose one player to be the dealer, and a scorekeeper. The scorekeeper will record each player’s score at the end of each round of play.\n\nShuffle the deck. The player to the left of the dealer cuts the cards. \nThe dealer then deals four cards, one at a time and face down, to each player.\nThe remaining cards are placed face down, in the middle of the table, as the\ndraw pile. The top card of the draw pile is turned over to start the discard\npile. If that card is a Power card, it is placed back in the deck and another\ncard is turned over.\n\nWithout looking at his cards, each player places his or her four cards face down in a line on the table in front of them.\n\nDuring the game, players will always have their four cards face down on the\ntable. To begin the game, players peek at their two outer cards once, then\nturn them face down again. Each player now knows the point values of two of\nhis four cards and needs to remember them during the game.\nIf either of the outer cards are Power cards, the player keeps them, but they\ndo not have their powers (described below). Power cards only have their\npowers when they are drawn from the top of the draw pile.  \nThe player to the left of the dealer has the first turn, and play continues in a\nclockwise direction.\n\nFor each turn, a player may:\n\n1. Draw the top card from the discard pile. This card MUST be used to\nreplace one of her cards. The card replaced is then discarded, face up, to the\ndiscard pile.\n\n2. Draw the top card from the draw pile. A player may use it to: \n\t1. Replace one of her cards\n\t2. Peek, Swap, or Draw 2 if it is a Power card (see below)\n\t3. Discard it face up to the discard pile\n\nA player’s choice is based on remembering the values of his four face down\ncards. Keep track of what you have so you won’t accidentally replace your\nlow point cards with high point cards.\nDuring the game, when the draw pile is used up, shuffle the discard pile and\nturn it over for a new draw pile.\n\nPower cards only have their powers when you draw them from the draw pile. If a Power card is dealt to you at the beginning of the game, it cannot be used. Because Power cards have no point value, if one of them is among your cards at the end of the game, you must replace it with a card drawn from the draw pile. If a Power card is discarded, it may not be used again by any player.\n\nThere are three kinds of Power cards:\n1. Peek\n\tWhen you draw a Peek card, show it and then peek at any\n\tone of your cards. Now you will know what you have, or you\n\tcan refresh your memory if you have forgotten what you have.\n\tYour turn is over and you discard the Peek card.\n2. Swap\n\tWhen you draw a Swap card, show the Swap card and \n\tdiscard it. You may now switch any one of your cards with\n\tany card of another player (swapping is optional). Neither player \t\tcan look at either of the cards being swapped. After the swap \t\tyour turn is over.\n3. Draw 2\n\tWhen you draw a Draw 2 card, show the card and then you\n\tmay take two more turns. First you draw the next card from the\n\tdraw pile. You must decide whether to use this card and forfeit\n\tthe second turn OR discard this card and draw a second card.\n\tThis second card may be used or discarded. Your turn is then\n\tover. If either of the cards drawn are another Draw 2 card, the\n\tDraw 2 sequence starts again.\n\nEnding the Round\n\nWhen a player thinks he has the lowest score and can win the round, he or she may end the round by knocking on the table and saying “rat-a-tat cat” at\nthe end of their turn. Once they knock, every other player has one more turn.\nEach player then turns over their cards. Players replace all Power cards by\ndrawing from the draw pile. If another Power card is drawn, the player\ndraws again.\n\nScoring\n\nPlayers add the point values of their four cards. This is each player’s score\nfor the round. The scorekeeper records each player’s score. Remember that\nplayers are trying to get as low a score as possible.\n\nNext Rounds\n\nAll cards are collected and passed to the player to the left of the dealer who\nreshuffles and deals for the next round.\n\nEnding the Game\n\nThe player with the lowest total score at the end of the game is the winner.\n\nA game may be played three ways:\n1. Play for a certain number of rounds.\n2. Play for a specific length of time.\n3. Play to stay in the game and not reach 100 points. When a player \nreaches 100 points, he is out of the game. The last player in the game is \nthe winner. Players may also choose to play to 200, or any other number \nof points.");
 	        txtGameRules.setWrapStyleWord(true);
 	        scrollGameRules.setViewportView(txtGameRules);
 
-	        labelCatPic.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/3.png"))); // NOI18N
-
+	        labelCatPic.setIcon(new javax.swing.ImageIcon(this.getClass().getResource("/images/rat_a_tat.jpg")));
 	        comboGameStyle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rounds", "Time", "Points" }));
 	        comboGameStyle.setToolTipText("");
-	        comboGameStyle.addActionListener(new java.awt.event.ActionListener() {
-	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	            	int style = comboGameStyle.getSelectedIndex();
-	            	if(style == 0){
-	            		comboGameStyle.setActionCommand("Rounds");
-	            	}
-	            	else if(style == 1){
-	            		comboGameStyle.setActionCommand("Time");
-	            	}
-	            	else if(style == 2){
-	            		comboGameStyle.setActionCommand("Points");
-	            	}
-	            	
-	            //Could also be under the play button and have it send both combobox arguments using the .getSelectedCommand();
-	            	
-
-	            }
-	        });
 
 	        comboDifficulty.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Easy", "Medium", "Hard" }));
-	        comboDifficulty.addActionListener(new java.awt.event.ActionListener() {
-	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	            	int difficulty = comboDifficulty.getSelectedIndex();
-	            	if(difficulty == 0){
-	            		comboDifficulty.setActionCommand("Easy");
-	            	}
-	            	else if(difficulty == 1){
-	            		comboDifficulty.setActionCommand("Medium");
-	            	}
-	            	else if(difficulty == 2){
-	            		comboDifficulty.setActionCommand("Hard");
-	            	}
-	            }
-	        });
+	        
 
 	        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 	        getContentPane().setLayout(layout);
@@ -344,41 +307,36 @@ public class finalProject extends JApplet implements ActionListener
 
 	        setPreferredSize(new java.awt.Dimension(640, 480));
 
-	        buttonDraw.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13.png"))); // NOI18N
-	        buttonDraw.addActionListener(new java.awt.event.ActionListener() {
-	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                buttonDraw.setActionCommand("Draw");
-	            }
-	        });
+	        buttonDraw.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13.png"))))); // NOI18N
+	        buttonDraw.addActionListener(this);
+	        buttonDraw.setActionCommand("Deck");
+	        
+	        Deck.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13.png"))))); // NOI18N
 
-	        Deck.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13_1.png"))); // NOI18N
+	        PlayerCard1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
 
-	        PlayerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        PlayerCard2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
 
-	        PlayerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        PlayerCard4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
 
-	        PlayerCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        PlayerCard3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
 
-	        PlayerCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        Player2Card1.setIcon(new javax.swing.ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png")))); // NOI18N
 
-	        Player2Card1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        Player2Card2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
 
-	        Player2Card2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        Player2Card3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
 
-	        Player2Card3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
-
-	        labelDiscard.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/4.png"))); // NOI18N
-
+	        labelDiscard.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/4.png"))))); // NOI18N
+			
 	        textGameLog.setColumns(20);
 	        textGameLog.setRows(5);
 	        jScrollPane1.setViewportView(textGameLog);
 
 	        buttonDiscard.setText("Discard");
-	        buttonDiscard.addActionListener(new java.awt.event.ActionListener() {
-	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                buttonDiscard.setActionCommand("Discard");
-	            }
-	        });
+	        buttonDiscard.addActionListener(this);
+	        buttonDiscard.setActionCommand("Discard");
+	        
 
 	        labelPlayerCard4.setText("Card 4");
 
@@ -396,7 +354,7 @@ public class finalProject extends JApplet implements ActionListener
 
 	        labelOpponentCard4.setText("Card 4");
 
-	        Player2Card4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        //Player2Card4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))); // NOI18N
 
 	        labelOpponentHand.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 	        labelOpponentHand.setText("Opponent's Hand:");
@@ -542,9 +500,9 @@ public class finalProject extends JApplet implements ActionListener
 	        labelDraw2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 	        labelDraw2.setText("You've Drawn a Draw 2 Card!");
 
-	        labelDraw2Picture1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/10.png"))); // NOI18N
+	        labelDraw2Picture1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/10.png"))))); // NOI18N
 
-	        labelDraw2Picture2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/10.png"))); // NOI18N
+	        labelDraw2Picture2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/10.png"))))); // NOI18N
 
 	        okButton.setText("OK");
 	        okButton.addActionListener(new java.awt.event.ActionListener() {
@@ -643,9 +601,9 @@ public class finalProject extends JApplet implements ActionListener
 	        labelPeek.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 	        labelPeek.setText("You've Drawn a Peek Card!");
 
-	        labelPeekPic1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/11.png"))); // NOI18N
+	        labelPeekPic1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/11.png"))))); // NOI18N
 
-	        labelPeekPic2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/11.png"))); // NOI18N
+	        labelPeekPic2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/11.png"))))); // NOI18N
 
 	        javax.swing.GroupLayout peekLayout = new javax.swing.GroupLayout(getContentPane());
 	        getContentPane().setLayout(peekLayout);
@@ -721,21 +679,21 @@ public class finalProject extends JApplet implements ActionListener
 
 	        setPreferredSize(new java.awt.Dimension(640, 480));
 
-	        OpponentCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        OpponentCard1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
 
-	        OpponentCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        OpponentCard2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
 
-	        OpponentCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        OpponentCard4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
 
-	        OpponentCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        OpponentCard3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
 
-	        Player1Card2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        Player1Card2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
 
-	        Player1Card1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        Player1Card1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
 
-	        Player1Card4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        Player1Card4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
 
-	        Player1Card3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13tiny.png"))); // NOI18N
+	        Player1Card3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13tiny.png"))))); // NOI18N
 
 	        comboPlayerCard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Card 1", "Card 2", "Card 3", "Card 4" }));
 	        comboPlayerCard.addActionListener(new java.awt.event.ActionListener() {
@@ -820,7 +778,7 @@ public class finalProject extends JApplet implements ActionListener
 	            }
 	        });
 
-	        labelCardShow.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13.png"))); // NOI18N
+	        labelCardShow.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13.png"))))); // NOI18N
 
 	        javax.swing.GroupLayout swapPeekLayout = new javax.swing.GroupLayout(getContentPane());
 	        getContentPane().setLayout(swapPeekLayout);
@@ -983,9 +941,9 @@ public class finalProject extends JApplet implements ActionListener
 	        txtPowerCard1.setWrapStyleWord(true);
 	        scrollPowerCard1.setViewportView(txtPowerCard1);
 
-	        labelPictureSwap1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/12.png"))); // NOI18N
+	        labelPictureSwap1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/12.png"))))); // NOI18N
 
-	        labelPictureSwap2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/12.png"))); // NOI18N
+	        labelPictureSwap2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/12.png"))))); // NOI18N
 
 	        javax.swing.GroupLayout swapLayout = new javax.swing.GroupLayout(getContentPane());
 	        getContentPane().setLayout(swapLayout);
@@ -1055,9 +1013,9 @@ public class finalProject extends JApplet implements ActionListener
 	        labelDontLook.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 	        labelDontLook.setText("Other Players, Don't Look!");
 
-	        labelCardPicture1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13.png"))); // NOI18N
+	        labelCardPicture1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13.png"))))); // NOI18N
 
-	        labelCardPicture2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"/13.png"))); // NOI18N
+	        labelCardPicture2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource("cards/13.png"))))); // NOI18N
 
 	        javax.swing.GroupLayout turnLayout = new javax.swing.GroupLayout(getContentPane());
 	        getContentPane().setLayout(turnLayout);
@@ -1110,9 +1068,34 @@ public class finalProject extends JApplet implements ActionListener
 		getContentPane().removeAll();
 	}
 	
+	public void swap()
+	{
+		System.out.println("--------------------------------------------WE GOT A SWAP");
+		//MY INDEX
+		int myIndex;
+		
+		myIndex = 0;
+		
+		//OPPOENETS INDEX
+		int othersIndex;
+		othersIndex = 0;
+		
+		if(GAME_STATE.getPlayer() == 0)
+		{
+			Card fromOpponent = playersArray[1].myHand.getCard(othersIndex);
+			Card newCard = playersArray[0].myHand.replaceCard(myIndex, fromOpponent);
+			Card worthlessCard = playersArray[1].myHand.replaceCard(othersIndex, newCard);
+		}
+		else
+		{
+			Card fromOpponent = playersArray[0].myHand.getCard(othersIndex);
+			Card newCard = playersArray[1].myHand.replaceCard(myIndex, fromOpponent);
+			Card worthlessCard = playersArray[0].myHand.replaceCard(othersIndex, newCard);
+		}
+	}
+	
 	public void drawFromDeck()
 	{
-		/*
 		Card cardFromDeck;
 		
 		//GET NEW CARD FROM DECK
@@ -1124,84 +1107,24 @@ public class finalProject extends JApplet implements ActionListener
 			discard.addTopCard(cardFromDeck);
 			if(cardFromDeck.getSpecial() == "swap")
 			{
-				draw2FirstCard = false;
-				System.out.println("--------------------------------------------WE GOT A SWAP");
-				//MY INDEX
-				int myIndex;
-				
-				myIndex = 0;
-				
-				//OPPOENETS INDEX
-				int othersIndex;
-				othersIndex = 0;
-				
-				if(GAME_STATE.getPlayer() == 0)
-				{
-					Card fromOpponent = playersArray[1].myHand.getCard(othersIndex);
-					Card newCard = playersArray[0].myHand.replaceCard(myIndex, fromOpponent);
-					Card worthlessCard = playersArray[1].myHand.replaceCard(othersIndex, newCard);
-				}
-				else
-				{
-					Card fromOpponent = playersArray[0].myHand.getCard(othersIndex);
-					Card newCard = playersArray[1].myHand.replaceCard(myIndex, fromOpponent);
-					Card worthlessCard = playersArray[0].myHand.replaceCard(othersIndex, newCard);
-				}
+				gotDraw2 = false;
+				swap();
 			}
 			else if(cardFromDeck.getSpecial() == "peek")
 			{
-				draw2FirstCard = false;
-				System.out.println("--------------------------------------------WE GOT A PEEK");
-				
-				handIndex = 0;
-				System.out.println("Card " + handIndex + " is a " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex));
+				gotDraw2 = false;
+				peek();
 			}
 			else if(cardFromDeck.getSpecial() == "draw2")
 			{
-				System.out.println("--------------------------------------------WE GOT A DRAW2");
 				gotDraw2 = true;
+				draw2();
 			}
 		}
 		else
 		{
-			System.out.println("You got an " + cardFromDeck.toString());
-			
-			handIndex = 0;
-			
-			if(handIndex == -1)
-			{
-				if(!draw2SecondCard && gotDraw2)
-				{
-					//we get to try again drawing
-					draw2SecondCard = true;
-				}
-				else
-				{
-					//this was already our second attempt
-					draw2SecondCard = false;
-				}
-				gotDraw2 = false;
-				//User discards back to deck
-				discard.addTopCard(cardFromDeck);
-				if(debug)
-				{
-					System.out.println("Decided to discard " + cardFromDeck.toString());
-				}
-			}
-			else
-			{
-				//user wants to swap card with hand
-				gotDraw2 = false;
-				draw2SecondCard = false;
-				if(debug)
-				{
-					System.out.println("Swapped " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex).toString() + ", with " + cardFromDeck.toString());
-				}					
-				Card removedFromHand = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
-				discard.addTopCard(removedFromHand);
-			}
+			replaceCardInHand();
 		}
-		*/
 	}
 	
 	public void drawDiscard()
@@ -1222,19 +1145,80 @@ public class finalProject extends JApplet implements ActionListener
 		*/
 	}
 	
-	public void swap()
+	public void updateGUICards()
 	{
+		/*
+		 * THIS METHOD NEEDS TO BE FIXED SO THE CORRECT CARD OBJECTS ARE LINKED
+		 */
 		
+		/*
+		//HUMANS HAND
+		card1.setIcon(playersArray[0].getHand().getCard(0).getPictureName());
+		card2.setIcon(playersArray[0].getHand().getCard(1).getPictureName());
+		card3.setIcon(playersArray[0].getHand().getCard(2).getPictureName());
+		card4.setIcon(playersArray[0].getHand().getCard(3).getPictureName());
+		
+		//COMPUTERS HAND
+		card1.setIcon(playersArray[1].getHand().getCard(0).getPictureName());
+		card2.setIcon(playersArray[1].getHand().getCard(1).getPictureName());
+		card3.setIcon(playersArray[1].getHand().getCard(2).getPictureName());
+		card4.setIcon(playersArray[1].getHand().getCard(3).getPictureName());
+		*/
 	}
 	
+	public void replaceCardInHand()
+	{
+		System.out.println("REAPLCING CARD FROM HADN WITH DECK");
+		/*
+		//System.out.println("You got an " + cardFromDeck.toString());
+		
+		if(1 == -1)
+		{
+			if(!draw2SecondCard && gotDraw2)
+			{
+				//we get to try again drawing
+				draw2SecondCard = true;
+			}
+			else
+			{
+				//this was already our second attempt
+				draw2SecondCard = false;
+			}
+			gotDraw2 = false;
+			//User discards back to deck
+			discard.addTopCard(cardFromDeck);
+			if(debug)
+			{
+				System.out.println("Decided to discard " + cardFromDeck.toString());
+			}
+		}
+		else
+		{
+			//user wants to swap card with hand
+			gotDraw2 = false;
+			draw2SecondCard = false;
+			if(debug)
+			{
+				System.out.println("Swapped " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex).toString() + ", with " + cardFromDeck.toString());
+			}					
+			Card removedFromHand = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
+			discard.addTopCard(removedFromHand);
+		}
+		*/
+	}
 	public void peek()
 	{
+		gotDraw2 = false;
+		System.out.println("--------------------------------------------WE GOT A PEEK");
 		
+		
+		//System.out.println("Card " + handIndex + " is a " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex));
 	}
 	
 	public void draw2()
 	{
-		
+		System.out.println("--------------------------------------------WE GOT A DRAW2");
+		gotDraw2 = true;
 	}
 	
 	public void initGame()
@@ -1251,7 +1235,7 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//HUMAN PLAYER
 		Hand humanHand = new Hand(0);
-		Player human = new Player(true, 0, nameText.getText() , humanHand);
+		Player human = new Player(true, 0, "REPLACE WITH REAL NAME" , humanHand);
 		playersArray[0] = human;
 		
 		//COMPUTER OPPONENTS
@@ -1271,7 +1255,7 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//UPDATE GAME STATE
 		//public void updateGameState(int _status, int _winCon, int _player, int _mode)
-		GAME_STATE.updateGameState(NORMAL_ROUND, GAME_STATE.getWinCon(), 0, NORMAL_PLAY, GAME_STATE.getRoundNum());
+		GAME_STATE.updateGameState(NORMAL_ROUND, comboGameStyle.getSelectedIndex(), 0, NORMAL_PLAY, GAME_STATE.getRoundNum());
 		
 		if(debug)
 		{
@@ -1292,7 +1276,7 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//CREATE DECK
 		mainDeck = new Deck();
-		mainDeck.shuffle();
+		//mainDeck.shuffle();
 		
 		//CREATE DISCARD PILE
 		discard = new Deck();
@@ -1709,9 +1693,14 @@ public class finalProject extends JApplet implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{	
 		//FOR THE GAME SETUP
-		if("numRounds".equals(e.getActionCommand()))
+		if("Play".equals(e.getActionCommand()))
 		{
-			//INIT GAME
+			if(debug)
+			{
+				System.out.println("Ive CLICKED PLAY WITH GAME MODE: " + comboGameStyle.getSelectedIndex() + " | and difficulty : " + comboDifficulty.getSelectedIndex());
+				
+			}
+	        //INIT GAME
 			initGame();
 			
 			initRound();
@@ -1720,15 +1709,16 @@ public class finalProject extends JApplet implements ActionListener
 			setUpGUI(1);
 			
 		}
-		if("enableLeft".equals(e.getActionCommand()))
+		if("Deck".equals(e.getActionCommand()))
 		{
-			System.out.println("DECK");
-			setUpGUI(2);
+			System.out.println("Deck");
+			drawFromDeck();
+			//setUpGUI(2);
 		}
-		if("drawDiscard".equals(e.getActionCommand()))
+		if("Discard".equals(e.getActionCommand()))
 		{
-			System.out.println("DISCARD");
-			setUpGUI(2);
+			System.out.println("Discard");
+			//setUpGUI(2);
 		}
 		
 		//KNOCK OR STAY
