@@ -54,10 +54,8 @@
                       <Component id="scrollGameRules" min="-2" pref="480" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="p2_name_input" pref="158" max="32767" attributes="0"/>
                           <Component id="p1_name_input" max="32767" attributes="0"/>
                           <Component id="p1_input_name_label" alignment="0" max="32767" attributes="0"/>
-                          <Component id="p2_input_name_label" alignment="1" pref="158" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -74,12 +72,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="p1_input_name_label" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="p1_name_input" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="p2_input_name_label" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="p2_name_input" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -203,22 +197,15 @@
     </Component>
     <Component class="javax.swing.JTextField" name="p1_name_input">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
+        <Property name="text" type="java.lang.String" value="name here"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="p2_name_input">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="p1_name_inputActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="p1_input_name_label">
       <Properties>
         <Property name="text" type="java.lang.String" value="Player 1 Name"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="p2_input_name_label">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Player 2 Name"/>
       </Properties>
     </Component>
   </SubComponents>

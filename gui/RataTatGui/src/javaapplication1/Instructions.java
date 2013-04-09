@@ -36,9 +36,7 @@ public class Instructions extends javax.swing.JFrame {
         comboGameStyle = new javax.swing.JComboBox();
         comboDifficulty = new javax.swing.JComboBox();
         p1_name_input = new javax.swing.JTextField();
-        p2_name_input = new javax.swing.JTextField();
         p1_input_name_label = new javax.swing.JLabel();
-        p2_input_name_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,13 +82,14 @@ public class Instructions extends javax.swing.JFrame {
             }
         });
 
-        p1_name_input.setText("jTextField1");
-
-        p2_name_input.setText("jTextField1");
+        p1_name_input.setText("name here");
+        p1_name_input.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                p1_name_inputActionPerformed(evt);
+            }
+        });
 
         p1_input_name_label.setText("Player 1 Name");
-
-        p2_input_name_label.setText("Player 2 Name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,10 +120,8 @@ public class Instructions extends javax.swing.JFrame {
                         .addComponent(scrollGameRules, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(p2_name_input, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                             .addComponent(p1_name_input)
-                            .addComponent(p1_input_name_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(p2_input_name_label, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))))
+                            .addComponent(p1_input_name_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(492, 492, 492))
         );
         layout.setVerticalGroup(
@@ -136,12 +133,8 @@ public class Instructions extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(p1_input_name_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(p1_name_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addComponent(p2_input_name_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(p2_name_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(p1_name_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(scrollGameRules, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,6 +171,10 @@ public class Instructions extends javax.swing.JFrame {
     private void comboGameStyleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGameStyleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboGameStyleActionPerformed
+
+    private void p1_name_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1_name_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_p1_name_inputActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,8 +220,6 @@ public class Instructions extends javax.swing.JFrame {
     private javax.swing.JLabel labelUrl;
     private javax.swing.JLabel p1_input_name_label;
     private javax.swing.JTextField p1_name_input;
-    private javax.swing.JLabel p2_input_name_label;
-    private javax.swing.JTextField p2_name_input;
     private javax.swing.JScrollPane scrollGameRules;
     private javax.swing.JTextArea txtGameRules;
     // End of variables declaration//GEN-END:variables
