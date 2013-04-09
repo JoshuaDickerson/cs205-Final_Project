@@ -48,6 +48,7 @@ public class finalProject extends JApplet implements ActionListener
 	public static final int MAIN_MENU = 0;
 	public static final int GAME_SCREEN = 1;
 	public static final int CREDITS_SCREEN = 2; //not sure if we need this...
+	public static final String BASEDIR = "/Final_2/images/";
 	
 	//GLOBAL OBJECTs
 	gameState GAME_STATE;
