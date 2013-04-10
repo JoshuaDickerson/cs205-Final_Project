@@ -163,6 +163,47 @@ public class finalProject extends JApplet implements ActionListener
     javax.swing.JLabel labelDontLook;
     javax.swing.JLabel labelPlayerTurn;
     javax.swing.JButton okButtonTurn;
+    
+    javax.swing.JLabel turnChange_label1;
+    javax.swing.JLabel turnChange_label2;
+    javax.swing.JLabel turnChange_card1;
+    javax.swing.JButton turnChange_button;
+    javax.swing.JLabel turnChange_card2;
+
+    javax.swing.JLabel knockPlay_label1;
+    javax.swing.JButton knockPlay_knock;
+    javax.swing.JButton knockPlay_play;
+
+    javax.swing.JLabel peekInterface_card1;
+    javax.swing.JLabel peekInterface_card2;
+    javax.swing.JLabel peekInterface_card3;
+    javax.swing.JLabel peekInterface_card4;
+    javax.swing.JLabel peekInterface_label1;
+    javax.swing.JLabel peekInterface_select1;
+
+    javax.swing.JLabel swapOpp_oppCard1;
+    javax.swing.JLabel swapOpp_oppCard2;
+    javax.swing.JLabel swapOpp_oppCard3;
+    javax.swing.JLabel swapOpp_oppCard4;
+    javax.swing.JLabel swapOpp_label1;
+    javax.swing.JLabel swapOpp_oppSelect;
+    javax.swing.JLabel swapOpp_playerCard1;
+    javax.swing.JLabel swapOpp_playerCard2;
+    javax.swing.JLabel swapOpp_playerCard3;
+    javax.swing.JLabel swapOpp_playerCard4;
+    
+    javax.swing.JLabel timesUp_label1;
+    javax.swing.JLabel timesUp_clockLabel1;
+    javax.swing.JLabel timesUp_clockLabel2;
+    javax.swing.JLabel timesUp_clockLabel3;
+    javax.swing.JLabel timesUp_clockLabel4;
+    javax.swing.JLabel timesUp_clockLabel5;
+
+    javax.swing.JLabel viewCardsStart_card1;
+    javax.swing.JLabel viewCardsStart_card2;
+    javax.swing.JLabel viewCardsStart_card3;
+    javax.swing.JLabel viewCardsStart_card4;
+    javax.swing.JLabel viewCardsStart_label1;
 
 	
 	public void setUpGUI(int guiMode)
