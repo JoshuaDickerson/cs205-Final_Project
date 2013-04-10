@@ -163,24 +163,24 @@ public class finalProject extends JApplet implements ActionListener
     javax.swing.JLabel labelDontLook;
     javax.swing.JLabel labelPlayerTurn;
     javax.swing.JButton okButtonTurn;
-    
+    // TurnChangeDialog.java
     javax.swing.JLabel turnChange_label1;
     javax.swing.JLabel turnChange_label2;
     javax.swing.JLabel turnChange_card1;
     javax.swing.JButton turnChange_button;
     javax.swing.JLabel turnChange_card2;
-
+    // knock_or_play.java
     javax.swing.JLabel knockPlay_label1;
     javax.swing.JButton knockPlay_knock;
     javax.swing.JButton knockPlay_play;
-
+    // peek_interface.java
     javax.swing.JLabel peekInterface_card1;
     javax.swing.JLabel peekInterface_card2;
     javax.swing.JLabel peekInterface_card3;
     javax.swing.JLabel peekInterface_card4;
     javax.swing.JLabel peekInterface_label1;
     javax.swing.JLabel peekInterface_select1;
-
+    // swap_opp_card.java
     javax.swing.JLabel swapOpp_oppCard1;
     javax.swing.JLabel swapOpp_oppCard2;
     javax.swing.JLabel swapOpp_oppCard3;
@@ -191,14 +191,14 @@ public class finalProject extends JApplet implements ActionListener
     javax.swing.JLabel swapOpp_playerCard2;
     javax.swing.JLabel swapOpp_playerCard3;
     javax.swing.JLabel swapOpp_playerCard4;
-    
+    //times_up.java
     javax.swing.JLabel timesUp_label1;
     javax.swing.JLabel timesUp_clockLabel1;
     javax.swing.JLabel timesUp_clockLabel2;
     javax.swing.JLabel timesUp_clockLabel3;
     javax.swing.JLabel timesUp_clockLabel4;
     javax.swing.JLabel timesUp_clockLabel5;
-
+//  view_cards_at_start.java
     javax.swing.JLabel viewCardsStart_card1;
     javax.swing.JLabel viewCardsStart_card2;
     javax.swing.JLabel viewCardsStart_card3;
@@ -1032,9 +1032,9 @@ public class finalProject extends JApplet implements ActionListener
 					
 				
 		    break;
-			case(6): //Change Turn GUI
+	case(6): //Change Turn GUI
 				
-		    okButtonTurn = new javax.swing.JButton();
+		okButtonTurn = new javax.swing.JButton();
 	        labelPlayerTurn = new javax.swing.JLabel();
 	        labelDontLook = new javax.swing.JLabel();
 	        labelCardPicture1 = new javax.swing.JLabel();
@@ -1101,6 +1101,8 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		
 	}
+        
+        // TurnChangeDailog
 	
 	public void clearGUI()
 	{
