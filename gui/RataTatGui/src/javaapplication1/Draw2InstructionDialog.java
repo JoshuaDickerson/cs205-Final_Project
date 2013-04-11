@@ -60,13 +60,13 @@ public class Draw2InstructionDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         scrollPowerCard2 = new javax.swing.JScrollPane();
-        txtPowerCards = new javax.swing.JTextArea();
-        labelDraw2 = new javax.swing.JLabel();
-        labelDraw2Picture1 = new javax.swing.JLabel();
-        labelDraw2Picture2 = new javax.swing.JLabel();
-        okButton = new javax.swing.JButton();
+        draw2Instruct_jtextarea_instruct2 = new javax.swing.JTextArea();
+        draw2Instruct_jlabel_label1 = new javax.swing.JLabel();
+        draw2Instruct_jlabel_graphic2 = new javax.swing.JLabel();
+        draw2Instruct_jlabel_graphic1 = new javax.swing.JLabel();
+        draw2Instruct_jbutton_ok = new javax.swing.JButton();
         scrollDraw2 = new javax.swing.JScrollPane();
-        txtDraw2 = new javax.swing.JTextArea();
+        draw2Instruct_jtextarea_instruct1 = new javax.swing.JTextArea();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -74,71 +74,75 @@ public class Draw2InstructionDialog extends javax.swing.JDialog {
             }
         });
 
-        txtPowerCards.setEditable(false);
-        txtPowerCards.setColumns(20);
-        txtPowerCards.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txtPowerCards.setLineWrap(true);
-        txtPowerCards.setRows(5);
-        txtPowerCards.setText("Power cards have no value and if they are in a player's hand at the end of the round. They must be swapped for the top card of the deck.");
-        txtPowerCards.setWrapStyleWord(true);
-        scrollPowerCard2.setViewportView(txtPowerCards);
+        draw2Instruct_jtextarea_instruct2.setEditable(false);
+        draw2Instruct_jtextarea_instruct2.setColumns(20);
+        draw2Instruct_jtextarea_instruct2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        draw2Instruct_jtextarea_instruct2.setLineWrap(true);
+        draw2Instruct_jtextarea_instruct2.setRows(5);
+        draw2Instruct_jtextarea_instruct2.setText("Power cards have no value and if they are in a player's hand at the end of the round. They must be swapped for the top card of the deck.");
+        draw2Instruct_jtextarea_instruct2.setWrapStyleWord(true);
+        scrollPowerCard2.setViewportView(draw2Instruct_jtextarea_instruct2);
 
-        labelDraw2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        labelDraw2.setText("You've Drawn a Draw 2 Card!");
+        draw2Instruct_jlabel_label1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        draw2Instruct_jlabel_label1.setText("You've Drawn a Draw 2 Card!");
 
-        labelDraw2Picture1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/10.png"))); // NOI18N
+        draw2Instruct_jlabel_graphic2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/10.png"))); // NOI18N
 
-        labelDraw2Picture2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/10.png"))); // NOI18N
+        draw2Instruct_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/10.png"))); // NOI18N
 
-        okButton.setText("OK");
+        draw2Instruct_jbutton_ok.setText("OK");
 
-        txtDraw2.setEditable(false);
-        txtDraw2.setColumns(20);
-        txtDraw2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txtDraw2.setLineWrap(true);
-        txtDraw2.setRows(5);
-        txtDraw2.setText("Take a card from the draw pile, and either swap it with one of your cards or discard it and draw a second card to be swapped or thrown out.");
-        txtDraw2.setWrapStyleWord(true);
-        scrollDraw2.setViewportView(txtDraw2);
+        draw2Instruct_jtextarea_instruct1.setEditable(false);
+        draw2Instruct_jtextarea_instruct1.setColumns(20);
+        draw2Instruct_jtextarea_instruct1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        draw2Instruct_jtextarea_instruct1.setLineWrap(true);
+        draw2Instruct_jtextarea_instruct1.setRows(5);
+        draw2Instruct_jtextarea_instruct1.setText("Take a card from the draw pile, and either swap it with one of your cards or discard it and draw a second card to be swapped or thrown out.");
+        draw2Instruct_jtextarea_instruct1.setWrapStyleWord(true);
+        scrollDraw2.setViewportView(draw2Instruct_jtextarea_instruct1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(labelDraw2))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(labelDraw2Picture2)
-                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollDraw2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(scrollPowerCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(labelDraw2Picture1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(270, 270, 270)
-                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(draw2Instruct_jlabel_label1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(draw2Instruct_jlabel_graphic1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(draw2Instruct_jbutton_ok, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(scrollDraw2, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                                .addComponent(scrollPowerCard2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(draw2Instruct_jlabel_graphic2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(labelDraw2)
-                .addGap(51, 51, 51)
+                .addContainerGap()
+                .addComponent(draw2Instruct_jlabel_label1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelDraw2Picture2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(scrollDraw2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
-                        .addComponent(scrollPowerCard2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelDraw2Picture1))
-                .addGap(39, 39, 39)
-                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(draw2Instruct_jlabel_graphic1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(draw2Instruct_jlabel_graphic2)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(scrollDraw2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(19, 19, 19)
+                            .addComponent(scrollPowerCard2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(draw2Instruct_jbutton_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        getRootPane().setDefaultButton(okButton);
+        getRootPane().setDefaultButton(draw2Instruct_jbutton_ok);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -198,14 +202,14 @@ public class Draw2InstructionDialog extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel labelDraw2;
-    private javax.swing.JLabel labelDraw2Picture1;
-    private javax.swing.JLabel labelDraw2Picture2;
-    private javax.swing.JButton okButton;
+    private javax.swing.JButton draw2Instruct_jbutton_ok;
+    private javax.swing.JLabel draw2Instruct_jlabel_graphic1;
+    private javax.swing.JLabel draw2Instruct_jlabel_graphic2;
+    private javax.swing.JLabel draw2Instruct_jlabel_label1;
+    private javax.swing.JTextArea draw2Instruct_jtextarea_instruct1;
+    private javax.swing.JTextArea draw2Instruct_jtextarea_instruct2;
     private javax.swing.JScrollPane scrollDraw2;
     private javax.swing.JScrollPane scrollPowerCard2;
-    private javax.swing.JTextArea txtDraw2;
-    private javax.swing.JTextArea txtPowerCards;
     // End of variables declaration//GEN-END:variables
     private int returnStatus = RET_CANCEL;
 }

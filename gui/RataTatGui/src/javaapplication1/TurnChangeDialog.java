@@ -59,11 +59,11 @@ public class TurnChangeDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        turnChange_button = new javax.swing.JButton();
-        turnChange_label1 = new javax.swing.JLabel();
-        turnChange_label2 = new javax.swing.JLabel();
-        turnChange_card2 = new javax.swing.JLabel();
-        turnChange_card1 = new javax.swing.JLabel();
+        turnChange_jlabel_goButton = new javax.swing.JButton();
+        turnChange_jlabel_label1 = new javax.swing.JLabel();
+        turnChange_jlabel_label2 = new javax.swing.JLabel();
+        turnChange_jlabel_card2 = new javax.swing.JLabel();
+        turnChange_jlabel_card1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(640, 480));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -72,73 +72,73 @@ public class TurnChangeDialog extends javax.swing.JDialog {
             }
         });
 
-        turnChange_button.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        turnChange_button.setText("GO!");
-        turnChange_button.addActionListener(new java.awt.event.ActionListener() {
+        turnChange_jlabel_goButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        turnChange_jlabel_goButton.setText("GO!");
+        turnChange_jlabel_goButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                turnChange_buttonActionPerformed(evt);
+                turnChange_jlabel_goButtonActionPerformed(evt);
             }
         });
 
-        turnChange_label1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        turnChange_label1.setText("It's Player 2's Turn!");
+        turnChange_jlabel_label1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        turnChange_jlabel_label1.setText("It's Player 2's Turn!");
 
-        turnChange_label2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        turnChange_label2.setText("Other Players, Don't Look!");
+        turnChange_jlabel_label2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        turnChange_jlabel_label2.setText("Other Players, Don't Look!");
 
-        turnChange_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
+        turnChange_jlabel_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
 
-        turnChange_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
+        turnChange_jlabel_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(turnChange_label1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(turnChange_label2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(turnChange_card1)
+                .addComponent(turnChange_jlabel_card1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(turnChange_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(turnChange_jlabel_goButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(turnChange_card2)
+                .addComponent(turnChange_jlabel_card2)
                 .addGap(28, 28, 28))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(turnChange_jlabel_label1)
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(turnChange_jlabel_label2)
+                        .addGap(75, 75, 75))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(turnChange_label1)
+                .addComponent(turnChange_jlabel_label1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(turnChange_label2)
+                .addComponent(turnChange_jlabel_label2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(turnChange_button, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(turnChange_jlabel_goButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(turnChange_card1)
-                            .addComponent(turnChange_card2))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                            .addComponent(turnChange_jlabel_card1)
+                            .addComponent(turnChange_jlabel_card2))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getRootPane().setDefaultButton(turnChange_button);
+        getRootPane().setDefaultButton(turnChange_jlabel_goButton);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void turnChange_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_turnChange_buttonActionPerformed
+    private void turnChange_jlabel_goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_turnChange_jlabel_goButtonActionPerformed
         doClose(RET_OK);
-    }//GEN-LAST:event_turnChange_buttonActionPerformed
+    }//GEN-LAST:event_turnChange_jlabel_goButtonActionPerformed
     
     /**
      * Closes the dialog
@@ -195,11 +195,11 @@ public class TurnChangeDialog extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton turnChange_button;
-    private javax.swing.JLabel turnChange_card1;
-    private javax.swing.JLabel turnChange_card2;
-    private javax.swing.JLabel turnChange_label1;
-    private javax.swing.JLabel turnChange_label2;
+    private javax.swing.JLabel turnChange_jlabel_card1;
+    private javax.swing.JLabel turnChange_jlabel_card2;
+    private javax.swing.JButton turnChange_jlabel_goButton;
+    private javax.swing.JLabel turnChange_jlabel_label1;
+    private javax.swing.JLabel turnChange_jlabel_label2;
     // End of variables declaration//GEN-END:variables
     private int returnStatus = RET_CANCEL;
 }

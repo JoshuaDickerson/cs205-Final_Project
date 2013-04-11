@@ -26,28 +26,28 @@ public class knock_or_play extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        knockPlay_knock = new javax.swing.JButton();
-        knockPlay_play = new javax.swing.JButton();
-        knockPlay_label1 = new javax.swing.JLabel();
+        knockPlay_jbutton_knock = new javax.swing.JButton();
+        knockPlay_jbutton_play = new javax.swing.JButton();
+        knockPlay_jlabel_label1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        knockPlay_knock.setText("Knock");
-        knockPlay_knock.addActionListener(new java.awt.event.ActionListener() {
+        knockPlay_jbutton_knock.setText("Knock");
+        knockPlay_jbutton_knock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                knockPlay_knockActionPerformed(evt);
+                knockPlay_jbutton_knockActionPerformed(evt);
             }
         });
 
-        knockPlay_play.setText("Keep Playing");
-        knockPlay_play.addActionListener(new java.awt.event.ActionListener() {
+        knockPlay_jbutton_play.setText("Keep Playing");
+        knockPlay_jbutton_play.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                knockPlay_playActionPerformed(evt);
+                knockPlay_jbutton_playActionPerformed(evt);
             }
         });
 
-        knockPlay_label1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        knockPlay_label1.setText("Do you want to knock or continue playing?");
+        knockPlay_jlabel_label1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        knockPlay_jlabel_label1.setText("Do you want to knock or continue playing?");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,37 +55,37 @@ public class knock_or_play extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(knockPlay_label1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                .addComponent(knockPlay_jlabel_label1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(84, 84, 84)
-                .addComponent(knockPlay_knock, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(knockPlay_jbutton_knock, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(knockPlay_play, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(knockPlay_jbutton_play, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(105, 105, 105))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(knockPlay_label1)
+                .addComponent(knockPlay_jlabel_label1)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(knockPlay_knock, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(knockPlay_play, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(knockPlay_jbutton_knock, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(knockPlay_jbutton_play, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void knockPlay_knockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knockPlay_knockActionPerformed
+    private void knockPlay_jbutton_knockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knockPlay_jbutton_knockActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_knockPlay_knockActionPerformed
+    }//GEN-LAST:event_knockPlay_jbutton_knockActionPerformed
 
-    private void knockPlay_playActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knockPlay_playActionPerformed
+    private void knockPlay_jbutton_playActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knockPlay_jbutton_playActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_knockPlay_playActionPerformed
+    }//GEN-LAST:event_knockPlay_jbutton_playActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,8 +122,8 @@ public class knock_or_play extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton knockPlay_knock;
-    private javax.swing.JLabel knockPlay_label1;
-    private javax.swing.JButton knockPlay_play;
+    private javax.swing.JButton knockPlay_jbutton_knock;
+    private javax.swing.JButton knockPlay_jbutton_play;
+    private javax.swing.JLabel knockPlay_jlabel_label1;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,30 +26,38 @@ public class peek_interface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        peekInterface_card1 = new javax.swing.JLabel();
-        peekInterface_card2 = new javax.swing.JLabel();
-        peekInterface_card3 = new javax.swing.JLabel();
-        peekInterface_card4 = new javax.swing.JLabel();
-        peekInterface_select1 = new javax.swing.JComboBox();
-        peekInterface_label1 = new javax.swing.JLabel();
+        peekInterface_jlabel_card1 = new javax.swing.JLabel();
+        peekInterface_jlabel_card2 = new javax.swing.JLabel();
+        peekInterface_jlabel_card3 = new javax.swing.JLabel();
+        peekInterface_jlabel_card4 = new javax.swing.JLabel();
+        peekInterface_jcombobox_select1 = new javax.swing.JComboBox();
+        peekInterface_jlabel_label1 = new javax.swing.JLabel();
+        peekInterface_jbutton_go = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        peekInterface_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_1.png"))); // NOI18N
-        peekInterface_card1.setText("jLabel1");
+        peekInterface_jlabel_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_1.png"))); // NOI18N
+        peekInterface_jlabel_card1.setText("jLabel1");
 
-        peekInterface_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_2.png"))); // NOI18N
-        peekInterface_card2.setText("jLabel1");
+        peekInterface_jlabel_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_2.png"))); // NOI18N
+        peekInterface_jlabel_card2.setText("jLabel1");
 
-        peekInterface_card3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_3.png"))); // NOI18N
-        peekInterface_card3.setText("jLabel1");
+        peekInterface_jlabel_card3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_3.png"))); // NOI18N
+        peekInterface_jlabel_card3.setText("jLabel1");
 
-        peekInterface_card4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_4.png"))); // NOI18N
-        peekInterface_card4.setText("jLabel1");
+        peekInterface_jlabel_card4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_4.png"))); // NOI18N
+        peekInterface_jlabel_card4.setText("jLabel1");
 
-        peekInterface_select1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
+        peekInterface_jcombobox_select1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
 
-        peekInterface_label1.setText("Which card would you like to peek?");
+        peekInterface_jlabel_label1.setText("Which card would you like to peek?");
+
+        peekInterface_jbutton_go.setText("Go");
+        peekInterface_jbutton_go.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                peekInterface_jbutton_goActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,19 +67,22 @@ public class peek_interface extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(peekInterface_label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(peekInterface_jlabel_label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(peekInterface_card1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(peekInterface_jlabel_card1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(peekInterface_card2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(peekInterface_jlabel_card2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(peekInterface_card3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(peekInterface_jlabel_card3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(peekInterface_card4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(peekInterface_select1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(peekInterface_jlabel_card4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(peekInterface_jcombobox_select1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(peekInterface_jbutton_go, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -79,19 +90,24 @@ public class peek_interface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(peekInterface_card1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(peekInterface_card4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(peekInterface_card2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(peekInterface_card3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(peekInterface_jlabel_card1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(peekInterface_jlabel_card4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(peekInterface_jlabel_card2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(peekInterface_jlabel_card3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(peekInterface_label1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(peekInterface_select1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(peekInterface_jlabel_label1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(peekInterface_jcombobox_select1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(peekInterface_jbutton_go, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void peekInterface_jbutton_goActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peekInterface_jbutton_goActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_peekInterface_jbutton_goActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,11 +144,12 @@ public class peek_interface extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel peekInterface_card1;
-    private javax.swing.JLabel peekInterface_card2;
-    private javax.swing.JLabel peekInterface_card3;
-    private javax.swing.JLabel peekInterface_card4;
-    private javax.swing.JLabel peekInterface_label1;
-    private javax.swing.JComboBox peekInterface_select1;
+    private javax.swing.JButton peekInterface_jbutton_go;
+    private javax.swing.JComboBox peekInterface_jcombobox_select1;
+    private javax.swing.JLabel peekInterface_jlabel_card1;
+    private javax.swing.JLabel peekInterface_jlabel_card2;
+    private javax.swing.JLabel peekInterface_jlabel_card3;
+    private javax.swing.JLabel peekInterface_jlabel_card4;
+    private javax.swing.JLabel peekInterface_jlabel_label1;
     // End of variables declaration//GEN-END:variables
 }

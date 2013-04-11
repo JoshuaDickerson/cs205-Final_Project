@@ -58,14 +58,14 @@ public class PeekInstructionDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        okButtonPeek = new javax.swing.JButton();
+        peekInstruction_jbutton_ok = new javax.swing.JButton();
         scrollPeek = new javax.swing.JScrollPane();
-        txtPeek = new javax.swing.JTextArea();
+        peekInstruction_jtextarea_instr1 = new javax.swing.JTextArea();
         scrollPowerCards = new javax.swing.JScrollPane();
-        txtPowerCards1 = new javax.swing.JTextArea();
-        labelPeek = new javax.swing.JLabel();
-        labelPeekPic1 = new javax.swing.JLabel();
-        labelPeekPic2 = new javax.swing.JLabel();
+        peekInstruction_jtextarea_instr2 = new javax.swing.JTextArea();
+        peekInstruction_jlabel_label1 = new javax.swing.JLabel();
+        peekInstruction_jlabel_graphic2 = new javax.swing.JLabel();
+        peekInstruction_jlabel_graphic1 = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -73,87 +73,86 @@ public class PeekInstructionDialog extends javax.swing.JDialog {
             }
         });
 
-        okButtonPeek.setText("OK");
-        okButtonPeek.addActionListener(new java.awt.event.ActionListener() {
+        peekInstruction_jbutton_ok.setText("OK");
+        peekInstruction_jbutton_ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonPeekActionPerformed(evt);
+                peekInstruction_jbutton_okActionPerformed(evt);
             }
         });
 
-        txtPeek.setEditable(false);
-        txtPeek.setColumns(20);
-        txtPeek.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txtPeek.setLineWrap(true);
-        txtPeek.setRows(5);
-        txtPeek.setText("Take a card from the draw pile, and either swap it with one of your cards or discard it and draw a second card to be swapped or thrown out.");
-        txtPeek.setWrapStyleWord(true);
-        scrollPeek.setViewportView(txtPeek);
+        peekInstruction_jtextarea_instr1.setEditable(false);
+        peekInstruction_jtextarea_instr1.setColumns(20);
+        peekInstruction_jtextarea_instr1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        peekInstruction_jtextarea_instr1.setLineWrap(true);
+        peekInstruction_jtextarea_instr1.setRows(5);
+        peekInstruction_jtextarea_instr1.setText("Take a card from the draw pile, and either swap it with one of your cards or discard it and draw a second card to be swapped or thrown out.");
+        peekInstruction_jtextarea_instr1.setWrapStyleWord(true);
+        scrollPeek.setViewportView(peekInstruction_jtextarea_instr1);
 
-        txtPowerCards1.setEditable(false);
-        txtPowerCards1.setColumns(20);
-        txtPowerCards1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txtPowerCards1.setLineWrap(true);
-        txtPowerCards1.setRows(5);
-        txtPowerCards1.setText("Power cards have no value and if they are in a player's hand at the end of the round. They must be swapped for the top card of the deck.");
-        txtPowerCards1.setWrapStyleWord(true);
-        scrollPowerCards.setViewportView(txtPowerCards1);
+        peekInstruction_jtextarea_instr2.setEditable(false);
+        peekInstruction_jtextarea_instr2.setColumns(20);
+        peekInstruction_jtextarea_instr2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        peekInstruction_jtextarea_instr2.setLineWrap(true);
+        peekInstruction_jtextarea_instr2.setRows(5);
+        peekInstruction_jtextarea_instr2.setText("Power cards have no value and if they are in a player's hand at the end of the round. They must be swapped for the top card of the deck.");
+        peekInstruction_jtextarea_instr2.setWrapStyleWord(true);
+        scrollPowerCards.setViewportView(peekInstruction_jtextarea_instr2);
 
-        labelPeek.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        labelPeek.setText("You've Drawn a Peek Card!");
+        peekInstruction_jlabel_label1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        peekInstruction_jlabel_label1.setText("You've Drawn a Peek Card!");
 
-        labelPeekPic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/11.png"))); // NOI18N
+        peekInstruction_jlabel_graphic2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/11.png"))); // NOI18N
 
-        labelPeekPic2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/11.png"))); // NOI18N
+        peekInstruction_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/11.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelPeekPic2)
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scrollPeek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(scrollPowerCards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addComponent(labelPeekPic1))
+                        .addContainerGap()
+                        .addComponent(peekInstruction_jlabel_graphic1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(peekInstruction_jbutton_ok, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(scrollPeek, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                                .addComponent(scrollPowerCards)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(peekInstruction_jlabel_graphic2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(233, 233, 233)
-                        .addComponent(okButtonPeek, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(labelPeek)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                        .addGap(113, 113, 113)
+                        .addComponent(peekInstruction_jlabel_label1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(labelPeek)
-                .addGap(44, 44, 44)
+                .addGap(21, 21, 21)
+                .addComponent(peekInstruction_jlabel_label1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelPeekPic2)
+                    .addComponent(peekInstruction_jlabel_graphic1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scrollPeek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
+                        .addComponent(scrollPeek, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scrollPowerCards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelPeekPic1))
-                .addGap(41, 41, 41)
-                .addComponent(okButtonPeek, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                    .addComponent(peekInstruction_jlabel_graphic2))
+                .addGap(18, 18, 18)
+                .addComponent(peekInstruction_jbutton_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        getRootPane().setDefaultButton(okButtonPeek);
+        getRootPane().setDefaultButton(peekInstruction_jbutton_ok);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void okButtonPeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonPeekActionPerformed
+    private void peekInstruction_jbutton_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peekInstruction_jbutton_okActionPerformed
         doClose(RET_OK);
-    }//GEN-LAST:event_okButtonPeekActionPerformed
+    }//GEN-LAST:event_peekInstruction_jbutton_okActionPerformed
     
     /**
      * Closes the dialog
@@ -210,14 +209,14 @@ public class PeekInstructionDialog extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel labelPeek;
-    private javax.swing.JLabel labelPeekPic1;
-    private javax.swing.JLabel labelPeekPic2;
-    private javax.swing.JButton okButtonPeek;
+    private javax.swing.JButton peekInstruction_jbutton_ok;
+    private javax.swing.JLabel peekInstruction_jlabel_graphic1;
+    private javax.swing.JLabel peekInstruction_jlabel_graphic2;
+    private javax.swing.JLabel peekInstruction_jlabel_label1;
+    private javax.swing.JTextArea peekInstruction_jtextarea_instr1;
+    private javax.swing.JTextArea peekInstruction_jtextarea_instr2;
     private javax.swing.JScrollPane scrollPeek;
     private javax.swing.JScrollPane scrollPowerCards;
-    private javax.swing.JTextArea txtPeek;
-    private javax.swing.JTextArea txtPowerCards1;
     // End of variables declaration//GEN-END:variables
     private int returnStatus = RET_CANCEL;
 }

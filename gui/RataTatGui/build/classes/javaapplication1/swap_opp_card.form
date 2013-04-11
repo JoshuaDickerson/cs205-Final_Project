@@ -27,38 +27,42 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="swapOpp_oppCard1" min="-2" pref="136" max="-2" attributes="0"/>
+                      <Component id="swapOpp_jlabel_oppCard1" min="-2" pref="136" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="swapOpp_oppCard2" min="-2" pref="136" max="-2" attributes="0"/>
+                      <Component id="swapOpp_jlabel_oppCard2" min="-2" pref="136" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="swapOpp_oppCard3" min="-2" pref="136" max="-2" attributes="0"/>
+                      <Component id="swapOpp_jlabel_oppCard3" min="-2" pref="136" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="swapOpp_oppCard4" min="-2" pref="136" max="-2" attributes="0"/>
+                      <Component id="swapOpp_jlabel_oppCard4" min="-2" pref="136" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="swapOpp_label2" min="-2" pref="439" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="swapOpp_playerSelect" min="-2" max="-2" attributes="0"/>
+                              <Component id="swapOpp_jlabel_playerCard1" min="-2" pref="136" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="swapOpp_jlabel_playerCard2" min="-2" pref="136" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="swapOpp_jlabel_playerCard3" min="-2" pref="136" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="swapOpp_jlabel_playerCard4" min="-2" pref="136" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="swapOpp_playerCard1" min="-2" pref="136" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="swapOpp_playerCard2" min="-2" pref="136" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="swapOpp_playerCard3" min="-2" pref="136" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jLabel9swapOpp_playerCard4" min="-2" pref="136" max="-2" attributes="0"/>
+                              <Component id="swapOpp_jlabel_label2" min="-2" pref="439" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="swapOpp_jcombobox_playerSelect" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="swapOpp_label1" min="-2" pref="439" max="-2" attributes="0"/>
+                      <Component id="swapOpp_jlabel_label1" min="-2" pref="439" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="swapOpp_oppSelect" min="-2" max="-2" attributes="0"/>
+                      <Component id="swapOpp_jcombobox_oppSelect" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="swapOpp_jbutton_go" min="-2" pref="136" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="15" max="32767" attributes="0"/>
@@ -69,35 +73,37 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="swapOpp_oppCard1" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="swapOpp_oppCard4" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="swapOpp_oppCard2" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="swapOpp_oppCard3" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
+                  <Component id="swapOpp_jlabel_oppCard1" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
+                  <Component id="swapOpp_jlabel_oppCard4" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
+                  <Component id="swapOpp_jlabel_oppCard2" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
+                  <Component id="swapOpp_jlabel_oppCard3" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="swapOpp_label1" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
-                  <Component id="swapOpp_oppSelect" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="swapOpp_jlabel_label1" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+                  <Component id="swapOpp_jcombobox_oppSelect" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="swapOpp_playerCard1" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="jLabel9swapOpp_playerCard4" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="swapOpp_playerCard2" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="swapOpp_playerCard3" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
+                  <Component id="swapOpp_jlabel_playerCard1" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
+                  <Component id="swapOpp_jlabel_playerCard4" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
+                  <Component id="swapOpp_jlabel_playerCard2" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
+                  <Component id="swapOpp_jlabel_playerCard3" alignment="3" min="-2" pref="183" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="swapOpp_label2" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
-                  <Component id="swapOpp_playerSelect" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="swapOpp_jlabel_label2" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+                  <Component id="swapOpp_jcombobox_playerSelect" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="swapOpp_jbutton_go" min="-2" pref="53" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="swapOpp_oppCard4">
+    <Component class="javax.swing.JLabel" name="swapOpp_jlabel_oppCard4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/back_4.png"/>
@@ -105,7 +111,7 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="swapOpp_oppCard1">
+    <Component class="javax.swing.JLabel" name="swapOpp_jlabel_oppCard1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/back_1.png"/>
@@ -113,7 +119,7 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="swapOpp_oppCard2">
+    <Component class="javax.swing.JLabel" name="swapOpp_jlabel_oppCard2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/back_2.png"/>
@@ -121,7 +127,7 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="swapOpp_oppCard3">
+    <Component class="javax.swing.JLabel" name="swapOpp_jlabel_oppCard3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/back_3.png"/>
@@ -129,12 +135,12 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="swapOpp_label1">
+    <Component class="javax.swing.JLabel" name="swapOpp_jlabel_label1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Select the number of the opponent&apos;s card you want to swap"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="swapOpp_playerCard1">
+    <Component class="javax.swing.JLabel" name="swapOpp_jlabel_playerCard1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/back_1.png"/>
@@ -142,7 +148,7 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="swapOpp_playerCard2">
+    <Component class="javax.swing.JLabel" name="swapOpp_jlabel_playerCard2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/back_2.png"/>
@@ -150,7 +156,7 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="swapOpp_playerCard3">
+    <Component class="javax.swing.JLabel" name="swapOpp_jlabel_playerCard3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/back_3.png"/>
@@ -158,7 +164,7 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel9swapOpp_playerCard4">
+    <Component class="javax.swing.JLabel" name="swapOpp_jlabel_playerCard4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/back_4.png"/>
@@ -166,12 +172,12 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="swapOpp_label2">
+    <Component class="javax.swing.JLabel" name="swapOpp_jlabel_label2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Select the number of your card you want to swap"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="swapOpp_oppSelect">
+    <Component class="javax.swing.JComboBox" name="swapOpp_jcombobox_oppSelect">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -183,7 +189,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="swapOpp_playerSelect">
+    <Component class="javax.swing.JComboBox" name="swapOpp_jcombobox_playerSelect">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -194,6 +200,14 @@
           </StringArray>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="swapOpp_jbutton_go">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Go"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="swapOpp_jbutton_goActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

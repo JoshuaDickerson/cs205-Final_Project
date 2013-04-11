@@ -28,27 +28,27 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                      <Component id="turnChange_label1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                      <Component id="turnChange_label2" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="79" max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="turnChange_card1" min="-2" max="-2" attributes="0"/>
+              <Component id="turnChange_jlabel_card1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="turnChange_button" max="32767" attributes="0"/>
+              <Component id="turnChange_jlabel_goButton" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="turnChange_card2" min="-2" max="-2" attributes="0"/>
+              <Component id="turnChange_jlabel_card2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="turnChange_jlabel_label1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="turnChange_jlabel_label2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -56,29 +56,29 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-              <Component id="turnChange_label1" min="-2" max="-2" attributes="0"/>
+              <Component id="turnChange_jlabel_label1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="turnChange_label2" min="-2" max="-2" attributes="0"/>
+              <Component id="turnChange_jlabel_label2" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                      <Component id="turnChange_button" min="-2" pref="85" max="-2" attributes="0"/>
+                      <Component id="turnChange_jlabel_goButton" min="-2" pref="85" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="turnChange_card1" min="-2" max="-2" attributes="0"/>
-                          <Component id="turnChange_card2" min="-2" max="-2" attributes="0"/>
+                          <Component id="turnChange_jlabel_card1" min="-2" max="-2" attributes="0"/>
+                          <Component id="turnChange_jlabel_card2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="37" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="turnChange_button">
+    <Component class="javax.swing.JButton" name="turnChange_jlabel_goButton">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="18" style="1"/>
@@ -86,13 +86,13 @@
         <Property name="text" type="java.lang.String" value="GO!"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="turnChange_buttonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="turnChange_jlabel_goButtonActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="getRootPane().setDefaultButton(turnChange_button);"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="getRootPane().setDefaultButton(turnChange_jlabel_goButton);"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="turnChange_label1">
+    <Component class="javax.swing.JLabel" name="turnChange_jlabel_label1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="36" style="1"/>
@@ -100,7 +100,7 @@
         <Property name="text" type="java.lang.String" value="It&apos;s Player 2&apos;s Turn!"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="turnChange_label2">
+    <Component class="javax.swing.JLabel" name="turnChange_jlabel_label2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="0"/>
@@ -108,14 +108,14 @@
         <Property name="text" type="java.lang.String" value="Other Players, Don&apos;t Look!"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="turnChange_card2">
+    <Component class="javax.swing.JLabel" name="turnChange_jlabel_card2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/13.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="turnChange_card1">
+    <Component class="javax.swing.JLabel" name="turnChange_jlabel_card1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/13.png"/>

@@ -37,64 +37,64 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jScrollPane1" min="-2" pref="226" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="buttonDraw" min="-2" pref="137" max="-2" attributes="0"/>
+                      <Component id="mainGUI_jbutton_deck" min="-2" pref="137" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="135" max="-2" attributes="0"/>
+                      <Component id="mainGUI_jbutton_discard" min="-2" pref="135" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Player2Card1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelOpponentCard1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mainGUI_jlabel_oppHand1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mainGUI_jlabel_oppCardLabel1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelOpponentCard2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Player2Card2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mainGUI_jlabel_oppCardLabel2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mainGUI_jlabel_oppHand2" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelOpponentCard3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Player2Card3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mainGUI_jlabel_oppCardLabel3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mainGUI_jlabel_oppHand3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelOpponentCard4" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Player2Card4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mainGUI_jlabel_oppCardLabel4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mainGUI_jlabel_oppHand4" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="labelOpponentHand" min="-2" max="-2" attributes="0"/>
+                          <Component id="mainGUI_jlabel_oppLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="labelYourHand1" min="-2" max="-2" attributes="0"/>
+                          <Component id="mainGUI_jlabel_myHandLabel1" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="labelPlayerCard1" min="-2" max="-2" attributes="0"/>
-                              <Component id="PlayerCard1" min="-2" max="-2" attributes="0"/>
+                              <Component id="mainGUI_jlabel_myHandLabel2" min="-2" max="-2" attributes="0"/>
+                              <Component id="mainGUI_jlabel_myHandCard1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelPlayerCard2" min="-2" max="-2" attributes="0"/>
-                          <Component id="PlayerCard2" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelPlayerCard2mainGUI_jlabel_myHandLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mainGUI_jlabel_myHandCard2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelPlayerCard3" min="-2" max="-2" attributes="0"/>
-                          <Component id="PlayerCard3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelPlayerCard2mainGUI_jlabel_myHandLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="mainGUI_jlabel_myHandCard3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelPlayerCard4" min="-2" max="-2" attributes="0"/>
-                          <Component id="PlayerCard4" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelPlayerCard2mainGUI_jlabel_myHandLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="mainGUI_jlabel_myHandCard4" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="398" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -103,52 +103,50 @@
           <Group type="102" attributes="0">
               <Component id="Deck" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="labelOpponentHand" min="-2" max="-2" attributes="0"/>
+              <Component id="mainGUI_jlabel_oppLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Player2Card1" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="Player2Card2" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="Player2Card3" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="Player2Card4" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="mainGUI_jlabel_oppHand1" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="mainGUI_jlabel_oppHand2" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="mainGUI_jlabel_oppHand3" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="mainGUI_jlabel_oppHand4" min="-2" pref="100" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="labelOpponentCard2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelOpponentCard3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelOpponentCard4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelOpponentCard1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mainGUI_jlabel_oppCardLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mainGUI_jlabel_oppCardLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mainGUI_jlabel_oppCardLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mainGUI_jlabel_oppCardLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jScrollPane1" pref="190" max="32767" attributes="0"/>
-                  <Component id="buttonDraw" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="mainGUI_jbutton_deck" alignment="0" max="32767" attributes="0"/>
+                  <Component id="mainGUI_jbutton_discard" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-              <Component id="labelYourHand1" min="-2" max="-2" attributes="0"/>
+              <Component id="mainGUI_jlabel_myHandLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="PlayerCard1" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="PlayerCard3" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="PlayerCard4" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="PlayerCard2" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="mainGUI_jlabel_myHandCard1" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="mainGUI_jlabel_myHandCard3" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="mainGUI_jlabel_myHandCard4" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="mainGUI_jlabel_myHandCard2" min="-2" pref="100" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="labelPlayerCard1" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelPlayerCard2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelPlayerCard3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelPlayerCard4" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="mainGUI_jlabel_myHandLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelPlayerCard2mainGUI_jlabel_myHandLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelPlayerCard2mainGUI_jlabel_myHandLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelPlayerCard2mainGUI_jlabel_myHandLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="509" max="-2" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="buttonDraw">
+    <Component class="javax.swing.JButton" name="mainGUI_jbutton_deck">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -158,7 +156,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDrawActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mainGUI_jbutton_deckActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="Deck">
@@ -168,49 +166,49 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="PlayerCard1">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_myHandCard1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/13tiny.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="PlayerCard2">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_myHandCard2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/13tiny.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="PlayerCard4">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_myHandCard4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/13tiny.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="PlayerCard3">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_myHandCard3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/13tiny.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="Player2Card1">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_oppHand1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/13tiny.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="Player2Card2">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_oppHand2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/13tiny.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="Player2Card3">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_oppHand3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/13tiny.png"/>
@@ -224,7 +222,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="textGameLog">
+        <Component class="javax.swing.JTextArea" name="mainGUI_jtextarea_descripTextarea">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -232,54 +230,54 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="labelPlayerCard4">
+    <Component class="javax.swing.JLabel" name="labelPlayerCard2mainGUI_jlabel_myHandLabel5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Card 4"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelPlayerCard1">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_myHandLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Card 1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelPlayerCard2">
+    <Component class="javax.swing.JLabel" name="labelPlayerCard2mainGUI_jlabel_myHandLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Card 2"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelPlayerCard3">
+    <Component class="javax.swing.JLabel" name="labelPlayerCard2mainGUI_jlabel_myHandLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" value="Card 3"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelOpponentCard1">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_oppCardLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Card 1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelOpponentCard2">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_oppCardLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Card 2"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelOpponentCard3">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_oppCardLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Card 3"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelOpponentCard4">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_oppCardLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" value="Card 4"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="Player2Card4">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_oppHand4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/javaapplication1/Cards/13tiny.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelOpponentHand">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_oppLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="1"/>
@@ -287,7 +285,7 @@
         <Property name="text" type="java.lang.String" value="Opponent&apos;s Hand:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelYourHand1">
+    <Component class="javax.swing.JLabel" name="mainGUI_jlabel_myHandLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="1"/>
@@ -295,7 +293,7 @@
         <Property name="text" type="java.lang.String" value="Your Hand:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="mainGUI_jbutton_discard">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
