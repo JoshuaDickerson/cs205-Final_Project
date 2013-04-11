@@ -1,2 +1,4 @@
 Configuration/config.php
 game_client/*.class
+/game_client/nbproject/private/
+/game_client/build/

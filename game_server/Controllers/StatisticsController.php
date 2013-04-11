@@ -31,7 +31,8 @@ class StatisticsController{
 						$this->view = "Stats1";
 						if($actions['data'] == "gamesOverTime"){
 							$statObj = new Stats();
-							$this->vars['graphData'] = $statObj->gamesOverTime();
+							// $this->vars['graphData'] = $statObj->gamesOverTime();
+							$this->vars['graphData'] = $statObj->usageOverTime();
 							$this->vars['graphType'] = "line";
 						}else if($actions['data'] == "totalUserScore"){
 							$statObj = new Stats();

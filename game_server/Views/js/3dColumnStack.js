@@ -1,7 +1,4 @@
-<script type="text/javascript">
- var chartData = $.parseJSON($('#chartDat').val());
-    // var lineChartData = $('#chartDat').val();
-    console.log(chartData);
+
 
 
             // var chartData = [{
@@ -91,4 +88,3 @@ AmCharts.ready(function () {
 
                 chart.write("chartdiv");
             });
-        </script>

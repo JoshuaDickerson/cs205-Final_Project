@@ -33,9 +33,10 @@ public class Instructions extends javax.swing.JFrame {
         labelUrl = new javax.swing.JLabel();
         scrollGameRules = new javax.swing.JScrollPane();
         txtGameRules = new javax.swing.JTextArea();
-        labelCatPic = new javax.swing.JLabel();
         comboGameStyle = new javax.swing.JComboBox();
         comboDifficulty = new javax.swing.JComboBox();
+        p1_name_input = new javax.swing.JTextField();
+        p1_input_name_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,8 +67,6 @@ public class Instructions extends javax.swing.JFrame {
         txtGameRules.setWrapStyleWord(true);
         scrollGameRules.setViewportView(txtGameRules);
 
-        labelCatPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/3.png"))); // NOI18N
-
         comboGameStyle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rounds", "Time", "Points" }));
         comboGameStyle.setToolTipText("");
         comboGameStyle.addActionListener(new java.awt.event.ActionListener() {
@@ -83,62 +82,79 @@ public class Instructions extends javax.swing.JFrame {
             }
         });
 
+        p1_name_input.setText("name here");
+        p1_name_input.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                p1_name_inputActionPerformed(evt);
+            }
+        });
+
+        p1_input_name_label.setText("Player 1 Name");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(280, 280, 280)
-                .addComponent(labelInstructions))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(labelCatPic)
-                .addGap(5, 5, 5)
-                .addComponent(scrollGameRules, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(labelUrl))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelStyle)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labelInstructions))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(labelUrl))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelStyle)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(labelDifficulty)))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboGameStyle, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
-                        .addComponent(labelDifficulty)))
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboGameStyle, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(buttonPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(scrollGameRules, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(p1_name_input)
+                            .addComponent(p1_input_name_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(492, 492, 492))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(labelInstructions)
-                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(labelCatPic))
-                    .addComponent(scrollGameRules, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addComponent(labelUrl)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(31, 31, 31)
+                        .addComponent(p1_input_name_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(p1_name_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(comboGameStyle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(comboDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addComponent(scrollGameRules, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelUrl)
+                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelStyle)
-                                .addGap(25, 25, 25)
-                                .addComponent(labelDifficulty))
-                            .addComponent(buttonPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(comboGameStyle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(comboDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labelStyle)
+                                        .addGap(25, 25, 25)
+                                        .addComponent(labelDifficulty))
+                                    .addComponent(buttonPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,6 +171,10 @@ public class Instructions extends javax.swing.JFrame {
     private void comboGameStyleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGameStyleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboGameStyleActionPerformed
+
+    private void p1_name_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1_name_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_p1_name_inputActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,11 +214,12 @@ public class Instructions extends javax.swing.JFrame {
     private javax.swing.JButton buttonPlay;
     private javax.swing.JComboBox comboDifficulty;
     private javax.swing.JComboBox comboGameStyle;
-    private javax.swing.JLabel labelCatPic;
     private javax.swing.JLabel labelDifficulty;
     private javax.swing.JLabel labelInstructions;
     private javax.swing.JLabel labelStyle;
     private javax.swing.JLabel labelUrl;
+    private javax.swing.JLabel p1_input_name_label;
+    private javax.swing.JTextField p1_name_input;
     private javax.swing.JScrollPane scrollGameRules;
     private javax.swing.JTextArea txtGameRules;
     // End of variables declaration//GEN-END:variables

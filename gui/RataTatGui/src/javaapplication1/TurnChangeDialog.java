@@ -59,11 +59,11 @@ public class TurnChangeDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        okButtonTurn = new javax.swing.JButton();
-        labelPlayerTurn = new javax.swing.JLabel();
-        labelDontLook = new javax.swing.JLabel();
-        labelCardPicture1 = new javax.swing.JLabel();
-        labelCardPicture2 = new javax.swing.JLabel();
+        turnChange_button = new javax.swing.JButton();
+        turnChange_label1 = new javax.swing.JLabel();
+        turnChange_label2 = new javax.swing.JLabel();
+        turnChange_card2 = new javax.swing.JLabel();
+        turnChange_card1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(640, 480));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -72,66 +72,73 @@ public class TurnChangeDialog extends javax.swing.JDialog {
             }
         });
 
-        okButtonTurn.setText("OK");
-        okButtonTurn.addActionListener(new java.awt.event.ActionListener() {
+        turnChange_button.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        turnChange_button.setText("GO!");
+        turnChange_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonTurnActionPerformed(evt);
+                turnChange_buttonActionPerformed(evt);
             }
         });
 
-        labelPlayerTurn.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        labelPlayerTurn.setText("It's Player 2's Turn!");
+        turnChange_label1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        turnChange_label1.setText("It's Player 2's Turn!");
 
-        labelDontLook.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        labelDontLook.setText("Other Players, Don't Look!");
+        turnChange_label2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        turnChange_label2.setText("Other Players, Don't Look!");
 
-        labelCardPicture1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
+        turnChange_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
 
-        labelCardPicture2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
+        turnChange_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(labelPlayerTurn))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(turnChange_label1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(turnChange_label2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(labelDontLook))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(labelCardPicture2)
-                .addGap(55, 55, 55)
-                .addComponent(okButtonTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
-                .addComponent(labelCardPicture1))
+                .addGap(26, 26, 26)
+                .addComponent(turnChange_card1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(turnChange_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(turnChange_card2)
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(labelPlayerTurn)
-                .addGap(6, 6, 6)
-                .addComponent(labelDontLook)
-                .addGap(11, 11, 11)
+                .addGap(37, 37, 37)
+                .addComponent(turnChange_label1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(turnChange_label2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelCardPicture2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(okButtonTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelCardPicture1))
-                .addContainerGap(137, Short.MAX_VALUE))
+                        .addGap(70, 70, 70)
+                        .addComponent(turnChange_button, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(turnChange_card1)
+                            .addComponent(turnChange_card2))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        getRootPane().setDefaultButton(okButtonTurn);
+        getRootPane().setDefaultButton(turnChange_button);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void okButtonTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonTurnActionPerformed
+    private void turnChange_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_turnChange_buttonActionPerformed
         doClose(RET_OK);
-    }//GEN-LAST:event_okButtonTurnActionPerformed
+    }//GEN-LAST:event_turnChange_buttonActionPerformed
     
     /**
      * Closes the dialog
@@ -188,11 +195,11 @@ public class TurnChangeDialog extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel labelCardPicture1;
-    private javax.swing.JLabel labelCardPicture2;
-    private javax.swing.JLabel labelDontLook;
-    private javax.swing.JLabel labelPlayerTurn;
-    private javax.swing.JButton okButtonTurn;
+    private javax.swing.JButton turnChange_button;
+    private javax.swing.JLabel turnChange_card1;
+    private javax.swing.JLabel turnChange_card2;
+    private javax.swing.JLabel turnChange_label1;
+    private javax.swing.JLabel turnChange_label2;
     // End of variables declaration//GEN-END:variables
     private int returnStatus = RET_CANCEL;
 }
