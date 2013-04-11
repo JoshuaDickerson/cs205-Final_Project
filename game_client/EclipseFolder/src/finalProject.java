@@ -177,116 +177,105 @@ public class finalProject extends JApplet implements ActionListener
 		switch(guiMode)
 		{
 			case(0): //Instructions GUI
+				labelInstructions = new javax.swing.JLabel();
+		        buttonPlay = new javax.swing.JButton();
+		        labelStyle = new javax.swing.JLabel();
+		        labelDifficulty = new javax.swing.JLabel();
+		        labelUrl = new javax.swing.JLabel();
+		        scrollGameRules = new javax.swing.JScrollPane();
+		        txtGameRules = new javax.swing.JTextArea();
+		        labelCatPic = new javax.swing.JLabel();
+		        comboGameStyle = new javax.swing.JComboBox();
+		        comboDifficulty = new javax.swing.JComboBox();
+	
+		        labelInstructions.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+		        labelInstructions.setText("Instructions:");
+	
+		        buttonPlay.setText("Play");
+		        buttonPlay.addActionListener(this);
+		        buttonPlay.setActionCommand("Play");
+	
+		        labelStyle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+		        labelStyle.setText("Style of Game:");
+	
+		        labelDifficulty.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+		        labelDifficulty.setText("Difficulty: ");
+	
+		        labelUrl.setText("For More Game Rules See: http://www.gamewright.com/gamewright/pdfs/Rules/Rat-a-TatCat-RULES.pdf");
+	
+		        txtGameRules.setEditable(false);
+		        txtGameRules.setColumns(20);
+		        txtGameRules.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+		        txtGameRules.setLineWrap(true);
+		        txtGameRules.setRows(5);
+		        txtGameRules.setText("The goal is to have the lowest score at the end of the game.\n\nChoose one player to be the dealer, and a scorekeeper. The scorekeeper will record each playerâ€™s score at the end of each round of play.\n\nShuffle the deck. The player to the left of the dealer cuts the cards. \nThe dealer then deals four cards, one at a time and face down, to each player.\nThe remaining cards are placed face down, in the middle of the table, as the\ndraw pile. The top card of the draw pile is turned over to start the discard\npile. If that card is a Power card, it is placed back in the deck and another\ncard is turned over.\n\nWithout looking at his cards, each player places his or her four cards face down in a line on the table in front of them.\n\nDuring the game, players will always have their four cards face down on the\ntable. To begin the game, players peek at their two outer cards once, then\nturn them face down again. Each player now knows the point values of two of\nhis four cards and needs to remember them during the game.\nIf either of the outer cards are Power cards, the player keeps them, but they\ndo not have their powers (described below). Power cards only have their\npowers when they are drawn from the top of the draw pile.  \nThe player to the left of the dealer has the first turn, and play continues in a\nclockwise direction.\n\nFor each turn, a player may:\n\n1. Draw the top card from the discard pile. This card MUST be used to\nreplace one of her cards. The card replaced is then discarded, face up, to the\ndiscard pile.\n\n2. Draw the top card from the draw pile. A player may use it to: \n\t1. Replace one of her cards\n\t2. Peek, Swap, or Draw 2 if it is a Power card (see below)\n\t3. Discard it face up to the discard pile\n\nA playerâ€™s choice is based on remembering the values of his four face down\ncards. Keep track of what you have so you wonâ€™t accidentally replace your\nlow point cards with high point cards.\nDuring the game, when the draw pile is used up, shuffle the discard pile and\nturn it over for a new draw pile.\n\nPower cards only have their powers when you draw them from the draw pile. If a Power card is dealt to you at the beginning of the game, it cannot be used. Because Power cards have no point value, if one of them is among your cards at the end of the game, you must replace it with a card drawn from the draw pile. If a Power card is discarded, it may not be used again by any player.\n\nThere are three kinds of Power cards:\n1. Peek\n\tWhen you draw a Peek card, show it and then peek at any\n\tone of your cards. Now you will know what you have, or you\n\tcan refresh your memory if you have forgotten what you have.\n\tYour turn is over and you discard the Peek card.\n2. Swap\n\tWhen you draw a Swap card, show the Swap card and \n\tdiscard it. You may now switch any one of your cards with\n\tany card of another player (swapping is optional). Neither player \t\tcan look at either of the cards being swapped. After the swap \t\tyour turn is over.\n3. Draw 2\n\tWhen you draw a Draw 2 card, show the card and then you\n\tmay take two more turns. First you draw the next card from the\n\tdraw pile. You must decide whether to use this card and forfeit\n\tthe second turn OR discard this card and draw a second card.\n\tThis second card may be used or discarded. Your turn is then\n\tover. If either of the cards drawn are another Draw 2 card, the\n\tDraw 2 sequence starts again.\n\nEnding the Round\n\nWhen a player thinks he has the lowest score and can win the round, he or she may end the round by knocking on the table and saying â€œrat-a-tat catâ€� at\nthe end of their turn. Once they knock, every other player has one more turn.\nEach player then turns over their cards. Players replace all Power cards by\ndrawing from the draw pile. If another Power card is drawn, the player\ndraws again.\n\nScoring\n\nPlayers add the point values of their four cards. This is each playerâ€™s score\nfor the round. The scorekeeper records each playerâ€™s score. Remember that\nplayers are trying to get as low a score as possible.\n\nNext Rounds\n\nAll cards are collected and passed to the player to the left of the dealer who\nreshuffles and deals for the next round.\n\nEnding the Game\n\nThe player with the lowest total score at the end of the game is the winner.\n\nA game may be played three ways:\n1. Play for a certain number of rounds.\n2. Play for a specific length of time.\n3. Play to stay in the game and not reach 100 points. When a player \nreaches 100 points, he is out of the game. The last player in the game is \nthe winner. Players may also choose to play to 200, or any other number \nof points.");
+		        txtGameRules.setWrapStyleWord(true);
+		        scrollGameRules.setViewportView(txtGameRules);
+	
+		        labelCatPic.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"rat_a_tat.jpg"))); // NOI18N
+	
+		        comboGameStyle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rounds", "Time", "Points" }));
+		        comboGameStyle.setToolTipText("");
+		        comboDifficulty.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Easy", "Medium", "Hard" }));
+		  
 
-			labelInstructions = new javax.swing.JLabel();
-	        buttonPlay = new javax.swing.JButton();
-	        labelStyle = new javax.swing.JLabel();
-	        labelDifficulty = new javax.swing.JLabel();
-	        labelUrl = new javax.swing.JLabel();
-	        scrollGameRules = new javax.swing.JScrollPane();
-	        txtGameRules = new javax.swing.JTextArea();
-	        labelCatPic = new javax.swing.JLabel();
-	        comboGameStyle = new javax.swing.JComboBox();
-	        comboDifficulty = new javax.swing.JComboBox();
-	        playerName = new javax.swing.JTextArea();
-
-	        setPreferredSize(new java.awt.Dimension(640, 480));
-	        
-	        labelInstructions.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-	        labelInstructions.setText("Instructions:");
-
-	        buttonPlay.setText("Play");
-	        buttonPlay.addActionListener(this);
-	        buttonPlay.setActionCommand("Play");
-	        
-	        labelStyle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-	        labelStyle.setText("Style of Game:");
-
-	        labelDifficulty.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-	        labelDifficulty.setText("Difficulty: ");
-	        
-	        playerName.setText("Enter Player Name Here");
-
-	        labelUrl.setText("For More Game Rules See: http://www.gamewright.com/gamewright/pdfs/Rules/Rat-a-TatCat-RULES.pdf");
-
-	        txtGameRules.setEditable(false);
-	        txtGameRules.setColumns(20);
-	        txtGameRules.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-	        txtGameRules.setLineWrap(true);
-	        txtGameRules.setRows(5);
-	        txtGameRules.setText("The goal is to have the lowest score at the end of the game.\n\nChoose one player to be the dealer, and a scorekeeper. The scorekeeper will record each player�s score at the end of each round of play.\n\nShuffle the deck. The player to the left of the dealer cuts the cards. \nThe dealer then deals four cards, one at a time and face down, to each player.\nThe remaining cards are placed face down, in the middle of the table, as the\ndraw pile. The top card of the draw pile is turned over to start the discard\npile. If that card is a Power card, it is placed back in the deck and another\ncard is turned over.\n\nWithout looking at his cards, each player places his or her four cards face down in a line on the table in front of them.\n\nDuring the game, players will always have their four cards face down on the\ntable. To begin the game, players peek at their two outer cards once, then\nturn them face down again. Each player now knows the point values of two of\nhis four cards and needs to remember them during the game.\nIf either of the outer cards are Power cards, the player keeps them, but they\ndo not have their powers (described below). Power cards only have their\npowers when they are drawn from the top of the draw pile.  \nThe player to the left of the dealer has the first turn, and play continues in a\nclockwise direction.\n\nFor each turn, a player may:\n\n1. Draw the top card from the discard pile. This card MUST be used to\nreplace one of her cards. The card replaced is then discarded, face up, to the\ndiscard pile.\n\n2. Draw the top card from the draw pile. A player may use it to: \n\t1. Replace one of her cards\n\t2. Peek, Swap, or Draw 2 if it is a Power card (see below)\n\t3. Discard it face up to the discard pile\n\nA player�s choice is based on remembering the values of his four face down\ncards. Keep track of what you have so you won�t accidentally replace your\nlow point cards with high point cards.\nDuring the game, when the draw pile is used up, shuffle the discard pile and\nturn it over for a new draw pile.\n\nPower cards only have their powers when you draw them from the draw pile. If a Power card is dealt to you at the beginning of the game, it cannot be used. Because Power cards have no point value, if one of them is among your cards at the end of the game, you must replace it with a card drawn from the draw pile. If a Power card is discarded, it may not be used again by any player.\n\nThere are three kinds of Power cards:\n1. Peek\n\tWhen you draw a Peek card, show it and then peek at any\n\tone of your cards. Now you will know what you have, or you\n\tcan refresh your memory if you have forgotten what you have.\n\tYour turn is over and you discard the Peek card.\n2. Swap\n\tWhen you draw a Swap card, show the Swap card and \n\tdiscard it. You may now switch any one of your cards with\n\tany card of another player (swapping is optional). Neither player \t\tcan look at either of the cards being swapped. After the swap \t\tyour turn is over.\n3. Draw 2\n\tWhen you draw a Draw 2 card, show the card and then you\n\tmay take two more turns. First you draw the next card from the\n\tdraw pile. You must decide whether to use this card and forfeit\n\tthe second turn OR discard this card and draw a second card.\n\tThis second card may be used or discarded. Your turn is then\n\tover. If either of the cards drawn are another Draw 2 card, the\n\tDraw 2 sequence starts again.\n\nEnding the Round\n\nWhen a player thinks he has the lowest score and can win the round, he or she may end the round by knocking on the table and saying �rat-a-tat cat� at\nthe end of their turn. Once they knock, every other player has one more turn.\nEach player then turns over their cards. Players replace all Power cards by\ndrawing from the draw pile. If another Power card is drawn, the player\ndraws again.\n\nScoring\n\nPlayers add the point values of their four cards. This is each player�s score\nfor the round. The scorekeeper records each player�s score. Remember that\nplayers are trying to get as low a score as possible.\n\nNext Rounds\n\nAll cards are collected and passed to the player to the left of the dealer who\nreshuffles and deals for the next round.\n\nEnding the Game\n\nThe player with the lowest total score at the end of the game is the winner.\n\nA game may be played three ways:\n1. Play for a certain number of rounds.\n2. Play for a specific length of time.\n3. Play to stay in the game and not reach 100 points. When a player \nreaches 100 points, he is out of the game. The last player in the game is \nthe winner. Players may also choose to play to 200, or any other number \nof points.");
-	        txtGameRules.setWrapStyleWord(true);
-	        scrollGameRules.setViewportView(txtGameRules);
-
-	        labelCatPic.setIcon(new javax.swing.ImageIcon(this.getClass().getResource(BASEDIR+"rat_a_tat.jpg")));
-	        comboGameStyle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rounds", "Time", "Points" }));
-	        comboGameStyle.setToolTipText("");
-
-	        comboDifficulty.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Easy", "Medium", "Hard" }));
-	        
-
-	        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-	        getContentPane().setLayout(layout);
-	        layout.setHorizontalGroup(
-	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(layout.createSequentialGroup()
-	                .addGap(280, 280, 280)
-	                .addComponent(labelInstructions))
-	            .addGroup(layout.createSequentialGroup()
-	                .addGap(10, 10, 10)
-	                .addComponent(labelCatPic)
-	                .addGap(5, 5, 5)
-	                .addComponent(scrollGameRules, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
-	            .addGroup(layout.createSequentialGroup()
-	                .addGap(80, 80, 80)
-	                .addComponent(labelUrl))
-	            .addGroup(layout.createSequentialGroup()
-	                .addGap(140, 140, 140)
-	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addComponent(labelStyle)
-	                    .addGroup(layout.createSequentialGroup()
-	                        .addGap(30, 30, 30)
-	                        .addComponent(labelDifficulty)))
-	                .addGap(17, 17, 17)
-	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addComponent(comboGameStyle, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                    .addComponent(comboDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addGap(30, 30, 30)
-	                .addComponent(buttonPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-	        );
-	        layout.setVerticalGroup(
-	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(layout.createSequentialGroup()
-	                .addGap(20, 20, 20)
-	                .addComponent(labelInstructions)
-	                .addGap(11, 11, 11)
-	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(layout.createSequentialGroup()
-	                        .addGap(40, 40, 40)
-	                        .addComponent(labelCatPic))
-	                    .addComponent(scrollGameRules, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addGap(10, 10, 10)
-	                .addComponent(labelUrl)
-	                .addGap(6, 6, 6)
-	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(layout.createSequentialGroup()
-	                        .addComponent(comboGameStyle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addGap(18, 18, 18)
-	                        .addComponent(comboDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                        
-	                    .addGroup(layout.createSequentialGroup()
-	                        .addGap(10, 10, 10)
-	                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                            .addGroup(layout.createSequentialGroup()
-	                                .addComponent(labelStyle)
-	                                .addGap(25, 25, 25)
-	                                .addComponent(labelDifficulty))
-	                            .addComponent(buttonPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-	        );
-				
-				
-				
-
+		        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		        getContentPane().setLayout(layout);
+		        layout.setHorizontalGroup(
+		            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		            .addGroup(layout.createSequentialGroup()
+		                .addGap(280, 280, 280)
+		                .addComponent(labelInstructions))
+		            .addGroup(layout.createSequentialGroup()
+		                .addGap(10, 10, 10)
+		                .addComponent(labelCatPic)
+		                .addGap(5, 5, 5)
+		                .addComponent(scrollGameRules, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+		            .addGroup(layout.createSequentialGroup()
+		                .addGap(80, 80, 80)
+		                .addComponent(labelUrl))
+		            .addGroup(layout.createSequentialGroup()
+		                .addGap(140, 140, 140)
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		                    .addComponent(labelStyle)
+		                    .addGroup(layout.createSequentialGroup()
+		                        .addGap(30, 30, 30)
+		                        .addComponent(labelDifficulty)))
+		                .addGap(17, 17, 17)
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		                    .addComponent(comboGameStyle, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                    .addComponent(comboDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                .addGap(30, 30, 30)
+		                .addComponent(buttonPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+		        );
+		        layout.setVerticalGroup(
+		            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		            .addGroup(layout.createSequentialGroup()
+		                .addGap(20, 20, 20)
+		                .addComponent(labelInstructions)
+		                .addGap(11, 11, 11)
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		                    .addGroup(layout.createSequentialGroup()
+		                        .addGap(40, 40, 40)
+		                        .addComponent(labelCatPic))
+		                    .addComponent(scrollGameRules, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                .addGap(10, 10, 10)
+		                .addComponent(labelUrl)
+		                .addGap(6, 6, 6)
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		                    .addGroup(layout.createSequentialGroup()
+		                        .addComponent(comboGameStyle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                        .addGap(18, 18, 18)
+		                        .addComponent(comboDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                    .addGroup(layout.createSequentialGroup()
+		                        .addGap(10, 10, 10)
+		                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		                            .addGroup(layout.createSequentialGroup()
+		                                .addComponent(labelStyle)
+		                                .addGap(25, 25, 25)
+		                                .addComponent(labelDifficulty))
+		                            .addComponent(buttonPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+		        );
 				break;
 			case(1): //Main GUI
 
