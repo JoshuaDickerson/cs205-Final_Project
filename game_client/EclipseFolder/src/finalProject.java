@@ -48,8 +48,8 @@ public class finalProject extends JApplet implements ActionListener
 	public static final int MAIN_MENU = 0;
 	public static final int GAME_SCREEN = 1;
 	public static final int CREDITS_SCREEN = 2; //not sure if we need this...
-	public static final String BASEDIR = "/EclipseFolder/images/";
-	//public static final String BASEDIR = "/images/";
+	//public static final String BASEDIR = "EclipseFolder/images/";
+	public static final String BASEDIR = "/images/";
 	//GLOBAL OBJECTs
 	gameState GAME_STATE;
 	Player[] playersArray;
@@ -2430,9 +2430,7 @@ public class finalProject extends JApplet implements ActionListener
 			
 			System.out.println("Discarding card to discard pile");
 			discardCardFromDeck();
-			changePlayer();
-			setUpGUI(0);
-			//showCardHand();
+			setUpGUI(13);
 		}
 		if("chooseCardInHandToReplace".equals(e.getActionCommand()))
 		{
@@ -2445,8 +2443,14 @@ public class finalProject extends JApplet implements ActionListener
 			{
 				replaceCardFromDiscard();
 			}
-			changePlayer();
+			
 			setUpGUI(13); //change turns
-		}		
+		}
+		if("changePlayer".equals(e.getActionCommand()))
+		{
+			changePlayer();
+			setUpGUI(0);
+		}
+		
 	}	
 }
