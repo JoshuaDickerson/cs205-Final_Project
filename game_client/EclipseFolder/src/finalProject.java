@@ -48,8 +48,8 @@ public class finalProject extends JApplet implements ActionListener
 	public static final int MAIN_MENU = 0;
 	public static final int GAME_SCREEN = 1;
 	public static final int CREDITS_SCREEN = 2; //not sure if we need this...
-	public static final String BASEDIR = "/Final_2/images/";
-	
+	public static final String BASEDIR = "/EclipseFolder/images/";
+	//public static final String BASEDIR = "/images/";
 	//GLOBAL OBJECTs
 	gameState GAME_STATE;
 	Player[] playersArray;
@@ -63,6 +63,7 @@ public class finalProject extends JApplet implements ActionListener
 	boolean draw2SecondCard;
 	UUID uniqueID;
 	boolean gameOver;
+	boolean chooseDeck;
 	
 	
 	//GUI
@@ -226,6 +227,7 @@ public class finalProject extends JApplet implements ActionListener
     private javax.swing.JLabel labelChooseOppCard;
     private javax.swing.JButton buttonSwap;
     private javax.swing.JLabel labelCardShow;
+ 
 
 	
 	public void setUpGUI(int guiMode)
@@ -234,109 +236,190 @@ public class finalProject extends JApplet implements ActionListener
 		switch(guiMode)
 		{
 			case(0): //MAIN GUI
-				instructions_jlabel_label1 = new javax.swing.JLabel();
-		        instructions_jbutton_play = new javax.swing.JButton();
-		        instructions_jlabel_label3 = new javax.swing.JLabel();
-		        instructions_jlabel_label4 = new javax.swing.JLabel();
-		        instructions_jlabel_label6_link = new javax.swing.JLabel();
-		        scrollGameRules = new javax.swing.JScrollPane();
-		        instructions_jtextarea_ta1 = new javax.swing.JTextArea();
-		        instructions_jcombobox_rounds = new javax.swing.JComboBox();
-		        instructions_jcombobox_difficulty = new javax.swing.JComboBox();
-		        instructions_jtextfield_p1NameInput = new javax.swing.JTextField();
-		        instructions_jlabel_label2 = new javax.swing.JLabel();
-		        instructions_jlabel_label6 = new javax.swing.JLabel();
-	
-		        instructions_jlabel_label1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-		        instructions_jlabel_label1.setText("Instructions:");
-	
-		        instructions_jbutton_play.setText("Play");
-		        instructions_jbutton_play.addActionListener(this);
-	
-		        instructions_jlabel_label3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-		        instructions_jlabel_label3.setText("Style of Game");
-	
-		        instructions_jlabel_label4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-		        instructions_jlabel_label4.setText("Difficulty");
-	
-		        instructions_jlabel_label6_link.setText("<html><a href=\"http://www.gamewright.com/gamewright/pdfs/Rules/Rat-a-TatCat-RULES.pdf\">http://www.gamewright.com/gamewright/pdfs/Rules/Rat-a-TatCat-RULES.pdf</a>");
-	
-		        instructions_jtextarea_ta1.setEditable(false);
-		        instructions_jtextarea_ta1.setColumns(20);
-		        instructions_jtextarea_ta1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-		        instructions_jtextarea_ta1.setLineWrap(true);
-		        instructions_jtextarea_ta1.setRows(5);
-		        instructions_jtextarea_ta1.setText("The goal is to have the lowest score at the end of the game.\n\nChoose one player to be the dealer, and a scorekeeper. The scorekeeper will record each playerâ€™s score at the end of each round of play.\n\nShuffle the deck. The player to the left of the dealer cuts the cards. \nThe dealer then deals four cards, one at a time and face down, to each player.\nThe remaining cards are placed face down, in the middle of the table, as the\ndraw pile. The top card of the draw pile is turned over to start the discard\npile. If that card is a Power card, it is placed back in the deck and another\ncard is turned over.\n\nWithout looking at his cards, each player places his or her four cards face down in a line on the table in front of them.\n\nDuring the game, players will always have their four cards face down on the\ntable. To begin the game, players peek at their two outer cards once, then\nturn them face down again. Each player now knows the point values of two of\nhis four cards and needs to remember them during the game.\nIf either of the outer cards are Power cards, the player keeps them, but they\ndo not have their powers (described below). Power cards only have their\npowers when they are drawn from the top of the draw pile.  \nThe player to the left of the dealer has the first turn, and play continues in a\nclockwise direction.\n\nFor each turn, a player may:\n\n1. Draw the top card from the discard pile. This card MUST be used to\nreplace one of her cards. The card replaced is then discarded, face up, to the\ndiscard pile.\n\n2. Draw the top card from the draw pile. A player may use it to: \n\t1. Replace one of her cards\n\t2. Peek, Swap, or Draw 2 if it is a Power card (see below)\n\t3. Discard it face up to the discard pile\n\nA playerâ€™s choice is based on remembering the values of his four face down\ncards. Keep track of what you have so you wonâ€™t accidentally replace your\nlow point cards with high point cards.\nDuring the game, when the draw pile is used up, shuffle the discard pile and\nturn it over for a new draw pile.\n\nPower cards only have their powers when you draw them from the draw pile. If a Power card is dealt to you at the beginning of the game, it cannot be used. Because Power cards have no point value, if one of them is among your cards at the end of the game, you must replace it with a card drawn from the draw pile. If a Power card is discarded, it may not be used again by any player.\n\nThere are three kinds of Power cards:\n1. Peek\n\tWhen you draw a Peek card, show it and then peek at any\n\tone of your cards. Now you will know what you have, or you\n\tcan refresh your memory if you have forgotten what you have.\n\tYour turn is over and you discard the Peek card.\n2. Swap\n\tWhen you draw a Swap card, show the Swap card and \n\tdiscard it. You may now switch any one of your cards with\n\tany card of another player (swapping is optional). Neither player \t\tcan look at either of the cards being swapped. After the swap \t\tyour turn is over.\n3. Draw 2\n\tWhen you draw a Draw 2 card, show the card and then you\n\tmay take two more turns. First you draw the next card from the\n\tdraw pile. You must decide whether to use this card and forfeit\n\tthe second turn OR discard this card and draw a second card.\n\tThis second card may be used or discarded. Your turn is then\n\tover. If either of the cards drawn are another Draw 2 card, the\n\tDraw 2 sequence starts again.\n\nEnding the Round\n\nWhen a player thinks he has the lowest score and can win the round, he or she may end the round by knocking on the table and saying â€œrat-a-tat catâ€� at\nthe end of their turn. Once they knock, every other player has one more turn.\nEach player then turns over their cards. Players replace all Power cards by\ndrawing from the draw pile. If another Power card is drawn, the player\ndraws again.\n\nScoring\n\nPlayers add the point values of their four cards. This is each playerâ€™s score\nfor the round. The scorekeeper records each playerâ€™s score. Remember that\nplayers are trying to get as low a score as possible.\n\nNext Rounds\n\nAll cards are collected and passed to the player to the left of the dealer who\nreshuffles and deals for the next round.\n\nEnding the Game\n\nThe player with the lowest total score at the end of the game is the winner.\n\nA game may be played three ways:\n1. Play for a certain number of rounds.\n2. Play for a specific length of time.\n3. Play to stay in the game and not reach 100 points. When a player \nreaches 100 points, he is out of the game. The last player in the game is \nthe winner. Players may also choose to play to 200, or any other number \nof points.");
-		        instructions_jtextarea_ta1.setWrapStyleWord(true);
-		        scrollGameRules.setViewportView(instructions_jtextarea_ta1);
-	
-		        instructions_jcombobox_rounds.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rounds", "Time", "Points" }));
-		        instructions_jcombobox_rounds.setToolTipText("");
-		        instructions_jcombobox_rounds.addActionListener(this);
-		        
-	
-		        instructions_jcombobox_difficulty.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Easy", "Medium", "Hard" }));
-		        instructions_jcombobox_difficulty.addActionListener(this);
-		 
-	
-		        instructions_jtextfield_p1NameInput.setText("name here");
-		        instructions_jtextfield_p1NameInput.addActionListener(this);
-	
-		        instructions_jlabel_label2.setText("Player 1 Name");
-	
-		        instructions_jlabel_label6.setText("For More Game Rules See:");
-	
-		        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		        getContentPane().setLayout(layout);
-		        layout.setHorizontalGroup(
-		            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(layout.createSequentialGroup()
-		                .addGap(20, 20, 20)
-		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                    .addComponent(instructions_jlabel_label6_link, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addComponent(instructions_jlabel_label6)
-		                    .addComponent(instructions_jlabel_label1)
-		                    .addGroup(layout.createSequentialGroup()
-		                        .addComponent(scrollGameRules, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-		                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-		                            .addComponent(instructions_jtextfield_p1NameInput)
-		                            .addComponent(instructions_jlabel_label2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		                            .addComponent(instructions_jlabel_label3)
-		                            .addComponent(instructions_jlabel_label4)
-		                            .addComponent(instructions_jbutton_play, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-		                            .addComponent(instructions_jcombobox_rounds, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		                            .addComponent(instructions_jcombobox_difficulty, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-		                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		        );
-		        layout.setVerticalGroup(
-		            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(layout.createSequentialGroup()
-		                .addContainerGap()
-		                .addComponent(instructions_jlabel_label1)
-		                .addGap(12, 12, 12)
-		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-		                    .addGroup(layout.createSequentialGroup()
-		                        .addComponent(instructions_jlabel_label2)
-		                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-		                        .addComponent(instructions_jtextfield_p1NameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                        .addGap(55, 55, 55)
-		                        .addComponent(instructions_jlabel_label3)
-		                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-		                        .addComponent(instructions_jcombobox_rounds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                        .addGap(24, 24, 24)
-		                        .addComponent(instructions_jlabel_label4)
-		                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-		                        .addComponent(instructions_jcombobox_difficulty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		                        .addComponent(instructions_jbutton_play, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                    .addComponent(scrollGameRules, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
-		                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-		                .addComponent(instructions_jlabel_label6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-		                .addComponent(instructions_jlabel_label6_link, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		        );
+				 mainGUI_jbutton_deck = new javax.swing.JButton();
+	        Deck = new javax.swing.JLabel();
+	        mainGUI_jlabel_myHandCard1 = new javax.swing.JLabel();
+	        mainGUI_jlabel_myHandCard2 = new javax.swing.JLabel();
+	        mainGUI_jlabel_myHandCard4 = new javax.swing.JLabel();
+	        mainGUI_jlabel_myHandCard3 = new javax.swing.JLabel();
+	        mainGUI_jlabel_oppHand1 = new javax.swing.JLabel();
+	        mainGUI_jlabel_oppHand2 = new javax.swing.JLabel();
+	        mainGUI_jlabel_oppHand3 = new javax.swing.JLabel();
+	        mainGUI_jlabel_oppHand4 = new javax.swing.JLabel();
+	        jScrollPane1 = new javax.swing.JScrollPane();
+	        mainGUI_jtextarea_descripTextarea = new javax.swing.JTextArea();
+	        labelPlayerCard2mainGUI_jlabel_myHandLabel5 = new javax.swing.JLabel();
+	        mainGUI_jlabel_myHandLabel2 = new javax.swing.JLabel();
+	        labelPlayerCard2mainGUI_jlabel_myHandLabel3 = new javax.swing.JLabel();
+	        labelPlayerCard2mainGUI_jlabel_myHandLabel4 = new javax.swing.JLabel();
+	        mainGUI_jlabel_oppCardLabel1 = new javax.swing.JLabel();
+	        mainGUI_jlabel_oppCardLabel2 = new javax.swing.JLabel();
+	        mainGUI_jlabel_oppCardLabel3 = new javax.swing.JLabel();
+	        mainGUI_jlabel_oppCardLabel4 = new javax.swing.JLabel();
+	        mainGUI_jlabel_oppLabel = new javax.swing.JLabel();
+	        mainGUI_jlabel_myHandLabel1 = new javax.swing.JLabel();
+	        mainGUI_jbutton_discard = new javax.swing.JButton();
+
+	        setPreferredSize(new java.awt.Dimension(640, 480));
+	        
+	        mainGUI_jbutton_deck.setBackground(new java.awt.Color(255, 255, 255));
+	        mainGUI_jbutton_deck.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
+	        mainGUI_jbutton_deck.addActionListener(this);
+	        mainGUI_jbutton_deck.setActionCommand("drawDeck");
+	        
+
+	        mainGUI_jlabel_myHandCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+
+	        mainGUI_jlabel_myHandCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+
+	        mainGUI_jlabel_myHandCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+
+	        mainGUI_jlabel_myHandCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+
+	        mainGUI_jlabel_oppHand1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+
+	        mainGUI_jlabel_oppHand2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+
+	        mainGUI_jlabel_oppHand3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+
+	        mainGUI_jtextarea_descripTextarea.setColumns(20);
+	        mainGUI_jtextarea_descripTextarea.setRows(5);
+	        updateGameDialog();
+	        jScrollPane1.setViewportView(mainGUI_jtextarea_descripTextarea);
+
+	        labelPlayerCard2mainGUI_jlabel_myHandLabel5.setText("Card 4");
+
+	        mainGUI_jlabel_myHandLabel2.setText("Card 1");
+
+	        labelPlayerCard2mainGUI_jlabel_myHandLabel3.setText("Card 2");
+
+	        labelPlayerCard2mainGUI_jlabel_myHandLabel4.setText("Card 3");
+
+	        mainGUI_jlabel_oppCardLabel1.setText("Card 1");
+
+	        mainGUI_jlabel_oppCardLabel2.setText("Card 2");
+
+	        mainGUI_jlabel_oppCardLabel3.setText("Card 3");
+
+	        mainGUI_jlabel_oppCardLabel4.setText("Card 4");
+
+	        mainGUI_jlabel_oppHand4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+
+	        mainGUI_jlabel_oppLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+	        mainGUI_jlabel_oppLabel.setText("Opponent's Hand:");
+
+	        mainGUI_jlabel_myHandLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+	        mainGUI_jlabel_myHandLabel1.setText("Your Hand:");
+
+	        mainGUI_jbutton_discard.setBackground(new java.awt.Color(255, 255, 255));
+	        if(discard.getCard(0).getRank() == -1)
+	        {
+	        	mainGUI_jbutton_discard.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + discard.getCard(0).getSpecial() + ".png"))); // NOI18N	
+	        }
+	        else
+	        {
+	        	mainGUI_jbutton_discard.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + discard.getCard(0).getRank() + ".png"))); // NOI18N
+	        }
+	        mainGUI_jbutton_discard.setText("jButton1");
+	        mainGUI_jbutton_discard.addActionListener(this);
+	        mainGUI_jbutton_discard.setActionCommand("drawDiscard");
+
+	        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+	        getContentPane().setLayout(layout);
+	        layout.setHorizontalGroup(
+	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGroup(layout.createSequentialGroup()
+	                .addComponent(Deck)
+	                .addGap(0, 0, Short.MAX_VALUE))
+	            .addGroup(layout.createSequentialGroup()
+	                .addContainerGap()
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addGroup(layout.createSequentialGroup()
+	                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                        .addComponent(mainGUI_jbutton_deck, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addGap(18, 18, 18)
+	                        .addComponent(mainGUI_jbutton_discard, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                    .addGroup(layout.createSequentialGroup()
+	                        .addGap(99, 99, 99)
+	                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                            .addGroup(layout.createSequentialGroup()
+	                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                                    .addComponent(mainGUI_jlabel_oppHand1)
+	                                    .addComponent(mainGUI_jlabel_oppCardLabel1))
+	                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                                    .addComponent(mainGUI_jlabel_oppCardLabel2)
+	                                    .addComponent(mainGUI_jlabel_oppHand2))
+	                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                                    .addComponent(mainGUI_jlabel_oppCardLabel3)
+	                                    .addComponent(mainGUI_jlabel_oppHand3))
+	                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                                    .addComponent(mainGUI_jlabel_oppCardLabel4)
+	                                    .addComponent(mainGUI_jlabel_oppHand4)))
+	                            .addComponent(mainGUI_jlabel_oppLabel)))
+	                    .addGroup(layout.createSequentialGroup()
+	                        .addGap(101, 101, 101)
+	                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+	                            .addComponent(mainGUI_jlabel_myHandLabel1)
+	                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                                .addComponent(mainGUI_jlabel_myHandLabel2)
+	                                .addComponent(mainGUI_jlabel_myHandCard1)))
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                            .addComponent(labelPlayerCard2mainGUI_jlabel_myHandLabel3)
+	                            .addComponent(mainGUI_jlabel_myHandCard2))
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                            .addComponent(labelPlayerCard2mainGUI_jlabel_myHandLabel4)
+	                            .addComponent(mainGUI_jlabel_myHandCard3))
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                            .addComponent(labelPlayerCard2mainGUI_jlabel_myHandLabel5)
+	                            .addComponent(mainGUI_jlabel_myHandCard4))))
+	                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+	        );
+	        layout.setVerticalGroup(
+	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGroup(layout.createSequentialGroup()
+	                .addComponent(Deck)
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                .addComponent(mainGUI_jlabel_oppLabel)
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addComponent(mainGUI_jlabel_oppHand1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addComponent(mainGUI_jlabel_oppHand2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addComponent(mainGUI_jlabel_oppHand3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addComponent(mainGUI_jlabel_oppHand4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                    .addComponent(mainGUI_jlabel_oppCardLabel2)
+	                    .addComponent(mainGUI_jlabel_oppCardLabel3)
+	                    .addComponent(mainGUI_jlabel_oppCardLabel4)
+	                    .addComponent(mainGUI_jlabel_oppCardLabel1))
+	                .addGap(18, 18, 18)
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+	                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+	                    .addComponent(mainGUI_jbutton_deck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                    .addComponent(mainGUI_jbutton_discard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+	                .addGap(38, 38, 38)
+	                .addComponent(mainGUI_jlabel_myHandLabel1)
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addComponent(mainGUI_jlabel_myHandCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addComponent(mainGUI_jlabel_myHandCard3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addComponent(mainGUI_jlabel_myHandCard4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addComponent(mainGUI_jlabel_myHandCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addComponent(mainGUI_jlabel_myHandLabel2)
+	                    .addComponent(labelPlayerCard2mainGUI_jlabel_myHandLabel3)
+	                    .addComponent(labelPlayerCard2mainGUI_jlabel_myHandLabel4)
+	                    .addComponent(labelPlayerCard2mainGUI_jlabel_myHandLabel5))
+	                .addContainerGap(31, Short.MAX_VALUE))
+	        );
 				break;
 			/*
 			 * INSTRUCTIONS
@@ -361,6 +444,7 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        instructions_jbutton_play.setText("Play");
 		        instructions_jbutton_play.addActionListener(this);
+		        instructions_jbutton_play.setActionCommand("play");
 	
 		        instructions_jlabel_label3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 		        instructions_jlabel_label3.setText("Style of Game");
@@ -385,8 +469,9 @@ public class finalProject extends JApplet implements ActionListener
 		        instructions_jcombobox_difficulty.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Easy", "Medium", "Hard" }));
 		
 		        instructions_jtextfield_p1NameInput.setText("name here");
-		        instructions_jtextfield_p1NameInput.addActionListener(this);
+
 		        instructions_jlabel_label2.setText("Player 1 Name");
+		      
 	
 		        instructions_jlabel_label6.setText("For More Game Rules See:");
 	
@@ -451,8 +536,14 @@ public class finalProject extends JApplet implements ActionListener
 		        cardDrew_jbutton_keep = new javax.swing.JButton();
 		        cardDrew_jbutton_discard = new javax.swing.JButton();
 	
-		        
-		        cardDrew_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
+		        if(mainDeck.getCard(0).getRank() == -1)
+		        {
+		        	cardDrew_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + mainDeck.getCard(0).getSpecial() + ".png"))); // NOI18N
+		        }
+		        else
+		        {
+		        	cardDrew_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + mainDeck.getCard(0).getRank() + ".png"))); // NOI18N
+		        }
 		        cardDrew_jlabel_graphic1.setText("jLabel1");
 	
 		        cardDrew_jlabel_label1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -460,9 +551,13 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        cardDrew_jbutton_keep.setText("Keep it!");
 		        cardDrew_jbutton_keep.addActionListener(this);
+		        cardDrew_jbutton_keep.setActionCommand("keepCard");
+		        
 	
 		        cardDrew_jbutton_discard.setText("Discard it!");
 		        cardDrew_jbutton_discard.addActionListener(this);
+		        cardDrew_jbutton_discard.setActionCommand("giveUpCard");
+		        
 		        
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -523,9 +618,9 @@ public class finalProject extends JApplet implements ActionListener
 		        draw2Instruct_jlabel_label1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 		        draw2Instruct_jlabel_label1.setText("You've Drawn a Draw 2 Card!");
 	
-		        draw2Instruct_jlabel_graphic2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/10.png"))); // NOI18N
+		        draw2Instruct_jlabel_graphic2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"10.png"))); // NOI18N
 	
-		        draw2Instruct_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/10.png"))); // NOI18N
+		        draw2Instruct_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"10.png"))); // NOI18N
 	
 		        draw2Instruct_jbutton_ok.setText("OK");
 	
@@ -592,8 +687,11 @@ public class finalProject extends JApplet implements ActionListener
 		  
 		        knockPlay_jbutton_knock.setText("Knock");
 		        knockPlay_jbutton_knock.addActionListener(this);
+		        knockPlay_jbutton_knock.setActionCommand("knock");
+		        
 		        knockPlay_jbutton_play.setText("Keep Playing");
 		        knockPlay_jbutton_play.addActionListener(this);
+		        knockPlay_jbutton_play.setActionCommand("keepPlaying");
 	
 		        knockPlay_jlabel_label1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
 		        knockPlay_jlabel_label1.setText("Do you want to knock or continue playing?");
@@ -638,16 +736,16 @@ public class finalProject extends JApplet implements ActionListener
 		        peekInterface_jbutton_go = new javax.swing.JButton();
 	
 		        
-		        peekInterface_jlabel_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_1.png"))); // NOI18N
+		        peekInterface_jlabel_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_1.png"))); // NOI18N
 		        peekInterface_jlabel_card1.setText("jLabel1");
 	
-		        peekInterface_jlabel_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_2.png"))); // NOI18N
+		        peekInterface_jlabel_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_2.png"))); // NOI18N
 		        peekInterface_jlabel_card2.setText("jLabel1");
 	
-		        peekInterface_jlabel_card3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_3.png"))); // NOI18N
+		        peekInterface_jlabel_card3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_3.png"))); // NOI18N
 		        peekInterface_jlabel_card3.setText("jLabel1");
 	
-		        peekInterface_jlabel_card4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_4.png"))); // NOI18N
+		        peekInterface_jlabel_card4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_4.png"))); // NOI18N
 		        peekInterface_jlabel_card4.setText("jLabel1");
 	
 		        peekInterface_jcombobox_select1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
@@ -656,6 +754,8 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        peekInterface_jbutton_go.setText("Go");
 		        peekInterface_jbutton_go.addActionListener(this);
+		        peekInterface_jbutton_go.setActionCommand("go");
+		        
 		        
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -717,6 +817,8 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        peekInstruction_jbutton_ok.setText("OK");
 		        peekInstruction_jbutton_ok.addActionListener(this);
+		        peekInstruction_jbutton_ok.setActionCommand("ok");
+		        
 	
 		        peekInstruction_jtextarea_instr1.setEditable(false);
 		        peekInstruction_jtextarea_instr1.setColumns(20);
@@ -739,9 +841,9 @@ public class finalProject extends JApplet implements ActionListener
 		        peekInstruction_jlabel_label1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 		        peekInstruction_jlabel_label1.setText("You've Drawn a Peek Card!");
 	
-		        peekInstruction_jlabel_graphic2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/11.png"))); // NOI18N
+		        peekInstruction_jlabel_graphic2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"11.png"))); // NOI18N
 	
-		        peekInstruction_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/11.png"))); // NOI18N
+		        peekInstruction_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"11.png"))); // NOI18N
 	
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -801,6 +903,8 @@ public class finalProject extends JApplet implements ActionListener
 		        showPeekCard_jbutton_go.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 		        showPeekCard_jbutton_go.setText("Go");
 		        showPeekCard_jbutton_go.addActionListener(this);
+		        showPeekCard_jbutton_go.setActionCommand("go");
+		        
 		        
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -848,30 +952,30 @@ public class finalProject extends JApplet implements ActionListener
 		        swapOpp_jbutton_go = new javax.swing.JButton();
 	
 		        
-		        swapOpp_jlabel_oppCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_4.png"))); // NOI18N
+		        swapOpp_jlabel_oppCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_4.png"))); // NOI18N
 		        swapOpp_jlabel_oppCard4.setText("jLabel1");
 	
-		        swapOpp_jlabel_oppCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_1.png"))); // NOI18N
+		        swapOpp_jlabel_oppCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_1.png"))); // NOI18N
 		        swapOpp_jlabel_oppCard1.setText("jLabel1");
 	
-		        swapOpp_jlabel_oppCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_2.png"))); // NOI18N
+		        swapOpp_jlabel_oppCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_2.png"))); // NOI18N
 		        swapOpp_jlabel_oppCard2.setText("jLabel1");
 	
-		        swapOpp_jlabel_oppCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_3.png"))); // NOI18N
+		        swapOpp_jlabel_oppCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_3.png"))); // NOI18N
 		        swapOpp_jlabel_oppCard3.setText("jLabel1");
 	
 		        swapOpp_jlabel_label1.setText("Select the number of the opponent's card you want to swap");
 	
-		        swapOpp_jlabel_playerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_1.png"))); // NOI18N
+		        swapOpp_jlabel_playerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_1.png"))); // NOI18N
 		        swapOpp_jlabel_playerCard1.setText("jLabel1");
 	
-		        swapOpp_jlabel_playerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_2.png"))); // NOI18N
+		        swapOpp_jlabel_playerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_2.png"))); // NOI18N
 		        swapOpp_jlabel_playerCard2.setText("jLabel1");
 	
-		        swapOpp_jlabel_playerCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_3.png"))); // NOI18N
+		        swapOpp_jlabel_playerCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_3.png"))); // NOI18N
 		        swapOpp_jlabel_playerCard3.setText("jLabel1");
 	
-		        swapOpp_jlabel_playerCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_4.png"))); // NOI18N
+		        swapOpp_jlabel_playerCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_4.png"))); // NOI18N
 		        swapOpp_jlabel_playerCard4.setText("jLabel1");
 	
 		        swapOpp_jlabel_label2.setText("Select the number of your card you want to swap");
@@ -882,6 +986,8 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        swapOpp_jbutton_go.setText("Go");
 		        swapOpp_jbutton_go.addActionListener(this);
+		        swapOpp_jbutton_go.setActionCommand("go");
+		        
 		        
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -981,21 +1087,21 @@ public class finalProject extends JApplet implements ActionListener
 		        buttonSwap = new javax.swing.JButton();
 		        labelCardShow = new javax.swing.JLabel();
 	
-		        OpponentCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+		        OpponentCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
 	
-		        OpponentCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+		        OpponentCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
 	
-		        OpponentCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+		        OpponentCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
 	
-		        OpponentCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+		        OpponentCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
 	
-		        Player1Card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+		        Player1Card2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
 	
-		        Player1Card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+		        Player1Card1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
 	
-		        Player1Card4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+		        Player1Card4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
 	
-		        Player1Card3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13tiny.png"))); // NOI18N
+		        Player1Card3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
 	
 		        comboPlayerCard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Card 1", "Card 2", "Card 3", "Card 4" }));
 	
@@ -1003,10 +1109,13 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        buttonSwapDiscard.setText("Discard");
 		        buttonSwapDiscard.addActionListener(this);
+		        buttonSwapDiscard.setActionCommand("discard");
+		        
 	
 		        buttonPeek.setText("Peek");
 		        buttonPeek.addActionListener(this);
-	
+		        buttonPeek.setActionCommand("peek");
+		    	
 		        labelPlayer2Card1.setText("Card 1");
 	
 		        labelPlayer2Card2.setText("Card 2");
@@ -1033,8 +1142,9 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        buttonSwap.setText("Swap");
 		        buttonSwap.addActionListener(this);
+		        buttonSwap.setActionCommand("swap");
 	
-		        labelCardShow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
+		        labelCardShow.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
 	
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -1167,16 +1277,16 @@ public class finalProject extends JApplet implements ActionListener
 		        swapDrawnCard_jbutton_go = new javax.swing.JButton();
 	
 		        
-		        swapDrawnCard_jlabel_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_1.png"))); // NOI18N
+		        swapDrawnCard_jlabel_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
 		        swapDrawnCard_jlabel_card1.setText("jLabel1");
 	
-		        swapDrawnCard_jlabel_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_2.png"))); // NOI18N
+		        swapDrawnCard_jlabel_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
 		        swapDrawnCard_jlabel_card2.setText("jLabel1");
 	
-		        swapDrawnCard_jlabel_card3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_3.png"))); // NOI18N
+		        swapDrawnCard_jlabel_card3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
 		        swapDrawnCard_jlabel_card3.setText("jLabel1");
 	
-		        swapDrawnCard_jlabel_card4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/back_4.png"))); // NOI18N
+		        swapDrawnCard_jlabel_card4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
 		        swapDrawnCard_jlabel_card4.setText("jLabel1");
 	
 		        swapDrawnCard_jcombobox_select1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
@@ -1186,6 +1296,8 @@ public class finalProject extends JApplet implements ActionListener
 		        swapDrawnCard_jbutton_go.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 		        swapDrawnCard_jbutton_go.setText("Go");
 		        swapDrawnCard_jbutton_go.addActionListener(this);
+		        swapDrawnCard_jbutton_go.setActionCommand("chooseCardInHandToReplace");
+		        
 	
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -1241,6 +1353,7 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        swapInstrcution_jbutton_okButton.setText("OK");
 		        swapInstrcution_jbutton_okButton.addActionListener(this);
+		        swapInstrcution_jbutton_okButton.setActionCommand("ok");
 	
 		        swapInstrcution_jtextarea_textarea1.setEditable(false);
 		        swapInstrcution_jtextarea_textarea1.setColumns(20);
@@ -1263,9 +1376,9 @@ public class finalProject extends JApplet implements ActionListener
 		        swapInstrcution_jtextarea_textarea2.setWrapStyleWord(true);
 		        scrollPowerCard1.setViewportView(swapInstrcution_jtextarea_textarea2);
 	
-		        swapInstrcution_jlabel_graphic2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/12.png"))); // NOI18N
+		        swapInstrcution_jlabel_graphic2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"12.png"))); // NOI18N
 	
-		        swapInstrcution_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/12.png"))); // NOI18N
+		        swapInstrcution_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"12.png"))); // NOI18N
 	
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -1352,6 +1465,8 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        timesUp_jbutton_go.setText("Go");
 		        timesUp_jbutton_go.addActionListener(this);
+		        timesUp_jbutton_go.setActionCommand("go");
+		        
 	
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -1411,16 +1526,16 @@ public class finalProject extends JApplet implements ActionListener
 		        turnChange_jlabel_goButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 		        turnChange_jlabel_goButton.setText("GO!");
 		        turnChange_jlabel_goButton.addActionListener(this);
-	
+		        turnChange_jlabel_goButton.setActionCommand("changePlayer");
 		        turnChange_jlabel_label1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
 		        turnChange_jlabel_label1.setText("It's Player 2's Turn!");
 	
 		        turnChange_jlabel_label2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 		        turnChange_jlabel_label2.setText("Other Players, Don't Look!");
 	
-		        turnChange_jlabel_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
+		        turnChange_jlabel_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
 	
-		        turnChange_jlabel_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
+		        turnChange_jlabel_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
 	
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -1477,16 +1592,16 @@ public class finalProject extends JApplet implements ActionListener
 		        viewCardsStart_jlabel_label1 = new javax.swing.JLabel();
 		        viewCardStart_jbutton_go = new javax.swing.JButton();
 	
-		        viewCardStart_jlabel_card4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/6.png"))); // NOI18N
+		        viewCardStart_jlabel_card4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"6.png"))); // NOI18N
 		        viewCardStart_jlabel_card4.setText("jLabel1");
 	
-		        viewCardStart_jlabel_card3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
+		        viewCardStart_jlabel_card3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
 		        viewCardStart_jlabel_card3.setText("jLabel1");
 	
-		        viewCardsStart_jlabel_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/13.png"))); // NOI18N
+		        viewCardsStart_jlabel_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
 		        viewCardsStart_jlabel_card2.setText("jLabel1");
 	
-		        viewCardsStart_jlabel_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/3.png"))); // NOI18N
+		        viewCardsStart_jlabel_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"3.png"))); // NOI18N
 		        viewCardsStart_jlabel_card1.setText("jLabel1");
 	
 		        viewCardsStart_jlabel_label1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -1496,6 +1611,7 @@ public class finalProject extends JApplet implements ActionListener
 		        viewCardStart_jbutton_go.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
 		        viewCardStart_jbutton_go.setText("Go");
 		        viewCardStart_jbutton_go.addActionListener(this);
+		        viewCardStart_jbutton_go.setActionCommand("go");
 	
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -1605,7 +1721,7 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		else
 		{
-			replaceCardInHand();
+			//replaceCardInHand();
 		}
 	}
 	
@@ -1648,46 +1764,26 @@ public class finalProject extends JApplet implements ActionListener
 		*/
 	}
 	
-	public void replaceCardInHand()
+	public void replaceCardFromDeck()
 	{
-		System.out.println("REAPLCING CARD FROM HADN WITH DECK");
-		/*
+		System.out.println("REAPLCING CARD IN HAND FROM DECK");
 		//System.out.println("You got an " + cardFromDeck.toString());
 		
-		if(1 == -1)
-		{
-			if(!draw2SecondCard && gotDraw2)
-			{
-				//we get to try again drawing
-				draw2SecondCard = true;
-			}
-			else
-			{
-				//this was already our second attempt
-				draw2SecondCard = false;
-			}
-			gotDraw2 = false;
-			//User discards back to deck
-			discard.addTopCard(cardFromDeck);
-			if(debug)
-			{
-				System.out.println("Decided to discard " + cardFromDeck.toString());
-			}
-		}
-		else
-		{
-			//user wants to swap card with hand
-			gotDraw2 = false;
-			draw2SecondCard = false;
-			if(debug)
-			{
-				System.out.println("Swapped " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex).toString() + ", with " + cardFromDeck.toString());
-			}					
-			Card removedFromHand = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
-			discard.addTopCard(removedFromHand);
-		}
-		*/
+		Card cardFromDeck = mainDeck.getTopCard();
+		Card oldCard = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(swapDrawnCard_jcombobox_select1.getSelectedIndex(), cardFromDeck);
+		discard.addTopCard(oldCard);
 	}
+	
+	public void replaceCardFromDiscard()
+	{
+		System.out.println("REAPLCING CARD IN HAND FROM DISCARD");
+		//System.out.println("You got an " + cardFromDeck.toString());
+		
+		Card cardFromDiscard = discard.getTopCard();
+		Card oldCard = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(swapDrawnCard_jcombobox_select1.getSelectedIndex(), cardFromDiscard);
+		discard.addTopCard(oldCard);
+	}
+	
 	public void peek()
 	{
 		gotDraw2 = false;
@@ -1717,7 +1813,7 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//HUMAN PLAYER
 		Hand humanHand = new Hand(0);
-		Player human = new Player(true, 0, "REPLACE WITH REAL NAME" , humanHand);
+		Player human = new Player(true, 0, instructions_jtextfield_p1NameInput.getText() , humanHand);
 		playersArray[0] = human;
 		
 		//COMPUTER OPPONENTS
@@ -1736,7 +1832,7 @@ public class finalProject extends JApplet implements ActionListener
 		System.out.println("You are playing " + opponents[difficulty-1]);
 		
 		//UPDATE GAME STATE
-		GAME_STATE.updateGameState(NORMAL_ROUND, comboGameStyle.getSelectedIndex(), 0, NORMAL_PLAY, GAME_STATE.getRoundNum());
+		GAME_STATE.updateGameState(NORMAL_ROUND, instructions_jcombobox_rounds.getSelectedIndex(), 0, NORMAL_PLAY, GAME_STATE.getRoundNum());
 		
 		if(debug)
 		{
@@ -1757,11 +1853,12 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//CREATE DECK
 		mainDeck = new Deck();
-		//mainDeck.shuffle();
+		mainDeck.shuffle();
 		
 		//CREATE DISCARD PILE
 		discard = new Deck();
 		discard.clear();
+		chooseDeck = false;
 		
 		if(debug)
 		{
@@ -1803,6 +1900,25 @@ public class finalProject extends JApplet implements ActionListener
 	    	currentTime = sdf.format(cal.getTime());
 		}
 		
+		printDebugLog();
+		
+		//SET FIRST PLAYER TO GO FIRST!
+		GAME_STATE.setPlayer(0);
+		
+		if(debug)
+		{
+			GAME_STATE.print();
+		}
+	
+		//UPDATE SERVER
+		if(sendJSON)
+		{
+			sendJSON();
+		}
+	}
+	
+	public void printDebugLog()
+	{
 		if(debug || extraHelp)
 		{
 			System.out.println("********************************");
@@ -1820,19 +1936,87 @@ public class finalProject extends JApplet implements ActionListener
 			mainDeck.showDeck();
 			System.out.println("********************************");
 		}
-		
-		//SET FIRST PLAYER TO GO FIRST!
-		GAME_STATE.setPlayer(0);
-		
-		if(debug)
-		{
-			GAME_STATE.print();
-		}
+	}
 	
-		//UPDATE SERVER
-		if(sendJSON)
+	public void updateGameDialog()
+	{
+		String text = "Current Player: " + playersArray[GAME_STATE.getPlayer()].getName() + "\n";
+		text = text + "----Hand----\n";
+		for(int i = 0; i < 4; i++)
 		{
-			sendJSON();
+			text = text + "Card " + i + ": " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(i) + "\n";
+		}
+		mainGUI_jtextarea_descripTextarea.setText(text);
+	}
+	
+	public void showCardHand()
+	{
+		//PLAYER 1
+		if(playersArray[0].myHand.getCard(0).getRank() == -1)
+		{
+			mainGUI_jlabel_myHandCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(0).getSpecial() + ".png")));
+		}
+		else
+		{
+			mainGUI_jlabel_myHandCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(0).getRank() + ".png")));
+		}
+		if(playersArray[0].myHand.getCard(1).getRank() == -1)
+		{
+			mainGUI_jlabel_myHandCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(1).getSpecial() + ".png")));
+		}
+		else
+		{
+			mainGUI_jlabel_myHandCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(1).getRank() + ".png")));
+		}
+		if(playersArray[0].myHand.getCard(2).getRank() == -1)
+		{
+			mainGUI_jlabel_myHandCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(2).getSpecial() + ".png")));
+		}
+		else
+		{
+			mainGUI_jlabel_myHandCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(2).getRank() + ".png")));
+		}
+		if(playersArray[0].myHand.getCard(3).getRank() == -1)
+		{
+			mainGUI_jlabel_myHandCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(3).getSpecial() + ".png")));
+		}
+		else
+		{
+			mainGUI_jlabel_myHandCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(3).getRank() + ".png")));
+		}
+		
+		//PLAYER 2
+		if(playersArray[1].myHand.getCard(0).getRank() == -1)
+		{
+			mainGUI_jlabel_oppCardLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(0).getSpecial() + ".png")));
+		}
+		else
+		{
+			mainGUI_jlabel_oppCardLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(0).getRank() + ".png")));
+		}
+		if(playersArray[1].myHand.getCard(1).getRank() == -1)
+		{
+			mainGUI_jlabel_oppCardLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(1).getSpecial() + ".png")));
+		}
+		else
+		{
+			mainGUI_jlabel_oppCardLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(1).getRank() + ".png")));
+		}
+		if(playersArray[1].myHand.getCard(2).getRank() == -1)
+		{
+			mainGUI_jlabel_oppCardLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(2).getSpecial() + ".png")));
+		}
+		else
+		{
+			mainGUI_jlabel_oppCardLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(2).getRank() + ".png")));
+		}
+		if(playersArray[1].myHand.getCard(3).getRank() == -1)
+		{
+			mainGUI_jlabel_oppCardLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(3).getSpecial() + ".png")));
+		}
+		else
+		{
+			mainGUI_jlabel_oppCardLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(3).getRank() + ".png")));
 		}
 	}
 	
@@ -2005,6 +2189,25 @@ public class finalProject extends JApplet implements ActionListener
 		*/
 	}
 	
+	public void discardCardFromDeck()
+	{
+		Card cardFromDeck = mainDeck.getTopCard();
+		discard.addTopCard(cardFromDeck);
+	}
+	
+	public void changePlayer()
+	{
+		if(GAME_STATE.getPlayer() == 0)
+		{
+			GAME_STATE.setPlayer(1);
+		}
+		else
+		{
+			GAME_STATE.setPlayer(0);
+		}
+		printDebugLog();
+	}
+	
 		
 	/* Invoked immediately after the start() method, and also any time
 	the applet needs to repaint itself in the browser. The paint()
@@ -2028,7 +2231,7 @@ public class finalProject extends JApplet implements ActionListener
 		sendJSON = true;
 		
 		setSize(500, 300);
-		setUpGUI(0);
+		setUpGUI(1);
 	}
 	
 	public void gameLoop(Object[] gameParameters)
@@ -2174,12 +2377,11 @@ public class finalProject extends JApplet implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{	
 		//FOR THE GAME SETUP
-		if("Play".equals(e.getActionCommand()))
+		if("play".equals(e.getActionCommand()))
 		{
 			if(debug)
 			{
-				System.out.println("Ive CLICKED PLAY WITH GAME MODE: " + comboGameStyle.getSelectedIndex() + " | and difficulty : " + comboDifficulty.getSelectedIndex());
-				
+				System.out.println("Ive CLICKED PLAY WITH GAME MODE: " + instructions_jcombobox_rounds.getSelectedIndex() + " | and difficulty : " + instructions_jcombobox_difficulty.getSelectedIndex());	
 			}
 	        //INIT GAME
 			initGame();
@@ -2187,19 +2389,21 @@ public class finalProject extends JApplet implements ActionListener
 			initRound();
 			
 			//SETUP GUI
-			setUpGUI(1);
+			setUpGUI(0);
+			//showCardHand();
 			
 		}
-		if("Deck".equals(e.getActionCommand()))
+		if("drawDeck".equals(e.getActionCommand()))
 		{
-			System.out.println("Deck");
-			drawFromDeck();
-			//setUpGUI(2);
+			System.out.println("Want From Deck");
+			chooseDeck = true;
+			setUpGUI(2);
 		}
-		if("Discard".equals(e.getActionCommand()))
+		if("drawDiscard".equals(e.getActionCommand()))
 		{
-			System.out.println("Discard");
-			//setUpGUI(2);
+			System.out.println("Want From Discard");
+			chooseDeck = false;
+			setUpGUI(10); 
 		}
 		
 		//KNOCK OR STAY
@@ -2207,11 +2411,42 @@ public class finalProject extends JApplet implements ActionListener
 		{
 			System.out.println("knock");
 			setUpGUI(0);
+			//showCardHand();
 		}
 		if("keepPlaying".equals(e.getActionCommand()))
 		{
 			System.out.println("keep playing");
 			setUpGUI(0);
+			//showCardHand();
 		}
+		if("keepCard".equals(e.getActionCommand()))
+		{
+			System.out.println("keep the card I picked");
+			setUpGUI(10);
+			replaceCardFromDeck();
+		}
+		if("giveUpCard".equals(e.getActionCommand()))
+		{
+			
+			System.out.println("Discarding card to discard pile");
+			discardCardFromDeck();
+			changePlayer();
+			setUpGUI(0);
+			//showCardHand();
+		}
+		if("chooseCardInHandToReplace".equals(e.getActionCommand()))
+		{
+			System.out.println("replacing card from my hand");
+			if(chooseDeck)
+			{
+				//replaceCardFromDeck();
+			}
+			else
+			{
+				replaceCardFromDiscard();
+			}
+			changePlayer();
+			setUpGUI(13); //change turns
+		}		
 	}	
 }
