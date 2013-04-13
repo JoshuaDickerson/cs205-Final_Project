@@ -48,8 +48,8 @@ public class finalProject extends JApplet implements ActionListener
 	public static final int MAIN_MENU = 0;
 	public static final int GAME_SCREEN = 1;
 	public static final int CREDITS_SCREEN = 2; //not sure if we need this...
-	//public static final String BASEDIR = "EclipseFolder/images/";
 	public static final String BASEDIR = "/images/";
+	//public static final String BASEDIR = "/images/";
 	//GLOBAL OBJECTs
 	gameState GAME_STATE;
 	Player[] playersArray;
@@ -64,7 +64,7 @@ public class finalProject extends JApplet implements ActionListener
 	UUID uniqueID;
 	boolean gameOver;
 	boolean chooseDeck;
-	
+	int cardToPeek;
 	
 	//GUI
 	
@@ -263,24 +263,28 @@ public class finalProject extends JApplet implements ActionListener
 	        setPreferredSize(new java.awt.Dimension(640, 480));
 	        
 	        mainGUI_jbutton_deck.setBackground(new java.awt.Color(255, 255, 255));
-	        mainGUI_jbutton_deck.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
+	        mainGUI_jbutton_deck.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 	        mainGUI_jbutton_deck.addActionListener(this);
 	        mainGUI_jbutton_deck.setActionCommand("drawDeck");
 	        
+	        if(discard.getCard(0).isSpecial())
+	        {
+	        	mainGUI_jbutton_discard.setEnabled(false);
+	        }
 
-	        mainGUI_jlabel_myHandCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+	        mainGUI_jlabel_myHandCard1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 
-	        mainGUI_jlabel_myHandCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+	        mainGUI_jlabel_myHandCard2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 
-	        mainGUI_jlabel_myHandCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+	        mainGUI_jlabel_myHandCard4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 
-	        mainGUI_jlabel_myHandCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+	        mainGUI_jlabel_myHandCard3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 
-	        mainGUI_jlabel_oppHand1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+	        mainGUI_jlabel_oppHand1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 
-	        mainGUI_jlabel_oppHand2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+	        mainGUI_jlabel_oppHand2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 
-	        mainGUI_jlabel_oppHand3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+	        mainGUI_jlabel_oppHand3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 
 	        mainGUI_jtextarea_descripTextarea.setColumns(20);
 	        mainGUI_jtextarea_descripTextarea.setRows(5);
@@ -303,7 +307,7 @@ public class finalProject extends JApplet implements ActionListener
 
 	        mainGUI_jlabel_oppCardLabel4.setText("Card 4");
 
-	        mainGUI_jlabel_oppHand4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+	        mainGUI_jlabel_oppHand4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 
 	        mainGUI_jlabel_oppLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 	        mainGUI_jlabel_oppLabel.setText("Opponent's Hand:");
@@ -314,11 +318,11 @@ public class finalProject extends JApplet implements ActionListener
 	        mainGUI_jbutton_discard.setBackground(new java.awt.Color(255, 255, 255));
 	        if(discard.getCard(0).getRank() == -1)
 	        {
-	        	mainGUI_jbutton_discard.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + discard.getCard(0).getSpecial() + ".png"))); // NOI18N	
+	        	mainGUI_jbutton_discard.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + discard.getCard(0).getSpecial() + ".png"))))); // NOI18N	
 	        }
 	        else
 	        {
-	        	mainGUI_jbutton_discard.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + discard.getCard(0).getRank() + ".png"))); // NOI18N
+	        	mainGUI_jbutton_discard.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + discard.getCard(0).getRank() + ".png"))))); // NOI18N
 	        }
 	        mainGUI_jbutton_discard.setText("jButton1");
 	        mainGUI_jbutton_discard.addActionListener(this);
@@ -538,11 +542,11 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        if(mainDeck.getCard(0).getRank() == -1)
 		        {
-		        	cardDrew_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + mainDeck.getCard(0).getSpecial() + ".png"))); // NOI18N
+		        	cardDrew_jlabel_graphic1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + mainDeck.getCard(0).getSpecial() + ".png"))))); // NOI18N
 		        }
 		        else
 		        {
-		        	cardDrew_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + mainDeck.getCard(0).getRank() + ".png"))); // NOI18N
+		        	cardDrew_jlabel_graphic1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + mainDeck.getCard(0).getRank() + ".png"))))); // NOI18N
 		        }
 		        cardDrew_jlabel_graphic1.setText("jLabel1");
 	
@@ -618,9 +622,9 @@ public class finalProject extends JApplet implements ActionListener
 		        draw2Instruct_jlabel_label1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 		        draw2Instruct_jlabel_label1.setText("You've Drawn a Draw 2 Card!");
 	
-		        draw2Instruct_jlabel_graphic2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"10.png"))); // NOI18N
+		        draw2Instruct_jlabel_graphic2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"10.png"))))); // NOI18N
 	
-		        draw2Instruct_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"10.png"))); // NOI18N
+		        draw2Instruct_jlabel_graphic1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"10.png"))))); // NOI18N
 	
 		        draw2Instruct_jbutton_ok.setText("OK");
 	
@@ -736,16 +740,16 @@ public class finalProject extends JApplet implements ActionListener
 		        peekInterface_jbutton_go = new javax.swing.JButton();
 	
 		        
-		        peekInterface_jlabel_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_1.png"))); // NOI18N
+		        peekInterface_jlabel_card1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        peekInterface_jlabel_card1.setText("jLabel1");
 	
-		        peekInterface_jlabel_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_2.png"))); // NOI18N
+		        peekInterface_jlabel_card2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        peekInterface_jlabel_card2.setText("jLabel1");
 	
-		        peekInterface_jlabel_card3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_3.png"))); // NOI18N
+		        peekInterface_jlabel_card3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        peekInterface_jlabel_card3.setText("jLabel1");
 	
-		        peekInterface_jlabel_card4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_4.png"))); // NOI18N
+		        peekInterface_jlabel_card4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        peekInterface_jlabel_card4.setText("jLabel1");
 	
 		        peekInterface_jcombobox_select1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
@@ -754,7 +758,7 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        peekInterface_jbutton_go.setText("Go");
 		        peekInterface_jbutton_go.addActionListener(this);
-		        peekInterface_jbutton_go.setActionCommand("go");
+		        peekInterface_jbutton_go.setActionCommand("peekCard");
 		        
 		        
 		        layout = new javax.swing.GroupLayout(getContentPane());
@@ -841,9 +845,9 @@ public class finalProject extends JApplet implements ActionListener
 		        peekInstruction_jlabel_label1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 		        peekInstruction_jlabel_label1.setText("You've Drawn a Peek Card!");
 	
-		        peekInstruction_jlabel_graphic2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"11.png"))); // NOI18N
+		        peekInstruction_jlabel_graphic2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"11.png"))))); // NOI18N
 	
-		        peekInstruction_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"11.png"))); // NOI18N
+		        peekInstruction_jlabel_graphic1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"11.png"))))); // NOI18N
 	
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -898,12 +902,12 @@ public class finalProject extends JApplet implements ActionListener
 		        showPeekCard_jlabel_label1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		        showPeekCard_jlabel_label1.setText("Peek Card");
 	
-		        showPeekCard_jlabel_card.setIcon(new javax.swing.ImageIcon(getClass().getResource("/13.png"))); // NOI18N
-	
+		        showPeekCard_jlabel_card.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[GAME_STATE.getPlayer()].myHand.getCard(cardToPeek) + ".png"))))); // NOI18N
+		        cardToPeek = -1;
 		        showPeekCard_jbutton_go.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 		        showPeekCard_jbutton_go.setText("Go");
 		        showPeekCard_jbutton_go.addActionListener(this);
-		        showPeekCard_jbutton_go.setActionCommand("go");
+		        showPeekCard_jbutton_go.setActionCommand("changePlayer");
 		        
 		        
 		        layout = new javax.swing.GroupLayout(getContentPane());
@@ -950,32 +954,31 @@ public class finalProject extends JApplet implements ActionListener
 		        swapOpp_jcombobox_oppSelect = new javax.swing.JComboBox();
 		        swapOpp_jcombobox_playerSelect = new javax.swing.JComboBox();
 		        swapOpp_jbutton_go = new javax.swing.JButton();
-	
-		        
-		        swapOpp_jlabel_oppCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_4.png"))); // NOI18N
+		   
+		        swapOpp_jlabel_oppCard4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        swapOpp_jlabel_oppCard4.setText("jLabel1");
 	
-		        swapOpp_jlabel_oppCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_1.png"))); // NOI18N
+		        swapOpp_jlabel_oppCard1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        swapOpp_jlabel_oppCard1.setText("jLabel1");
 	
-		        swapOpp_jlabel_oppCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_2.png"))); // NOI18N
+		        swapOpp_jlabel_oppCard2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        swapOpp_jlabel_oppCard2.setText("jLabel1");
 	
-		        swapOpp_jlabel_oppCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_3.png"))); // NOI18N
+		        swapOpp_jlabel_oppCard3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        swapOpp_jlabel_oppCard3.setText("jLabel1");
 	
 		        swapOpp_jlabel_label1.setText("Select the number of the opponent's card you want to swap");
 	
-		        swapOpp_jlabel_playerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_1.png"))); // NOI18N
+		        swapOpp_jlabel_playerCard1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        swapOpp_jlabel_playerCard1.setText("jLabel1");
 	
-		        swapOpp_jlabel_playerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_2.png"))); // NOI18N
+		        swapOpp_jlabel_playerCard2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        swapOpp_jlabel_playerCard2.setText("jLabel1");
 	
-		        swapOpp_jlabel_playerCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_3.png"))); // NOI18N
+		        swapOpp_jlabel_playerCard3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        swapOpp_jlabel_playerCard3.setText("jLabel1");
 	
-		        swapOpp_jlabel_playerCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"back_4.png"))); // NOI18N
+		        swapOpp_jlabel_playerCard4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        swapOpp_jlabel_playerCard4.setText("jLabel1");
 	
 		        swapOpp_jlabel_label2.setText("Select the number of your card you want to swap");
@@ -986,7 +989,7 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        swapOpp_jbutton_go.setText("Go");
 		        swapOpp_jbutton_go.addActionListener(this);
-		        swapOpp_jbutton_go.setActionCommand("go");
+		        swapOpp_jbutton_go.setActionCommand("swapFromOpp");
 		        
 		        
 		        layout = new javax.swing.GroupLayout(getContentPane());
@@ -1087,21 +1090,21 @@ public class finalProject extends JApplet implements ActionListener
 		        buttonSwap = new javax.swing.JButton();
 		        labelCardShow = new javax.swing.JLabel();
 	
-		        OpponentCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+		        OpponentCard1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 	
-		        OpponentCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+		        OpponentCard2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 	
-		        OpponentCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+		        OpponentCard4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 	
-		        OpponentCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+		        OpponentCard3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 	
-		        Player1Card2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+		        Player1Card2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 	
-		        Player1Card1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+		        Player1Card1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 	
-		        Player1Card4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+		        Player1Card4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 	
-		        Player1Card3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13tiny.png"))); // NOI18N
+		        Player1Card3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13tiny.png"))))); // NOI18N
 	
 		        comboPlayerCard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Card 1", "Card 2", "Card 3", "Card 4" }));
 	
@@ -1144,7 +1147,7 @@ public class finalProject extends JApplet implements ActionListener
 		        buttonSwap.addActionListener(this);
 		        buttonSwap.setActionCommand("swap");
 	
-		        labelCardShow.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
+		        labelCardShow.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 	
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -1277,16 +1280,16 @@ public class finalProject extends JApplet implements ActionListener
 		        swapDrawnCard_jbutton_go = new javax.swing.JButton();
 	
 		        
-		        swapDrawnCard_jlabel_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
+		        swapDrawnCard_jlabel_card1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        swapDrawnCard_jlabel_card1.setText("jLabel1");
 	
-		        swapDrawnCard_jlabel_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
+		        swapDrawnCard_jlabel_card2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        swapDrawnCard_jlabel_card2.setText("jLabel1");
 	
-		        swapDrawnCard_jlabel_card3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
+		        swapDrawnCard_jlabel_card3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        swapDrawnCard_jlabel_card3.setText("jLabel1");
 	
-		        swapDrawnCard_jlabel_card4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
+		        swapDrawnCard_jlabel_card4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        swapDrawnCard_jlabel_card4.setText("jLabel1");
 	
 		        swapDrawnCard_jcombobox_select1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
@@ -1376,9 +1379,9 @@ public class finalProject extends JApplet implements ActionListener
 		        swapInstrcution_jtextarea_textarea2.setWrapStyleWord(true);
 		        scrollPowerCard1.setViewportView(swapInstrcution_jtextarea_textarea2);
 	
-		        swapInstrcution_jlabel_graphic2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"12.png"))); // NOI18N
+		        swapInstrcution_jlabel_graphic2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"12.png"))))); // NOI18N
 	
-		        swapInstrcution_jlabel_graphic1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"12.png"))); // NOI18N
+		        swapInstrcution_jlabel_graphic1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"12.png"))))); // NOI18N
 	
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -1528,14 +1531,22 @@ public class finalProject extends JApplet implements ActionListener
 		        turnChange_jlabel_goButton.addActionListener(this);
 		        turnChange_jlabel_goButton.setActionCommand("changePlayer");
 		        turnChange_jlabel_label1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-		        turnChange_jlabel_label1.setText("It's Player 2's Turn!");
+		        if(GAME_STATE.getPlayer() == 0)
+		        {
+		        	turnChange_jlabel_label1.setText("It's " + playersArray[1].getName() + " Turn!");
+		        }
+		        else
+		        {
+		        	turnChange_jlabel_label1.setText("It's " + playersArray[0].getName() + " Turn!");
+		        }
+		        
 	
 		        turnChange_jlabel_label2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 		        turnChange_jlabel_label2.setText("Other Players, Don't Look!");
 	
-		        turnChange_jlabel_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
+		        turnChange_jlabel_card2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 	
-		        turnChange_jlabel_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
+		        turnChange_jlabel_card1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 	
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -1592,26 +1603,26 @@ public class finalProject extends JApplet implements ActionListener
 		        viewCardsStart_jlabel_label1 = new javax.swing.JLabel();
 		        viewCardStart_jbutton_go = new javax.swing.JButton();
 	
-		        viewCardStart_jlabel_card4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"6.png"))); // NOI18N
+		        viewCardStart_jlabel_card4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[GAME_STATE.getPlayer()].myHand.getCard(0) + ".png"))))); // NOI18N
 		        viewCardStart_jlabel_card4.setText("jLabel1");
 	
-		        viewCardStart_jlabel_card3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
+		        viewCardStart_jlabel_card3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        viewCardStart_jlabel_card3.setText("jLabel1");
 	
-		        viewCardsStart_jlabel_card2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"13.png"))); // NOI18N
+		        viewCardsStart_jlabel_card2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        viewCardsStart_jlabel_card2.setText("jLabel1");
 	
-		        viewCardsStart_jlabel_card1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR+"3.png"))); // NOI18N
+		        viewCardsStart_jlabel_card1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[GAME_STATE.getPlayer()].myHand.getCard(3) + ".png"))))); // NOI18N
 		        viewCardsStart_jlabel_card1.setText("jLabel1");
 	
 		        viewCardsStart_jlabel_label1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
 		        viewCardsStart_jlabel_label1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-		        viewCardsStart_jlabel_label1.setText("Remember Your Cards!");
+		        viewCardsStart_jlabel_label1.setText(playersArray[GAME_STATE.getPlayer()].getName() + ", Remember Your Cards!");
 	
 		        viewCardStart_jbutton_go.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
 		        viewCardStart_jbutton_go.setText("Go");
 		        viewCardStart_jbutton_go.addActionListener(this);
-		        viewCardStart_jbutton_go.setActionCommand("go");
+		        viewCardStart_jbutton_go.setActionCommand("doneViewingOutsideCards");
 	
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -1698,30 +1709,35 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//GET NEW CARD FROM DECK
 		System.out.println("Picking From Deck");
-		cardFromDeck = mainDeck.getTopCard();
+		cardFromDeck = mainDeck.getCard(0);
 
 		if(cardFromDeck.isSpecial())
 		{
 			discard.addTopCard(cardFromDeck);
 			if(cardFromDeck.getSpecial() == "swap")
 			{
+				System.out.println("---------------------------------I GOT A SWAP CARD");
 				gotDraw2 = false;
-				swap();
+				setUpGUI(8);
 			}
 			else if(cardFromDeck.getSpecial() == "peek")
 			{
+				System.out.println("---------------------------------I GOT A PEEK CARD");
 				gotDraw2 = false;
-				peek();
+				setUpGUI(5);
 			}
 			else if(cardFromDeck.getSpecial() == "draw2")
 			{
+				System.out.println("---------------------------------I GOT A DRAW2 CARD");
 				gotDraw2 = true;
 				draw2();
 			}
 		}
 		else
 		{
-			//replaceCardInHand();
+			System.out.println("---------------------------------I GOT A NORMAL CARD");
+			//NORMAL CARD WE WANT TO REPLACE
+			replaceCardFromDeck();
 		}
 	}
 	
@@ -1769,9 +1785,15 @@ public class finalProject extends JApplet implements ActionListener
 		System.out.println("REAPLCING CARD IN HAND FROM DECK");
 		//System.out.println("You got an " + cardFromDeck.toString());
 		
+		
 		Card cardFromDeck = mainDeck.getTopCard();
 		Card oldCard = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(swapDrawnCard_jcombobox_select1.getSelectedIndex(), cardFromDeck);
+		System.out.println("CARD I DONT WANT:" + oldCard.getRank());
 		discard.addTopCard(oldCard);
+		
+		System.out.println("NEW CARD I GOT FROM DECK: " + cardFromDeck.getRank());
+		
+		System.out.println("NEW TOP DISCARD:" + discard.getCard(0).getRank());
 	}
 	
 	public void replaceCardFromDiscard()
@@ -1786,11 +1808,8 @@ public class finalProject extends JApplet implements ActionListener
 	
 	public void peek()
 	{
-		gotDraw2 = false;
-		System.out.println("--------------------------------------------WE GOT A PEEK");
-		
-		
-		//System.out.println("Card " + handIndex + " is a " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex));
+		Card peekCardFromDeck = mainDeck.getTopCard();
+		discard.addTopCard(peekCardFromDeck);
 	}
 	
 	public void draw2()
@@ -1833,6 +1852,9 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//UPDATE GAME STATE
 		GAME_STATE.updateGameState(NORMAL_ROUND, instructions_jcombobox_rounds.getSelectedIndex(), 0, NORMAL_PLAY, GAME_STATE.getRoundNum());
+		
+		//SETUP GAME WITH -2 ROUNDS SO WE CAN SHOW THEIR OUTSIDE CARDS FIRST
+		GAME_STATE.setRoundNum(-2);
 		
 		if(debug)
 		{
@@ -1946,6 +1968,18 @@ public class finalProject extends JApplet implements ActionListener
 		{
 			text = text + "Card " + i + ": " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(i) + "\n";
 		}
+		text = text + "-----DECK-----\n";
+		for(int i = 0; i < mainDeck.size(); i++)
+		{
+			if(mainDeck.getCard(i).isSpecial())
+			{
+				text = text + "Card " + i + ": " + mainDeck.getCard(i).getSpecial() + "\n";
+			}
+			else
+			{
+				text = text + "Card " + i + ": " + mainDeck.getCard(i).getRank() + "\n";
+			}
+		}
 		mainGUI_jtextarea_descripTextarea.setText(text);
 	}
 	
@@ -1954,69 +1988,69 @@ public class finalProject extends JApplet implements ActionListener
 		//PLAYER 1
 		if(playersArray[0].myHand.getCard(0).getRank() == -1)
 		{
-			mainGUI_jlabel_myHandCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(0).getSpecial() + ".png")));
+			mainGUI_jlabel_myHandCard1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(0).getSpecial() + ".png")))));
 		}
 		else
 		{
-			mainGUI_jlabel_myHandCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(0).getRank() + ".png")));
+			mainGUI_jlabel_myHandCard1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(0).getRank() + ".png")))));
 		}
 		if(playersArray[0].myHand.getCard(1).getRank() == -1)
 		{
-			mainGUI_jlabel_myHandCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(1).getSpecial() + ".png")));
+			mainGUI_jlabel_myHandCard2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(1).getSpecial() + ".png")))));
 		}
 		else
 		{
-			mainGUI_jlabel_myHandCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(1).getRank() + ".png")));
+			mainGUI_jlabel_myHandCard2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(1).getRank() + ".png")))));
 		}
 		if(playersArray[0].myHand.getCard(2).getRank() == -1)
 		{
-			mainGUI_jlabel_myHandCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(2).getSpecial() + ".png")));
+			mainGUI_jlabel_myHandCard3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(2).getSpecial() + ".png")))));
 		}
 		else
 		{
-			mainGUI_jlabel_myHandCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(2).getRank() + ".png")));
+			mainGUI_jlabel_myHandCard3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(2).getRank() + ".png")))));
 		}
 		if(playersArray[0].myHand.getCard(3).getRank() == -1)
 		{
-			mainGUI_jlabel_myHandCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(3).getSpecial() + ".png")));
+			mainGUI_jlabel_myHandCard4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(3).getSpecial() + ".png")))));
 		}
 		else
 		{
-			mainGUI_jlabel_myHandCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(3).getRank() + ".png")));
+			mainGUI_jlabel_myHandCard4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[0].myHand.getCard(3).getRank() + ".png")))));
 		}
 		
 		//PLAYER 2
 		if(playersArray[1].myHand.getCard(0).getRank() == -1)
 		{
-			mainGUI_jlabel_oppCardLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(0).getSpecial() + ".png")));
+			mainGUI_jlabel_oppCardLabel1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(0).getSpecial() + ".png")))));
 		}
 		else
 		{
-			mainGUI_jlabel_oppCardLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(0).getRank() + ".png")));
+			mainGUI_jlabel_oppCardLabel1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(0).getRank() + ".png")))));
 		}
 		if(playersArray[1].myHand.getCard(1).getRank() == -1)
 		{
-			mainGUI_jlabel_oppCardLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(1).getSpecial() + ".png")));
+			mainGUI_jlabel_oppCardLabel2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(1).getSpecial() + ".png")))));
 		}
 		else
 		{
-			mainGUI_jlabel_oppCardLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(1).getRank() + ".png")));
+			mainGUI_jlabel_oppCardLabel2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(1).getRank() + ".png")))));
 		}
 		if(playersArray[1].myHand.getCard(2).getRank() == -1)
 		{
-			mainGUI_jlabel_oppCardLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(2).getSpecial() + ".png")));
+			mainGUI_jlabel_oppCardLabel3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(2).getSpecial() + ".png")))));
 		}
 		else
 		{
-			mainGUI_jlabel_oppCardLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(2).getRank() + ".png")));
+			mainGUI_jlabel_oppCardLabel3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(2).getRank() + ".png")))));
 		}
 		if(playersArray[1].myHand.getCard(3).getRank() == -1)
 		{
-			mainGUI_jlabel_oppCardLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(3).getSpecial() + ".png")));
+			mainGUI_jlabel_oppCardLabel4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(3).getSpecial() + ".png")))));
 		}
 		else
 		{
-			mainGUI_jlabel_oppCardLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(3).getRank() + ".png")));
+			mainGUI_jlabel_oppCardLabel4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[1].myHand.getCard(3).getRank() + ".png")))));
 		}
 	}
 	
@@ -2174,19 +2208,22 @@ public class finalProject extends JApplet implements ActionListener
 	
 	public boolean checkGameOver()
 	{
-		return false;
-		/*
+		System.out.println("PLAYER WHO KNOCKED: " + GAME_STATE.getPlayerWhoKnocked());
+		System.out.println("CURRENT PLAYER: " + GAME_STATE.getPlayer());
+		System.out.println("GAME STATUS: " + GAME_STATE.getStatus());
+		
 		//CHECKING IF GAME IS OVER!
-		if(GAME_STATE.getStatus() == KNOCKED_ROUND && GAME_STATE.getPlayer() == GAME_STATE.getPlayerWhoKnocked())
+		if(GAME_STATE.getStatus() == KNOCKED_ROUND && GAME_STATE.getPlayer() != GAME_STATE.getPlayerWhoKnocked())
 		{
 			//THE GAME IS OVER ALL PLAYERS HAVE HAD THEIR FINAL TURN!
-			//update game state
 			GAME_STATE.updateGameState(ROUND_OVER, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode(), GAME_STATE.getRoundNum());
 			System.out.println("THE ROUND IS OVER");
-			
-			gameOver = true;
+			return true;
 		}
-		*/
+		else
+		{
+			return false;
+		}
 	}
 	
 	public void discardCardFromDeck()
@@ -2197,14 +2234,24 @@ public class finalProject extends JApplet implements ActionListener
 	
 	public void changePlayer()
 	{
-		if(GAME_STATE.getPlayer() == 0)
+		if(!checkGameOver())
 		{
-			GAME_STATE.setPlayer(1);
+			//GAME NOT YET OVER KEEP PLAYING
+			if(GAME_STATE.getPlayer() == 0)
+			{
+				GAME_STATE.setPlayer(1);
+			}
+			else
+			{
+				GAME_STATE.setPlayer(0);
+			}
 		}
 		else
 		{
-			GAME_STATE.setPlayer(0);
+			//GAME IS OVER!
+			setUpGUI(1);
 		}
+		
 		printDebugLog();
 	}
 	
@@ -2232,6 +2279,12 @@ public class finalProject extends JApplet implements ActionListener
 		
 		setSize(500, 300);
 		setUpGUI(1);
+	}
+	
+	public void playerKnocked()
+	{
+		GAME_STATE.setPlayerWhoKnocked(GAME_STATE.getPlayer());
+		GAME_STATE.updateGameState(KNOCKED_ROUND, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode(), GAME_STATE.getRoundNum());
 	}
 	
 	public void gameLoop(Object[] gameParameters)
@@ -2389,10 +2442,24 @@ public class finalProject extends JApplet implements ActionListener
 			initRound();
 			
 			//SETUP GUI
-			setUpGUI(0);
+			setUpGUI(14);
 			//showCardHand();
-			
 		}
+		if("doneViewingOutsideCards".equals(e.getActionCommand()))
+		{
+			changePlayer();
+			if(GAME_STATE.getPlayer() == 0)
+			{
+				setUpGUI(0);
+			}
+			else
+			{
+				System.out.println("Done Viewing My Cards");
+				chooseDeck = true;
+				setUpGUI(14);
+			}
+		}
+		
 		if("drawDeck".equals(e.getActionCommand()))
 		{
 			System.out.println("Want From Deck");
@@ -2410,27 +2477,34 @@ public class finalProject extends JApplet implements ActionListener
 		if("knock".equals(e.getActionCommand()))
 		{
 			System.out.println("knock");
-			setUpGUI(0);
-			//showCardHand();
+			playerKnocked();
+			setUpGUI(13);
 		}
 		if("keepPlaying".equals(e.getActionCommand()))
 		{
 			System.out.println("keep playing");
-			setUpGUI(0);
-			//showCardHand();
+			setUpGUI(13);
 		}
 		if("keepCard".equals(e.getActionCommand()))
 		{
 			System.out.println("keep the card I picked");
 			setUpGUI(10);
-			replaceCardFromDeck();
+			drawFromDeck();
 		}
 		if("giveUpCard".equals(e.getActionCommand()))
 		{
 			
 			System.out.println("Discarding card to discard pile");
 			discardCardFromDeck();
-			setUpGUI(13);
+			if(GAME_STATE.getStatus() == KNOCKED_ROUND)
+			{
+				changePlayer();
+				setUpGUI(0);
+			}
+			else
+			{
+				setUpGUI(4); //ASK IF KNOCK OR KEEP PLAYING
+			}
 		}
 		if("chooseCardInHandToReplace".equals(e.getActionCommand()))
 		{
@@ -2443,14 +2517,31 @@ public class finalProject extends JApplet implements ActionListener
 			{
 				replaceCardFromDiscard();
 			}
-			
-			setUpGUI(13); //change turns
+			if(GAME_STATE.getStatus() == KNOCKED_ROUND)
+			{
+				changePlayer();
+				setUpGUI(0);
+			}
+			else
+			{
+				setUpGUI(4); //ASK IF KNOCK OR KEEP PLAYING
+			}
 		}
 		if("changePlayer".equals(e.getActionCommand()))
 		{
 			changePlayer();
 			setUpGUI(0);
 		}
-		
+		if("peekCard".equals(e.getActionCommand()))
+		{
+			peek();
+			cardToPeek = peekInterface_jcombobox_select1.getSelectedIndex();
+			setUpGUI(7);
+		}
+		if("swapFromOpp".equals(e.getActionCommand()))
+		{
+			System.out.println("SWAPPING FROM OPPONENT:");
+			System.out.println("I WANT TO SWAP MY: " + swapOpp_jcombobox_playerSelect.getSelectedIndex() + " with opponents: " + swapOpp_jcombobox_oppSelect.getSelectedIndex());
+		}		
 	}	
 }
