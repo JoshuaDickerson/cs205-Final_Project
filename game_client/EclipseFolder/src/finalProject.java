@@ -18,6 +18,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.joda.time.*;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 public class finalProject extends JApplet implements ActionListener
 {
@@ -59,8 +62,8 @@ public class finalProject extends JApplet implements ActionListener
 	boolean debug;
 	boolean extraHelp;
 	boolean sendJSON;
-	String endTime;
-	String startTime;
+	LocalTime endTime;
+	LocalTime startTime;
 	boolean gotDraw2;
 	boolean draw2SecondCard;
 	UUID uniqueID;
@@ -1534,18 +1537,32 @@ public class finalProject extends JApplet implements ActionListener
 		        turnChange_jlabel_goButton.setActionCommand("changePlayer");
 		        turnChange_jlabel_label1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
 		        String text = "";
-		        if(GAME_STATE.getPlayer() == 0)
+		        if(gotDraw2 || draw2SecondCard)
 		        {
-		        	text = text + "It's " + playersArray[1].getName() + " Turn! ";
+		        	//SAME PLAYERS TURN
+		        	text = text + "Got Draw 2 Go Again " + playersArray[GAME_STATE.getPlayer()].getName() + "! ";
+			        if(GAME_STATE.getStatus() == KNOCKED_ROUND)
+			        {
+				        text = text + "It's a Knocked Round, Last Turn!";	
+			        }
 		        }
 		        else
 		        {
-		        	text = text + "It's " + playersArray[0].getName() + " Turn! ";
+		        	//NORMAL PLAYER CHANGE
+		        	if(GAME_STATE.getPlayer() == 0)
+			        {
+			        	text = text + "It's " + playersArray[1].getName() + " Turn! ";
+			        }
+			        else
+			        {
+			        	text = text + "It's " + playersArray[0].getName() + " Turn! ";
+			        }
+			        if(GAME_STATE.getStatus() == KNOCKED_ROUND)
+			        {
+				        text = text + "It's a Knocked Round, Last Turn!";	
+			        }
 		        }
-		        if(GAME_STATE.getStatus() == KNOCKED_ROUND)
-		        {
-			        text = text + "It's a Knocked Round, Last Turn!";	
-		        }
+		        
 		        turnChange_jlabel_label1.setText(text);
 		        
 		        
@@ -1720,23 +1737,29 @@ public class finalProject extends JApplet implements ActionListener
 			{
 				System.out.println("---------------------------------I GOT A SWAP CARD");
 				gotDraw2 = false;
+				draw2SecondCard = false;
 				setUpGUI(8);
 			}
 			else if(cardFromDeck.getSpecial() == "peek")
 			{
 				System.out.println("---------------------------------I GOT A PEEK CARD");
 				gotDraw2 = false;
+				draw2SecondCard = false;
 				setUpGUI(5);
 			}
 			else if(cardFromDeck.getSpecial() == "draw2")
 			{
 				System.out.println("---------------------------------I GOT A DRAW2 CARD");
 				gotDraw2 = true;
-				draw2();
+				draw2SecondCard = true;
+				discardCardFromDeck();
+				setUpGUI(0);
 			}
 		}
 		else
 		{
+			gotDraw2 = false;
+			draw2SecondCard = false;
 			System.out.println("---------------------------------I GOT A NORMAL CARD");
 			//NORMAL CARD WE WANT TO REPLACE
 			replaceCardFromDeck();
@@ -1808,11 +1831,6 @@ public class finalProject extends JApplet implements ActionListener
 		discard.addTopCard(oldCard);
 	}
 	
-	public void peek()
-	{
-		Card peekCardFromDeck = mainDeck.getTopCard();
-		discard.addTopCard(peekCardFromDeck);
-	}
 	
 	public void draw2()
 	{
@@ -1825,15 +1843,10 @@ public class finalProject extends JApplet implements ActionListener
 		//CREATE GAME STATE
 		GAME_STATE = new gameState(2);	
 		
-		//Current Start and Stop time
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-    	Calendar start = Calendar.getInstance();
-    	startTime = sdf.format(start.getTime());
-    	Calendar end = Calendar.getInstance();
-        end.add(Calendar.MINUTE,1);
-    	endTime = sdf.format(end.getTime());
-    	
-    	System.out.println("START TIME: " + startTime + "| END TIME: " + endTime);
+		startTime = new LocalTime();
+		endTime = startTime.plusMinutes(6); //HAS TO BE 1 MINUTE LONGER THAN WE WANT!!!!
+		
+    	System.out.println("***START TIME: " + startTime + "| END TIME: " + endTime.minusMinutes(1));
 		
 		//CREATE UNIQUE GAME ID
 		uniqueID = UUID.randomUUID();
@@ -1894,13 +1907,6 @@ public class finalProject extends JApplet implements ActionListener
 		discard.clear();
 		chooseDeck = false;
 		
-		if(debug)
-		{
-			System.out.println("********************************");
-			System.out.println("ROUND STARTED - GAME STATE: ");
-			GAME_STATE.print();
-			System.out.println("********************************");
-		}
 		
 		//Clearing old player hands
 		playersArray[0].myHand.clear();
@@ -1925,19 +1931,15 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		discard.addTopCard(firstCard);
 
-		//Calc end time if not null
-		String currentTime;
-		if(endTime != null)
-		{
-	    	Calendar cal = Calendar.getInstance();
-	    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-	    	currentTime = sdf.format(cal.getTime());
-		}
+
 		
 		printDebugLog();
 		
 		//SET FIRST PLAYER TO GO FIRST!
 		GAME_STATE.setPlayer(0);
+		
+		//Clear Player who knocked
+		GAME_STATE.setPlayerWhoKnocked(-1);
 		
 		if(debug)
 		{
@@ -1948,6 +1950,20 @@ public class finalProject extends JApplet implements ActionListener
 		if(sendJSON)
 		{
 			sendJSON();
+		}
+		
+		if(debug)
+		{
+			System.out.println("********************************");
+			System.out.println("********************************");
+			System.out.println("********************************");
+			System.out.println("********************************");
+			System.out.println("ROUND STARTED - GAME STATE: ");
+			GAME_STATE.print();
+			System.out.println("********************************");
+			System.out.println("********************************");
+			System.out.println("********************************");
+			System.out.println("********************************");
 		}
 	}
 	
@@ -2097,6 +2113,41 @@ public class finalProject extends JApplet implements ActionListener
 		}
 	}
 	
+	public void replacePowerCardsInHands()
+	{
+		for(int i = 0; i < GAME_STATE.numPlayers(); i++)
+		{
+			//CHECK FOR REMAINING POWER CARDS
+			for(int j = 0; j < 4; j++)
+			{
+				if(playersArray[i].myHand.getCard(j).isSpecial())
+				{
+					//CHECK IF DECK IS EMPTY
+					if(mainDeck.size() == 0)
+					{
+						rebuildEmptyDeck();
+					}
+
+					//swap out card
+					Card cardFromDeck = mainDeck.getTopCard();
+					//check if we got another power card!
+					while(cardFromDeck.isSpecial())
+					{
+						discard.addTopCard(cardFromDeck);
+						cardFromDeck = mainDeck.getTopCard();
+					}
+					
+					Card oldPowerCard = playersArray[i].myHand.replaceCard(j, cardFromDeck);
+					discard.addTopCard(oldPowerCard);
+					if(debug)
+					{
+						System.out.println("Swapped '" + oldPowerCard.toString() + "' with '" + cardFromDeck + "'");
+					}
+				}
+			}
+		}
+	}
+	
 	public void showEndRound()
 	{
 		/*
@@ -2184,35 +2235,83 @@ public class finalProject extends JApplet implements ActionListener
 		*/
 	}
 	
-	public void checkWhoWon()
+	public void updatePlayersTotalScore()
 	{
-		
+		playersArray[0].setTotalScore(playersArray[0].myHand.getScore() + playersArray[0].getTotalScore());
+		playersArray[1].setTotalScore(playersArray[1].myHand.getScore() + playersArray[1].getTotalScore());
+		System.out.println("PLAYER 0 TOTAL SCORE:" + playersArray[0].getTotalScore());
+		System.out.println("PLAYER 1 TOTAL SCORE:" + playersArray[1].getTotalScore());
 	}
 	
-	public boolean checkIfRoundTimedOut()
+	public int checkWhoWonRound()
 	{
-		//Check if current Time is past endTime if so automatically knock
-		Calendar cal = Calendar.getInstance();
-    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-    	String currentTime = sdf.format(cal.getTime());
-    	
-    	//----------------
-    	//----------------
-    	//-----------------
-    	// CATCHING THE TIME PROBLEM
-    	//----------------
-    	//----------------
-    	//-----------------
-    	
-    	System.out.println("THE CURRENT TIME IS: " + currentTime + " | END TIME: " + endTime);
-		if(currentTime == endTime)
+		int winner = -1;
+		int winningScore = 1000;
+		if(playersArray[0].myHand.getScore() < winningScore)
 		{
-			System.out.println("TRUE");
+			winner = 0;
+			winningScore = playersArray[0].myHand.getScore();
+		}
+		if(playersArray[1].myHand.getScore() < winningScore)
+		{
+			winner = 1;
+			winningScore = playersArray[1].myHand.getScore();
+		}
+		if(playersArray[0].myHand.getScore() == playersArray[1].myHand.getScore())
+		{
+			winner = -2; //TIE!
+		}
+		return winner;
+	}
+	
+	public int checkWhoWonGame()
+	{
+		int winner = -1;
+		int winningScore = 1000;
+		if(playersArray[0].getTotalScore() < winningScore)
+		{
+			winner = 0;
+			winningScore = playersArray[0].getTotalScore();
+		}
+		if(playersArray[1].getTotalScore() < winningScore)
+		{
+			winner = 1;
+			winningScore = playersArray[1].getTotalScore();
+		}
+		if(playersArray[0].getTotalScore() == playersArray[1].getTotalScore())
+		{
+			winner = -2; //TIE!
+		}
+		return winner;
+	}
+	
+	public boolean checkIfGameTimedOut()
+	{
+		LocalTime currentTime = new LocalTime();
+    	Minutes Interval = Minutes.minutesBetween(currentTime, endTime);
+    	Minutes minInterval = Minutes.minutes(1);
+
+    	System.out.println("THE CURRENT TIME IS: " + currentTime + " | END TIME: " + endTime.minusMinutes(1));
+    	
+    	if(Interval.isLessThan(minInterval))
+    	{
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
+
+	}
+	
+	public boolean checkIfHighScoreReached()
+	{
+		if(playersArray[0].getTotalScore() >= 100 || playersArray[1].getTotalScore() >= 100)
+		{
 			return true;
 		}
 		else
 		{
-			System.out.println("FALSE");
 			return false;
 		}
 	}
@@ -2275,7 +2374,36 @@ public class finalProject extends JApplet implements ActionListener
 			//LOAD CORRECT GUI
 			if(checkIfGameOver())
 			{
-				System.out.println("====================================================== GAME OVER NOT ROUNMD");
+				//Update Total Scoring
+				updatePlayersTotalScore();
+				int gameWinner = checkWhoWonGame();
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");
+				System.out.println("------------------GAME WINNER------------------");
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");
+				if(gameWinner == -2)
+				{
+					//TIE GAME
+					System.out.println(playersArray[0].getName() + " TIED with " + playersArray[0].getTotalScore() + " points");
+					System.out.println(playersArray[1].getName() + " TIED with " + playersArray[1].getTotalScore() + " points");
+				}
+				else
+				{
+					System.out.println(playersArray[gameWinner].getName() + " WON with " + playersArray[gameWinner].getTotalScore() + " points");
+					if(gameWinner == 0)
+					{
+						System.out.println(playersArray[1].getName() + " LOST with " + playersArray[1].getTotalScore() + " points");
+					}
+					else
+					{
+						System.out.println(playersArray[0].getName() + " LOST with " + playersArray[0].getTotalScore() + " points");
+					}
+				}
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");			
 				setUpGUI(1);
 			}
 			else
@@ -2285,14 +2413,81 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		else
 		{
+			//Get Rid of Any power cards remaining in hands
+			replacePowerCardsInHands();
+			
 			if(checkIfGameOver())
 			{
-				System.out.println("====================================================== GAME OVER AND ROUNMD");
+				//Update Total Scoring
+				int gameWinner = checkWhoWonGame();
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");
+				System.out.println("------------------GAME WINNER------------------");
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");
+				if(gameWinner == -2)
+				{
+					//TIE GAME
+					System.out.println(playersArray[0].getName() + " TIED with " + playersArray[0].getTotalScore() + " points");
+					System.out.println(playersArray[1].getName() + " TIED with " + playersArray[1].getTotalScore() + " points");
+				}
+				else
+				{
+					System.out.println(playersArray[gameWinner].getName() + " WON with " + playersArray[gameWinner].getTotalScore() + " points");
+					if(gameWinner == 0)
+					{
+						System.out.println(playersArray[1].getName() + " LOST with " + playersArray[1].getTotalScore() + " points");
+					}
+					else
+					{
+						System.out.println(playersArray[0].getName() + " LOST with " + playersArray[0].getTotalScore() + " points");
+					}
+				}
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");
+				updatePlayersTotalScore();
 				setUpGUI(1);
 			}
 			else
 			{
+				//Update Total Scoring
+				updatePlayersTotalScore();
+				
+				//Check who won round
+				int roundWinner = checkWhoWonRound();
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");
+				System.out.println("------------------ROUND WINNER-----------------");
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");
+				if(roundWinner == -2)
+				{
+					System.out.println(playersArray[0].getName() + " TIED with " + playersArray[0].myHand.getScore() + " points");
+					System.out.println(playersArray[1].getName() + " TIED with " + playersArray[1].myHand.getScore() + " points");
+				}
+				else
+				{
+					System.out.println(playersArray[roundWinner].getName() + " WON with " + playersArray[roundWinner].myHand.getScore() + " points");
+					if(roundWinner == 0)
+					{
+						System.out.println(playersArray[1].getName() + " LOST with " + playersArray[1].myHand.getScore() + " points");
+					}
+					else
+					{
+						System.out.println(playersArray[0].getName() + " LOST with " + playersArray[0].myHand.getScore() + " points");
+					}
+				}
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------");
+				
+				//Start New Round
 				initRound();
+				
+				//Show main GUI
 				setUpGUI(0);	
 			}
 		}
@@ -2314,19 +2509,30 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		else if(GAME_STATE.getWinCon() == TIMED_PLAY)
 		{
-			if(checkIfRoundTimedOut())
+			if(checkIfGameTimedOut())
 			{
-				System.out.println("-------------------------------------------------TIMED ROUND IS OVER");
 				return true;
 			}
 			else
 			{
-				System.out.println("----------------------------------------------------TIMED ROUND NOT OVER");
+				return false;
+			}
+		}
+		else if(GAME_STATE.getWinCon() == HIGH_SCORE)
+		{
+			if(checkIfHighScoreReached())
+			{
+				return true;
+			}
+			else
+			{
 				return false;
 			}
 		}
 		else
 		{
+			//SHOW NEVER EVER FALL UNDER THIS RETURN STATMENT
+			System.out.println("SOMETHING GOT TERRIBLY WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 			return false;
 		}
 	}
@@ -2544,6 +2750,8 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		if("drawDiscard".equals(e.getActionCommand()))
 		{
+			gotDraw2 = false;
+			draw2SecondCard = false;
 			System.out.println("Want From Discard");
 			chooseDeck = false;
 			setUpGUI(10); 
@@ -2563,13 +2771,22 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		if("keepCard".equals(e.getActionCommand()))
 		{
+			draw2SecondCard = false;
+			gotDraw2 = false;
 			System.out.println("keep the card I picked");
 			setUpGUI(10);
 			drawFromDeck();
 		}
 		if("giveUpCard".equals(e.getActionCommand()))
 		{
-			
+			if(gotDraw2) //FIRST DRAW 2 CARD
+			{
+				gotDraw2 = false;
+			}
+			else if(draw2SecondCard && !gotDraw2) //SECOND DRAW 2 CARD
+			{
+				draw2SecondCard = false;
+			}
 			System.out.println("Discarding card to discard pile");
 			discardCardFromDeck();
 			if(GAME_STATE.getStatus() == KNOCKED_ROUND)
@@ -2603,11 +2820,20 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		if("changePlayer".equals(e.getActionCommand()))
 		{
-			changePlayer();
+			if(gotDraw2 || draw2SecondCard)
+			{
+				//DONT CHANGE PLAYERS
+				setUpGUI(0);
+			}
+			else
+			{
+				//CHANGE PLAYERS NORMALLY
+				changePlayer();
+			}
 		}
 		if("peekCard".equals(e.getActionCommand()))
 		{
-			peek();
+			discardCardFromDeck();
 			cardToPeek = peekInterface_jcombobox_select1.getSelectedIndex();
 			setUpGUI(7);
 		}
