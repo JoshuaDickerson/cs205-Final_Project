@@ -30,6 +30,7 @@ public class finalProject extends JApplet implements ActionListener
 	public static final int NORMAL_ROUND = 2;
 	public static final int ROUND_OVER = 3;
 	public static final int GAME_OVER = 4;
+	
 	//Win Condiction
 	public static final int NUM_ROUNDS = 0;
 	public static final int TIMED_PLAY = 1;
@@ -59,6 +60,7 @@ public class finalProject extends JApplet implements ActionListener
 	boolean extraHelp;
 	boolean sendJSON;
 	String endTime;
+	String startTime;
 	boolean gotDraw2;
 	boolean draw2SecondCard;
 	UUID uniqueID;
@@ -954,7 +956,7 @@ public class finalProject extends JApplet implements ActionListener
 		        swapOpp_jcombobox_oppSelect = new javax.swing.JComboBox();
 		        swapOpp_jcombobox_playerSelect = new javax.swing.JComboBox();
 		        swapOpp_jbutton_go = new javax.swing.JButton();
-		   
+		        
 		        swapOpp_jlabel_oppCard4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        swapOpp_jlabel_oppCard4.setText("jLabel1");
 	
@@ -1530,15 +1532,22 @@ public class finalProject extends JApplet implements ActionListener
 		        turnChange_jlabel_goButton.setText("GO!");
 		        turnChange_jlabel_goButton.addActionListener(this);
 		        turnChange_jlabel_goButton.setActionCommand("changePlayer");
-		        turnChange_jlabel_label1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+		        turnChange_jlabel_label1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+		        String text = "";
 		        if(GAME_STATE.getPlayer() == 0)
 		        {
-		        	turnChange_jlabel_label1.setText("It's " + playersArray[1].getName() + " Turn!");
+		        	text = text + "It's " + playersArray[1].getName() + " Turn! ";
 		        }
 		        else
 		        {
-		        	turnChange_jlabel_label1.setText("It's " + playersArray[0].getName() + " Turn!");
+		        	text = text + "It's " + playersArray[0].getName() + " Turn! ";
 		        }
+		        if(GAME_STATE.getStatus() == KNOCKED_ROUND)
+		        {
+			        text = text + "It's a Knocked Round, Last Turn!";	
+		        }
+		        turnChange_jlabel_label1.setText(text);
+		        
 		        
 	
 		        turnChange_jlabel_label2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -1679,15 +1688,8 @@ public class finalProject extends JApplet implements ActionListener
 	
 	public void swap()
 	{
-		System.out.println("--------------------------------------------WE GOT A SWAP");
-		//MY INDEX
-		int myIndex;
-		
-		myIndex = 0;
-		
-		//OPPOENETS INDEX
-		int othersIndex;
-		othersIndex = 0;
+		int othersIndex = swapOpp_jcombobox_oppSelect.getSelectedIndex();
+        int myIndex = swapOpp_jcombobox_playerSelect.getSelectedIndex();
 		
 		if(GAME_STATE.getPlayer() == 0)
 		{
@@ -1823,6 +1825,15 @@ public class finalProject extends JApplet implements ActionListener
 		//CREATE GAME STATE
 		GAME_STATE = new gameState(2);	
 		
+		//Current Start and Stop time
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+    	Calendar start = Calendar.getInstance();
+    	startTime = sdf.format(start.getTime());
+    	Calendar end = Calendar.getInstance();
+        end.add(Calendar.MINUTE,1);
+    	endTime = sdf.format(end.getTime());
+    	
+    	System.out.println("START TIME: " + startTime + "| END TIME: " + endTime);
 		
 		//CREATE UNIQUE GAME ID
 		uniqueID = UUID.randomUUID();
@@ -1850,11 +1861,12 @@ public class finalProject extends JApplet implements ActionListener
 		playersArray[1] = computer;
 		System.out.println("You are playing " + opponents[difficulty-1]);
 		
+		System.out.println("------- " + instructions_jcombobox_rounds.getSelectedIndex());
 		//UPDATE GAME STATE
 		GAME_STATE.updateGameState(NORMAL_ROUND, instructions_jcombobox_rounds.getSelectedIndex(), 0, NORMAL_PLAY, GAME_STATE.getRoundNum());
 		
 		//SETUP GAME WITH -2 ROUNDS SO WE CAN SHOW THEIR OUTSIDE CARDS FIRST
-		GAME_STATE.setRoundNum(-2);
+		GAME_STATE.setRoundNum(0);
 		
 		if(debug)
 		{
@@ -1953,6 +1965,9 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		if(debug)
 		{
+			System.out.println("SHOWING THE GAME STATE STATUS");
+			GAME_STATE.print();
+			System.out.println("********************************");
 			System.out.println("SHOWING THE REMAINING DECK");
 			System.out.println("********************************");
 			mainDeck.showDeck();
@@ -1963,11 +1978,15 @@ public class finalProject extends JApplet implements ActionListener
 	public void updateGameDialog()
 	{
 		String text = "Current Player: " + playersArray[GAME_STATE.getPlayer()].getName() + "\n";
+		text = text + "====CURRENT ROUND====\n";
+		text = text + GAME_STATE.getRoundNum() + "\n";
 		text = text + "----Hand----\n";
 		for(int i = 0; i < 4; i++)
 		{
 			text = text + "Card " + i + ": " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(i) + "\n";
 		}
+		text = text + "-----GAME STATE-----\n";
+		text = text + GAME_STATE.returnGameState();
 		text = text + "-----DECK-----\n";
 		for(int i = 0; i < mainDeck.size(); i++)
 		{
@@ -2165,35 +2184,37 @@ public class finalProject extends JApplet implements ActionListener
 		*/
 	}
 	
+	public void checkWhoWon()
+	{
+		
+	}
+	
 	public boolean checkIfRoundTimedOut()
 	{
-		return false;
-		/*
-		//DO YOU WANT TO KNOCK?
-		if(GAME_STATE.getStatus() != KNOCKED_ROUND)
+		//Check if current Time is past endTime if so automatically knock
+		Calendar cal = Calendar.getInstance();
+    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+    	String currentTime = sdf.format(cal.getTime());
+    	
+    	//----------------
+    	//----------------
+    	//-----------------
+    	// CATCHING THE TIME PROBLEM
+    	//----------------
+    	//----------------
+    	//-----------------
+    	
+    	System.out.println("THE CURRENT TIME IS: " + currentTime + " | END TIME: " + endTime);
+		if(currentTime == endTime)
 		{
-			//Check if current Time is past endTime if so automatically knock
-			Calendar cal = Calendar.getInstance();
-	    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-	    	currentTime = sdf.format(cal.getTime());
-	    	
-			if(endTime != null && currentTime == endTime)
-			{
-				//AUTOMATICALLY KNOCK BECAUSE THE TIME IS OVER
-				//update game state to knocked round!
-				GAME_STATE.updateGameState(KNOCKED_ROUND, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode(), GAME_STATE.getRoundNum());
-				
-				//Set player who knocked
-				playerWhoKnocked = GAME_STATE.getPlayer();
-			}
+			System.out.println("TRUE");
+			return true;
 		}
-		
-		//update game state to knocked round!
-		GAME_STATE.updateGameState(KNOCKED_ROUND, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode(), GAME_STATE.getRoundNum());
-		
-		//Set player who knocked
-		playerWhoKnocked = GAME_STATE.getPlayer();
-		*/
+		else
+		{
+			System.out.println("FALSE");
+			return false;
+		}
 	}
 
 	public void sendJSON()
@@ -2206,7 +2227,7 @@ public class finalProject extends JApplet implements ActionListener
 		Transporter tempTransport = new Transporter(tempScore);	
 	}
 	
-	public boolean checkGameOver()
+	public boolean checkRoundOver()
 	{
 		System.out.println("PLAYER WHO KNOCKED: " + GAME_STATE.getPlayerWhoKnocked());
 		System.out.println("CURRENT PLAYER: " + GAME_STATE.getPlayer());
@@ -2216,7 +2237,7 @@ public class finalProject extends JApplet implements ActionListener
 		if(GAME_STATE.getStatus() == KNOCKED_ROUND && GAME_STATE.getPlayer() != GAME_STATE.getPlayerWhoKnocked())
 		{
 			//THE GAME IS OVER ALL PLAYERS HAVE HAD THEIR FINAL TURN!
-			GAME_STATE.updateGameState(ROUND_OVER, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode(), GAME_STATE.getRoundNum());
+			GAME_STATE.updateGameState(ROUND_OVER, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode(), GAME_STATE.getRoundNum() + 1);
 			System.out.println("THE ROUND IS OVER");
 			return true;
 		}
@@ -2234,8 +2255,13 @@ public class finalProject extends JApplet implements ActionListener
 	
 	public void changePlayer()
 	{
-		if(!checkGameOver())
+		//CHECK IF DECK IS EMPTY
+		if(mainDeck.size() == 0)
 		{
+			rebuildEmptyDeck();
+		}
+		if(!checkRoundOver())
+		{			
 			//GAME NOT YET OVER KEEP PLAYING
 			if(GAME_STATE.getPlayer() == 0)
 			{
@@ -2244,15 +2270,65 @@ public class finalProject extends JApplet implements ActionListener
 			else
 			{
 				GAME_STATE.setPlayer(0);
+			}	
+			
+			//LOAD CORRECT GUI
+			if(checkIfGameOver())
+			{
+				System.out.println("====================================================== GAME OVER NOT ROUNMD");
+				setUpGUI(1);
+			}
+			else
+			{
+				setUpGUI(0);	
 			}
 		}
 		else
 		{
-			//GAME IS OVER!
-			setUpGUI(1);
+			if(checkIfGameOver())
+			{
+				System.out.println("====================================================== GAME OVER AND ROUNMD");
+				setUpGUI(1);
+			}
+			else
+			{
+				initRound();
+				setUpGUI(0);	
+			}
 		}
-		
 		printDebugLog();
+	}
+	
+	public boolean checkIfGameOver()
+	{
+		if(GAME_STATE.getWinCon() == NUM_ROUNDS)
+		{
+			if(GAME_STATE.getRoundNum() == 5)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else if(GAME_STATE.getWinCon() == TIMED_PLAY)
+		{
+			if(checkIfRoundTimedOut())
+			{
+				System.out.println("-------------------------------------------------TIMED ROUND IS OVER");
+				return true;
+			}
+			else
+			{
+				System.out.println("----------------------------------------------------TIMED ROUND NOT OVER");
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 		
@@ -2499,7 +2575,6 @@ public class finalProject extends JApplet implements ActionListener
 			if(GAME_STATE.getStatus() == KNOCKED_ROUND)
 			{
 				changePlayer();
-				setUpGUI(0);
 			}
 			else
 			{
@@ -2520,7 +2595,6 @@ public class finalProject extends JApplet implements ActionListener
 			if(GAME_STATE.getStatus() == KNOCKED_ROUND)
 			{
 				changePlayer();
-				setUpGUI(0);
 			}
 			else
 			{
@@ -2530,7 +2604,6 @@ public class finalProject extends JApplet implements ActionListener
 		if("changePlayer".equals(e.getActionCommand()))
 		{
 			changePlayer();
-			setUpGUI(0);
 		}
 		if("peekCard".equals(e.getActionCommand()))
 		{
@@ -2541,7 +2614,17 @@ public class finalProject extends JApplet implements ActionListener
 		if("swapFromOpp".equals(e.getActionCommand()))
 		{
 			System.out.println("SWAPPING FROM OPPONENT:");
-			System.out.println("I WANT TO SWAP MY: " + swapOpp_jcombobox_playerSelect.getSelectedIndex() + " with opponents: " + swapOpp_jcombobox_oppSelect.getSelectedIndex());
+			System.out.println("I WANT TO SWAP MY INDEX: " + swapOpp_jcombobox_playerSelect.getSelectedIndex() + " with opponents index: " + swapOpp_jcombobox_oppSelect.getSelectedIndex());
+			swap();
+			if(GAME_STATE.getStatus() == KNOCKED_ROUND)
+			{
+				changePlayer();
+				setUpGUI(0);
+			}
+			else
+			{
+				setUpGUI(4); //ASK IF KNOCK OR KEEP PLAYING
+			}
 		}		
 	}	
 }

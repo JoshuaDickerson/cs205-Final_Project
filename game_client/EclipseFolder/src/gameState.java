@@ -83,12 +83,26 @@ public class gameState
 	//PRINTING
 	public void print()
 	{
-		System.out.println("PRINT GAME SATE");
 		System.out.println("Game Status: " + this.status);
 		System.out.println("Win Con: " + this.winCon);
 		System.out.println("Cur Player: " + this.player);
+		System.out.println("Cur Round #: " + this.roundNum);
 		System.out.println("Game Mode: " + this.mode);
 		System.out.println("Number of Players: " + this.numPlayers);
+		System.out.println("Player Who Knocked: " + this.playerWhoKnocked);
+	}	
+	
+	//PRINTING
+	public String returnGameState()
+	{
+		String status = "Game Status: " + this.status + "\n";
+		status = status + "Win Con: " + this.winCon + "\n";
+		status = status + "Game Mode: " + this.mode + "\n";
+		status = status + "Cur Player: " + this.player + "\n";
+		status = status + "Cur Round #: " + this.roundNum + "\n";
+		status = status + "Number of Players: " + this.numPlayers + "\n";
+		status = status + "Player Who Knocked: " + this.playerWhoKnocked + "\n";
+		return status;
 	}	
 	
 	/*
