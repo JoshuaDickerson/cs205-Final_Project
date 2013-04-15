@@ -7,7 +7,6 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -1874,8 +1873,8 @@ public class finalProject extends JApplet implements ActionListener
 		playersArray[1] = computer;
 		System.out.println("You are playing " + opponents[difficulty-1]);
 		
-		System.out.println("------- " + instructions_jcombobox_rounds.getSelectedIndex());
 		//UPDATE GAME STATE
+		GAME_STATE.setDifficulty(instructions_jcombobox_difficulty.getSelectedIndex());
 		GAME_STATE.updateGameState(NORMAL_ROUND, instructions_jcombobox_rounds.getSelectedIndex(), 0, NORMAL_PLAY, GAME_STATE.getRoundNum());
 		
 		//SETUP GAME WITH -2 ROUNDS SO WE CAN SHOW THEIR OUTSIDE CARDS FIRST
@@ -1994,12 +1993,20 @@ public class finalProject extends JApplet implements ActionListener
 	public void updateGameDialog()
 	{
 		String text = "Current Player: " + playersArray[GAME_STATE.getPlayer()].getName() + "\n";
-		text = text + "====CURRENT ROUND====\n";
-		text = text + GAME_STATE.getRoundNum() + "\n";
-		text = text + "----Hand----\n";
+		text = text + "----------Current Round: " + GAME_STATE.getRoundNum() + "\n";
+		text = text + "-Player 1's Hand - | - Players 2's Hand -\n";
+		
 		for(int i = 0; i < 4; i++)
 		{
-			text = text + "Card " + i + ": " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(i) + "\n";
+			text = text + "Card " + i + ": " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(i) + "\t  | ";
+			if(GAME_STATE.getPlayer() == 0)
+			{
+				text = text + "Card " + i + ": " + playersArray[1].myHand.getCard(i) + "\n";
+			}
+			else
+			{
+				text = text + "Card " + i + ": " + playersArray[0].myHand.getCard(i) + "\n";
+			}
 		}
 		text = text + "-----GAME STATE-----\n";
 		text = text + GAME_STATE.returnGameState();
@@ -2261,6 +2268,10 @@ public class finalProject extends JApplet implements ActionListener
 		{
 			winner = -2; //TIE!
 		}
+		
+		//UPDATE THEIR WIN COUNTER
+		playersArray[winner].setRoundsWon(playersArray[winner].getRoundsWon() + 1);
+		
 		return winner;
 	}
 	
@@ -2487,8 +2498,18 @@ public class finalProject extends JApplet implements ActionListener
 				//Start New Round
 				initRound();
 				
+				System.out.println("-------Hand for player 1");
+				for(int i = 0; i < 4; i++)
+				{
+					System.out.println("Card " + i + ": " + playersArray[0].myHand.getCard(i).toString());
+				}
+				System.out.println("-------Hand for player 2");
+				for(int i = 0; i < 4; i++)
+				{
+					System.out.println("Card " + i + ": " + playersArray[1].myHand.getCard(i).toString());
+				}
 				//Show main GUI
-				setUpGUI(0);	
+				setUpGUI(14);	
 			}
 		}
 		printDebugLog();
@@ -2725,7 +2746,6 @@ public class finalProject extends JApplet implements ActionListener
 			
 			//SETUP GUI
 			setUpGUI(14);
-			//showCardHand();
 		}
 		if("doneViewingOutsideCards".equals(e.getActionCommand()))
 		{

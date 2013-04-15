@@ -11,6 +11,7 @@ public class gameState
 	private int numPlayers;	
 	private int roundNum;
 	private int playerWhoKnocked;
+	private int difficulty;
 			
 	//CONSTRUCTOR
 	public gameState(int _numPlayers)
@@ -32,6 +33,16 @@ public class gameState
 		this.player = _player;
 		this.mode = _mode;
 		this.roundNum = _roundNum;
+	}
+	
+	public void setDifficulty(int diff)
+	{
+		this.difficulty = diff;
+	}
+	
+	public int getDifficulty()
+	{
+		return this.difficulty;
 	}
 	
 	public int getPlayerWhoKnocked()
