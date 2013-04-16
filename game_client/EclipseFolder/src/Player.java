@@ -7,6 +7,7 @@ class Player
 	private int roundsWon;
 	private int totalScore;
 	public Hand myHand;
+	private int difficulty;
 	
 	//constructor
 	public Player(boolean isHuman, int id, String name, Hand myHand)
@@ -28,6 +29,16 @@ class Player
 	{
 		return this.myHand;
 	}	
+	
+	public void setDifficulty(int diff)
+	{
+		this.difficulty = diff;
+	}
+	
+	public int getDifficulty()
+	{
+		return this.difficulty;
+	}
 	
 	public void setHuman(boolean isHuman)
 	{

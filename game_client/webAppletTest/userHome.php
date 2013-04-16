@@ -33,7 +33,7 @@ $(document).ready(function(){
 				</ul>
 			</div>
 			<div class="span9 rightNest">
-				<APPLET width="640" height="480" archive="<? echo HOSTNAME.BASEDIR; ?>Views/test7.jar, <? echo HOSTNAME.BASEDIR; ?>Views/gson-2.2.2.jar, <? echo HOSTNAME.BASEDIR; ?>Views/httpclient-4.2.3.jar, <? echo HOSTNAME.BASEDIR; ?>Views/httpcore-4.2.3.jar, <? echo HOSTNAME.BASEDIR; ?>Views/joda-time-2.2.jar, <? echo HOSTNAME.BASEDIR; ?>Views/commons-net-3.2.jar" code="finalProject.class"></APPLET>
+				<APPLET width="640" height="480" archive="<? echo HOSTNAME.BASEDIR; ?>Views/test8.jar, <? echo HOSTNAME.BASEDIR; ?>Views/gson-2.2.2.jar, <? echo HOSTNAME.BASEDIR; ?>Views/httpclient-4.2.3.jar, <? echo HOSTNAME.BASEDIR; ?>Views/httpcore-4.2.3.jar, <? echo HOSTNAME.BASEDIR; ?>Views/joda-time-2.2.jar, <? echo HOSTNAME.BASEDIR; ?>Views/commons-net-3.2.jar" code="finalProject.class"></APPLET>
 			</div>
 		</div>
 	</div>

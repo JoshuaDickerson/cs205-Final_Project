@@ -52,7 +52,6 @@ public class finalProject extends JApplet implements ActionListener
 	public static final int GAME_SCREEN = 1;
 	public static final int CREDITS_SCREEN = 2; //not sure if we need this...
 	public static final String BASEDIR = "/images/";
-	//public static final String BASEDIR = "/images/";
 	//GLOBAL OBJECTs
 	gameState GAME_STATE;
 	Player[] playersArray;
@@ -69,7 +68,7 @@ public class finalProject extends JApplet implements ActionListener
 	boolean gameOver;
 	boolean chooseDeck;
 	int cardToPeek;
-	
+	Random generator = new Random(System.currentTimeMillis());
 	//GUI
 	
 	private javax.swing.GroupLayout layout;
@@ -1727,7 +1726,7 @@ public class finalProject extends JApplet implements ActionListener
 		
 		//GET NEW CARD FROM DECK
 		System.out.println("Picking From Deck");
-		cardFromDeck = mainDeck.getCard(0);
+		cardFromDeck = mainDeck.getCard(0); //---------------CHANGED FROM GETCARD(0)
 
 		if(cardFromDeck.isSpecial())
 		{
@@ -1761,7 +1760,8 @@ public class finalProject extends JApplet implements ActionListener
 			draw2SecondCard = false;
 			System.out.println("---------------------------------I GOT A NORMAL CARD");
 			//NORMAL CARD WE WANT TO REPLACE
-			replaceCardFromDeck();
+			System.out.println("++++++++++++++++++++++++++++++++++ REPLACE CARD FROM DECK: " + swapDrawnCard_jcombobox_select1.getSelectedIndex());
+			replaceCardFromDeck(swapDrawnCard_jcombobox_select1.getSelectedIndex());
 		}
 	}
 	
@@ -1804,14 +1804,14 @@ public class finalProject extends JApplet implements ActionListener
 		*/
 	}
 	
-	public void replaceCardFromDeck()
+	public void replaceCardFromDeck(int card)
 	{
 		System.out.println("REAPLCING CARD IN HAND FROM DECK");
 		//System.out.println("You got an " + cardFromDeck.toString());
 		
 		
 		Card cardFromDeck = mainDeck.getTopCard();
-		Card oldCard = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(swapDrawnCard_jcombobox_select1.getSelectedIndex(), cardFromDeck);
+		Card oldCard = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(card, cardFromDeck);
 		System.out.println("CARD I DONT WANT:" + oldCard.getRank());
 		discard.addTopCard(oldCard);
 		
@@ -1820,13 +1820,13 @@ public class finalProject extends JApplet implements ActionListener
 		System.out.println("NEW TOP DISCARD:" + discard.getCard(0).getRank());
 	}
 	
-	public void replaceCardFromDiscard()
+	public void replaceCardFromDiscard(int card)
 	{
 		System.out.println("REAPLCING CARD IN HAND FROM DISCARD");
 		//System.out.println("You got an " + cardFromDeck.toString());
 		
 		Card cardFromDiscard = discard.getTopCard();
-		Card oldCard = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(swapDrawnCard_jcombobox_select1.getSelectedIndex(), cardFromDiscard);
+		Card oldCard = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(card, cardFromDiscard);
 		discard.addTopCard(oldCard);
 	}
 	
@@ -1835,6 +1835,507 @@ public class finalProject extends JApplet implements ActionListener
 	{
 		System.out.println("--------------------------------------------WE GOT A DRAW2");
 		gotDraw2 = true;
+	}
+	
+	public void processAI()
+	{
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("---------------------------------PROCESSING AI PLAYER TURN------------------------");
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------------------------");
+		
+	
+		//Decide From Deck Or Discard
+		int rand = -1;
+		boolean chooseDiscard = false;
+		switch(GAME_STATE.getDifficulty())
+		{
+			case(0):
+				//EASY AI
+				System.out.println("PROCESSING AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+				rand = generator.nextInt(2);
+				break;
+			case(1):
+				//MEIDUM AI
+				System.out.println("PROCESSING AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+				chooseDiscard = false;
+				for(int i = 0; i < 4; i++)
+				{
+					if(generator.nextInt(2) == 0)
+					{
+						//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
+						if(discard.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank())
+						{
+							chooseDiscard = true;
+						}
+					}
+					else
+					{
+						//WE DID NOT REMEBER THAT CARD THUS WILL NOT INFLUENCE OUR DESICION
+					}
+					
+				}
+				if(chooseDiscard)
+				{
+					rand = 1;
+				}
+				else
+				{
+					rand = 0;
+				}
+				break;
+			case(2):
+				//HARD AI
+				System.out.println("PROCESSING AI HARD FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+				chooseDiscard = false;
+				for(int i = 0; i < 4; i++)
+				{
+					if(discard.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank())
+					{
+						chooseDiscard = true;
+					}
+				}
+				if(chooseDiscard)
+				{
+					rand = 1;
+				}
+				else
+				{
+					rand = 0;
+				}
+				break;
+		}
+		
+		//check if discard is special so we cannot draw from it...
+		if(discard.getCard(0).isSpecial())
+		{
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("------ DISCARD IS SPACIAL CANNOT DRAW FROM IT--------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			rand = 0;			
+		}
+
+		//CHOOSE DRAW FROM DECK OR DISCARD
+		if(rand == 0)
+		{
+			//DRAW FROM DECK
+			boolean foundBetterCard = false;
+			switch(GAME_STATE.getDifficulty())
+			{
+				case(0):
+					//EASY AI
+					System.out.println("PROCESSING AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+					rand = generator.nextInt(2);
+					break;
+				case(1):
+					//MEIDUM AI
+					System.out.println("PROCESSING AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+					for(int i = 0; i < 4; i++)
+					{
+						if(generator.nextInt(2) == 0)
+						{
+							//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
+							if(mainDeck.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank())
+							{
+								foundBetterCard = true;
+							}
+						}
+						else
+						{
+							//WE DID NOT REMEBER THAT CARD THUS WILL NOT INFLUENCE OUR DESICION
+						}
+						
+					}
+					if(foundBetterCard)
+					{
+						//WE WAN TO KEEP THE CARD
+						rand = 0;
+					}
+					else
+					{
+						//DISCARD NOT BETTER THAN ANY IN OUR HAND
+						rand = 1;
+					}
+					
+					//HANDLE SPACIAL CARDS
+					if(mainDeck.getCard(0).isSpecial() && mainDeck.getCard(0).getSpecial() != "draw2")
+					{
+						//IF ITS A SPECIAL THATS NOT DRAW 2 WE DONT CARE, THEY ARE GOOD ENOUGH AS IT IS!
+						rand = 1;
+					}
+					else if(mainDeck.getCard(0).getSpecial() == "draw2")
+					{
+						rand = 0;
+					}
+					break;
+				case(2):
+					//HARD AI
+					System.out.println("PROCESSING AI HARD FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+					for(int i = 0; i < 4; i++)
+					{
+						//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
+						if(mainDeck.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank())
+						{
+							foundBetterCard = true;
+						}	
+					}
+					if(foundBetterCard)
+					{
+						//WE WAN TO KEEP THE CARD
+						rand = 0;
+					}
+					else
+					{
+						//DISCARD NOT BETTER THAN ANY IN OUR HAND
+						rand = 1;
+					}
+					
+					//HANDLE SPACIAL CARDS
+					if(mainDeck.getCard(0).isSpecial() && mainDeck.getCard(0).getSpecial() != "draw2")
+					{
+						//IF ITS A SPECIAL THATS NOT DRAW 2 WE DONT CARE, THEY ARE GOOD ENOUGH AS IT IS!
+						rand = 1;
+					}
+					else if(mainDeck.getCard(0).getSpecial() == "draw2")
+					{
+						rand = 0;
+					}
+					break;
+			}
+			
+			//KEEP OR GIVE AWAY DRAWN CARD
+			if(rand == 0)
+			{
+				gotDraw2 = false;
+				draw2SecondCard = false;
+				
+				//WE WANT TO KEEP THE CARD
+				if(mainDeck.getCard(0).isSpecial())
+				{
+					//WE DREW A SPECIAL CARD!
+					/*
+					 * SPEACL LOGIC HERE
+					 * SPEACL LOGIC HERE
+					 * SPEACL LOGIC HERE
+					 * SPEACL LOGIC HERE
+					 * SPEACL LOGIC HERE
+					 * 
+					 */
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("----------------------------------- AI: Keep Special Card");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+				}
+				else
+				{							
+					//WE DREW A NORMAL CARD!
+					int cardToReplace = -1;
+					switch(GAME_STATE.getDifficulty())
+					{
+						case(0):
+							//EASY AI
+							System.out.println("PROCESSING AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+							rand = generator.nextInt(4);
+							break;
+						case(1):
+							//MEIDUM AI
+							System.out.println("PROCESSING AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+							for(int i = 0; i < 4; i++)
+							{
+								if(generator.nextInt(2) == 0)
+								{
+									//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
+									if((mainDeck.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank()) || playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).isSpecial())
+									{
+										cardToReplace = i;
+									}
+								}
+								else
+								{
+									//WE DID NOT REMEBER THAT CARD THUS WILL NOT INFLUENCE OUR DESICION
+								}
+								
+							}
+							if(cardToReplace != -1)
+							{
+								//WE WANT TO REPLACE THE ONE WE FOUND THATS BAD
+								rand = cardToReplace;
+							}
+							else
+							{
+								//NOT SURE IF WE'D END UP HERE BUT REPLACE CARD ZERO IF WE DO...
+								rand = 0;
+							}
+							break;
+						case(2):
+							//HARD AI
+							System.out.println("PROCESSING AI HARD FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+							for(int i = 0; i < 4; i++)
+							{
+								//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
+								if((mainDeck.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank()) || playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).isSpecial())
+								{
+									cardToReplace = i;
+								}							
+							}
+							if(cardToReplace != -1)
+							{
+								//WE WANT TO REPLACE THE ONE WE FOUND THATS BAD
+								rand = cardToReplace;
+							}
+							else
+							{
+								//NOT SURE IF WE'D END UP HERE BUT REPLACE CARD ZERO IF WE DO...
+								rand = 0;
+							}
+							break;
+					}
+										
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("--------- AI: Keep Normal Card, REAPLCING CARD: " + rand);
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					System.out.println("-----------------------------------------------------------");
+					
+					//CHOOSE THE HAND CARD WE WANT TO REPLACE WITH
+					replaceCardFromDeck(rand);
+					
+				}						
+			}
+			else
+			{
+				System.out.println("-----------------------------------------------------------");
+				System.out.println("-----------------------------------------------------------");
+				System.out.println("-----------------------------------------------------------");
+				System.out.println("-----------------------------------------------------------");
+				System.out.println("-----------------------------------------------------------");
+				System.out.println("-----------------------------------------------------------");
+				System.out.println("----------------------------------- AI: Dont Keep Card Card");
+				System.out.println("-----------------------------------------------------------");
+				System.out.println("-----------------------------------------------------------");
+				System.out.println("-----------------------------------------------------------");
+				System.out.println("-----------------------------------------------------------");
+				System.out.println("-----------------------------------------------------------");
+				
+				draw2SecondCard = false;
+				//WE DONT CARE GIVE UP THE CARD
+				discardCardFromDeck();
+			}
+		}
+		else
+		{					
+			//DRAW FROM DISCARD
+			int cardToReplace = -1;
+			switch(GAME_STATE.getDifficulty())
+			{
+				case(0):
+					//EASY AI
+					System.out.println("PROCESSING AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+					rand = generator.nextInt(4);
+					break;
+				case(1):
+					//MEIDUM AI
+					System.out.println("PROCESSING AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+					for(int i = 0; i < 4; i++)
+					{
+						if(generator.nextInt(2) == 0)
+						{
+							//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
+							if((discard.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank()) || playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).isSpecial())
+							{
+								cardToReplace = i;
+							}
+						}
+						else
+						{
+							//WE DID NOT REMEBER THAT CARD THUS WILL NOT INFLUENCE OUR DESICION
+						}
+						
+					}
+					if(cardToReplace != -1)
+					{
+						//WE WANT TO REPLACE THE ONE WE FOUND THATS BAD
+						rand = cardToReplace;
+					}
+					else
+					{
+						//CHOOSE THE HIGHEST VALUE CARD IN OUR HAND TO REPLACE BEACUSE WE HAVE TO..
+						int highestValue = -1;
+						for(int i = 0; i < 4; i++)
+						{
+							if(playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank() > highestValue)
+							{
+								highestValue = playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank();
+								rand = i;
+							}
+						}
+					}
+					break;
+				case(2):
+					//HARD AI
+					System.out.println("PROCESSING AI HARD FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+					for(int i = 0; i < 4; i++)
+					{
+						//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
+						if((discard.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank()) || playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).isSpecial())
+						{
+							cardToReplace = i;
+						}							
+					}
+					if(cardToReplace != -1)
+					{
+						//WE WANT TO REPLACE THE ONE WE FOUND THATS BAD
+						rand = cardToReplace;
+					}
+					else
+					{
+						//CHOOSE THE HIGHEST VALUE CARD IN OUR HAND TO REPLACE BEACUSE WE HAVE TO..
+						int highestValue = -1;
+						for(int i = 0; i < 4; i++)
+						{
+							if(playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank() > highestValue)
+							{
+								highestValue = playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank();
+								rand = i;
+							}
+						}
+					}
+					break;
+			}
+			//CHOOSE THE HAND CARD WE WANT TO REPLACE WITH
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("----------- AI: Draw Discard Card, REAPLCING CARD: " + rand);
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------");
+			
+			replaceCardFromDiscard(rand);
+		}
+		
+		//KNOCK OR KEEP PLAYING
+		boolean shouldKnock = false;
+		switch(GAME_STATE.getDifficulty())
+		{
+			case(0):
+				//EASY AI
+				System.out.println("PROCESSING AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+				rand = generator.nextInt(2);
+				if(rand == 0)
+				{
+					shouldKnock = true;
+				}
+				break;
+			case(1):
+				//MEIDUM AI
+				shouldKnock = false;
+				System.out.println("PROCESSING AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+				if(generator.nextInt(2) == 0)
+				{
+					//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
+					if(GAME_STATE.getPlayer() == 0)
+					{
+						if(playersArray[0].myHand.getScore() < playersArray[1].myHand.getScore())
+						{
+							//I HAVE BETTER SCORE KNOCK!!!
+							shouldKnock = true;
+						}
+						else
+						{
+							shouldKnock = false;
+						}
+					}
+					else
+					{
+						if(playersArray[1].myHand.getScore() < playersArray[0].myHand.getScore())
+						{
+							//I HAVE BETTER SCORE KNOCK!!!
+							shouldKnock = true;
+						}
+						else
+						{
+							shouldKnock = false;
+						}
+					}
+				}
+				else
+				{
+					//WE DID NOT REMEBER AND CANNOT REMEBER!
+				}
+				break;
+			case(2):
+				shouldKnock = false;
+				System.out.println("PROCESSING AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+				if(generator.nextInt(2) == 0)
+				{
+					//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
+					if(GAME_STATE.getPlayer() == 0)
+					{
+						if(playersArray[0].myHand.getScore() < playersArray[1].myHand.getScore())
+						{
+							//I HAVE BETTER SCORE KNOCK!!!
+							shouldKnock = true;
+						}
+						else
+						{
+							shouldKnock = false;
+						}
+					}
+					else
+					{
+						if(playersArray[1].myHand.getScore() < playersArray[0].myHand.getScore())
+						{
+							//I HAVE BETTER SCORE KNOCK!!!
+							shouldKnock = true;
+						}
+						else
+						{
+							shouldKnock = false;
+						}
+					}
+				}
+				else
+				{
+					//WE DID NOT REMEBER AND CANNOT REMEBER!
+				}
+				break;
+		}
+		
+		if(shouldKnock)
+		{
+			playerKnocked();
+		}
+		
+		//EVERYTHING IS DONE CHANGE PLAYERS AND LOAD MAIN GUI
+		changePlayer();
 	}
 	
 	public void initGame()
@@ -1864,18 +2365,18 @@ public class finalProject extends JApplet implements ActionListener
 		opponents[1] = "Einstein";
 		opponents[2] = "God";
 		
-		//Difficulty
-		int difficulty = 1;
-		
 		//COMPUTER PLAYER
 		Hand computerHand = new Hand(1);
-		Player computer = new Player(false, 1, opponents[difficulty -1], computerHand);
+		Player computer = new Player(false, 1, opponents[instructions_jcombobox_difficulty.getSelectedIndex()], computerHand);
 		playersArray[1] = computer;
-		System.out.println("You are playing " + opponents[difficulty-1]);
+		System.out.println("You are playing " + opponents[instructions_jcombobox_difficulty.getSelectedIndex()]);
+		
+		for(int i = 0; i < 2; i++)
+			System.out.println("PLAYER " + i + ": " + playersArray[i].getHumanity());
 		
 		//UPDATE GAME STATE
 		GAME_STATE.setDifficulty(instructions_jcombobox_difficulty.getSelectedIndex());
-		GAME_STATE.updateGameState(NORMAL_ROUND, instructions_jcombobox_rounds.getSelectedIndex(), 0, NORMAL_PLAY, GAME_STATE.getRoundNum());
+		GAME_STATE.updateGameState(INSTRUCTIONS, instructions_jcombobox_rounds.getSelectedIndex(), 0, NORMAL_PLAY, GAME_STATE.getRoundNum());
 		
 		//SETUP GAME WITH -2 ROUNDS SO WE CAN SHOW THEIR OUTSIDE CARDS FIRST
 		GAME_STATE.setRoundNum(0);
@@ -2365,13 +2866,10 @@ public class finalProject extends JApplet implements ActionListener
 	
 	public void changePlayer()
 	{
-		//CHECK IF DECK IS EMPTY
-		if(mainDeck.size() == 0)
+		if(GAME_STATE.getStatus() == INSTRUCTIONS)
 		{
-			rebuildEmptyDeck();
-		}
-		if(!checkRoundOver())
-		{			
+			System.out.println("================================ INSTUCTIONS ==================");
+			//CHANGING TURNS FOR INITIAL PEEK
 			//GAME NOT YET OVER KEEP PLAYING
 			if(GAME_STATE.getPlayer() == 0)
 			{
@@ -2381,135 +2879,165 @@ public class finalProject extends JApplet implements ActionListener
 			{
 				GAME_STATE.setPlayer(0);
 			}	
-			
-			//LOAD CORRECT GUI
-			if(checkIfGameOver())
-			{
-				//Update Total Scoring
-				updatePlayersTotalScore();
-				int gameWinner = checkWhoWonGame();
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");
-				System.out.println("------------------GAME WINNER------------------");
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");
-				if(gameWinner == -2)
-				{
-					//TIE GAME
-					System.out.println(playersArray[0].getName() + " TIED with " + playersArray[0].getTotalScore() + " points");
-					System.out.println(playersArray[1].getName() + " TIED with " + playersArray[1].getTotalScore() + " points");
-				}
-				else
-				{
-					System.out.println(playersArray[gameWinner].getName() + " WON with " + playersArray[gameWinner].getTotalScore() + " points");
-					if(gameWinner == 0)
-					{
-						System.out.println(playersArray[1].getName() + " LOST with " + playersArray[1].getTotalScore() + " points");
-					}
-					else
-					{
-						System.out.println(playersArray[0].getName() + " LOST with " + playersArray[0].getTotalScore() + " points");
-					}
-				}
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");			
-				setUpGUI(1);
-			}
-			else
-			{
-				setUpGUI(0);	
-			}
 		}
 		else
 		{
-			//Get Rid of Any power cards remaining in hands
-			replacePowerCardsInHands();
-			
-			if(checkIfGameOver())
+			//NORMAL TURN CHANGE
+			//CHECK IF DECK IS EMPTY
+			if(mainDeck.size() == 0)
 			{
-				//Update Total Scoring
-				int gameWinner = checkWhoWonGame();
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");
-				System.out.println("------------------GAME WINNER------------------");
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");
-				if(gameWinner == -2)
+				rebuildEmptyDeck();
+			}
+			if(!checkRoundOver())
+			{			
+				//GAME NOT YET OVER KEEP PLAYING
+				if(GAME_STATE.getPlayer() == 0)
 				{
-					//TIE GAME
-					System.out.println(playersArray[0].getName() + " TIED with " + playersArray[0].getTotalScore() + " points");
-					System.out.println(playersArray[1].getName() + " TIED with " + playersArray[1].getTotalScore() + " points");
+					GAME_STATE.setPlayer(1);
 				}
 				else
 				{
-					System.out.println(playersArray[gameWinner].getName() + " WON with " + playersArray[gameWinner].getTotalScore() + " points");
-					if(gameWinner == 0)
+					GAME_STATE.setPlayer(0);
+				}	
+				
+				//LOAD CORRECT GUI
+				if(checkIfGameOver())
+				{
+					//Update Total Scoring
+					updatePlayersTotalScore();
+					int gameWinner = checkWhoWonGame();
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");
+					System.out.println("------------------GAME WINNER------------------");
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");
+					if(gameWinner == -2)
 					{
-						System.out.println(playersArray[1].getName() + " LOST with " + playersArray[1].getTotalScore() + " points");
+						//TIE GAME
+						System.out.println(playersArray[0].getName() + " TIED with " + playersArray[0].getTotalScore() + " points");
+						System.out.println(playersArray[1].getName() + " TIED with " + playersArray[1].getTotalScore() + " points");
 					}
 					else
 					{
-						System.out.println(playersArray[0].getName() + " LOST with " + playersArray[0].getTotalScore() + " points");
+						System.out.println(playersArray[gameWinner].getName() + " WON with " + playersArray[gameWinner].getTotalScore() + " points");
+						if(gameWinner == 0)
+						{
+							System.out.println(playersArray[1].getName() + " LOST with " + playersArray[1].getTotalScore() + " points");
+						}
+						else
+						{
+							System.out.println(playersArray[0].getName() + " LOST with " + playersArray[0].getTotalScore() + " points");
+						}
 					}
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");			
+					setUpGUI(1);
 				}
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");
-				updatePlayersTotalScore();
-				setUpGUI(1);
+				else
+				{
+					if(playersArray[GAME_STATE.getPlayer()].getHumanity() == false)
+					{
+						//NEXT TURN IS AI TURN
+						processAI();
+					}
+					else
+					{
+						//NEXT TURN IS HUMAN TURN
+						setUpGUI(0);
+					}	
+				}
 			}
 			else
 			{
-				//Update Total Scoring
-				updatePlayersTotalScore();
+				//Get Rid of Any power cards remaining in hands
+				replacePowerCardsInHands();
 				
-				//Check who won round
-				int roundWinner = checkWhoWonRound();
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");
-				System.out.println("------------------ROUND WINNER-----------------");
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");
-				if(roundWinner == -2)
+				if(checkIfGameOver())
 				{
-					System.out.println(playersArray[0].getName() + " TIED with " + playersArray[0].myHand.getScore() + " points");
-					System.out.println(playersArray[1].getName() + " TIED with " + playersArray[1].myHand.getScore() + " points");
-				}
-				else
-				{
-					System.out.println(playersArray[roundWinner].getName() + " WON with " + playersArray[roundWinner].myHand.getScore() + " points");
-					if(roundWinner == 0)
+					//Update Total Scoring
+					int gameWinner = checkWhoWonGame();
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");
+					System.out.println("------------------GAME WINNER------------------");
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");
+					if(gameWinner == -2)
 					{
-						System.out.println(playersArray[1].getName() + " LOST with " + playersArray[1].myHand.getScore() + " points");
+						//TIE GAME
+						System.out.println(playersArray[0].getName() + " TIED with " + playersArray[0].getTotalScore() + " points");
+						System.out.println(playersArray[1].getName() + " TIED with " + playersArray[1].getTotalScore() + " points");
 					}
 					else
 					{
-						System.out.println(playersArray[0].getName() + " LOST with " + playersArray[0].myHand.getScore() + " points");
+						System.out.println(playersArray[gameWinner].getName() + " WON with " + playersArray[gameWinner].getTotalScore() + " points");
+						if(gameWinner == 0)
+						{
+							System.out.println(playersArray[1].getName() + " LOST with " + playersArray[1].getTotalScore() + " points");
+						}
+						else
+						{
+							System.out.println(playersArray[0].getName() + " LOST with " + playersArray[0].getTotalScore() + " points");
+						}
 					}
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");
+					updatePlayersTotalScore();
+					setUpGUI(1);
 				}
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");
-				System.out.println("-----------------------------------------------");
-				
-				//Start New Round
-				initRound();
-				
-				System.out.println("-------Hand for player 1");
-				for(int i = 0; i < 4; i++)
+				else
 				{
-					System.out.println("Card " + i + ": " + playersArray[0].myHand.getCard(i).toString());
+					//Update Total Scoring
+					updatePlayersTotalScore();
+					
+					//Check who won round
+					int roundWinner = checkWhoWonRound();
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");
+					System.out.println("------------------ROUND WINNER-----------------");
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");
+					if(roundWinner == -2)
+					{
+						System.out.println(playersArray[0].getName() + " TIED with " + playersArray[0].myHand.getScore() + " points");
+						System.out.println(playersArray[1].getName() + " TIED with " + playersArray[1].myHand.getScore() + " points");
+					}
+					else
+					{
+						System.out.println(playersArray[roundWinner].getName() + " WON with " + playersArray[roundWinner].myHand.getScore() + " points");
+						if(roundWinner == 0)
+						{
+							System.out.println(playersArray[1].getName() + " LOST with " + playersArray[1].myHand.getScore() + " points");
+						}
+						else
+						{
+							System.out.println(playersArray[0].getName() + " LOST with " + playersArray[0].myHand.getScore() + " points");
+						}
+					}
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");
+					System.out.println("-----------------------------------------------");
+					
+					//Start New Round
+					initRound();
+					
+					System.out.println("-------Hand for player 1");
+					for(int i = 0; i < 4; i++)
+					{
+						System.out.println("Card " + i + ": " + playersArray[0].myHand.getCard(i).toString());
+					}
+					System.out.println("-------Hand for player 2");
+					for(int i = 0; i < 4; i++)
+					{
+						System.out.println("Card " + i + ": " + playersArray[1].myHand.getCard(i).toString());
+					}
+					//Show main GUI
+					setUpGUI(14);	
 				}
-				System.out.println("-------Hand for player 2");
-				for(int i = 0; i < 4; i++)
-				{
-					System.out.println("Card " + i + ": " + playersArray[1].myHand.getCard(i).toString());
-				}
-				//Show main GUI
-				setUpGUI(14);	
 			}
 		}
 		printDebugLog();
@@ -2589,120 +3117,6 @@ public class finalProject extends JApplet implements ActionListener
 		GAME_STATE.setPlayerWhoKnocked(GAME_STATE.getPlayer());
 		GAME_STATE.updateGameState(KNOCKED_ROUND, GAME_STATE.getWinCon(), GAME_STATE.getPlayer(), GAME_STATE.getMode(), GAME_STATE.getRoundNum());
 	}
-	
-	public void gameLoop(Object[] gameParameters)
-	{
-		/*
-		//DEBUG/EXTRA HELP PARAMETERS
-		boolean debug = false;
-		boolean extraHelp = true;
-		
-		System.out.println("GAME LOOP!");
-		//Setup Game
-		//Object[] gameParameters = initialGameSetup();
-		//rounds counter for while loops
-		int counter = 0;
-		//GAME MODES
-		switch(((gameState)gameParameters[2]).getWinCon())
-		{
-			case(NUM_ROUNDS):
-				if(debug)
-				{
-					System.out.println("------------------------------------------------NUM ROUNDS");
-				}
-				//rounds loop
-				for(int i = 0; i < 5; i++)
-				{
-					int roundNum = i+1;
-					System.out.println("-------------------------------------------------------------------------");
-					System.out.println("-----------------------------Starting Round " + roundNum + "----------------------------");
-					System.out.println("-------------------------------------------------------------------------");
-					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], null, roundNum);
-					counter = i+1;
-				}
-				break;
-			case(TIMED_PLAY):
-				if(debug)
-				{
-					System.out.println("------------------------------------------------TIMED");
-					
-				}
-				//Current Start and Stop time
-				Calendar cal = Calendar.getInstance();
-		    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-		    	Calendar start = Calendar.getInstance();
-		    	String startTime = sdf.format(start.getTime());
-		    	Calendar end = Calendar.getInstance();
-		        end.add(Calendar.MINUTE,5);
-		    	String endTime = sdf.format(end.getTime());
-		    			    	
-		    	
-				//rounds loop			
-				counter = 1;
-				while(((Player[])gameParameters[1])[0].getTotalScore() < 100 || ((Player[])gameParameters[1])[1].getTotalScore() < 100)
-				{
-					System.out.println("-------------------------------------------------------------------------");
-					System.out.println("------------------Started At: " + startTime + " - Ends At: " + endTime + "----------------------------");
-					System.out.println("-----------------------------Starting Round " + counter + "----------------------------");
-					System.out.println(((Player[])gameParameters[1])[0].getName() + "'s Score: " + ((Player[])gameParameters[1])[0].getTotalScore() + " | " + ((Player[])gameParameters[1])[1].getName() + "'s Score: " + ((Player[])gameParameters[1])[1].getTotalScore());
-					System.out.println("-------------------------------------------------------------------------");
-					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], endTime, counter);
-					counter++;
-				}
-				break;
-			case(HIGH_SCORE):
-				if(debug)
-				{
-					System.out.println("------------------------------------------------HIGH SCORE");
-				}
-				//rounds loop
-				counter = 1;
-				while(((Player[])gameParameters[1])[0].getTotalScore() < 100 || ((Player[])gameParameters[1])[1].getTotalScore() < 100)
-				{
-					System.out.println("-------------------------------------------------------------------------");
-					System.out.println("-----------------------------Starting Round " + counter + "----------------------------");
-					System.out.println(((Player[])gameParameters[1])[0].getName() + "'s Score: " + ((Player[])gameParameters[1])[0].getTotalScore() + " | " + ((Player[])gameParameters[1])[1].getName() + "'s Score: " + ((Player[])gameParameters[1])[1].getTotalScore());
-					System.out.println("-------------------------------------------------------------------------");
-					gameParameters[1] = round((Scanner)gameParameters[0], (Player[])gameParameters[1], (gameState)gameParameters[2], debug, extraHelp, (UUID)gameParameters[3], null, counter);
-					counter++;
-				}
-				break;
-		}
-		
-		
-		int winner = -1;
-		int numWins = -1;
-		//SHOW FINAL WINNER
-		for(int i = 0; i < 2; i++)
-		{
-			if(((Player[])gameParameters[1])[i].getRoundsWon() > numWins)
-			{
-				numWins = ((Player[])gameParameters[1])[i].getRoundsWon();
-				winner = i;
-			}
-		}
-		
-		System.out.println("------------------------------------------------");
-		System.out.println("------------------------------------------------");
-		System.out.println("FINAL WINNER: " + ((Player[])gameParameters[1])[winner].getName() + ", with " + ((Player[])gameParameters[1])[winner].getRoundsWon() + " wins and " + ((Player[])gameParameters[1])[winner].getTotalScore() + " total points");
-		if(winner == 0)
-		{
-			System.out.println("FINAL LOSER: " + ((Player[])gameParameters[1])[1].getName() + ", with " + ((Player[])gameParameters[1])[1].getRoundsWon() + " wins and " + ((Player[])gameParameters[1])[1].getTotalScore() + " total points");
-		}
-		else
-		{
-			System.out.println("FINAL LOSER: " + ((Player[])gameParameters[1])[0].getName() + ", with " + ((Player[])gameParameters[1])[0].getRoundsWon() + " wins and " + ((Player[])gameParameters[1])[0].getTotalScore() + " total points");
-		}
-		System.out.println("-------------------------------------------------");
-		System.out.println("------------------------------------------------");
-		
-		//--------PREPARE THE JSON---------
-		currentScore tempScore = new currentScore(((gameState)gameParameters[2]).numPlayers(), (gameState)gameParameters[2], (UUID)gameParameters[3], true, true, counter, null, null);
-		tempScore.addPlayer(((Player[])gameParameters[1])[0]);
-		tempScore.addPlayer(((Player[])gameParameters[1])[1]);
-		Transporter tempTransport = new Transporter(tempScore);
-		*/
-	}
 
 	
 	/* This method is automatically called after the browser calls the init method.
@@ -2710,7 +3124,8 @@ public class finalProject extends JApplet implements ActionListener
 	after having gone off to other pages.*/
 	public void start()
 	{
-		//gameLoop();
+		//POSSIBLY A PLACE TO ASK THE SERVER FOR THE USERS NAME
+		
 	}
 	/*This method is automatically called when the user moves off the page on which the applet sits.
 	It can, therefore, be called repeatedly in the same applet.*/
@@ -2749,16 +3164,12 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		if("doneViewingOutsideCards".equals(e.getActionCommand()))
 		{
-			changePlayer();
+			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++CURRENT PLAYER BEOFRE: " + GAME_STATE.getPlayer());
 			if(GAME_STATE.getPlayer() == 0)
 			{
+				//DO NOT SHOW PLAYERS 2 OUTSIDS CARDS
+				GAME_STATE.setStatus(NORMAL_ROUND);
 				setUpGUI(0);
-			}
-			else
-			{
-				System.out.println("Done Viewing My Cards");
-				chooseDeck = true;
-				setUpGUI(14);
 			}
 		}
 		
@@ -2821,14 +3232,8 @@ public class finalProject extends JApplet implements ActionListener
 		if("chooseCardInHandToReplace".equals(e.getActionCommand()))
 		{
 			System.out.println("replacing card from my hand");
-			if(chooseDeck)
-			{
-				//replaceCardFromDeck();
-			}
-			else
-			{
-				replaceCardFromDiscard();
-			}
+			System.out.println("++++++++++++++++++++++++++++++++++ REPLACE CARD FROM DISCARD: " + swapDrawnCard_jcombobox_select1.getSelectedIndex());
+			replaceCardFromDiscard(swapDrawnCard_jcombobox_select1.getSelectedIndex());
 			if(GAME_STATE.getStatus() == KNOCKED_ROUND)
 			{
 				changePlayer();

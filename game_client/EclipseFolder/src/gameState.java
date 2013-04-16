@@ -54,6 +54,10 @@ public class gameState
 	{
 		this.playerWhoKnocked = _knockedPlayer;
 	}
+	public void setStatus(int status)
+	{
+		this.status = status;
+	}
 	//GETTERS
 	public int getStatus()
 	{
