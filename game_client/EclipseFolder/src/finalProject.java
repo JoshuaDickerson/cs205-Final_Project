@@ -230,6 +230,34 @@ public class finalProject extends JApplet implements ActionListener
     private javax.swing.JLabel labelChooseOppCard;
     private javax.swing.JButton buttonSwap;
     private javax.swing.JLabel labelCardShow;
+    
+    private javax.swing.JButton winnerFinal_jButton_continue;
+    private javax.swing.JLabel winnerFinal_jLabel_p1Name;
+    private javax.swing.JLabel winnerFinal_jLabel_p1TotalLabel;
+    private javax.swing.JLabel winnerFinal_jLabel_p2TotalLabel;
+    private javax.swing.JLabel winnerFinal_jLabel_winnerName;
+    private javax.swing.JLabel winnerFinal_jlabel_label3;
+    private javax.swing.JLabel winnerFinal_jlabel_p1Total;
+    private javax.swing.JLabel winnerFinal_jlabel_p2Name;
+    private javax.swing.JLabel winnerFinal_jlabel_p2Total;
+
+    private javax.swing.JButton interRound_jButton_continue;
+    private javax.swing.JLabel interRound_jLabel_label3;
+    private javax.swing.JLabel interRound_jLabel_p1Name;
+    private javax.swing.JLabel interRound_jLabel_p1SubtotalLabel;
+    private javax.swing.JLabel interRound_jLabel_p1TotalLabel;
+    private javax.swing.JLabel interRound_jLabel_p2SubtotalLabel;
+    private javax.swing.JLabel interRound_jLabel_p2TotalLabel;
+    private javax.swing.JLabel interRound_jLabel_rounds;
+    private javax.swing.JLabel interRound_jLabel_time;
+    private javax.swing.JLabel interRound_jlabel_p1Subtotal;
+    private javax.swing.JLabel interRound_jlabel_p1Total;
+    private javax.swing.JLabel interRound_jlabel_p2Name;
+    private javax.swing.JLabel interRound_jlabel_p2Subtotal;
+    private javax.swing.JLabel interRound_jlabel_p2Total;
+
+    private javax.swing.JLabel loading_jLabel_label1;
+    private javax.swing.JLabel loading_jlabel_gif;
  
 
 	
@@ -1687,6 +1715,302 @@ public class finalProject extends JApplet implements ActionListener
 		                .addContainerGap(28, Short.MAX_VALUE))
 		        );
 				break;
+			case(15):
+				winnerFinal_jLabel_p1Name = new javax.swing.JLabel();
+		        winnerFinal_jlabel_p2Name = new javax.swing.JLabel();
+		        winnerFinal_jLabel_p2TotalLabel = new javax.swing.JLabel();
+		        winnerFinal_jlabel_p2Total = new javax.swing.JLabel();
+		        winnerFinal_jlabel_p1Total = new javax.swing.JLabel();
+		        winnerFinal_jLabel_p1TotalLabel = new javax.swing.JLabel();
+		        winnerFinal_jlabel_label3 = new javax.swing.JLabel();
+		        winnerFinal_jButton_continue = new javax.swing.JButton();
+		        winnerFinal_jLabel_winnerName = new javax.swing.JLabel();
+	
+		        winnerFinal_jLabel_p1Name.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+		        winnerFinal_jLabel_p1Name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        winnerFinal_jLabel_p1Name.setText("P1 Name");
+	
+		        winnerFinal_jlabel_p2Name.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+		        winnerFinal_jlabel_p2Name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        winnerFinal_jlabel_p2Name.setText("P2 Name");
+	
+		        winnerFinal_jLabel_p2TotalLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+		        winnerFinal_jLabel_p2TotalLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        winnerFinal_jLabel_p2TotalLabel.setText("Final Score");
+	
+		        winnerFinal_jlabel_p2Total.setBackground(new java.awt.Color(255, 255, 255));
+		        winnerFinal_jlabel_p2Total.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+		        winnerFinal_jlabel_p2Total.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        winnerFinal_jlabel_p2Total.setText("   P2 Total");
+		        winnerFinal_jlabel_p2Total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+	
+		        winnerFinal_jlabel_p1Total.setBackground(new java.awt.Color(255, 255, 255));
+		        winnerFinal_jlabel_p1Total.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+		        winnerFinal_jlabel_p1Total.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        winnerFinal_jlabel_p1Total.setText("   P1 Total");
+		        winnerFinal_jlabel_p1Total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+	
+		        winnerFinal_jLabel_p1TotalLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+		        winnerFinal_jLabel_p1TotalLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        winnerFinal_jLabel_p1TotalLabel.setText("Final Score");
+	
+		        winnerFinal_jlabel_label3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+		        winnerFinal_jlabel_label3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		        winnerFinal_jlabel_label3.setText("Winner:");
+	
+		        winnerFinal_jButton_continue.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+		        winnerFinal_jButton_continue.setText("New Game");
+		        winnerFinal_jButton_continue.addActionListener(this);
+		        winnerFinal_jButton_continue.setActionCommand("newGame");
+		        
+	
+		        winnerFinal_jLabel_winnerName.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+		        winnerFinal_jLabel_winnerName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        winnerFinal_jLabel_winnerName.setText("Winner name");
+	
+		       layout = new javax.swing.GroupLayout(getContentPane());
+		        getContentPane().setLayout(layout);
+		        layout.setHorizontalGroup(
+		            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		            .addGroup(layout.createSequentialGroup()
+		                .addGap(23, 23, 23)
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		                    .addGroup(layout.createSequentialGroup()
+		                        .addComponent(winnerFinal_jlabel_label3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                        .addGap(26, 26, 26)
+		                        .addComponent(winnerFinal_jLabel_winnerName, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		                    .addGroup(layout.createSequentialGroup()
+		                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		                            .addGroup(layout.createSequentialGroup()
+		                                .addComponent(winnerFinal_jLabel_p1Name, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                                .addGap(31, 31, 31)
+		                                .addComponent(winnerFinal_jlabel_p2Name, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+		                                .addGroup(layout.createSequentialGroup()
+		                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+		                                        .addComponent(winnerFinal_jlabel_p1Total, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+		                                        .addComponent(winnerFinal_jLabel_p1TotalLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		                                    .addGap(31, 31, 31)
+		                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		                                        .addComponent(winnerFinal_jlabel_p2Total, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                                        .addComponent(winnerFinal_jLabel_p2TotalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+		                                .addComponent(winnerFinal_jButton_continue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+		                        .addGap(0, 23, Short.MAX_VALUE))))
+		        );
+		        layout.setVerticalGroup(
+		            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		            .addGroup(layout.createSequentialGroup()
+		                .addContainerGap()
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+		                    .addComponent(winnerFinal_jLabel_p1Name, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                    .addComponent(winnerFinal_jlabel_p2Name, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                .addGap(18, 18, 18)
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+		                    .addComponent(winnerFinal_jLabel_p2TotalLabel)
+		                    .addComponent(winnerFinal_jLabel_p1TotalLabel))
+		                .addGap(3, 3, 3)
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+		                    .addComponent(winnerFinal_jlabel_p2Total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		                    .addComponent(winnerFinal_jlabel_p1Total, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                .addGap(40, 40, 40)
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+		                    .addComponent(winnerFinal_jlabel_label3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                    .addComponent(winnerFinal_jLabel_winnerName, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                .addGap(40, 40, 40)
+		                .addComponent(winnerFinal_jButton_continue, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                .addContainerGap(33, Short.MAX_VALUE))
+		        );
+				break;
+			case(16):
+				interRound_jLabel_p1Name = new javax.swing.JLabel();
+		        interRound_jlabel_p2Name = new javax.swing.JLabel();
+		        interRound_jlabel_p1Subtotal = new javax.swing.JLabel();
+		        interRound_jlabel_p2Subtotal = new javax.swing.JLabel();
+		        interRound_jlabel_p1Total = new javax.swing.JLabel();
+		        interRound_jlabel_p2Total = new javax.swing.JLabel();
+		        interRound_jLabel_p2SubtotalLabel = new javax.swing.JLabel();
+		        interRound_jLabel_p1TotalLabel = new javax.swing.JLabel();
+		        interRound_jLabel_p2TotalLabel = new javax.swing.JLabel();
+		        interRound_jLabel_p1SubtotalLabel = new javax.swing.JLabel();
+		        interRound_jLabel_rounds = new javax.swing.JLabel();
+		        interRound_jLabel_label3 = new javax.swing.JLabel();
+		        interRound_jButton_continue = new javax.swing.JButton();
+		        interRound_jLabel_time = new javax.swing.JLabel();
+	
+		       
+		        interRound_jLabel_p1Name.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+		        interRound_jLabel_p1Name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        interRound_jLabel_p1Name.setText("P1 Name");
+	
+		        interRound_jlabel_p2Name.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+		        interRound_jlabel_p2Name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        interRound_jlabel_p2Name.setText("P2 Name");
+	
+		        interRound_jlabel_p1Subtotal.setBackground(new java.awt.Color(255, 255, 255));
+		        interRound_jlabel_p1Subtotal.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+		        interRound_jlabel_p1Subtotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        interRound_jlabel_p1Subtotal.setText("   P1 Subtotal");
+		        interRound_jlabel_p1Subtotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+	
+		        interRound_jlabel_p2Subtotal.setBackground(new java.awt.Color(255, 255, 255));
+		        interRound_jlabel_p2Subtotal.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+		        interRound_jlabel_p2Subtotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        interRound_jlabel_p2Subtotal.setText("   P2 Subtotal");
+		        interRound_jlabel_p2Subtotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+	
+		        interRound_jlabel_p1Total.setBackground(new java.awt.Color(255, 255, 255));
+		        interRound_jlabel_p1Total.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+		        interRound_jlabel_p1Total.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        interRound_jlabel_p1Total.setText("   P1 Total");
+		        interRound_jlabel_p1Total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+	
+		        interRound_jlabel_p2Total.setBackground(new java.awt.Color(255, 255, 255));
+		        interRound_jlabel_p2Total.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+		        interRound_jlabel_p2Total.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        interRound_jlabel_p2Total.setText("   P2 Total");
+		        interRound_jlabel_p2Total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+	
+		        interRound_jLabel_p2SubtotalLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+		        interRound_jLabel_p2SubtotalLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        interRound_jLabel_p2SubtotalLabel.setText("Subtotal");
+	
+		        interRound_jLabel_p1TotalLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+		        interRound_jLabel_p1TotalLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        interRound_jLabel_p1TotalLabel.setText("Total");
+	
+		        interRound_jLabel_p2TotalLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+		        interRound_jLabel_p2TotalLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        interRound_jLabel_p2TotalLabel.setText("Total");
+	
+		        interRound_jLabel_p1SubtotalLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+		        interRound_jLabel_p1SubtotalLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        interRound_jLabel_p1SubtotalLabel.setText("Subtotal");
+	
+		        interRound_jLabel_rounds.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+		        interRound_jLabel_rounds.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        interRound_jLabel_rounds.setText("Time / Rounds label");
+	
+		        interRound_jLabel_label3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+		        interRound_jLabel_label3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        interRound_jLabel_label3.setText("Time Left to Play");
+	
+		        interRound_jButton_continue.setText("Continue");
+		        interRound_jButton_continue.addActionListener(this);
+		        interRound_jButton_continue.setActionCommand("nextRound");
+		        
+	
+		        interRound_jLabel_time.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+		        interRound_jLabel_time.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		        interRound_jLabel_time.setText("Time / Rounds label");
+	
+		        layout = new javax.swing.GroupLayout(getContentPane());
+		        getContentPane().setLayout(layout);
+		        layout.setHorizontalGroup(
+		            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		            .addGroup(layout.createSequentialGroup()
+		                .addContainerGap()
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+		                        .addGroup(layout.createSequentialGroup()
+		                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+		                                .addComponent(interRound_jlabel_p1Subtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		                                .addComponent(interRound_jlabel_p1Total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		                                .addComponent(interRound_jLabel_p1TotalLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		                                .addComponent(interRound_jLabel_p1SubtotalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                            .addGap(31, 31, 31)
+		                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		                                .addComponent(interRound_jLabel_p2SubtotalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                                .addComponent(interRound_jlabel_p2Total, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                                .addComponent(interRound_jlabel_p2Subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                                .addComponent(interRound_jLabel_p2TotalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+		                        .addGroup(layout.createSequentialGroup()
+		                            .addComponent(interRound_jLabel_p1Name, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                            .addGap(31, 31, 31)
+		                            .addComponent(interRound_jlabel_p2Name, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                        .addGroup(layout.createSequentialGroup()
+		                            .addComponent(interRound_jLabel_label3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		                            .addComponent(interRound_jButton_continue, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                        .addComponent(interRound_jLabel_time, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                    .addComponent(interRound_jLabel_rounds, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		        );
+		        layout.setVerticalGroup(
+		            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		            .addGroup(layout.createSequentialGroup()
+		                .addContainerGap()
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+		                    .addComponent(interRound_jLabel_p1Name, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                    .addComponent(interRound_jlabel_p2Name, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		                    .addGroup(layout.createSequentialGroup()
+		                        .addComponent(interRound_jLabel_p1SubtotalLabel)
+		                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+		                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+		                            .addComponent(interRound_jlabel_p1Subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                            .addComponent(interRound_jlabel_p2Subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+		                    .addGroup(layout.createSequentialGroup()
+		                        .addComponent(interRound_jLabel_p2SubtotalLabel)
+		                        .addGap(66, 66, 66)
+		                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+		                            .addComponent(interRound_jLabel_p2TotalLabel)
+		                            .addComponent(interRound_jLabel_p1TotalLabel))))
+		                .addGap(3, 3, 3)
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+		                    .addComponent(interRound_jlabel_p2Total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		                    .addComponent(interRound_jlabel_p1Total, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		                    .addGroup(layout.createSequentialGroup()
+		                        .addGap(10, 10, 10)
+		                        .addComponent(interRound_jButton_continue, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                    .addGroup(layout.createSequentialGroup()
+		                        .addComponent(interRound_jLabel_label3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+		                        .addComponent(interRound_jLabel_time, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+		                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+		                .addComponent(interRound_jLabel_rounds, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                .addGap(40, 40, 40))
+		        );
+				break;
+			case(17):
+				loading_jLabel_label1 = new javax.swing.JLabel();
+		        loading_jlabel_gif = new javax.swing.JLabel();
+	
+		        
+		        loading_jLabel_label1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+		        loading_jLabel_label1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		        loading_jLabel_label1.setText("Wait for the computer to play");
+	
+		        loading_jlabel_gif.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		        loading_jlabel_gif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/ajax-loader.gif"))); // NOI18N
+	
+		        layout = new javax.swing.GroupLayout(getContentPane());
+		        getContentPane().setLayout(layout);
+		        layout.setHorizontalGroup(
+		            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		            .addGroup(layout.createSequentialGroup()
+		                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		                    .addGroup(layout.createSequentialGroup()
+		                        .addGap(24, 24, 24)
+		                        .addComponent(loading_jLabel_label1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+		                    .addGroup(layout.createSequentialGroup()
+		                        .addGap(138, 138, 138)
+		                        .addComponent(loading_jlabel_gif, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+		                .addContainerGap(31, Short.MAX_VALUE))
+		        );
+		        layout.setVerticalGroup(
+		            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		            .addGroup(layout.createSequentialGroup()
+		                .addContainerGap()
+		                .addComponent(loading_jLabel_label1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+		                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+		                .addComponent(loading_jlabel_gif, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+		                .addGap(18, 18, 18))
+		        );
+				break;
 		}
 		
 	}
@@ -1853,12 +2177,12 @@ public class finalProject extends JApplet implements ActionListener
 		{
 			case(0):
 				//EASY AI
-				System.out.println("PROCESSING AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+				System.out.println("DECIDING DRAW OR DISCARD AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
 				rand = generator.nextInt(2);
 				break;
 			case(1):
 				//MEIDUM AI
-				System.out.println("PROCESSING AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+				System.out.println("DECIDING DRAW OR DISCARD AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
 				chooseDiscard = false;
 				for(int i = 0; i < 4; i++)
 				{
@@ -1887,7 +2211,7 @@ public class finalProject extends JApplet implements ActionListener
 				break;
 			case(2):
 				//HARD AI
-				System.out.println("PROCESSING AI HARD FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+				System.out.println("DECIDING DRAW OR DISCARD AI HARD FOR " + playersArray[GAME_STATE.getPlayer()].getName());
 				chooseDiscard = false;
 				for(int i = 0; i < 4; i++)
 				{
@@ -1927,18 +2251,19 @@ public class finalProject extends JApplet implements ActionListener
 		//CHOOSE DRAW FROM DECK OR DISCARD
 		if(rand == 0)
 		{
+			System.out.println("------ WE WANT TO DRAW FROM THE DECK---------");
 			//DRAW FROM DECK
 			boolean foundBetterCard = false;
 			switch(GAME_STATE.getDifficulty())
 			{
 				case(0):
 					//EASY AI
-					System.out.println("PROCESSING AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+					System.out.println("DECIDING KEEP OR GIVE UP CARD AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
 					rand = generator.nextInt(2);
 					break;
 				case(1):
 					//MEIDUM AI
-					System.out.println("PROCESSING AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+					System.out.println("DECIDING KEEP OR GIVE UP CARD AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
 					for(int i = 0; i < 4; i++)
 					{
 						if(generator.nextInt(2) == 0)
@@ -1979,7 +2304,7 @@ public class finalProject extends JApplet implements ActionListener
 					break;
 				case(2):
 					//HARD AI
-					System.out.println("PROCESSING AI HARD FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+					System.out.println("DECIDING KEEP OR GIVE UP CARD AI HARD FOR " + playersArray[GAME_STATE.getPlayer()].getName());
 					for(int i = 0; i < 4; i++)
 					{
 						//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
@@ -2015,6 +2340,8 @@ public class finalProject extends JApplet implements ActionListener
 			//KEEP OR GIVE AWAY DRAWN CARD
 			if(rand == 0)
 			{
+				System.out.println("------ WE WANT TO KEEP THE CARD---------");
+				
 				gotDraw2 = false;
 				draw2SecondCard = false;
 				
@@ -2046,32 +2373,44 @@ public class finalProject extends JApplet implements ActionListener
 				{							
 					//WE DREW A NORMAL CARD!
 					int cardToReplace = -1;
+					int highestCard = -1;
 					switch(GAME_STATE.getDifficulty())
 					{
 						case(0):
 							//EASY AI
-							System.out.println("PROCESSING AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+							System.out.println("KEEP CARD AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
 							rand = generator.nextInt(4);
 							break;
 						case(1):
 							//MEIDUM AI
-							System.out.println("PROCESSING AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+							System.out.println("KEEP CARD AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+	
 							for(int i = 0; i < 4; i++)
 							{
 								if(generator.nextInt(2) == 0)
 								{
-									//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
-									if((mainDeck.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank()) || playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).isSpecial())
+									if(mainDeck.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank() && mainDeck.getCard(0).getRank() < highestCard)
 									{
 										cardToReplace = i;
+										highestCard = playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank();
 									}
 								}
-								else
-								{
-									//WE DID NOT REMEBER THAT CARD THUS WILL NOT INFLUENCE OUR DESICION
-								}
-								
 							}
+							for(int i = 0; i < 4; i++)
+							{
+								if(generator.nextInt(2) == 0)
+								{
+									if(playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).isSpecial())
+									{
+										cardToReplace = i;
+										highestCard = playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank();
+									}
+								}
+							}
+							
+							
+							
+							
 							if(cardToReplace != -1)
 							{
 								//WE WANT TO REPLACE THE ONE WE FOUND THATS BAD
@@ -2085,15 +2424,25 @@ public class finalProject extends JApplet implements ActionListener
 							break;
 						case(2):
 							//HARD AI
-							System.out.println("PROCESSING AI HARD FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+							System.out.println("KEEP CARD AI HARD FOR " + playersArray[GAME_STATE.getPlayer()].getName());
 							for(int i = 0; i < 4; i++)
 							{
-								//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
-								if((mainDeck.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank()) || playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).isSpecial())
+								if(mainDeck.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank() && mainDeck.getCard(0).getRank() < highestCard)
 								{
 									cardToReplace = i;
-								}							
+									highestCard = playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank();
+								}
 							}
+							for(int i = 0; i < 4; i++)
+							{
+								if(playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).isSpecial())
+								{
+									cardToReplace = i;
+									highestCard = playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank();
+								}
+							}
+							
+							
 							if(cardToReplace != -1)
 							{
 								//WE WANT TO REPLACE THE ONE WE FOUND THATS BAD
@@ -2146,34 +2495,45 @@ public class finalProject extends JApplet implements ActionListener
 		}
 		else
 		{					
+			System.out.println("------ WE WANT TO DRAW FROM THE DISCARD---------");
 			//DRAW FROM DISCARD
 			int cardToReplace = -1;
+			int highestCard = -1;
 			switch(GAME_STATE.getDifficulty())
 			{
 				case(0):
 					//EASY AI
-					System.out.println("PROCESSING AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+					System.out.println("REPLACING CARD FROM DISCARD  AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
 					rand = generator.nextInt(4);
 					break;
 				case(1):
 					//MEIDUM AI
-					System.out.println("PROCESSING AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+					System.out.println("REPLACING CARD FROM DISCARD  AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+
 					for(int i = 0; i < 4; i++)
 					{
 						if(generator.nextInt(2) == 0)
 						{
-							//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
-							if((discard.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank()) || playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).isSpecial())
+							if(discard.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank() && discard.getCard(0).getRank() < highestCard)
 							{
 								cardToReplace = i;
+								highestCard = playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank();
 							}
 						}
-						else
-						{
-							//WE DID NOT REMEBER THAT CARD THUS WILL NOT INFLUENCE OUR DESICION
-						}
-						
 					}
+					for(int i = 0; i < 4; i++)
+					{
+						if(generator.nextInt(2) == 0)
+						{
+							if(playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).isSpecial())
+							{
+								cardToReplace = i;
+								highestCard = playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank();
+							}
+						}
+					}
+				
+				
 					if(cardToReplace != -1)
 					{
 						//WE WANT TO REPLACE THE ONE WE FOUND THATS BAD
@@ -2195,15 +2555,24 @@ public class finalProject extends JApplet implements ActionListener
 					break;
 				case(2):
 					//HARD AI
-					System.out.println("PROCESSING AI HARD FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+					System.out.println("REPLACING CARD FROM DISCARD AI HARD FOR " + playersArray[GAME_STATE.getPlayer()].getName());
 					for(int i = 0; i < 4; i++)
 					{
-						//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
-						if((discard.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank()) || playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).isSpecial())
+						if(discard.getCard(0).getRank() < playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank() && discard.getCard(0).getRank() < highestCard)
 						{
 							cardToReplace = i;
-						}							
+							highestCard = playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank();
+						}
 					}
+					for(int i = 0; i < 4; i++)
+					{
+						if(playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).isSpecial())
+						{
+							cardToReplace = i;
+							highestCard = playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank();
+						}
+					}
+				
 					if(cardToReplace != -1)
 					{
 						//WE WANT TO REPLACE THE ONE WE FOUND THATS BAD
@@ -2247,7 +2616,7 @@ public class finalProject extends JApplet implements ActionListener
 		{
 			case(0):
 				//EASY AI
-				System.out.println("PROCESSING AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+				System.out.println("DECIDING KNOCK AI EASY FOR " + playersArray[GAME_STATE.getPlayer()].getName());
 				rand = generator.nextInt(2);
 				if(rand == 0)
 				{
@@ -2257,7 +2626,7 @@ public class finalProject extends JApplet implements ActionListener
 			case(1):
 				//MEIDUM AI
 				shouldKnock = false;
-				System.out.println("PROCESSING AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+				System.out.println("DECIDING KNOCK AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
 				if(generator.nextInt(2) == 0)
 				{
 					//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
@@ -2293,7 +2662,7 @@ public class finalProject extends JApplet implements ActionListener
 				break;
 			case(2):
 				shouldKnock = false;
-				System.out.println("PROCESSING AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
+				System.out.println("DECIDING KNOCK AI MEDIUM FOR " + playersArray[GAME_STATE.getPlayer()].getName());
 				if(generator.nextInt(2) == 0)
 				{
 					//WE HAVE REMEBERED THAT CARD AND CAN COMPAIR WITH DISCARD
@@ -2329,8 +2698,14 @@ public class finalProject extends JApplet implements ActionListener
 				break;
 		}
 		
-		if(shouldKnock)
+		if(shouldKnock && GAME_STATE.getStatus() != KNOCKED_ROUND)
 		{
+			System.out.println("----------------------------------------------------------------------------------");
+			System.out.println("----------------------------------------------------------------------------------");
+			System.out.println("--------------------------------- AI PLAYER IS KNOCKING --------------------------");
+			System.out.println("----------------------------------------------------------------------------------");
+			System.out.println("----------------------------------------------------------------------------------");
+			
 			playerKnocked();
 		}
 		
@@ -2933,7 +3308,9 @@ public class finalProject extends JApplet implements ActionListener
 					System.out.println("-----------------------------------------------");
 					System.out.println("-----------------------------------------------");
 					System.out.println("-----------------------------------------------");			
-					setUpGUI(1);
+					
+					//SHOW FINAL SCORS
+					setUpGUI(15);
 				}
 				else
 				{
@@ -2986,7 +3363,9 @@ public class finalProject extends JApplet implements ActionListener
 					System.out.println("-----------------------------------------------");
 					System.out.println("-----------------------------------------------");
 					updatePlayersTotalScore();
-					setUpGUI(1);
+					
+					//SHOW FINAL SCORES
+					setUpGUI(15);
 				}
 				else
 				{
@@ -3022,21 +3401,8 @@ public class finalProject extends JApplet implements ActionListener
 					System.out.println("-----------------------------------------------");
 					System.out.println("-----------------------------------------------");
 					
-					//Start New Round
-					initRound();
-					
-					System.out.println("-------Hand for player 1");
-					for(int i = 0; i < 4; i++)
-					{
-						System.out.println("Card " + i + ": " + playersArray[0].myHand.getCard(i).toString());
-					}
-					System.out.println("-------Hand for player 2");
-					for(int i = 0; i < 4; i++)
-					{
-						System.out.println("Card " + i + ": " + playersArray[1].myHand.getCard(i).toString());
-					}
-					//Show main GUI
-					setUpGUI(14);	
+					//SHOW ROUND SCORES
+					setUpGUI(16);	
 				}
 			}
 		}
@@ -3276,6 +3642,29 @@ public class finalProject extends JApplet implements ActionListener
 			{
 				setUpGUI(4); //ASK IF KNOCK OR KEEP PLAYING
 			}
-		}		
+		}	
+		if("nextRound".equals(e.getActionCommand()))
+		{
+			//Start New Round
+			initRound();
+			
+			System.out.println("-------Hand for player 1");
+			for(int i = 0; i < 4; i++)
+			{
+				System.out.println("Card " + i + ": " + playersArray[0].myHand.getCard(i).toString());
+			}
+			System.out.println("-------Hand for player 2");
+			for(int i = 0; i < 4; i++)
+			{
+				System.out.println("Card " + i + ": " + playersArray[1].myHand.getCard(i).toString());
+			}
+			
+			//Show ROUN
+			setUpGUI(14);
+		}
+		if("nextGame".equals(e.getActionCommand()))
+		{
+			setUpGUI(1);
+		}
 	}	
 }
