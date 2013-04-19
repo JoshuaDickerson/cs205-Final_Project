@@ -1,3 +1,9 @@
+/*
+ * Author: Dana Desautes
+ * Description: This is the Hand class.
+ * Other Contributors: Anders Melen made updates to the class that were required for the game to work
+ */
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringTokenizer;
@@ -74,7 +80,14 @@ class Hand
 		for(int i = 0; i < this.hand.length; i++)
 		{
 			Card tempcard = this.hand[i];
-			score = score + tempcard.getRank();
+			if(tempcard.isSpecial())
+			{
+				score = score + 10;
+			}
+			else
+			{
+				score = score + tempcard.getRank();
+			}
 		}
 	
 		return score;

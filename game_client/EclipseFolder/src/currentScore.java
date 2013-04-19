@@ -1,3 +1,10 @@
+/*
+ * Author: Anders Melen
+ * Description: This is the wrapper object that allows us to combine all the the scores,
+ * total scores, players, deck and discard pile for analytical purposes ont he server,
+ * the more information the better!
+ */
+
 import javax.swing.*;
 import java.util.*;
 import java.awt.*;

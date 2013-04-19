@@ -1,3 +1,9 @@
+/*
+ * Author: Joshua Dickerson
+ * Description: This is the interface between the game logic in java and the server. Here we convert entire Java objects into JSON
+ * objects and send them over a network connection where they are parsed onto the server.
+ */
+
 import java.io.*;
 import java.net.*;
 import org.apache.commons.net.*;

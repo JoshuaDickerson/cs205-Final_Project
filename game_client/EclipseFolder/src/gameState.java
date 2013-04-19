@@ -1,3 +1,9 @@
+/*
+ * Author: Anders Melen
+ * Description: This is the gamestate object that basically runs the entire game
+ * this is the heart of the finite state machine model I followed for the game logic.
+ */
+
 import javax.swing.*;
 import java.util.*;
 import java.awt.*;

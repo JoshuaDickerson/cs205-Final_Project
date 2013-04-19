@@ -1,3 +1,9 @@
+/*
+ * Author: Dana Desautes
+ * Description: This is the Card class.
+ * Other Contributors: Anders Melen made updates to the class that were required for the game to work
+ */
+
 class Card
 {
 	//Private variables

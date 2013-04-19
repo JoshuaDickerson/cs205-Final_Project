@@ -1,3 +1,9 @@
+/*
+ * Author: Dana Desautes
+ * Description: This is the player class.
+ * Other Contributors: Anders Melen made updates to the class that were required for the game to work
+ */
+
 class Player
 {
 	private String playername;

@@ -1,3 +1,9 @@
+/*
+ * Author: Anders Melen
+ * Description: This is the GUI version of ratta-tat-tat for the final project in CS205
+ * Other Contributors: The GUI code was started by by Katie, and edited and completed by Josh.
+ */
+
 import javax.swing.*;
 import java.util.*;
 import java.awt.*;
@@ -260,7 +266,11 @@ public class finalProject extends JApplet implements ActionListener
     private javax.swing.JLabel loading_jlabel_gif;
  
 
-	
+	/*
+	 * This Method was a joint effort between Anders, Katie, and Josh
+	 * It automatically clears the last GUI from the applet and draws the
+	 * correct one on the screen!
+	 */
 	public void setUpGUI(int guiMode)
 	{
 		clearGUI();
@@ -1655,7 +1665,7 @@ public class finalProject extends JApplet implements ActionListener
 		        viewCardsStart_jlabel_label1 = new javax.swing.JLabel();
 		        viewCardStart_jbutton_go = new javax.swing.JButton();
 	
-		        viewCardStart_jlabel_card4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[GAME_STATE.getPlayer()].myHand.getCard(0) + ".png"))))); // NOI18N
+		        viewCardStart_jlabel_card4.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[GAME_STATE.getPlayer()].myHand.getCard(3) + ".png"))))); // NOI18N
 		        viewCardStart_jlabel_card4.setText("jLabel1");
 	
 		        viewCardStart_jlabel_card3.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
@@ -1664,7 +1674,7 @@ public class finalProject extends JApplet implements ActionListener
 		        viewCardsStart_jlabel_card2.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR+"13.png"))))); // NOI18N
 		        viewCardsStart_jlabel_card2.setText("jLabel1");
 	
-		        viewCardsStart_jlabel_card1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[GAME_STATE.getPlayer()].myHand.getCard(3) + ".png"))))); // NOI18N
+		        viewCardsStart_jlabel_card1.setIcon(new javax.swing.ImageIcon((Toolkit.getDefaultToolkit().getImage(getClass().getResource(BASEDIR + playersArray[GAME_STATE.getPlayer()].myHand.getCard(0) + ".png"))))); // NOI18N
 		        viewCardsStart_jlabel_card1.setText("jLabel1");
 	
 		        viewCardsStart_jlabel_label1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -1728,11 +1738,11 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        winnerFinal_jLabel_p1Name.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 		        winnerFinal_jLabel_p1Name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-		        winnerFinal_jLabel_p1Name.setText("P1 Name");
+		        winnerFinal_jLabel_p1Name.setText(playersArray[0].getName());
 	
 		        winnerFinal_jlabel_p2Name.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 		        winnerFinal_jlabel_p2Name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-		        winnerFinal_jlabel_p2Name.setText("P2 Name");
+		        winnerFinal_jlabel_p2Name.setText(playersArray[1].getName());
 	
 		        winnerFinal_jLabel_p2TotalLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 		        winnerFinal_jLabel_p2TotalLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1741,13 +1751,13 @@ public class finalProject extends JApplet implements ActionListener
 		        winnerFinal_jlabel_p2Total.setBackground(new java.awt.Color(255, 255, 255));
 		        winnerFinal_jlabel_p2Total.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
 		        winnerFinal_jlabel_p2Total.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-		        winnerFinal_jlabel_p2Total.setText("   P2 Total");
+		        winnerFinal_jlabel_p2Total.setText(playersArray[1].getTotalScore() + "");
 		        winnerFinal_jlabel_p2Total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 	
 		        winnerFinal_jlabel_p1Total.setBackground(new java.awt.Color(255, 255, 255));
 		        winnerFinal_jlabel_p1Total.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
 		        winnerFinal_jlabel_p1Total.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-		        winnerFinal_jlabel_p1Total.setText("   P1 Total");
+		        winnerFinal_jlabel_p1Total.setText(playersArray[0].getTotalScore() + "");
 		        winnerFinal_jlabel_p1Total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 	
 		        winnerFinal_jLabel_p1TotalLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -1766,7 +1776,7 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        winnerFinal_jLabel_winnerName.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 		        winnerFinal_jLabel_winnerName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-		        winnerFinal_jLabel_winnerName.setText("Winner name");
+		        winnerFinal_jLabel_winnerName.setText(playersArray[checkWhoWonGame()].getName());
 	
 		       layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -1841,34 +1851,34 @@ public class finalProject extends JApplet implements ActionListener
 		       
 		        interRound_jLabel_p1Name.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 		        interRound_jLabel_p1Name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-		        interRound_jLabel_p1Name.setText("P1 Name");
+		        interRound_jLabel_p1Name.setText(playersArray[0].getName());
 	
 		        interRound_jlabel_p2Name.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 		        interRound_jlabel_p2Name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-		        interRound_jlabel_p2Name.setText("P2 Name");
+		        interRound_jlabel_p2Name.setText(playersArray[1].getName());
 	
 		        interRound_jlabel_p1Subtotal.setBackground(new java.awt.Color(255, 255, 255));
 		        interRound_jlabel_p1Subtotal.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
 		        interRound_jlabel_p1Subtotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-		        interRound_jlabel_p1Subtotal.setText("   P1 Subtotal");
+		        interRound_jlabel_p1Subtotal.setText("" + playersArray[0].myHand.getScore());
 		        interRound_jlabel_p1Subtotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 	
 		        interRound_jlabel_p2Subtotal.setBackground(new java.awt.Color(255, 255, 255));
 		        interRound_jlabel_p2Subtotal.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
 		        interRound_jlabel_p2Subtotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-		        interRound_jlabel_p2Subtotal.setText("   P2 Subtotal");
+		        interRound_jlabel_p2Subtotal.setText("" + playersArray[1].myHand.getScore());
 		        interRound_jlabel_p2Subtotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 	
 		        interRound_jlabel_p1Total.setBackground(new java.awt.Color(255, 255, 255));
 		        interRound_jlabel_p1Total.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
 		        interRound_jlabel_p1Total.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-		        interRound_jlabel_p1Total.setText("   P1 Total");
+		        interRound_jlabel_p1Total.setText("" + playersArray[0].getTotalScore());
 		        interRound_jlabel_p1Total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 	
 		        interRound_jlabel_p2Total.setBackground(new java.awt.Color(255, 255, 255));
 		        interRound_jlabel_p2Total.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
 		        interRound_jlabel_p2Total.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-		        interRound_jlabel_p2Total.setText("   P2 Total");
+		        interRound_jlabel_p2Total.setText("" + playersArray[1].getTotalScore());
 		        interRound_jlabel_p2Total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 	
 		        interRound_jLabel_p2SubtotalLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -1889,11 +1899,21 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        interRound_jLabel_rounds.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 		        interRound_jLabel_rounds.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-		        interRound_jLabel_rounds.setText("Time / Rounds label");
+		        interRound_jLabel_rounds.setText("");
 	
 		        interRound_jLabel_label3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 		        interRound_jLabel_label3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-		        interRound_jLabel_label3.setText("Time Left to Play");
+		        if(GAME_STATE.getWinCon() == TIMED_PLAY)
+		        {
+		        	LocalTime currentTime = new LocalTime();
+		        	Minutes Interval = Minutes.minutesBetween(currentTime, endTime);
+		        	char[] timeRemainingArray = Interval.toString().toCharArray();
+		        	interRound_jLabel_label3.setText("Time Remaning: " + timeRemainingArray[2]);
+		        }
+		        else
+		        {
+		        	interRound_jLabel_label3.setText("");
+		        }
 	
 		        interRound_jButton_continue.setText("Continue");
 		        interRound_jButton_continue.addActionListener(this);
@@ -1902,7 +1922,7 @@ public class finalProject extends JApplet implements ActionListener
 	
 		        interRound_jLabel_time.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 		        interRound_jLabel_time.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-		        interRound_jLabel_time.setText("Time / Rounds label");
+		        interRound_jLabel_time.setText("Round: " + GAME_STATE.getRoundNum());
 	
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -1985,7 +2005,7 @@ public class finalProject extends JApplet implements ActionListener
 		        loading_jLabel_label1.setText("Wait for the computer to play");
 	
 		        loading_jlabel_gif.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-		        loading_jlabel_gif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Cards/ajax-loader.gif"))); // NOI18N
+		        loading_jlabel_gif.setIcon(new javax.swing.ImageIcon(getClass().getResource(BASEDIR + "ajax-loader.gif"))); // NOI18N
 	
 		        layout = new javax.swing.GroupLayout(getContentPane());
 		        getContentPane().setLayout(layout);
@@ -2009,14 +2029,33 @@ public class finalProject extends JApplet implements ActionListener
 		                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
 		                .addComponent(loading_jlabel_gif, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
 		                .addGap(18, 18, 18))
-		        );
+		        );		        
+		        
 				break;
 		}
 		
 	}
+	
+	/*
+	 * Lets the applet pause for n seconds
+	 */
+	public static void waiting (int n)
+	{    
+        long t0, t1;
+
+        t0 =  System.currentTimeMillis();
+
+        do{
+            t1 = System.currentTimeMillis();
+        }
+        while ((t1 - t0) < (n * 1000));
+    }
         
         // TurnChangeDailog
 	
+	/*
+	 * Clears all content from the current GUI view
+	 */
 	public void clearGUI()
 	{
 		//this method should be called to remove everything from the frame
@@ -2025,6 +2064,10 @@ public class finalProject extends JApplet implements ActionListener
 		getContentPane().removeAll();
 	}
 	
+	/*
+	 * swaps cards from the the other opponent to your hand by
+	 * the selection of the select box on the GUI
+	 */
 	public void swap()
 	{
 		int othersIndex = swapOpp_jcombobox_oppSelect.getSelectedIndex();
@@ -2044,6 +2087,9 @@ public class finalProject extends JApplet implements ActionListener
 		}
 	}
 	
+	/*
+	 * Draws from the deck into the current players had
+	 */
 	public void drawFromDeck()
 	{
 		Card cardFromDeck;
@@ -2089,45 +2135,11 @@ public class finalProject extends JApplet implements ActionListener
 		}
 	}
 	
-	public void drawDiscard()
-	{
-		/*
-		gotDraw2 = false;
-		draw2SecondCard = false;
-		
-		cardFromDeck = discard.getTopCard();
-		handIndex = 0;
-		
-		Card removedFromHand = playersArray[GAME_STATE.getPlayer()].myHand.replaceCard(handIndex, cardFromDeck);
-		discard.addTopCard(removedFromHand);
-		if(debug)
-		{
-			System.out.println("Swapped " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(handIndex).toString() + ", with " + cardFromDeck.toString());
-		}
-		*/
-	}
 	
-	public void updateGUICards()
-	{
-		/*
-		 * THIS METHOD NEEDS TO BE FIXED SO THE CORRECT CARD OBJECTS ARE LINKED
-		 */
-		
-		/*
-		//HUMANS HAND
-		card1.setIcon(playersArray[0].getHand().getCard(0).getPictureName());
-		card2.setIcon(playersArray[0].getHand().getCard(1).getPictureName());
-		card3.setIcon(playersArray[0].getHand().getCard(2).getPictureName());
-		card4.setIcon(playersArray[0].getHand().getCard(3).getPictureName());
-		
-		//COMPUTERS HAND
-		card1.setIcon(playersArray[1].getHand().getCard(0).getPictureName());
-		card2.setIcon(playersArray[1].getHand().getCard(1).getPictureName());
-		card3.setIcon(playersArray[1].getHand().getCard(2).getPictureName());
-		card4.setIcon(playersArray[1].getHand().getCard(3).getPictureName());
-		*/
-	}
-	
+	/*
+	 * Replaces the new card from the deck with the index
+	 * of the card in the current players hand
+	 */
 	public void replaceCardFromDeck(int card)
 	{
 		System.out.println("REAPLCING CARD IN HAND FROM DECK");
@@ -2144,6 +2156,10 @@ public class finalProject extends JApplet implements ActionListener
 		System.out.println("NEW TOP DISCARD:" + discard.getCard(0).getRank());
 	}
 	
+	/*
+	 * Replaces the new card from the discard with the index
+	 * of the card in the current players hand
+	 */
 	public void replaceCardFromDiscard(int card)
 	{
 		System.out.println("REAPLCING CARD IN HAND FROM DISCARD");
@@ -2155,12 +2171,18 @@ public class finalProject extends JApplet implements ActionListener
 	}
 	
 	
+	/*
+	 * enables the draw two!
+	 */
 	public void draw2()
 	{
 		System.out.println("--------------------------------------------WE GOT A DRAW2");
 		gotDraw2 = true;
 	}
 	
+	/*
+	 * The complete AI processing structure
+	 */
 	public void processAI()
 	{
 		System.out.println("----------------------------------------------------------------------------------");
@@ -2323,17 +2345,6 @@ public class finalProject extends JApplet implements ActionListener
 						//DISCARD NOT BETTER THAN ANY IN OUR HAND
 						rand = 1;
 					}
-					
-					//HANDLE SPACIAL CARDS
-					if(mainDeck.getCard(0).isSpecial() && mainDeck.getCard(0).getSpecial() != "draw2")
-					{
-						//IF ITS A SPECIAL THATS NOT DRAW 2 WE DONT CARE, THEY ARE GOOD ENOUGH AS IT IS!
-						rand = 1;
-					}
-					else if(mainDeck.getCard(0).getSpecial() == "draw2")
-					{
-						rand = 0;
-					}
 					break;
 			}
 			
@@ -2348,15 +2359,6 @@ public class finalProject extends JApplet implements ActionListener
 				//WE WANT TO KEEP THE CARD
 				if(mainDeck.getCard(0).isSpecial())
 				{
-					//WE DREW A SPECIAL CARD!
-					/*
-					 * SPEACL LOGIC HERE
-					 * SPEACL LOGIC HERE
-					 * SPEACL LOGIC HERE
-					 * SPEACL LOGIC HERE
-					 * SPEACL LOGIC HERE
-					 * 
-					 */
 					System.out.println("-----------------------------------------------------------");
 					System.out.println("-----------------------------------------------------------");
 					System.out.println("-----------------------------------------------------------");
@@ -2368,6 +2370,50 @@ public class finalProject extends JApplet implements ActionListener
 					System.out.println("-----------------------------------------------------------");
 					System.out.println("-----------------------------------------------------------");
 					System.out.println("-----------------------------------------------------------");
+					
+					if(mainDeck.getCard(0).getSpecial() == "swap")
+					{
+						System.out.println("AI PLAYER GOT SWAP");
+						//SEARCH FOR BEST SWAP PAIR ELSE DISCARD
+						int indexMyHand = -1;
+						int indexOppHand = -1;
+						int myValue = -1;
+						int oppValue = -1;
+						//FIND WORST IN MY HAND
+						for(int i = 0; i < 4; i++)
+						{
+							if(playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank() > myValue)
+							{
+								myValue = playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank();
+								indexMyHand = i;
+							}
+						}
+						//FIND BEST IN OPP HAND
+						for(int i = 0; i < 4; i++)
+						{
+							if(playersArray[0].myHand.getCard(i).getRank() < oppValue)
+							{
+								myValue = playersArray[GAME_STATE.getPlayer()].myHand.getCard(i).getRank();
+								indexOppHand = i;
+							}
+						}
+						if(myValue > oppValue)
+						{
+							//SWAP THE CARDS!
+							System.out.println("WE ARE SWAPPING OPP " + playersArray[0].myHand.getCard(indexOppHand) + " WITH MY " + playersArray[1].myHand.getCard(indexMyHand));
+							Card fromOpponent = playersArray[1].myHand.getCard(indexOppHand);
+							Card newCard = playersArray[0].myHand.replaceCard(indexMyHand, fromOpponent);
+							Card worthlessCard = playersArray[1].myHand.replaceCard(indexOppHand, newCard);
+						}
+						else
+						{
+							//DISCARD IT DOES US NO GOOD
+							System.out.println("THE AI HAS FOUND NO BETTER CARDS TO SWAP WITH SO WE DISCARD AND CONTINUE");
+						}
+					}
+					
+					//JUST DISCARD IT...
+					discard.addTopCard(mainDeck.getTopCard());
 				}
 				else
 				{							
@@ -2671,6 +2717,7 @@ public class finalProject extends JApplet implements ActionListener
 						if(playersArray[0].myHand.getScore() < playersArray[1].myHand.getScore())
 						{
 							//I HAVE BETTER SCORE KNOCK!!!
+							System.out.println("I HAVE BETTER SCORE KNOCK!!!! PLAYER 1: " + playersArray[0].myHand.getScore() + " | PLAYER 2: " + playersArray[1].myHand.getScore());
 							shouldKnock = true;
 						}
 						else
@@ -2683,6 +2730,8 @@ public class finalProject extends JApplet implements ActionListener
 						if(playersArray[1].myHand.getScore() < playersArray[0].myHand.getScore())
 						{
 							//I HAVE BETTER SCORE KNOCK!!!
+							System.out.println("I HAVE BETTER SCORE KNOCK!!! PLAYER 1: " + playersArray[0].myHand.getScore() + " | PLAYER 2: " + playersArray[1].myHand.getScore());
+							
 							shouldKnock = true;
 						}
 						else
@@ -2709,10 +2758,16 @@ public class finalProject extends JApplet implements ActionListener
 			playerKnocked();
 		}
 		
+		setUpGUI(17);
+        
 		//EVERYTHING IS DONE CHANGE PLAYERS AND LOAD MAIN GUI
 		changePlayer();
 	}
 	
+	/*
+	 * Inits a new game with new players and new parameters depending
+	 * on the selection from the GUI
+	 */
 	public void initGame()
 	{		
 		//CREATE GAME STATE
@@ -2768,6 +2823,11 @@ public class finalProject extends JApplet implements ActionListener
 		}
 	}	
 	
+	/*
+	 * Inits a new round and rebuilds the deck and clears each players hand
+	 * shuffles the deck and starts the discard pile again with the first
+	 * card form the deck
+	 */
 	public void initRound()
 	{
 		System.out.println("DEBUG IS: " + debug);
@@ -2842,6 +2902,9 @@ public class finalProject extends JApplet implements ActionListener
 		}
 	}
 	
+	/*
+	 * Here we output the game log depending on what debug parameters are enabled
+	 */
 	public void printDebugLog()
 	{
 		if(debug || extraHelp)
@@ -2859,6 +2922,11 @@ public class finalProject extends JApplet implements ActionListener
 			System.out.println("SHOWING THE GAME STATE STATUS");
 			GAME_STATE.print();
 			System.out.println("********************************");
+			System.out.println("SHOWING THE DISCARD");
+			System.out.println("********************************");
+			discard.showDeck();
+			System.out.println("********************************");
+			System.out.println("********************************");
 			System.out.println("SHOWING THE REMAINING DECK");
 			System.out.println("********************************");
 			mainDeck.showDeck();
@@ -2866,41 +2934,63 @@ public class finalProject extends JApplet implements ActionListener
 		}
 	}
 	
+	/*
+	 * Here we update in game dialog for use with the debug
+	 */
 	public void updateGameDialog()
 	{
 		String text = "Current Player: " + playersArray[GAME_STATE.getPlayer()].getName() + "\n";
 		text = text + "----------Current Round: " + GAME_STATE.getRoundNum() + "\n";
-		text = text + "-Player 1's Hand - | - Players 2's Hand -\n";
 		
-		for(int i = 0; i < 4; i++)
+		if(debug)
 		{
-			text = text + "Card " + i + ": " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(i) + "\t  | ";
-			if(GAME_STATE.getPlayer() == 0)
+			text = text + "-Player 1's Hand - | - Players 2's Hand -\n";
+			
+			for(int i = 0; i < 4; i++)
 			{
-				text = text + "Card " + i + ": " + playersArray[1].myHand.getCard(i) + "\n";
+				text = text + "Card " + i + ": " + playersArray[GAME_STATE.getPlayer()].myHand.getCard(i) + "\t  | ";
+				if(GAME_STATE.getPlayer() == 0)
+				{
+					text = text + "Card " + i + ": " + playersArray[1].myHand.getCard(i) + "\n";
+				}
+				else
+				{
+					text = text + "Card " + i + ": " + playersArray[0].myHand.getCard(i) + "\n";
+				}
 			}
-			else
+			text = text + "-----GAME STATE-----\n";
+			text = text + GAME_STATE.returnGameState();
+			text = text + "-----DISCARD-----\n";
+			for(int i = 0; i < discard.size(); i++)
 			{
-				text = text + "Card " + i + ": " + playersArray[0].myHand.getCard(i) + "\n";
+				if(discard.getCard(i).isSpecial())
+				{
+					text = text + "Card " + i + ": " + discard.getCard(i).getSpecial() + "\n";
+				}
+				else
+				{
+					text = text + "Card " + i + ": " + discard.getCard(i).getRank() + "\n";
+				}
 			}
-		}
-		text = text + "-----GAME STATE-----\n";
-		text = text + GAME_STATE.returnGameState();
-		text = text + "-----DECK-----\n";
-		for(int i = 0; i < mainDeck.size(); i++)
-		{
-			if(mainDeck.getCard(i).isSpecial())
+			text = text + "-----DECK-----\n";
+			for(int i = 0; i < mainDeck.size(); i++)
 			{
-				text = text + "Card " + i + ": " + mainDeck.getCard(i).getSpecial() + "\n";
-			}
-			else
-			{
-				text = text + "Card " + i + ": " + mainDeck.getCard(i).getRank() + "\n";
+				if(mainDeck.getCard(i).isSpecial())
+				{
+					text = text + "Card " + i + ": " + mainDeck.getCard(i).getSpecial() + "\n";
+				}
+				else
+				{
+					text = text + "Card " + i + ": " + mainDeck.getCard(i).getRank() + "\n";
+				}
 			}
 		}
 		mainGUI_jtextarea_descripTextarea.setText(text);
 	}
 	
+	/*
+	 * updates the GUI to "cheat" and show the players hand
+	 */
 	public void showCardHand()
 	{
 		//PLAYER 1
@@ -2972,6 +3062,10 @@ public class finalProject extends JApplet implements ActionListener
 		}
 	}
 	
+	/*
+	 * Called when the deck is empty and needs to be rebuilt from the
+	 * discard pile
+	 */
 	public void rebuildEmptyDeck()
 	{
 		//CHECK IF DECK IS EMPTY
@@ -2996,6 +3090,12 @@ public class finalProject extends JApplet implements ActionListener
 		}
 	}
 	
+	/*
+	 * replaces the all the power cards in each players
+	 * hand at the end of the game if there are any, risky
+	 * moves if you end up with power cards in your hand at
+	 * the end
+	 */
 	public void replacePowerCardsInHands()
 	{
 		for(int i = 0; i < GAME_STATE.numPlayers(); i++)
@@ -3031,93 +3131,12 @@ public class finalProject extends JApplet implements ActionListener
 		}
 	}
 	
-	public void showEndRound()
-	{
-		/*
-		//SHOWING ROUND SCORES
-		int winner = -1;
-		int winningScore = 50;
-		for(int i = 0; i < 2; i++)
-		{
-			//CHECK FOR REMAINING POWER CARDS
-			for(int j = 0; j < 4; j++)
-			{
-				if(playersArray[i].myHand.getCard(j).isSpecial())
-				{
-					//CHECK IF DECK IS EMPTY
-					if(mainDeck.size() == 0)
-					{
-						System.out.println("----------------------------RESHUFFLING DECK!");
-						//Deck is empty, shuffle discard and create new deck
-						Card topCard = discard.getTopCard();
-						discard.shuffle();
-						if(debug)
-						{
-							System.out.println("BEFORE| deck: " + mainDeck.size() + " discard: " + discard.size());
-						}	
-						int tempSize = discard.size();
-						for(int k = 0; k < tempSize; k++)
-						{
-							mainDeck.addCard(discard.getTopCard());
-						}
-						discard.addTopCard(topCard);
-						if(debug)
-						{
-							System.out.println("After| deck: " + mainDeck.size() + " discard: " + discard.size());
-						}
-					}
-
-					//swap out card
-					//check if its another power card!
-					cardFromDeck = mainDeck.getTopCard();
-					while(cardFromDeck.isSpecial())
-					{
-						discard.addTopCard(cardFromDeck);
-						cardFromDeck = mainDeck.getTopCard();
-					}
-					
-					Card oldPowerCard = playersArray[i].myHand.replaceCard(j, cardFromDeck);
-					discard.addTopCard(oldPowerCard);
-					if(debug)
-					{
-						System.out.println("Swapped '" + oldPowerCard.toString() + "' with '" + cardFromDeck + "'");
-					}
-				}
-			}
-			
-			//RESET players score
-			playersArray[i].setScore(0);
-			
-			System.out.println(playersArray[i].getName() + "'s final Score: " + playersArray[i].myHand.getScore());
-			playersArray[i].myHand.showHand();
-			//Update their game Score
-			playersArray[i].setScore(playersArray[i].getScore() + playersArray[i].myHand.getScore());
-			if(playersArray[i].myHand.getScore() < winningScore)
-			{
-				winner = i;
-				winningScore = playersArray[i].myHand.getScore();
-			}
-			//UPDATE PLAYERS TOTAL SCORE
-			playersArray[i].setTotalScore(playersArray[i].getTotalScore() + playersArray[i].myHand.getScore());
-			
-		}
-		//Increase round win counter
-		playersArray[winner].setRoundsWon(playersArray[winner].getRoundsWon() + 1);
-		
-		//show winner!
-		System.out.println("THE WINNER WAS: " + playersArray[winner].getName() + " with " + playersArray[winner].myHand.getScore());
-		
-		if(sendJSON)
-		{
-			//--------PREPARE THE JSON---------
-			currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, true, currentRound, mainDeck, discard);
-			tempScore.addPlayer(playersArray[0]);
-			tempScore.addPlayer(playersArray[1]);
-			Transporter tempTransport = new Transporter(tempScore);		
-		}
-		*/
-	}
 	
+	/*
+	 * updates each players total score to include
+	 * their current subtotal for the end of each
+	 * round
+	 */
 	public void updatePlayersTotalScore()
 	{
 		playersArray[0].setTotalScore(playersArray[0].myHand.getScore() + playersArray[0].getTotalScore());
@@ -3126,6 +3145,10 @@ public class finalProject extends JApplet implements ActionListener
 		System.out.println("PLAYER 1 TOTAL SCORE:" + playersArray[1].getTotalScore());
 	}
 	
+	/*
+	 * checks to see who won the round and updates
+	 * their win counter
+	 */
 	public int checkWhoWonRound()
 	{
 		int winner = -1;
@@ -3151,6 +3174,9 @@ public class finalProject extends JApplet implements ActionListener
 		return winner;
 	}
 	
+	/*
+	 * checks to see who won the game and returns the winner!
+	 */
 	public int checkWhoWonGame()
 	{
 		int winner = -1;
@@ -3172,6 +3198,11 @@ public class finalProject extends JApplet implements ActionListener
 		return winner;
 	}
 	
+	/*
+	 * for timed play mode, this is called to see if the
+	 * game is over, IE 5 minutes have passed, THANKS JODA
+	 * library!
+	 */
 	public boolean checkIfGameTimedOut()
 	{
 		LocalTime currentTime = new LocalTime();
@@ -3191,6 +3222,11 @@ public class finalProject extends JApplet implements ActionListener
 
 	}
 	
+	/*
+	 * this is for high score play mode, this is called to
+	 * see if the game is over, IE if anyone has gone over 100
+	 * points
+	 */
 	public boolean checkIfHighScoreReached()
 	{
 		if(playersArray[0].getTotalScore() >= 100 || playersArray[1].getTotalScore() >= 100)
@@ -3203,9 +3239,11 @@ public class finalProject extends JApplet implements ActionListener
 		}
 	}
 
+	/*
+	 * Sends the information to the server
+	 */
 	public void sendJSON()
 	{
-		System.out.println("dkfjsklfjakldsfjklsd");
 		//--------PREPARE THE JSON---------
 		currentScore tempScore = new currentScore(GAME_STATE.numPlayers(), GAME_STATE, uniqueID, false, false, GAME_STATE.getRoundNum(), mainDeck, discard);
 		tempScore.addPlayer(playersArray[0]);
@@ -3213,6 +3251,9 @@ public class finalProject extends JApplet implements ActionListener
 		Transporter tempTransport = new Transporter(tempScore);	
 	}
 	
+	/*
+	 * This is called to check if the round is over
+	 */
 	public boolean checkRoundOver()
 	{
 		System.out.println("PLAYER WHO KNOCKED: " + GAME_STATE.getPlayerWhoKnocked());
@@ -3233,12 +3274,19 @@ public class finalProject extends JApplet implements ActionListener
 		}
 	}
 	
+	/*
+	 * This is called to discard the card we got from the deck
+	 * because we hate it and dont want to keep it!
+	 */
 	public void discardCardFromDeck()
 	{
 		Card cardFromDeck = mainDeck.getTopCard();
 		discard.addTopCard(cardFromDeck);
 	}
 	
+	/*
+	 * Changes players automatically to the next player
+	 */
 	public void changePlayer()
 	{
 		if(GAME_STATE.getStatus() == INSTRUCTIONS)
@@ -3317,11 +3365,27 @@ public class finalProject extends JApplet implements ActionListener
 					if(playersArray[GAME_STATE.getPlayer()].getHumanity() == false)
 					{
 						//NEXT TURN IS AI TURN
+						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+						System.out.println("---------------------- CHANGING PLAYERS: " + GAME_STATE.getPlayer() + "--------------------------");
+						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+						
 						processAI();
 					}
 					else
 					{
 						//NEXT TURN IS HUMAN TURN
+						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+						System.out.println("---------------------- CHANGING PLAYERS: " + GAME_STATE.getPlayer() + "--------------------------");
+						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+						System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+						
 						setUpGUI(0);
 					}	
 				}
@@ -3406,15 +3470,20 @@ public class finalProject extends JApplet implements ActionListener
 				}
 			}
 		}
+		System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 		printDebugLog();
 	}
 	
+	/*
+	 * Checks to see if the game is over
+	 */
 	public boolean checkIfGameOver()
 	{
 		if(GAME_STATE.getWinCon() == NUM_ROUNDS)
 		{
 			if(GAME_STATE.getRoundNum() == 5)
 			{
+				GAME_STATE.setStatus(GAME_OVER);
 				return true;
 			}
 			else
@@ -3426,6 +3495,7 @@ public class finalProject extends JApplet implements ActionListener
 		{
 			if(checkIfGameTimedOut())
 			{
+				GAME_STATE.setStatus(GAME_OVER);
 				return true;
 			}
 			else
@@ -3437,6 +3507,7 @@ public class finalProject extends JApplet implements ActionListener
 		{
 			if(checkIfHighScoreReached())
 			{
+				GAME_STATE.setStatus(GAME_OVER);
 				return true;
 			}
 			else
@@ -3478,6 +3549,9 @@ public class finalProject extends JApplet implements ActionListener
 		setUpGUI(1);
 	}
 	
+	/*
+	 * called when a player decides to knock, sets them to knock
+	 */
 	public void playerKnocked()
 	{
 		GAME_STATE.setPlayerWhoKnocked(GAME_STATE.getPlayer());
@@ -3510,7 +3584,10 @@ public class finalProject extends JApplet implements ActionListener
 	
 	}
 
-
+	/*
+	 * This is the heart of the action commands, processes all action
+	 * commands
+	 */
 	public void actionPerformed(ActionEvent e)
 	{	
 		//FOR THE GAME SETUP
@@ -3662,7 +3739,7 @@ public class finalProject extends JApplet implements ActionListener
 			//Show ROUN
 			setUpGUI(14);
 		}
-		if("nextGame".equals(e.getActionCommand()))
+		if("newGame".equals(e.getActionCommand()))
 		{
 			setUpGUI(1);
 		}
